@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Name="Root" Padding="0"
+             BackgroundColor="{StaticResource TransparentColor}"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="Khadamat_CustomerApp.Views.CustomMenuHeader">
+    <ContentView.Content>
+        <Grid>
+            <Grid BackgroundColor="{StaticResource BlueColor}" HorizontalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <!--<Image HorizontalOptions="Center" Style="{StaticResource MenuImageStyle}" Source="ic_drawer_menu.png" Grid.Column="0">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding MenuIconCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>-->
+                <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuImageStyle}" HorizontalOptions="Center" Source="{Binding Source={x:Reference Root}, Path=MenuIconImage}" Grid.Column="0">
+                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding MenuIconCommand}"/>
+                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                </ffimageloadingsvg:SvgCachedImage>
+                <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Column="0" BackgroundColor="{StaticResource TransparentColor}">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding MenuIconCommand}"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+
+                <Label Grid.Column="1" Text="{Binding Source={x:Reference Root}, Path=TitleText}" TextColor="{StaticResource WhiteColor}" BackgroundColor="{StaticResource TransparentColor}" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontFamily="{StaticResource MediumFontFamily}" FontSize="18"/>
+
+                <!--<Image HorizontalOptions="Center" Style="{StaticResource MenuImageStyle}" Source="{Binding Source={x:Reference Root}, Path=RightIconImage}" Grid.Column="2">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding RightIconCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>-->
+
+                <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuImageStyle}" HorizontalOptions="Center" Source="{Binding Source={x:Reference Root}, Path=RightIconImage}" Grid.Column="2">
+                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RightIconCommand}"/>
+                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                </ffimageloadingsvg:SvgCachedImage>
+
+                <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Column="2" BackgroundColor="{StaticResource TransparentColor}">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RightIconCommand}"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+
+                <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuImageStyle}" HorizontalOptions="Center" Source="{Binding Source={x:Reference Root}, Path=Right1IconImage}" Grid.Column="3">
+                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Right1IconCommand}"/>
+                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                </ffimageloadingsvg:SvgCachedImage>
+
+                <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Column="3" BackgroundColor="{StaticResource TransparentColor}">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Right1IconCommand}"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+            </Grid>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

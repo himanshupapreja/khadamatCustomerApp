@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Name="Root" Padding="0"
+             BackgroundColor="{StaticResource TransparentColor}"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="Khadamat_CustomerApp.Views.BackArrowHeader">
+    <ContentView.Content>
+        <Grid>
+            <Grid BackgroundColor="{StaticResource BlueColor}" HorizontalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                <!--<Image HorizontalOptions="Center" Style="{StaticResource MenuImageStyle}" Source="ic_back.png" Grid.Column="0">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding MenuIconCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>-->
+                <ffimageloadingsvg:SvgCachedImage x:Name="backarrow" Style="{StaticResource MenuImageStyle}" HorizontalOptions="Center" Source="resource://Khadamat_CustomerApp.SvgImages.left_arrow.svg" Grid.Column="0">
+                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BackIconCommand}"/>
+                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                </ffimageloadingsvg:SvgCachedImage>
+                <BoxView x:Name="backarrowclickbox" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Column="0" BackgroundColor="{StaticResource TransparentColor}">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BackIconCommand}"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+
+                <Label Grid.Column="1" Text="{Binding Source={x:Reference Root}, Path=TitleText}" BackgroundColor="{StaticResource TransparentColor}" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="{StaticResource WhiteColor}" FontFamily="{StaticResource MediumFontFamily}" FontSize="18"/>
+
+                <!--<Image HorizontalOptions="Center" Style="{StaticResource MenuImageStyle}" Source="{Binding Source={x:Reference Root}, Path=RightIconImage}" Grid.Column="2">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding RightIconCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>-->
+
+                <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuImageStyle}" HorizontalOptions="Center" Source="{Binding Source={x:Reference Root}, Path=RightIconImage}" Grid.Column="2">
+                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RightIconCommand}"/>
+                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                </ffimageloadingsvg:SvgCachedImage>
+
+                <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Column="2" BackgroundColor="{StaticResource TransparentColor}">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RightIconCommand}"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+            </Grid>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

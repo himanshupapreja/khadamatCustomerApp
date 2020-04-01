@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:commonheader="clr-namespace:Khadamat_CustomerApp.Views"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:strings="clr-namespace:Khadamat_CustomerApp;assembly=Khadamat_CustomerApp"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             BackgroundColor="{StaticResource PageBGColor}"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Khadamat_CustomerApp.Views.NoInternetPage">
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="10">
+            <Image IsOpaque="True" Source="nointernet.png" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="250" Margin="0,30,0,0"></Image>
+            <Label Text="{strings:Translate noInternet_msg1}" FontSize="Large" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" 
+                           VerticalOptions="Center" Style="{StaticResource BlackSemiBoldLabel}"/>
+            <Label Text="{strings:Translate noInternet_msg2}" FontSize="Medium" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" 
+                           VerticalOptions="Center" Style="{StaticResource BlackMediumLabel}"/>
+
+            <Button x:Name="tryagainBtn" Padding="40,0" Text="{strings:Translate noInternet_TryAgainBtn}" Style="{ StaticResource GreenButtonStyle}" Clicked="tryagainBtn_Clicked"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>

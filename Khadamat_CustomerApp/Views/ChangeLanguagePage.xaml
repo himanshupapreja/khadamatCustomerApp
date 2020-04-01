@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:strings="clr-namespace:Khadamat_CustomerApp;assembly=Khadamat_CustomerApp"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:commonheader="clr-namespace:Khadamat_CustomerApp.Views"
+             BackgroundColor="{StaticResource PageBGColor}"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Khadamat_CustomerApp.Views.ChangeLanguagePage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Image Grid.RowSpan="2" Style="{StaticResource PageBGImage}"/>
+        <BoxView Grid.Row="0" Grid.RowSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource Black1Color}" Opacity="0.3"/>
+
+        <!--Cross Image-->
+        <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuImageStyle}" Margin="20,10" HorizontalOptions="Start" Source="resource://Khadamat_CustomerApp.SvgImages.left_arrow.svg" Grid.Column="0">
+            <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding CloseCommand}"/>
+            </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+        </ffimageloadingsvg:SvgCachedImage>
+        <!--<Image Source="whiteleftarrow.png" Style="{StaticResource LanguageBackButtonStyle}" HorizontalOptions="Start" Margin="20,10" IsVisible="{Binding IsAppAlreadyInstalled}">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CloseCommand}"/>
+                </Image.GestureRecognizers>
+            </Image>-->
+
+        <Frame Grid.Row="0" Grid.RowSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" IsClippedToBounds="True" Margin="20,0,20,0">
+            <Grid>
+                <!--<Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="40"/>
+                    </Grid.ColumnDefinitions>-->
+                <Picker x:Name="langPicker" Title="{strings:Translate changelang_PickerPlaceholder}" ItemsSource="{Binding ChangeLanguageList}" SelectedItem="{Binding ChangeLanguageListSelected}" ItemDisplayBinding="{Binding LanguageFullName}" SelectedIndexChanged="langPicker_SelectedIndexChanged"/>
+
+
+                <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuImageStyle}" Margin="0,0" HorizontalOptions="End" VerticalOptions="Center" Source="resource://Khadamat_CustomerApp.SvgImages.dropdownarrow.svg" >
+                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                </ffimageloadingsvg:SvgCachedImage>
+            </Grid>
+        </Frame>
+    </Grid>
+</ContentPage>

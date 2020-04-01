@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:strings="clr-namespace:Khadamat_CustomerApp;assembly=Khadamat_CustomerApp"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:commonheader="clr-namespace:Khadamat_CustomerApp.Views"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:img="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             BackgroundColor="{StaticResource GrayColor}"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Khadamat_CustomerApp.Views.ChatDetailPage">
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!--Header Bar-->
+        <commonheader:BackArrowHeader HorizontalOptions="FillAndExpand" TitleText="{Binding ChatDetailTitle}" RightIconImage="{Binding ToolbarIcon}"/>
+
+        <!--Chat Message View ListView-->
+        <CollectionView Grid.Row="1" x:Name="chatdetailList" ItemsSource="{Binding ChatDetailList}" ItemsLayout="VerticalList" SelectionMode="None" BackgroundColor="{StaticResource TransparentColor}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid x:Name="chatdetailListItem" Padding="20,5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <!--Sender View-->
+                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="0"  IsVisible="{Binding is_sender}">
+                            <!--<Label Text="Me" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End" TextColor="{StaticResource Black2Color}" FontSize="13" Margin="0,0,10,5" IsVisible="{Binding IsSender}"/>-->
+                            <yummy:PancakeView BackgroundColor="{StaticResource BlueColor}" CornerRadius="20,20,20,0" IsClippedToBounds="true" HorizontalOptions="End" Padding="20" Margin="80,0,0,0">
+                                <StackLayout Orientation="Vertical" Spacing="5" HorizontalOptions="FillAndExpand">
+                                    <Label Text="{Binding user_message}" Style="{StaticResource ChatgrayLabel}" FontSize="15" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End" VerticalOptions="Center" IsVisible="{Binding is_message}"/>
+                                    <Grid HorizontalOptions="End" VerticalOptions="Center"  IsVisible="{Binding is_message, Converter={StaticResource BoolToNotBoolConverter}}">
+                                        <Image Source="{Binding image_url}" IsVisible="{Binding is_image}"/>
+                                        
+
+                                        <ActivityIndicator HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsRunning="True" HeightRequest="50" WidthRequest="50" IsVisible="{Binding is_loading}" Color="{StaticResource GrayColor}"></ActivityIndicator>
+
+                                        <StackLayout Orientation="Horizontal" Spacing="5" IsVisible="{Binding is_file}">
+                                            <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuImage30Style}" HorizontalOptions="Start" Source="resource://Khadamat_CustomerApp.SvgImages.docicon.svg"/>
+                                            <Label Text="{Binding file_name}" Style="{StaticResource ChatgrayLabel}" FontSize="15" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
+                                        </StackLayout>
+                                    </Grid>
+                                    <Button Text="View" HorizontalOptions="FillAndExpand" VerticalOptions="End" Clicked="TapGestureRecognizer_Tapped" CommandParameter="{Binding Source={x:Reference chatdetailListItem}, Path=BindingContext}" IsVisible="{Binding IsViewBtnVisible}" HeightRequest="40" Padding="0" FontSize="12" Margin="-20,0,-20,0"/>
+                                </StackLayout>
+                            </yummy:PancakeView>
+                            <Label Text="{Binding user_message_time}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End" TextColor="{StaticResource Black1Color}" FontSize="13" Margin="80,0,20,0" IsVisible="{Binding IsSender}"/>
+                        </StackLayout>
+
+
+
+                        <!--Reciever View-->
+                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="0" IsVisible="{Binding is_sender, Converter={StaticResource BoolToNotBoolConverter}}">
+                            <!--<Label Text="{Binding receiver_user_Name}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" TextColor="{StaticResource Black2Color}" FontSize="13" Margin="10,0,0,5"/>-->
+                            <yummy:PancakeView BackgroundColor="{StaticResource RecieverChatColor}" CornerRadius="20,20,0,20" IsClippedToBounds="true" HorizontalOptions="FillAndExpand" Padding="20" Margin="0,0,80,0">
+                                <StackLayout Orientation="Vertical" Spacing="5" HorizontalOptions="FillAndExpand" Margin="-20" Padding="20">
+                                    <Label Text="{Binding receiver_user_Name}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" TextColor="{StaticResource Black1Color}" FontFamily="{StaticResource SemiBoldFontFamily}" FontSize="15" Margin="0,0,0,5"/>
+                                    <Label Text="{Binding user_message}" Style="{StaticResource ChatlightblackLabel}" FontSize="15" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" VerticalOptions="Center" IsVisible="{Binding is_message}"/>
+                                    <Image Source="{Binding image_url}" HorizontalOptions="Start" VerticalOptions="Center" IsVisible="{Binding is_image}"/>
+
+                                    <StackLayout Orientation="Horizontal" Spacing="5" IsVisible="{Binding is_file}">
+                                        <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuImage30Style}" HorizontalOptions="Start" Source="resource://Khadamat_CustomerApp.SvgImages.docicon.svg"/>
+                                        <Label Text="{Binding file_name}" Style="{StaticResource ChatlightblackLabel}" FontSize="15" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
+                                        <!--<ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuImage30Style}" HorizontalOptions="End" Source="resource://Khadamat_CustomerApp.SvgImages.download.svg">
+                                            <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.DownloadFileCommand, Source={x:Reference chatdetailList}}" CommandParameter="{Binding Source={x:Reference chatdetailListItem}, Path=BindingContext}" NumberOfTapsRequired="1"/>
+                                            </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                        </ffimageloadingsvg:SvgCachedImage>-->
+                                    </StackLayout>
+
+                                    <Button Text="View" HorizontalOptions="FillAndExpand" VerticalOptions="End" Clicked="TapGestureRecognizer_Tapped" Command="{Binding Path=BindingContext.DownloadFileCommand, Source={x:Reference chatdetailList}}" CommandParameter="{Binding Source={x:Reference chatdetailListItem}, Path=BindingContext}" HeightRequest="40" Padding="0" FontSize="12" Margin="-20,0,-20,-20" IsVisible="{Binding IsViewBtnVisible}"/>
+                                </StackLayout>
+                            </yummy:PancakeView>
+                            <Label Text="{Binding user_message_time}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End" TextColor="{StaticResource Black1Color}" FontSize="13" Margin="0,0,100,0" IsVisible="{Binding IsSender, Converter={StaticResource BoolToNotBoolConverter}}"/>
+                        </StackLayout>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+
+        <!--Message entry Field-->
+        <StackLayout Grid.Row="2" Spacing="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0" BackgroundColor="Transparent">
+            <Frame BackgroundColor="{StaticResource WhiteColor}" Padding="0" IsClippedToBounds="True" HasShadow="False" IsVisible="{Binding IsJobCompleted,Converter={StaticResource BoolToNotBoolConverter}}">
+                <Grid>
+                    <Frame BackgroundColor="{StaticResource PageBGColor}" CornerRadius="0" Padding="0" IsClippedToBounds="True" HasShadow="False" IsVisible="{Binding IsMessageEntryVisible}">
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0" ColumnSpacing="0" BackgroundColor="Transparent">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="60"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="60"/>
+                            </Grid.ColumnDefinitions>
+                            <BoxView Grid.Row="1" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource LightYellowColor}">
+                                <BoxView.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding AttachmentCommand}" NumberOfTapsRequired="1"/>
+                                </BoxView.GestureRecognizers>
+                            </BoxView>
+                            <ffimageloadingsvg:SvgCachedImage Grid.Row="1" Grid.Column="0" Style="{StaticResource MenuImageCrossStyle}" HorizontalOptions="Center" Source="resource://Khadamat_CustomerApp.SvgImages.attachment.svg">
+                                <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding AttachmentCommand}" NumberOfTapsRequired="1"/>
+                                </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                            </ffimageloadingsvg:SvgCachedImage>
+
+                            <Entry Placeholder="{strings:Translate chatdetail_EnterMsgPlaceHolder}" Text="{Binding MessageEntry}" Grid.Row="1" Grid.Column="1" Margin="15,0"/>
+
+                            <BoxView Grid.Row="1" Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource LightYellowColor}">
+                                <BoxView.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SendMsgCommand}" NumberOfTapsRequired="1"/>
+                                </BoxView.GestureRecognizers>
+                            </BoxView>
+                            <ffimageloadingsvg:SvgCachedImage Grid.Row="1" Grid.Column="2" Style="{StaticResource MenuImageCrossStyle}" HorizontalOptions="Center" Source="resource://Khadamat_CustomerApp.SvgImages.ic_send.svg">
+                                <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SendMsgCommand}" NumberOfTapsRequired="1"/>
+                                </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                            </ffimageloadingsvg:SvgCachedImage>
+                        </Grid>
+                    </Frame>
+
+
+                </Grid>
+            </Frame>
+
+            <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{strings:Translate chatDisable}" Style="{StaticResource BlackMediumLabel}" FontSize="15" IsVisible="{Binding IsJobCompleted}" Margin="15,0,15,10"/>
+        </StackLayout>
+
+
+
+
+        <!--Popup-->
+        <BoxView Grid.RowSpan="3" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Black1Color}" Opacity="0.8" VerticalOptions="FillAndExpand" IsVisible="{Binding IsPopupVisible}"/>
+        <Grid Grid.RowSpan="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent" IsVisible="{Binding IsPopupVisible}">
+            <StackLayout x:Name="FrameContainer" BackgroundColor="Transparent"  Margin="0,40,0,0" VerticalOptions="Start" IsVisible="{Binding IsToolbarPopup}"
+                    HorizontalOptions="EndAndExpand"
+                           Padding="0" WidthRequest="220" HeightRequest="70" Spacing="0">
+                <Image Source="ic_top_arrow.png" HorizontalOptions="End" Margin="0,0,10,-8"/>
+                <Frame CornerRadius="10" BackgroundColor="White">
+                    <StackLayout  Spacing="10">
+
+                        <StackLayout x:Name="LayoutChatDelete" Orientation="Horizontal">
+                            <Image Source="ic_chat_delete.png" HeightRequest="25"/>
+                            <Label Text="{strings:Translate DeleteChat}" Style="{StaticResource ChatlightblackLabel}" FontSize="16"
+                                    VerticalTextAlignment="Center"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer  Command="{Binding  DeleteChatCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer  Command="{Binding  DeleteChatCommand}"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer  Command="{Binding  DeleteChatCommand}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </StackLayout>
+
+            <StackLayout BackgroundColor="Transparent"  Margin="0,0,0,50" VerticalOptions="End" IsVisible="{Binding IsToolbarPopup, Converter={StaticResource BoolToNotBoolConverter}}"
+                    HorizontalOptions="FillAndExpand"
+                           Padding="0" Spacing="0">
+
+                <Frame CornerRadius="10" BackgroundColor="White">
+                    <StackLayout  Spacing="10">
+
+                        <Frame Style="{StaticResource Frame120h}" Padding="0" >
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <ffimageloadingsvg:SvgCachedImage Grid.Column="0" Style="{StaticResource MenuImage75Style}" HorizontalOptions="Center" Source="resource://Khadamat_CustomerApp.SvgImages.imageupload.svg">
+                                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding ImageUploadCommand}" NumberOfTapsRequired="1"/>
+                                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                </ffimageloadingsvg:SvgCachedImage>
+                                <BoxView Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource TransparentColor}">
+                                    <BoxView.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding ImageUploadCommand}" NumberOfTapsRequired="1"/>
+                                    </BoxView.GestureRecognizers>
+                                </BoxView>
+
+                                <BoxView Style="{StaticResource VerticalBoxViewStyle}" Grid.Column="1"/>
+
+                                <ffimageloadingsvg:SvgCachedImage Grid.Column="2" Style="{StaticResource MenuImage75Style}" HorizontalOptions="Center" Source="resource://Khadamat_CustomerApp.SvgImages.fileupload.svg">
+                                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding FileUploadCommand}" NumberOfTapsRequired="1"/>
+                                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                </ffimageloadingsvg:SvgCachedImage>
+                                <BoxView Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource TransparentColor}">
+                                    <BoxView.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding FileUploadCommand}" NumberOfTapsRequired="1"/>
+                                    </BoxView.GestureRecognizers>
+                                </BoxView>
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                </Frame>
+                <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuImage30Style}" HorizontalOptions="Start" Margin="15,-8,0,0" Source="resource://Khadamat_CustomerApp.SvgImages.downarrowwhite.svg"/>
+            </StackLayout>
+
+            <!--<BoxView HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Black1Color}" Opacity="0.8" VerticalOptions="FillAndExpand" IsVisible="{Binding IsLoaderBusy}"/>
+            <ActivityIndicator IsVisible="{Binding IsLoaderBusy}" IsRunning="{Binding IsLoaderBusy}" Color="{StaticResource BlueColor}" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"/>-->
+
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer  Command="{Binding CloseCommand}"/>
+            </Grid.GestureRecognizers>
+        </Grid>
+    </Grid>
+</ContentPage>

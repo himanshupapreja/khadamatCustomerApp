@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:strings="clr-namespace:Khadamat_CustomerApp;assembly=Khadamat_CustomerApp"
+             BackgroundColor="{StaticResource PageBGColor}"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Khadamat_CustomerApp.Views.RegisterationPage">
+    <Grid>
+        <!--background image-->
+        <Image Style="{StaticResource PageBGImage}"/>
+
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Spacing="10" Padding="20,0">
+            <Label Text="{strings:Translate reg_EnterPhoneNumberTitle}" Style="{StaticResource registerpageBoldLabel}" FontSize="25" FontAttributes="Bold"/>
+            <Label Text="{strings:Translate reg_VerificationCodeMsg}" Style="{StaticResource registerpageLabel}" FontSize="18"/>
+
+            <!--Phone Number Field-->
+            <Frame Style="{StaticResource Frame50h}" Padding="0" CornerRadius="5" Margin="0,20">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="10"  Margin="20,0" VerticalOptions="CenterAndExpand">
+                    <Label Text="+967" TextColor="{StaticResource Black1Color}" FontSize="15" FontFamily="{StaticResource DefaultFontFamily}" VerticalOptions="Center"/>
+                    <BoxView BackgroundColor="{StaticResource Black2Color}" WidthRequest="1" VerticalOptions="Center" HeightRequest="20"/>
+                    <Entry Text="{Binding PhoneNumber}" TextColor="{StaticResource Black1Color}" Style="{StaticResource EntryStyle}" Placeholder="{strings:Translate reg_PhoneNumber}" Keyboard="Telephone" ReturnType="Done"/>
+                </StackLayout>
+            </Frame>
+
+            <!--Submit Button-->
+            <Button Padding="40,0" Text="{strings:Translate reg_SubmitBtn}" Style="{ StaticResource YellowButtonStyle}" Command="{Binding SubmitBtnCommand}" />
+        </StackLayout>
+
+        <!--Loader Popup-->
+        <BoxView HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Black1Color}" Opacity="0.8" VerticalOptions="FillAndExpand" IsVisible="{Binding IsLoaderBusy}"/>
+        <ActivityIndicator IsVisible="{Binding IsLoaderBusy}" IsRunning="{Binding IsLoaderBusy}" Color="{StaticResource BlueColor}" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"/>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:strings="clr-namespace:Khadamat_CustomerApp;assembly=Khadamat_CustomerApp"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             BackgroundColor="{StaticResource PageBGColor}"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Khadamat_CustomerApp.Views.OtpPage">
+    <Grid>
+        <!--Background Image-->
+        <Image Style="{StaticResource PageBGImage}"/>
+
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Spacing="10" Padding="20,0">
+            <Label Text="{strings:Translate otp_EnterOtpTitle}" Style="{StaticResource registerpageBoldLabel}" FontSize="25" FontAttributes="Bold"/>
+            <Label Text="{strings:Translate otp_VerificationCodeMsg}" Style="{StaticResource registerpageLabel}" FontSize="18"/>
+            <!--OTP Fields-->
+            <Frame Style="{StaticResource Frame50h}" Padding="0" CornerRadius="5" Margin="0,20">
+                <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="10"  Margin="20,0" VerticalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--OTP 1-->
+                    <Entry x:Name="otp1" Grid.Column="0" Text="{Binding OTP1}" Style="{StaticResource OTPEntryStyle}" Placeholder="X" Keyboard="Numeric" ReturnType="Next" MaxLength="2"/>
+                    <!--OTP 2-->
+                    <Entry x:Name="otp2" Grid.Column="1" Text="{Binding OTP2}" Style="{StaticResource OTPEntryStyle}" Placeholder="X" Keyboard="Numeric" ReturnType="Next" MaxLength="2"/>
+                    <!--OTP 3-->
+                    <Entry x:Name="otp3" Grid.Column="2" Text="{Binding OTP3}" Style="{StaticResource OTPEntryStyle}" Placeholder="X" Keyboard="Numeric" ReturnType="Next" MaxLength="2"/>
+                    <!--OTP 4-->
+                    <Entry x:Name="otp4" Grid.Column="3" Text="{Binding OTP4}" Style="{StaticResource OTPEntryStyle}" Placeholder="X" Keyboard="Numeric" ReturnType="Next" MaxLength="2"/>
+                    <!--OTP 5-->
+                    <Entry x:Name="otp5" Grid.Column="4" Text="{Binding OTP5}" Style="{StaticResource OTPEntryStyle}" Placeholder="X" Keyboard="Numeric" ReturnType="Done" MaxLength="2"/>
+                </Grid>
+            </Frame>
+
+            <!--OTP Submit Button-->
+            <Button Padding="40,0" Text="{strings:Translate reg_SubmitBtn}" Style="{ StaticResource YellowButtonStyle}" Command="{Binding SubmitBtnCommand}" />
+            <Label Text="{strings:Translate otp_Resend}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" TextDecorations="Underline" Style="{ StaticResource WhiteMediumLabel}" Margin="0,20" IsEnabled="{Binding ResendOtpEnabled}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ResendOtpCommand}" NumberOfTapsRequired="1"/>
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Label Text="{strings:Translate otp_Callme}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" Style="{ StaticResource WhiteMediumLabel}" Margin="0,10,0,5" LineBreakMode="WordWrap" IsVisible="{Binding IsCallButtonvisible}"/>
+
+            <ffimageloadingsvg:SvgCachedImage WidthRequest="60" HeightRequest="60" Source="resource://Khadamat_CustomerApp.SvgImages.phonecall.svg" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" IsVisible="{Binding IsCallButtonvisible}">
+                <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CallCommand}" NumberOfTapsRequired="1"/>
+                </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+            </ffimageloadingsvg:SvgCachedImage>
+        </StackLayout>
+
+        <!--Loader Popup-->
+        <BoxView HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Black1Color}" Opacity="0.8" VerticalOptions="FillAndExpand" IsVisible="{Binding IsLoaderBusy}"/>
+        <ActivityIndicator IsVisible="{Binding IsLoaderBusy}" IsRunning="{Binding IsLoaderBusy}" Color="{StaticResource BlueColor}" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"/>
+    </Grid>
+</ContentPage>

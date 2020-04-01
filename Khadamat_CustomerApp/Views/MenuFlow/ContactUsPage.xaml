@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:strings="clr-namespace:Khadamat_CustomerApp;assembly=Khadamat_CustomerApp"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:commonheader="clr-namespace:Khadamat_CustomerApp.Views"
+             BackgroundColor="{StaticResource PageBGColor}"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Khadamat_CustomerApp.Views.ContactUsPage">
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <commonheader:BackArrowHeader HorizontalOptions="FillAndExpand" TitleText="{strings:Translate contact_ContactUsTitle}"/>
+
+        <!--Contact Us Fields-->
+        <StackLayout Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="15" Padding="30,30,30,0">
+
+            <!--Name Field-->
+            <!--<Frame Style="{StaticResource Frame70h}" Padding="0" CornerRadius="5" Margin="0,20,0,10">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="10"  Margin="20,0" VerticalOptions="CenterAndExpand">
+                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="5">
+                            <Label Text="{strings:Translate contact_ContactUsNameTitle}" Style="{StaticResource contactPageentryboldLabel}" FontSize="15"/>
+                            <Entry Text="{Binding Name}" TextColor="{StaticResource Black1Color}" Style="{StaticResource EntryStyle}" Placeholder="{strings:Translate contact_ContactUsNameValue}" ReturnType="Next"/>
+                        </StackLayout>
+                        <ffimageloadingsvg:SvgCachedImage WidthRequest="20" HeightRequest="20" Source="resource://Khadamat_CustomerApp.SvgImages.avatar.svg"/>
+                    </StackLayout>
+                </Frame>-->
+
+            <!--Email Field-->
+            <!--<Frame Style="{StaticResource Frame70h}" Padding="0" CornerRadius="5" Margin="0,0,0,20">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="10"  Margin="20,0" VerticalOptions="CenterAndExpand">
+                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="5">
+                            <Label Text="{strings:Translate contact_ContactUsEmailTitle}" Style="{StaticResource contactPageentryboldLabel}" FontSize="15"/>
+                            <Entry Text="{Binding Email}" TextColor="{StaticResource Black1Color}" Style="{StaticResource EntryStyle}" Placeholder="{strings:Translate contact_ContactUsEmailValue}" ReturnType="Next"/>
+                        </StackLayout>
+                        <ffimageloadingsvg:SvgCachedImage WidthRequest="20" HeightRequest="20" Source="resource://Khadamat_CustomerApp.SvgImages.ic_email.svg" VerticalOptions="Center"/>
+                    </StackLayout>
+                </Frame>-->
+
+            <!--Service Description Field-->
+            <Frame Style="{StaticResource Frame120h}" Padding="0" HeightRequest="120" CornerRadius="5" Margin="0,0,0,20">
+                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="5"  Margin="20" VerticalOptions="FillAndExpand">
+                    <Label Text="{strings:Translate contact_ContactUsServiceTitle}" Style="{StaticResource contactPageentryboldLabel}" FontSize="15"/>
+                    <Editor Placeholder="{strings:Translate contact_ContactUsServiceValue}" FontFamily="{StaticResource DefaultFontFamily}" PlaceholderColor="{StaticResource GrayColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" TextColor="{StaticResource Black3Color}" Text="{Binding ServiceDescriptionValue}" FontSize="{StaticResource MainLabelFontSize1}"/>
+                </StackLayout>
+            </Frame>
+
+            <Button Padding="0" Text="{strings:Translate contact_ContactUsBtn}" Style="{ StaticResource YellowButtonFillStyle}" Command="{Binding SendBtnCommand}"/>
+
+        </StackLayout>
+
+        <BoxView Grid.RowSpan="2" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Black1Color}" Opacity="0.8" VerticalOptions="FillAndExpand" IsVisible="{Binding IsLoaderBusy}"/>
+        <ActivityIndicator Grid.RowSpan="2" IsVisible="{Binding IsLoaderBusy}" IsRunning="{Binding IsLoaderBusy}" Color="{StaticResource BlueColor}" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"/>
+    </Grid>
+</ContentPage>

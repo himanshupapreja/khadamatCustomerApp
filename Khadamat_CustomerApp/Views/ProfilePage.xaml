@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:strings="clr-namespace:Khadamat_CustomerApp;assembly=Khadamat_CustomerApp"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:commonheader="clr-namespace:Khadamat_CustomerApp.Views"
+             BackgroundColor="{StaticResource PageBGColor}"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Khadamat_CustomerApp.Views.ProfilePage">
+    <Grid RowSpacing="0" BackgroundColor="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--Header Bar-->
+        <commonheader:BackArrowHeader HorizontalOptions="FillAndExpand" TitleText="{strings:Translate profile_ProfileTitle}" RightIconImage="resource://Khadamat_CustomerApp.SvgImages.ic_edit.svg" IsVisible="{Binding IsNoInternetFound,Converter={StaticResource BoolToNotBoolConverter}}"/>
+
+        <ScrollView Grid.Row="1" Orientation="Vertical" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding IsNoInternetFound,Converter={StaticResource BoolToNotBoolConverter}}">
+            <StackLayout Spacing="25" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="30,20">
+                <!--Profile Pic-->
+                <Frame Style="{StaticResource Frame90hw}" Padding="0" CornerRadius="5" Margin="0" IsClippedToBounds="True" HorizontalOptions="Center" VerticalOptions="Start">
+                    <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0">
+                        <Image Source="{Binding UserPic}" Aspect="Fill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+
+
+                        <!--<Frame Style="{StaticResource Frame50h}" HorizontalOptions="End" VerticalOptions="End" CornerRadius="3" Padding="0" BackgroundColor="{StaticResource WhiteColor}" HeightRequest="20" WidthRequest="20" Margin="0,0,-2,-2">
+                                <ffimageloadingsvg:SvgCachedImage WidthRequest="10" HeightRequest="10" Source="resource://Khadamat_CustomerApp.SvgImages.photo_camera.svg" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            </Frame>-->
+                    </Grid>
+                </Frame>
+
+                <!--Name-->
+                <!--<Label Text="Mohamed Adab" Style="{StaticResource profileBlueBoldLabel}" />-->
+                <!--Mvvm Binding-->
+                <Label Text="{Binding Name}" TextColor="{StaticResource BlueColor}" FontSize="{StaticResource MainLabelFontSize3}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+
+                <!--DOB-->
+                <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="30"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0" Orientation="Vertical" Spacing="5" HorizontalOptions="FillAndExpand">
+                        <Label Text="{strings:Translate profile_DOB}" Style="{StaticResource profileblackLabel}"/>
+                        <!--<Label Text="02/Dec/1990" Style="{StaticResource profilelightblackLabel}"/>-->
+                        <!--Mvvm Binding-->
+                        <Label Text="{Binding DOB}" Style="{StaticResource profilelightblackLabel}"/>
+                    </StackLayout>
+                    <ffimageloadingsvg:SvgCachedImage Grid.Column="1" WidthRequest="20" HeightRequest="20" Source="resource://Khadamat_CustomerApp.SvgImages.calendar.svg" VerticalOptions="CenterAndExpand"/>
+                </Grid>
+
+                <BoxView Style="{StaticResource HorizontalBoxViewStyle}"/>
+
+                <!--Email-->
+                <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="10" RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="30"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0" Grid.RowSpan="2" Orientation="Vertical" Spacing="5" HorizontalOptions="FillAndExpand">
+                        <Label Text="{strings:Translate profile_Email}" Style="{StaticResource profileblackLabel}"/>
+                        <!--<Label Text="02/Dec/1990" Style="{StaticResource profilelightblackLabel}"/>-->
+                        <!--Mvvm Binding-->
+                        <Label Text="{Binding Email}" Style="{StaticResource profilelightblackLabel}"/>
+                    </StackLayout>
+                    <ffimageloadingsvg:SvgCachedImage Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" WidthRequest="20" HeightRequest="20" Source="resource://Khadamat_CustomerApp.SvgImages.email.svg" VerticalOptions="CenterAndExpand"/>
+                    <!--<ffimageloadingsvg:SvgCachedImage Grid.Column="1" Grid.Row="1" WidthRequest="15" HeightRequest="15" Source="resource://Khadamat_CustomerApp.SvgImages.pencil.svg" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                        <BoxView Grid.Row="1" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <BoxView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding PhoneEmailEditCommand}" CommandParameter="email" NumberOfTapsRequired="1"/>
+                            </BoxView.GestureRecognizers>
+                        </BoxView>-->
+                </Grid>
+
+                <BoxView Style="{StaticResource HorizontalBoxViewStyle}"/>
+
+                <!--Phone Number-->
+                <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="10" RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="30"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0" Grid.RowSpan="2" Orientation="Vertical" Spacing="5" HorizontalOptions="FillAndExpand">
+                        <Label Text="{strings:Translate login_PhoneNumber}" Style="{StaticResource profileblackLabel}"/>
+                        <!--<Label Text="02/Dec/1990" Style="{StaticResource profilelightblackLabel}"/>-->
+                        <!--Mvvm Binding-->
+                        <Label Text="{Binding PhoneNumber}" Style="{StaticResource profilelightblackLabel}"/>
+                    </StackLayout>
+                    <ffimageloadingsvg:SvgCachedImage Grid.Row="0" Grid.Column="1" WidthRequest="20" HeightRequest="20" Source="resource://Khadamat_CustomerApp.SvgImages.telephone.svg" VerticalOptions="CenterAndExpand"/>
+                    <ffimageloadingsvg:SvgCachedImage Grid.Column="1" Grid.Row="1" WidthRequest="15" HeightRequest="15" Source="resource://Khadamat_CustomerApp.SvgImages.pencil.svg" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                    <BoxView Grid.Row="1" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <BoxView.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding PhoneEmailEditCommand}" CommandParameter="phone" NumberOfTapsRequired="1"/>
+                        </BoxView.GestureRecognizers>
+                    </BoxView>
+                </Grid>
+
+                <BoxView Style="{StaticResource HorizontalBoxViewStyle}"/>
+
+                <!--Current Job-->
+                <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="10" IsVisible="{Binding IsCurrentJobVisible}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="30"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0" Orientation="Vertical" Spacing="5" HorizontalOptions="FillAndExpand">
+                        <Label Text="{strings:Translate profile_CurrentJob}" Style="{StaticResource profileblackLabel}"/>
+                        <!--<Label Text="Manager" Style="{StaticResource profilelightblackLabel}"/>-->
+                        <!--Mvvm Binding-->
+                        <Label Text="{Binding CurrentJob}" Style="{StaticResource profilelightblackLabel}"/>
+                    </StackLayout>
+                    <ffimageloadingsvg:SvgCachedImage Grid.Column="1" WidthRequest="20" HeightRequest="20" Source="resource://Khadamat_CustomerApp.SvgImages.portfolio.svg" VerticalOptions="CenterAndExpand"/>
+                </Grid>
+
+                <BoxView Style="{StaticResource HorizontalBoxViewStyle}" IsVisible="{Binding IsCurrentJobVisible}"/>
+
+
+                <!--Marital Status-->
+                <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="10" IsVisible="{Binding IsMaritalStatusVisible}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="30"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0" Orientation="Vertical" Spacing="5" HorizontalOptions="FillAndExpand">
+                        <Label Text="{strings:Translate profile_MaritalStatus}" Style="{StaticResource profileblackLabel}"/>
+                        <!--<Label Text="Single" Style="{StaticResource profilelightblackLabel}"/>-->
+                        <!--Mvvm Binding-->
+                        <Label Text="{Binding MaritalStatus}" Style="{StaticResource profilelightblackLabel}"/>
+                    </StackLayout>
+                    <ffimageloadingsvg:SvgCachedImage Grid.Column="1" WidthRequest="20" HeightRequest="20" Source="resource://Khadamat_CustomerApp.SvgImages.avatar.svg" VerticalOptions="CenterAndExpand"/>
+                </Grid>
+
+                <BoxView Style="{StaticResource HorizontalBoxViewStyle}" IsVisible="{Binding IsMaritalStatusVisible}"/>
+
+                <!--Country-->
+                <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="30"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0" Orientation="Vertical" Spacing="5" HorizontalOptions="FillAndExpand">
+                        <Label Text="{strings:Translate profile_Country}" Style="{StaticResource profileblackLabel}"/>
+                        <!--<Label Text="United Arab Emirates" Style="{StaticResource profilelightblackLabel}"/>-->
+                        <!--Mvvm Binding-->
+                        <Label Text="{Binding Country}" Style="{StaticResource profilelightblackLabel}"/>
+                    </StackLayout>
+                    <ffimageloadingsvg:SvgCachedImage Grid.Column="1" WidthRequest="20" HeightRequest="20" Source="resource://Khadamat_CustomerApp.SvgImages.flag.svg" VerticalOptions="CenterAndExpand"/>
+                </Grid>
+
+                <BoxView Style="{StaticResource HorizontalBoxViewStyle}"/>
+
+                <!--Province-->
+                <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="30"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0" Orientation="Vertical" Spacing="5" HorizontalOptions="FillAndExpand">
+                        <Label Text="{strings:Translate profile_Province}" Style="{StaticResource profileblackLabel}"/>
+                        <!--<Label Text="Umm Al Khaimah" Style="{StaticResource profilelightblackLabel}"/>-->
+                        <!--Mvvm Binding-->
+                        <Label Text="{Binding Province}" Style="{StaticResource profilelightblackLabel}"/>
+                    </StackLayout>
+                    <ffimageloadingsvg:SvgCachedImage Grid.Column="1" WidthRequest="20" HeightRequest="20" Source="resource://Khadamat_CustomerApp.SvgImages.worldwide.svg" VerticalOptions="CenterAndExpand"/>
+                </Grid>
+
+                <BoxView Style="{StaticResource HorizontalBoxViewStyle}"/>
+
+                <!--Street-->
+                <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="10" IsVisible="{Binding IsJobLocationVisible}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="30"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0" Orientation="Vertical" Spacing="5" HorizontalOptions="FillAndExpand">
+                        <Label Text="{strings:Translate profile_Street}" Style="{StaticResource profileblackLabel}"/>
+                        <!--<Label Text="Umm Al Khaimah" Style="{StaticResource profilelightblackLabel}"/>-->
+                        <!--Mvvm Binding-->
+                        <Label Text="{Binding Street}" Style="{StaticResource profilelightblackLabel}"/>
+                    </StackLayout>
+                    <ffimageloadingsvg:SvgCachedImage Grid.Column="1" WidthRequest="20" HeightRequest="20" Source="resource://Khadamat_CustomerApp.SvgImages.map.svg" VerticalOptions="CenterAndExpand"/>
+                </Grid>
+
+                <BoxView Style="{StaticResource HorizontalBoxViewStyle}" IsVisible="{Binding IsJobLocationVisible}"/>
+
+                <!--Description of Location-->
+                <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="30"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0" Orientation="Vertical" Spacing="5" HorizontalOptions="FillAndExpand">
+                        <Label Text="{strings:Translate profile_Location}" Style="{StaticResource profileblackLabel}"/>
+                        <!--<Label Text="Umm Al Khaimah" Style="{StaticResource profilelightblackLabel}"/>-->
+                        <!--Mvvm Binding-->
+                        <Label Text="{Binding Location}" Style="{StaticResource profilelightblackLabel}"/>
+                    </StackLayout>
+                    <ffimageloadingsvg:SvgCachedImage Grid.Column="1" WidthRequest="20" HeightRequest="20" Source="resource://Khadamat_CustomerApp.SvgImages.list.svg" VerticalOptions="CenterAndExpand"/>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+        <!--popup-->
+        <Grid Grid.RowSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding IsPopupVisible}">
+            <BoxView BackgroundColor="{StaticResource Black3Color}" Opacity="0.4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding PopupCloseCommand}"/>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+            <Frame Margin="30,0" Padding="10,15" HasShadow="False" BackgroundColor="{StaticResource WhiteColor}" CornerRadius="8" VerticalOptions="CenterAndExpand">
+                <Grid>
+                    <Image Source="ic_cross.png" VerticalOptions="Start" HeightRequest="30" WidthRequest="30" HorizontalOptions="EndAndExpand" Margin="0,-15,-10,0" TranslationY="-15" TranslationX="15">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding PopupCloseCommand}" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <StackLayout Orientation="Vertical" Spacing="0" HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="10" Margin="10,0,10,5">
+                            <Label Text="{Binding PhoneEmailFieldTitle}" Style="{StaticResource SPGreenBoldCenterLabel}" FontSize="18"/>
+                            <Frame HeightRequest="40" HasShadow="False" BorderColor="{StaticResource PopupEditorColor}" CornerRadius="3" Padding="15,10" HorizontalOptions="Fill" BackgroundColor="{StaticResource PopupEditorColor}">
+                                <Entry Text="{Binding PhoneEmailField}" HorizontalOptions="Fill" VerticalOptions="Fill" Placeholder="{Binding PhoneEmailPlaceholder}" FontSize="16" BackgroundColor="{StaticResource TransparentColor}" Keyboard="Telephone" />
+                            </Frame>
+                            <Button Padding="20,0" Text="{strings:Translate reg_SubmitBtn}" Style="{ StaticResource YellowButtonStyle}" HeightRequest="40" Command="{Binding SubmitBtnCommand}" />
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+        </Grid>
+
+        <BoxView Grid.RowSpan="2" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Black1Color}" Opacity="0.8" VerticalOptions="FillAndExpand" IsVisible="{Binding IsLoaderBusy}"/>
+        <ActivityIndicator Grid.RowSpan="2" IsVisible="{Binding IsLoaderBusy}" IsRunning="{Binding IsLoaderBusy}" Color="{StaticResource BlueColor}" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"/>
+
+        <Grid Grid.RowSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding IsNoInternetFound}">
+            <StackLayout BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="10">
+                <Image Source="nointernet.png" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="250" Margin="0,30,0,0"></Image>
+                <Label Text="{strings:Translate noInternet_msg1}" FontSize="Large" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" 
+                           VerticalOptions="Center" Style="{StaticResource BlackSemiBoldLabel}"/>
+                <Label Text="{strings:Translate noInternet_msg2}" FontSize="Medium" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" 
+                           VerticalOptions="Center" Style="{StaticResource BlackMediumLabel}"/>
+
+                <Button x:Name="tryagainBtn" Padding="40,0" Text="{strings:Translate noInternet_TryAgainBtn}" Style="{ StaticResource GreenButtonStyle}" Command="{Binding NoInternetCommand}"/>
+            </StackLayout>
+        </Grid>
+
+
+
+    </Grid>
+</ContentPage>

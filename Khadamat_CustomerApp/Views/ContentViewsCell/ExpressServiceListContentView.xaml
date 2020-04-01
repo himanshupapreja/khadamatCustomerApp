@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Khadamat_CustomerApp.Views.ExpressServiceListContentView">
+    <ContentView.Content>
+        <!--#region Home Page Category List -->
+        <CollectionView x:Name="expresscategorieslistview" BackgroundColor="{StaticResource TransparentColor}" SelectionMode="None" SelectedItem="{Binding ServiceSelected}"
+                                                  VerticalScrollBarVisibility="Never" ItemsSource="{Binding Categories}" HeightRequest="{Binding ServiceListHeight}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" HorizontalItemSpacing="15" Span="2"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid x:Name="expresscategorieslistviewItem" Padding="0,5,0,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Frame Padding="0" CornerRadius="20" Margin="0" OutlineColor="{Binding FrameColor}" HeightRequest="190" IsClippedToBounds="True" HasShadow="True" >
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="110"/>
+                                    <RowDefinition Height="80"/>
+                                </Grid.RowDefinitions>
+                                <Image Grid.Row="0" Source="{Binding picture}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="Fill"/>
+                                <StackLayout Grid.Row="1" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
+                                    <Grid BackgroundColor="{StaticResource TransparentColor}" Padding="4" TranslationY="-25">
+                                        <Image Source="ic_circle.png" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource MenuImage75Style}"/>
+
+                                        <Image Style="{StaticResource MenuImageCrossStyle}" HorizontalOptions="Center" Source="{Binding icon}"/>
+                                    </Grid>
+                                    <StackLayout HorizontalOptions="FillAndExpand">
+                                        <Label Text="{Binding service_category_name}" Style="{StaticResource homelistname}" VerticalOptions="Center" VerticalTextAlignment="Center" TranslationY="0" LineBreakMode="TailTruncation"/>
+                                        <Grid>
+                                            <Image Source="ic_circle.png" HorizontalOptions="End" VerticalOptions="End" TranslationX="20" Style="{StaticResource MenuImage5075Style}"/>
+                                            <Image Source="arrow_next_black.png" HorizontalOptions="End" VerticalOptions="End" TranslationX="0" Style="{StaticResource MenuImage5075Style}"/>
+                                        </Grid>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer CommandParameter="{Binding Source={x:Reference expresscategorieslistviewItem}, Path=BindingContext}" NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+        <!--#endregion-->
+    </ContentView.Content>
+</ContentView>

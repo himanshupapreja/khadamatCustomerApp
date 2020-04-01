@@ -1,0 +1,820 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="about_AboutUsTitle" xml:space="preserve">
+    <value>من نحن</value>
+  </data>
+  <data name="ago" xml:space="preserve">
+    <value>منذ</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>إلغاء</value>
+  </data>
+  <data name="changelang_Arabic" xml:space="preserve">
+    <value>العربية</value>
+  </data>
+  <data name="changelang_English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="changelang_PickerPlaceholder" xml:space="preserve">
+    <value>اختر اللغة</value>
+  </data>
+  <data name="chatdetail_EnterMsgPlaceHolder" xml:space="preserve">
+    <value>اكتب رسالة</value>
+  </data>
+  <data name="chatDisable" xml:space="preserve">
+    <value>إرسال أو استقبال الرسائل لن يعمل على طلبات العمل المكتملة.</value>
+    <comment>ChatListpage</comment>
+  </data>
+  <data name="chat_HeaderTitle" xml:space="preserve">
+    <value>محادثة</value>
+  </data>
+  <data name="contact_ContactUsBtn" xml:space="preserve">
+    <value>إرسال</value>
+  </data>
+  <data name="contact_ContactUsEmailTitle" xml:space="preserve">
+    <value>البريد الإلكتروني</value>
+  </data>
+  <data name="contact_ContactUsEmailValue" xml:space="preserve">
+    <value>ادخل بريدك الإلكتروني</value>
+  </data>
+  <data name="contact_ContactUsNameTitle" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="contact_ContactUsNameValue" xml:space="preserve">
+    <value>ادخل إسمك</value>
+  </data>
+  <data name="contact_ContactUsServiceTitle" xml:space="preserve">
+    <value>رسالة</value>
+  </data>
+  <data name="contact_ContactUsServiceValue" xml:space="preserve">
+    <value>اكتب رسالتك هنا</value>
+  </data>
+  <data name="contact_ContactUsTitle" xml:space="preserve">
+    <value>تواصل معنا</value>
+  </data>
+  <data name="coordinator_Name" xml:space="preserve">
+    <value>خدمة العملاء</value>
+  </data>
+  <data name="cyp_Button" xml:space="preserve">
+    <value>لنبدأ</value>
+  </data>
+  <data name="cyp_Country" xml:space="preserve">
+    <value>البلد *</value>
+  </data>
+  <data name="cyp_CountryPlaceholder" xml:space="preserve">
+    <value>اختر بلدك</value>
+  </data>
+  <data name="cyp_CurrentJob" xml:space="preserve">
+    <value>الوظيفة الحالية</value>
+  </data>
+  <data name="cyp_CurrentJobPlaceholder" xml:space="preserve">
+    <value>ادخل وظيفتك الحالية</value>
+  </data>
+  <data name="cyp_DOB" xml:space="preserve">
+    <value>تاريخ الميلاد *</value>
+  </data>
+  <data name="cyp_DOBPlaceholder" xml:space="preserve">
+    <value>فضلاً ادخل تاريخ ميلادك</value>
+  </data>
+  <data name="cyp_Email" xml:space="preserve">
+    <value>البريد الإلكتروني </value>
+  </data>
+  <data name="cyp_EmailPlaceholder" xml:space="preserve">
+    <value>ادخل بريدك الإلكتروني</value>
+  </data>
+  <data name="cyp_HeaderTitle" xml:space="preserve">
+    <value>إستكمل ملفك الشخصي</value>
+  </data>
+  <data name="cyp_Location" xml:space="preserve">
+    <value>وصف العنوان *</value>
+  </data>
+  <data name="cyp_LocationPlaceholder" xml:space="preserve">
+    <value>اكتب وصف لعنوانك هنا</value>
+  </data>
+  <data name="cyp_MaritalStatus" xml:space="preserve">
+    <value>الحالة الإجتماعية</value>
+  </data>
+  <data name="cyp_MaritalStatusPlaceholder" xml:space="preserve">
+    <value>اختر حالتك الإجتماعية</value>
+  </data>
+  <data name="cyp_Name" xml:space="preserve">
+    <value>الاسم *</value>
+  </data>
+  <data name="cyp_NamePlaceholder" xml:space="preserve">
+    <value>ادخل إسمك</value>
+  </data>
+  <data name="cyp_Province" xml:space="preserve">
+    <value>المحافظة *</value>
+  </data>
+  <data name="cyp_ProvincePlaceholder" xml:space="preserve">
+    <value>اختر محافظتك</value>
+  </data>
+  <data name="cyp_RequiredField" xml:space="preserve">
+    <value>جميع الحقول المحتوية على الرمز * مطلوبة</value>
+  </data>
+  <data name="cyp_Street" xml:space="preserve">
+    <value>الشارع</value>
+  </data>
+  <data name="cyp_StreetPlaceholder" xml:space="preserve">
+    <value>اختر موقعك</value>
+  </data>
+  <data name="cyp_TermConditionBlack" xml:space="preserve">
+    <value>لقد قمت بقراءة  الأحكام والشروط وأوافق عليها</value>
+  </data>
+  <data name="day" xml:space="preserve">
+    <value>يوم</value>
+  </data>
+  <data name="days" xml:space="preserve">
+    <value>أيام</value>
+  </data>
+  <data name="DeleteChat" xml:space="preserve">
+    <value>حذف المحادثة</value>
+  </data>
+  <data name="DeleteChatConfirm" xml:space="preserve">
+    <value>هل أنت متأكد أنك تريد حذف المحادثة؟</value>
+  </data>
+  <data name="downloadFile_Error" xml:space="preserve">
+    <value>Error while saving the file</value>
+  </data>
+  <data name="downloadFile_Success" xml:space="preserve">
+    <value>File Saved Successfully in khadamat_download folder</value>
+  </data>
+  <data name="downloadFile_Title" xml:space="preserve">
+    <value>Khadamat Downloader</value>
+  </data>
+  <data name="editprofile_EditProfileSaveBtn" xml:space="preserve">
+    <value>حفظ</value>
+  </data>
+  <data name="editprofile_EditProfileTitle" xml:space="preserve">
+    <value>تعديل الملف الشخصي</value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>خطأ</value>
+  </data>
+  <data name="error_AppLocationPermissionDisable" xml:space="preserve">
+    <value>تم رفض إذن الموقع للتطبيق. هل تريد منح الإذن؟</value>
+  </data>
+  <data name="error_backpress" xml:space="preserve">
+    <value>لا يمكنك الرجوع حتى يتم تحميل الملف / الصورة.</value>
+  </data>
+  <data name="error_BlankAllField" xml:space="preserve">
+    <value>فضلاًً ادخل الاسم، البريد الإلكتروني والوصف.</value>
+  </data>
+  <data name="error_Blankemail" xml:space="preserve">
+    <value>فضلاً ادخل بريدك الإلكتروني</value>
+  </data>
+  <data name="error_BlankOtp" xml:space="preserve">
+    <value>فضلاً ادخل شفرة التأكيد.</value>
+  </data>
+  <data name="error_BlankPhone" xml:space="preserve">
+    <value>فضلاً ادخل رقم الجوال.</value>
+  </data>
+  <data name="error_BlankPhonePassword" xml:space="preserve">
+    <value>فضلاً ادخل رقم الجوال وكلمة المرور.</value>
+  </data>
+  <data name="error_BlankRequiredField" xml:space="preserve">
+    <value>فضلاً قم بتعئبة جميع الحقول المطلوبة.</value>
+  </data>
+  <data name="error_ContactUsDescription" xml:space="preserve">
+    <value>فضلاً اكتب وصف.</value>
+  </data>
+  <data name="error_ContactUsEmail" xml:space="preserve">
+    <value>فضلاً ادخل البريد الإلكتروني.</value>
+  </data>
+  <data name="error_ContactUsName" xml:space="preserve">
+    <value>فضلاً ادخل الاسم.</value>
+  </data>
+  <data name="error_DeviceLocationDisable" xml:space="preserve">
+    <value>خدمة الموقع في جهازك غير مفعلة. هل تريد تفعيل خدمة الموقع للمتابعة؟</value>
+  </data>
+  <data name="error_EmailValidation" xml:space="preserve">
+    <value>فضلاً ادخل بريد إلكتروني صحيح.</value>
+  </data>
+  <data name="error_FileUploading" xml:space="preserve">
+    <value>حدث خطأ أثناء إرسال الملف</value>
+  </data>
+  <data name="error_ImageUploading" xml:space="preserve">
+    <value>حدث خطأ أثناء إرسال الصورة</value>
+  </data>
+  <data name="error_InternetError" xml:space="preserve">
+    <value>يرجى التحقق من اتصالك بالإنترنت.</value>
+  </data>
+  <data name="error_invalidFileExtension" xml:space="preserve">
+    <value>امتداد الملف غير صحيح</value>
+  </data>
+  <data name="error_JobRequestServiceDescriptionBlank" xml:space="preserve">
+    <value>فضلاً اكتب وصف للخدمة التي تريدها.</value>
+  </data>
+  <data name="error_JobRequestVenueBlank" xml:space="preserve">
+    <value>فضلاً ادخل العنوان.</value>
+  </data>
+  <data name="error_ReviewError" xml:space="preserve">
+    <value>فضلاً قم بتقييم عمل مزود الخدمة.</value>
+  </data>
+  <data name="error_ServerError" xml:space="preserve">
+    <value>هناك بعض المشاكل أثناء الاتصال بمزود الخدمة. يرجى التحقق من اتصالك بالإنترنت أو المحاولة مرة أخرى لاحقاً.</value>
+  </data>
+  <data name="error_TermCondition" xml:space="preserve">
+    <value>فضلاً قم بالموافقة على الأحكام والشروط.</value>
+  </data>
+  <data name="error_underAge" xml:space="preserve">
+    <value>يجب أن يكون عمرك 18 عام أو أكثر</value>
+  </data>
+  <data name="error_ValidPhone" xml:space="preserve">
+    <value>فضلاًً ادخل رقم جوال صحيح</value>
+  </data>
+  <data name="err_BlankPassword" xml:space="preserve">
+    <value>كلمة المرور لا يمكن أن تترك فارغة.</value>
+  </data>
+  <data name="err_ConfirmPassword" xml:space="preserve">
+    <value>تأكيد كلمة المرور غير مطابق</value>
+  </data>
+  <data name="faq" xml:space="preserve">
+    <value>الأسئلة الشائعة</value>
+  </data>
+  <data name="finance_officername" xml:space="preserve">
+    <value>المسؤول المالي</value>
+  </data>
+  <data name="forgot_PasswordMsg" xml:space="preserve">
+    <value>أدخل رقم هاتفك المرتبط بحسابك. سنرسل لك OTP لإعادة تعيين كلمة المرور الخاصة بك</value>
+  </data>
+  <data name="forgot_PasswordTitle" xml:space="preserve">
+    <value>هل نسيت كلمة المرور الخاصة بك؟</value>
+  </data>
+  <data name="home_ACRepair" xml:space="preserve">
+    <value>مكيف هواء</value>
+  </data>
+  <data name="home_AppliancesRepair" xml:space="preserve">
+    <value>إصلاح الأجهزة المنزلية</value>
+  </data>
+  <data name="home_CleaningService" xml:space="preserve">
+    <value>تنظيف المنازل</value>
+  </data>
+  <data name="home_ElectricianService" xml:space="preserve">
+    <value>عامل الكهرباء</value>
+  </data>
+  <data name="home_LaptopRepair" xml:space="preserve">
+    <value>إصلاح أجهزة الكمبيوتر المحمول</value>
+  </data>
+  <data name="home_Maintenance" xml:space="preserve">
+    <value>صيانة المنزل</value>
+  </data>
+  <data name="home_PageTitle" xml:space="preserve">
+    <value>أهلا بك!</value>
+  </data>
+  <data name="home_PainterService" xml:space="preserve">
+    <value>دهان</value>
+  </data>
+  <data name="home_PlumbingService" xml:space="preserve">
+    <value>أعمال السباكة</value>
+  </data>
+  <data name="home_searchPlaceHolder" xml:space="preserve">
+    <value>ابحث هنا...</value>
+  </data>
+  <data name="home_searchTitle" xml:space="preserve">
+    <value>ابحث عن خدمة</value>
+  </data>
+  <data name="hour" xml:space="preserve">
+    <value>ساعة</value>
+  </data>
+  <data name="hours" xml:space="preserve">
+    <value>ساعات</value>
+  </data>
+  <data name="jobDetail_Title" xml:space="preserve">
+    <value>تفاصيل العمل</value>
+  </data>
+  <data name="jobrequest_CategoryTitle" xml:space="preserve">
+    <value>الصنف *</value>
+  </data>
+  <data name="jobrequest_DateTimeTitle" xml:space="preserve">
+    <value>التاريخ والوقت *</value>
+  </data>
+  <data name="jobrequest_DescriptionPlaceHolder" xml:space="preserve">
+    <value>اكتب وصف العمل هنا...</value>
+  </data>
+  <data name="jobrequest_fetch_location" xml:space="preserve">
+    <value>جلب الموقع</value>
+  </data>
+  <data name="jobrequest_HeaderTitle" xml:space="preserve">
+    <value>طلب الخدمة</value>
+  </data>
+  <data name="jobrequest_Location" xml:space="preserve">
+    <value>موقعك (باستخدام خدمة الموقع)</value>
+  </data>
+  <data name="jobrequest_PopupBtn" xml:space="preserve">
+    <value>موافق</value>
+  </data>
+  <data name="jobrequest_PopupMsg" xml:space="preserve">
+    <value>لقد تم طلبك بنجاح. سيتم مراجعة طلبك والتواصل معك في أسرع وقت ممكن.</value>
+  </data>
+  <data name="jobrequest_QuoteDescriptionTitle" xml:space="preserve">
+    <value>تفاصيل السعر</value>
+  </data>
+  <data name="jobrequest_QuoteTitle" xml:space="preserve">
+    <value>السعر</value>
+  </data>
+  <data name="jobrequest_ServiceDescription" xml:space="preserve">
+    <value>وصف الخدمة *</value>
+  </data>
+  <data name="jobrequest_ServiceTypeTitle" xml:space="preserve">
+    <value>نوع الخدمة *</value>
+  </data>
+  <data name="jobrequest_SubmitBtn" xml:space="preserve">
+    <value>تأكيد الطلب</value>
+  </data>
+  <data name="jobrequest_VenuePlaceHolder" xml:space="preserve">
+    <value>ادخل عنوان العمل...</value>
+  </data>
+  <data name="jobrequest_VenueTitle" xml:space="preserve">
+    <value>العنوان *</value>
+  </data>
+  <data name="login_ForgotPswd" xml:space="preserve">
+    <value>هل نسيت كلمة المرور؟</value>
+  </data>
+  <data name="login_Password" xml:space="preserve">
+    <value>كلمة المرور</value>
+  </data>
+  <data name="login_PasswordPlaceholder" xml:space="preserve">
+    <value>ادخل كلمة المرور الخاصة بك</value>
+  </data>
+  <data name="login_PhoneNumber" xml:space="preserve">
+    <value>رقم الجوال</value>
+  </data>
+  <data name="login_PhoneNumberPlaceholder" xml:space="preserve">
+    <value>ادخل رقم جوالك</value>
+  </data>
+  <data name="login_Signup1" xml:space="preserve">
+    <value>مستخدم جديد!</value>
+  </data>
+  <data name="login_Signup2" xml:space="preserve">
+    <value>تسجيل</value>
+  </data>
+  <data name="login_Title" xml:space="preserve">
+    <value>دخول</value>
+  </data>
+  <data name="login_TitleMsg" xml:space="preserve">
+    <value>ادخل رقم جوالك وكلمة المرور</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>تسجيل خروج</value>
+  </data>
+  <data name="LogoutMsg" xml:space="preserve">
+    <value>هل أنت متأكد أنك تريد تسجيل الخروج؟</value>
+  </data>
+  <data name="map_headerTitle" xml:space="preserve">
+    <value>اختر موقع</value>
+  </data>
+  <data name="marital_Engaged" xml:space="preserve">
+    <value>مخطوب</value>
+  </data>
+  <data name="marital_ItsComplicated" xml:space="preserve">
+    <value>علاقة معقدة</value>
+  </data>
+  <data name="marital_Married" xml:space="preserve">
+    <value>متزوج</value>
+  </data>
+  <data name="marital_OpenRelation" xml:space="preserve">
+    <value>في علاقة مفتوحة</value>
+  </data>
+  <data name="marital_relation" xml:space="preserve">
+    <value>مرتبط</value>
+  </data>
+  <data name="marital_Single" xml:space="preserve">
+    <value>أعزب</value>
+  </data>
+  <data name="marital_Widowed" xml:space="preserve">
+    <value>أرمل</value>
+  </data>
+  <data name="menu_AboutUs" xml:space="preserve">
+    <value>من نحن</value>
+  </data>
+  <data name="menu_Chats" xml:space="preserve">
+    <value>المحادثات</value>
+  </data>
+  <data name="menu_ContactUs" xml:space="preserve">
+    <value>تواصل معنا</value>
+  </data>
+  <data name="menu_Home" xml:space="preserve">
+    <value>الصفحة الرئيسية</value>
+  </data>
+  <data name="menu_LogOut" xml:space="preserve">
+    <value>تسجيل خروج</value>
+  </data>
+  <data name="menu_MyBooking" xml:space="preserve">
+    <value>طلباتي</value>
+  </data>
+  <data name="menu_PrivacyPolicy" xml:space="preserve">
+    <value>سياسة الخصوصية</value>
+  </data>
+  <data name="menu_Profile" xml:space="preserve">
+    <value>الملف الشخصي</value>
+  </data>
+  <data name="menu_TermCondition" xml:space="preserve">
+    <value>الأحكام والشروط</value>
+  </data>
+  <data name="menu_ViewProfile" xml:space="preserve">
+    <value>عرض الملف الشخصي</value>
+  </data>
+  <data name="minute" xml:space="preserve">
+    <value>دقيقة</value>
+  </data>
+  <data name="minutes" xml:space="preserve">
+    <value>دقائق</value>
+  </data>
+  <data name="month" xml:space="preserve">
+    <value>شهر</value>
+  </data>
+  <data name="months" xml:space="preserve">
+    <value>أشهر</value>
+  </data>
+  <data name="msg_Today" xml:space="preserve">
+    <value>اليوم</value>
+  </data>
+  <data name="msg_Yesterday" xml:space="preserve">
+    <value>الأمس</value>
+  </data>
+  <data name="mybooking_BookAgain" xml:space="preserve">
+    <value>اطلب مرة أخرى</value>
+  </data>
+  <data name="mybooking_Cancel" xml:space="preserve">
+    <value>إلغاء</value>
+  </data>
+  <data name="mybooking_Cancelled" xml:space="preserve">
+    <value>ملغي</value>
+  </data>
+  <data name="mybooking_Chat" xml:space="preserve">
+    <value>محادثة</value>
+  </data>
+  <data name="mybooking_CheckReview" xml:space="preserve">
+    <value>تحقق من رأيك</value>
+  </data>
+  <data name="mybooking_Completed" xml:space="preserve">
+    <value>منجز</value>
+  </data>
+  <data name="mybooking_Coordinator" xml:space="preserve">
+    <value>المنسق</value>
+  </data>
+  <data name="mybooking_GiveReview" xml:space="preserve">
+    <value>اعطنا رأيك</value>
+  </data>
+  <data name="mybooking_HeaderTitle" xml:space="preserve">
+    <value>طلباتي</value>
+  </data>
+  <data name="mybooking_InProgress" xml:space="preserve">
+    <value>تحت المعالجة</value>
+  </data>
+  <data name="mybooking_NoBookingFound" xml:space="preserve">
+    <value>لايوجد لديك أي طلبات حالياً</value>
+  </data>
+  <data name="mybooking_Pending" xml:space="preserve">
+    <value>قيد الانتظار</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>لا </value>
+  </data>
+  <data name="NoDataPresent" xml:space="preserve">
+    <value>لا توجد بيانات حالية</value>
+  </data>
+  <data name="noInternet_msg1" xml:space="preserve">
+    <value>انقطع الاتصال</value>
+  </data>
+  <data name="noInternet_msg2" xml:space="preserve">
+    <value>يرجى التحقق من اتصالك بالإنترنت</value>
+  </data>
+  <data name="noInternet_TryAgainBtn" xml:space="preserve">
+    <value>يرجى المحاولة مرة أخرى</value>
+  </data>
+  <data name="notification_Accept" xml:space="preserve">
+    <value>قبول</value>
+  </data>
+  <data name="notification_date" xml:space="preserve">
+    <value>منذ 8 أيام</value>
+  </data>
+  <data name="notification_PageTitle" xml:space="preserve">
+    <value>الإشعارات</value>
+  </data>
+  <data name="notification_Reject" xml:space="preserve">
+    <value>رفض</value>
+  </data>
+  <data name="notification_title" xml:space="preserve">
+    <value>أكمل Nate Parker طلب عملك.</value>
+  </data>
+  <data name="notification_ViewDetail" xml:space="preserve">
+    <value>عرض التفاصيل</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>موافق</value>
+  </data>
+  <data name="otp_Callme" xml:space="preserve">
+    <value>لقد تجاوزت محاولات طلب OTP القصوى ، يرجى الاتصال برقم خدمة العملاء للحصول على OTP الخاص بك.</value>
+  </data>
+  <data name="otp_EmailVerificationCodeMsg" xml:space="preserve">
+    <value>تم إرسال شفرة التحقق إلى بريدك الإلكتروني المسجل</value>
+  </data>
+  <data name="otp_EnterOtpTitle" xml:space="preserve">
+    <value>ادخل الشفرة</value>
+  </data>
+  <data name="otp_Resend" xml:space="preserve">
+    <value>إعادة إرسال الشفرة</value>
+  </data>
+  <data name="otp_VerificationCodeMsg" xml:space="preserve">
+    <value>لقد تم إرسال شفرة التحقق إلى هاتفك المحمول</value>
+  </data>
+  <data name="picker_Day" xml:space="preserve">
+    <value>يوم</value>
+  </data>
+  <data name="picker_Month" xml:space="preserve">
+    <value>شهر</value>
+  </data>
+  <data name="picker_Year" xml:space="preserve">
+    <value>سنة</value>
+  </data>
+  <data name="privacy_PrivacyPolicyTitle" xml:space="preserve">
+    <value>سياسة الخصوصية</value>
+  </data>
+  <data name="profile_Country" xml:space="preserve">
+    <value>البلد</value>
+  </data>
+  <data name="profile_CurrentJob" xml:space="preserve">
+    <value>الوظيفة الحالية</value>
+  </data>
+  <data name="profile_DOB" xml:space="preserve">
+    <value>تاريخ الميلاد</value>
+  </data>
+  <data name="profile_Email" xml:space="preserve">
+    <value>البريد الإلكتروني</value>
+  </data>
+  <data name="profile_Location" xml:space="preserve">
+    <value>وصف الموقع</value>
+  </data>
+  <data name="profile_MaritalStatus" xml:space="preserve">
+    <value>الحالة الإجتماعية</value>
+  </data>
+  <data name="profile_Name" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="profile_PopupEmailTitle" xml:space="preserve">
+    <value>تغيير بريدك الإلكتروني</value>
+  </data>
+  <data name="profile_PopupPhoneTitle" xml:space="preserve">
+    <value>تغيير رقم جوالك</value>
+  </data>
+  <data name="profile_ProfileTitle" xml:space="preserve">
+    <value>الملف الشخصي</value>
+  </data>
+  <data name="profile_Province" xml:space="preserve">
+    <value>المحافظة</value>
+  </data>
+  <data name="profile_Street" xml:space="preserve">
+    <value>الشارع</value>
+  </data>
+  <data name="pswd_ChangePswdTitle" xml:space="preserve">
+    <value>تغيير كلمة المرور</value>
+  </data>
+  <data name="pswd_ChoosePswdLogin" xml:space="preserve">
+    <value>اختر كلمة مرور خاصة بك لتسجيل الدخول</value>
+  </data>
+  <data name="pswd_ConfirmPassword" xml:space="preserve">
+    <value>تأكيد كلمة المرور</value>
+  </data>
+  <data name="pswd_ConfirmPswdPlaceholder" xml:space="preserve">
+    <value>تأكيد كلمة المرور</value>
+  </data>
+  <data name="pswd_CreatePswdTitle" xml:space="preserve">
+    <value>إنشاء كلمة المرور</value>
+  </data>
+  <data name="pswd_EnterPswdPlaceholder" xml:space="preserve">
+    <value>ادخل كلمة المرور  </value>
+  </data>
+  <data name="pswd_NewPassword" xml:space="preserve">
+    <value>كلمة المرور الجديدة</value>
+  </data>
+  <data name="pswd_NewPasswordPlaceholder" xml:space="preserve">
+    <value>ادخل كلمة المرور الجديدة</value>
+  </data>
+  <data name="pswd_OldPassword" xml:space="preserve">
+    <value>كلمة المرور القديمة</value>
+  </data>
+  <data name="pswd_OldPasswordPlaceholder" xml:space="preserve">
+    <value>ادخل كلمة المرور القديمة</value>
+  </data>
+  <data name="reg_EnterPhoneNumberTitle" xml:space="preserve">
+    <value>ادخل رقم جوالك</value>
+  </data>
+  <data name="reg_PhoneNumber" xml:space="preserve">
+    <value>ادخل رقم جوالك</value>
+  </data>
+  <data name="reg_SubmitBtn" xml:space="preserve">
+    <value>إرسال</value>
+  </data>
+  <data name="reg_VerificationCodeMsg" xml:space="preserve">
+    <value>سنقوم بإرسال شفرة التحقق إلى هاتفك المحمول</value>
+  </data>
+  <data name="review_CommentPlaceHolder" xml:space="preserve">
+    <value>اكتب هنا...</value>
+  </data>
+  <data name="review_CommentTitle" xml:space="preserve">
+    <value>اكتب شيئاً ما</value>
+  </data>
+  <data name="review_CommentTitle1" xml:space="preserve">
+    <value>تعليقك</value>
+  </data>
+  <data name="review_DoneBtn" xml:space="preserve">
+    <value>تم</value>
+  </data>
+  <data name="review_RatingTitle" xml:space="preserve">
+    <value>كيف هو تقييمك؟</value>
+  </data>
+  <data name="review_RatingTitle1" xml:space="preserve">
+    <value>تقييمك</value>
+  </data>
+  <data name="review_ReviewTitle" xml:space="preserve">
+    <value>اعطنا رأيك</value>
+  </data>
+  <data name="review_ReviewTitle1" xml:space="preserve">
+    <value>تحقق من رأيك</value>
+  </data>
+  <data name="second" xml:space="preserve">
+    <value>ثانية</value>
+  </data>
+  <data name="seconds" xml:space="preserve">
+    <value>ثواني</value>
+  </data>
+  <data name="setting_ChangeLanguage" xml:space="preserve">
+    <value>تغيير اللغة</value>
+  </data>
+  <data name="setting_ChangePassword" xml:space="preserve">
+    <value>تغيير كلمة المرور</value>
+  </data>
+  <data name="setting_ContactUs" xml:space="preserve">
+    <value>تواصل معنا</value>
+  </data>
+  <data name="setting_HeaderTitle" xml:space="preserve">
+    <value>الإعدادات</value>
+  </data>
+  <data name="setting_RateApp" xml:space="preserve">
+    <value>تقييم التطبيق </value>
+  </data>
+  <data name="spjob_PopTitle" xml:space="preserve">
+    <value>هل أنت متأكد؟</value>
+  </data>
+  <data name="spjob_popupErrorMsg" xml:space="preserve">
+    <value>فضلاُ اكتب تعليقك لماذا تريد إلغاء طلب هذا العمل</value>
+  </data>
+  <data name="spjob_PopupMsg" xml:space="preserve">
+    <value>أنت تريد إلغاء هذا الطلب</value>
+  </data>
+  <data name="spjob_PopupMsg1" xml:space="preserve">
+    <value>فضلاُ اعلمنا لماذا تريد إلغاء طلب هذا العمل؟</value>
+  </data>
+  <data name="spjob_PopupPlaceholder" xml:space="preserve">
+    <value>فضلاُ أضف تعليقك</value>
+  </data>
+  <data name="subservice_serviceName1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="subservice_serviceName2" xml:space="preserve">
+    <value />
+  </data>
+  <data name="subservice_serviceName3" xml:space="preserve">
+    <value />
+  </data>
+  <data name="success_FileUploading" xml:space="preserve">
+    <value>تم إرسال الملف بنجاح</value>
+  </data>
+  <data name="success_ImageUploading" xml:space="preserve">
+    <value>تم إرسال الصورة بنجاح</value>
+  </data>
+  <data name="support_HeaderTitle" xml:space="preserve">
+    <value>الدعم</value>
+  </data>
+  <data name="term_Title" xml:space="preserve">
+    <value>الأحكام والشروط</value>
+  </data>
+  <data name="year" xml:space="preserve">
+    <value>سنة</value>
+  </data>
+  <data name="years" xml:space="preserve">
+    <value>سنوات</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>نعم</value>
+  </data>
+</root>

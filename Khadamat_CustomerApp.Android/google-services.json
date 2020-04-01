@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "266362631613",
+    "firebase_url": "https://khadamat-d4692.firebaseio.com",
+    "project_id": "khadamat-d4692",
+    "storage_bucket": "khadamat-d4692.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:266362631613:android:41aede10738557e6c44ed4",
+        "android_client_info": {
+          "package_name": "com.companyname.khadamatcustomerapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "266362631613-139qk1fo5dli7puspn6vj3i74fnbrqlc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.companyname.khadamatcustomerapp",
+            "certificate_hash": "c39cfbf933d42452664bab4516629c431b295c7e"
+          }
+        },
+        {
+          "client_id": "266362631613-0e7k2dpvferr1358j76aeun2of3k4mml.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcoyYLRU07NXDg-sD8GGiJ74eoYPRONjo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "266362631613-0e7k2dpvferr1358j76aeun2of3k4mml.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

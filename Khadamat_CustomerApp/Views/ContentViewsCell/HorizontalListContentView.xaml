@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Controls="clr-namespace:Khadamat_CustomerApp.CustomControls"
+             mc:Ignorable="d"
+             x:Class="Khadamat_CustomerApp.Views.HorizontalListContentView">
+  <ContentView.Content>
+      <!--#region Sub Service List-->
+
+        <CollectionView x:Name="servicelist1" BackgroundColor="{StaticResource TransparentColor}" SelectionMode="None" HeightRequest="{Binding SubServiceListHeight}"
+                                                  VerticalScrollBarVisibility="Never" ItemsSource="{Binding SubSubCategories}" >
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" HorizontalItemSpacing="5" Span="3"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="0,5,0,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Frame x:Name="item1" Padding="0" BackgroundColor="{StaticResource WhiteColor}" CornerRadius="3" WidthRequest="150">
+                            <Grid RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="7*"/>
+                                    <RowDefinition Height="3*"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" BackgroundColor="{StaticResource TransparentColor}" Padding="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Image Source="sub_bg.png" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource MenuImage75Style}"/>
+                                    <Image Source="ic_circle.png" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource RatingImageStyle}"/>
+
+                                    <Image Style="{StaticResource MenuImageStyle}" HorizontalOptions="Center" Source="{Binding icon}"/>
+                                </Grid>
+                                <Label Grid.Row="1" HorizontalOptions="Center" Style="{StaticResource BlackMediumLabel}" FontSize="{StaticResource MainLabelFontSize2}" Text="{Binding sub_sub_category_name}"/>
+
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer BindingContext="{Binding Source={x:Reference servicelist1}, Path=BindingContext}" CommandParameter="{Binding Source={x:Reference item1}, Path=BindingContext}" Tapped="TapGestureRecognizer_Tapped" Command="{Binding ServiceListSelected}"/>
+                                </Grid.GestureRecognizers>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+        <!--#endregion-->
+    </ContentView.Content>
+</ContentView>

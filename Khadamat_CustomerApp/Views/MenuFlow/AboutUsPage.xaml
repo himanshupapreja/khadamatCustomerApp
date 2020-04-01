@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:strings="clr-namespace:Khadamat_CustomerApp;assembly=Khadamat_CustomerApp"
+             xmlns:commonheader="clr-namespace:Khadamat_CustomerApp.Views"
+             BackgroundColor="{StaticResource PageBGColor}"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Khadamat_CustomerApp.Views.AboutUsPage">
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <commonheader:BackArrowHeader HorizontalOptions="FillAndExpand" TitleText="{strings:Translate about_AboutUsTitle}"/>
+        <!--<ScrollView  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1">
+                <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="20" BackgroundColor="{StaticResource WhiteColor}">
+                    <Image Source="logo.png" HeightRequest="100" WidthRequest="100" HorizontalOptions="CenterAndExpand" />
+                    <Label Text="{Binding AboutusText}" Style="{StaticResource ChatlightblackLabel}" FontSize="15"/>
+                </StackLayout>
+            </ScrollView>-->
+        <!--<WebView x:Name="aboutwebView" Source="{Binding AboutWebViewSource}" Grid.Row="1" HorizontalOptions="Fill" VerticalOptions="Fill" IsVisible="{Binding IsNodataFound,Converter={StaticResource BoolToNotBoolConverter}}"/>-->
+        <ScrollView Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding IsNodataFound,Converter={StaticResource BoolToNotBoolConverter}}">
+            <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource WhiteColor}" Padding="20">
+                <Label Text="{Binding AboutUsText}" x:Name="lblAbout" Style="{StaticResource BlackMediumLabel}" TextColor="{StaticResource Black2Color}"/>
+            </StackLayout>
+        </ScrollView>
+        <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding IsNodataFound}">
+            <StackLayout BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="10">
+                <Image Source="no_data_found.png" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="250" Margin="0,30,0,0"></Image>
+                <Label Text="{strings:Translate NoDataPresent}" FontSize="Medium" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" 
+                           VerticalOptions="Center" Style="{StaticResource BlackMediumLabel}"/>
+
+            </StackLayout>
+        </Grid>
+        <Grid HorizontalOptions="FillAndExpand" Grid.Row="1" VerticalOptions="FillAndExpand" IsVisible="{Binding IsNoInternetView}">
+            <StackLayout BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="10">
+                <Image Source="nointernet.png" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="250" Margin="0,30,0,0"></Image>
+                <Label Text="{strings:Translate noInternet_msg1}" FontSize="Large" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" 
+                           VerticalOptions="Center" Style="{StaticResource BlackSemiBoldLabel}"/>
+                <Label Text="{strings:Translate noInternet_msg2}" FontSize="Medium" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" 
+                           VerticalOptions="Center" Style="{StaticResource BlackMediumLabel}"/>
+
+            </StackLayout>
+        </Grid>
+
+
+        <BoxView Grid.RowSpan="2" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Black1Color}" Opacity="0.8" VerticalOptions="FillAndExpand" IsVisible="{Binding IsLoaderBusy}"/>
+        <ActivityIndicator Grid.RowSpan="2" IsVisible="{Binding IsLoaderBusy}" IsRunning="{Binding IsLoaderBusy}" Color="{StaticResource BlueColor}" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"/>
+    </Grid>
+</ContentPage>

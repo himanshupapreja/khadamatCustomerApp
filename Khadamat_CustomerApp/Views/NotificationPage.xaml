@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:strings="clr-namespace:Khadamat_CustomerApp;assembly=Khadamat_CustomerApp"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:commonheader="clr-namespace:Khadamat_CustomerApp.Views"
+             xmlns:img="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             BackgroundColor="{StaticResource PageBGColor}"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Khadamat_CustomerApp.Views.NotificationPage">
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--Header Bar-->
+        <commonheader:BackArrowHeader HorizontalOptions="FillAndExpand" TitleText="{strings:Translate notification_PageTitle}"/>
+
+        <!--Notification ListView-->
+        <RefreshView Grid.Row="1" IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <CollectionView x:Name="notificationList" ItemsSource="{Binding NotificationList}" SelectedItem="{Binding NotificationSelected}" SelectionMode="None" ItemsLayout="VerticalList" 
+                                VerticalOptions="FillAndExpand">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid x:Name="notificationListItem" Padding="0,2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Frame Grid.Row="0" Padding="20" CornerRadius="0" HorizontalOptions="FillAndExpand" HasShadow="False" BackgroundColor="{StaticResource WhiteColor}">
+                                    <StackLayout>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid BackgroundColor="{StaticResource TransparentColor}" Padding="4" HeightRequest="90" WidthRequest="90" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" Grid.Column="0">
+                                                <img:CircleImage Source="{Binding UserPic}" HorizontalOptions="Center" VerticalOptions="Start" HeightRequest="80" WidthRequest="80" BorderColor="{StaticResource YellowColor}" BorderThickness="2.5"/>
+                                            </Grid>
+                                            <StackLayout Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                <StackLayout Orientation="Vertical" Spacing="8" VerticalOptions="FillAndExpand">
+                                                    <Label Text="{Binding display_text}" FontSize="16" FontAttributes="Bold" Style="{StaticResource BlackMediumLabel}"/>
+
+                                                    <Label Text="{Binding display_created_date}" HorizontalOptions="Start" FontSize="14" Style="{StaticResource BlackRegularLabel}"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </Grid>
+
+                                        <StackLayout Orientation="Horizontal" BackgroundColor="Transparent" VerticalOptions="End" HorizontalOptions="End" HeightRequest="30">
+                                            <Frame BackgroundColor="{StaticResource GreenColor}" CornerRadius="3" Padding="0" HeightRequest="30" WidthRequest="100" IsClippedToBounds="True" IsVisible="{Binding IsQuoteSent}" HorizontalOptions="Start">
+                                                <Grid>
+                                                    <Label Text="{strings:Translate notification_Accept}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" FontSize="14" Style="{StaticResource notificationWhiteLabel}"/>
+                                                </Grid>
+
+                                                <Frame.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.QuoteAcceptCommand, Source={x:Reference notificationList}}" CommandParameter="{Binding Source={x:Reference notificationListItem}, Path=BindingContext}"/>
+                                                </Frame.GestureRecognizers>
+                                            </Frame>
+
+                                            <Frame BackgroundColor="{StaticResource RedColor}" CornerRadius="3" Padding="0" HeightRequest="30" WidthRequest="100" IsClippedToBounds="True" IsVisible="{Binding IsQuoteSent}" HorizontalOptions="Center">
+                                                <Grid>
+                                                    <Label Text="{strings:Translate notification_Reject}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" FontSize="14" Style="{StaticResource notificationWhiteLabel}"/>
+                                                </Grid>
+
+                                                <Frame.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.QuoteCancelCommand, Source={x:Reference notificationList}}" CommandParameter="{Binding Source={x:Reference notificationListItem}, Path=BindingContext}"/>
+                                                </Frame.GestureRecognizers>
+                                            </Frame>
+
+                                            <Frame BackgroundColor="{StaticResource YellowColor}" CornerRadius="3" Padding="0" HeightRequest="30" WidthRequest="100" IsClippedToBounds="True" HorizontalOptions="End" IsVisible="{Binding IsViewDetail}">
+                                                <Grid>
+                                                    <Label Text="{Binding ViewNotificationBtn}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" FontSize="14" Style="{StaticResource notificationWhiteLabel}"/>
+                                                </Grid>
+
+                                                <Frame.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.ViewDetailCommand, Source={x:Reference notificationList}}" CommandParameter="{Binding Source={x:Reference notificationListItem}, Path=BindingContext}"/>
+                                                </Frame.GestureRecognizers>
+                                            </Frame>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding IsNoDataFoundView}">
+                    <StackLayout BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="10">
+                        <Image Source="no_data_found.png" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="250" Margin="0,30,0,0"></Image>
+                        <Label Text="{strings:Translate NoDataPresent}" FontSize="Medium" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" 
+                           VerticalOptions="Center" Style="{StaticResource BlackMediumLabel}"/>
+
+                    </StackLayout>
+                </Grid>
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding IsNoInternetView}">
+                    <StackLayout BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="10">
+                        <Image Source="nointernet.png" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="250" Margin="0,30,0,0"></Image>
+                        <Label Text="{strings:Translate noInternet_msg1}" FontSize="Large" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" 
+                           VerticalOptions="Center" Style="{StaticResource BlackSemiBoldLabel}"/>
+                        <Label Text="{strings:Translate noInternet_msg2}" FontSize="Medium" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" 
+                           VerticalOptions="Center" Style="{StaticResource BlackMediumLabel}"/>
+
+                    </StackLayout>
+                </Grid>
+            </Grid>
+        </RefreshView>
+
+        <BoxView Grid.RowSpan="2" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Black1Color}" Opacity="0.8" VerticalOptions="FillAndExpand" IsVisible="{Binding IsLoaderBusy}"/>
+        <ActivityIndicator Grid.RowSpan="2" IsVisible="{Binding IsLoaderBusy}" IsRunning="{Binding IsLoaderBusy}" Color="{StaticResource BlueColor}" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"/>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:strings="clr-namespace:Khadamat_CustomerApp;assembly=Khadamat_CustomerApp"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:commonheader="clr-namespace:Khadamat_CustomerApp.Views"
+             xmlns:Controls="clr-namespace:Khadamat_CustomerApp.CustomControls"
+             BackgroundColor="{StaticResource PageBGColor}"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:suave="clr-namespace:SuaveControls.DynamicStackLayout;assembly=SuaveControls.DynamicStackLayout"
+             x:Class="Khadamat_CustomerApp.Views.ServiceDetailPage">
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--Header Bar-->
+        <commonheader:BackArrowHeader x:Name="titleName" TitleText="{Binding Title}" HorizontalOptions="FillAndExpand"/>
+
+        <StackLayout Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="20">
+
+            <!--Sub Services Field-->
+            <ScrollView Margin="-20,0" IsVisible="{Binding IsNodataFound, Converter={StaticResource BoolToNotBoolConverter}}">
+                <suave:DynamicStackLayout ItemsSource="{Binding SubServiceList}" HorizontalOptions="Fill" >
+                    <suave:DynamicStackLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout BackgroundColor="{StaticResource TransparentColor}" Padding="10,0">
+                                <!--<Label Text="{Binding sub_category_name}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />-->
+                                <Label Text="{Binding sub_category_name}" FontSize="{StaticResource MainLabelFontSize2}" Style="{StaticResource BlackBoldLabel}" FontAttributes="Bold" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"/>
+                                <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" Margin="0,10">
+                                    <commonheader:HorizontalListContentView/>
+                                </Grid>
+                            </StackLayout>
+                        </DataTemplate>
+                    </suave:DynamicStackLayout.ItemTemplate>
+                </suave:DynamicStackLayout>
+            </ScrollView>
+
+            <!--No Data Found Field-->
+            <StackLayout BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="10" IsVisible="{Binding IsNodataFound}">
+                <Image Source="no_data_found.png" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="200" Margin="0,15,0,0"></Image>
+                <Label Text="{strings:Translate NoDataPresent}" FontSize="Medium" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" 
+                           VerticalOptions="Center" Style="{StaticResource BlackMediumLabel}"/>
+
+            </StackLayout>
+        </StackLayout>
+    </Grid>
+</ContentPage>

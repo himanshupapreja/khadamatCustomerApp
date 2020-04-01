@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:strings="clr-namespace:Khadamat_CustomerApp;assembly=Khadamat_CustomerApp"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:commonheader1="clr-namespace:Khadamat_CustomerApp.Views"
+             BackgroundColor="{StaticResource PageBGColor}"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Khadamat_CustomerApp.Views.SettingPage">
+    <Grid RowSpacing="0" BackgroundColor="{StaticResource TransparentColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--Header Bar-->
+        <commonheader1:BackArrowHeader HorizontalOptions="FillAndExpand" TitleText="{strings:Translate setting_HeaderTitle}"/>
+
+        <StackLayout Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="15" Padding="20,30" BackgroundColor="{StaticResource PageBGColor}">
+            <!--#region ChangePassword Field-->
+            <StackLayout Spacing="0" HorizontalOptions="FillAndExpand">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="0,15,0,0">
+                    <Label Text="{strings:Translate setting_ChangePassword}" Style="{StaticResource SPBlack2MediumLabel}" FontSize="15"/>
+                    <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuRightArrowImageStyle}" HorizontalOptions="Center" Source="resource://Khadamat_CustomerApp.SvgImages.ic_next.svg"/>
+                </StackLayout>
+                <BoxView Style="{StaticResource HorizontalBoxViewStyle}" Margin="0,15,0,0"/>
+
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SettingCommand}" CommandParameter="changepassword" NumberOfTapsRequired="1"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+            <!--#endregion-->
+
+            <!--#region Change Language Field-->
+            <StackLayout Spacing="0" HorizontalOptions="FillAndExpand">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="0,15,0,0">
+                    <Label Text="{strings:Translate setting_ChangeLanguage}" Style="{StaticResource SPBlack2MediumLabel}" FontSize="15"/>
+                    <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuRightArrowImageStyle}" HorizontalOptions="Center" Source="resource://Khadamat_CustomerApp.SvgImages.ic_next.svg"/>
+                </StackLayout>
+                <BoxView Style="{StaticResource HorizontalBoxViewStyle}" Margin="0,15,0,0"/>
+
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SettingCommand}" CommandParameter="changelanguage" NumberOfTapsRequired="1"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+            <!--#endregion-->
+
+            <!--#region FAQ Field-->
+            <StackLayout Spacing="0" HorizontalOptions="FillAndExpand">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="0,15,0,0">
+                    <Label Text="{strings:Translate faq}" Style="{StaticResource SPBlack2MediumLabel}" FontSize="15"/>
+                    <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuRightArrowImageStyle}" HorizontalOptions="Center" Source="resource://Khadamat_CustomerApp.SvgImages.ic_next.svg"/>
+                </StackLayout>
+                <BoxView Style="{StaticResource HorizontalBoxViewStyle}" Margin="0,15,0,0"/>
+
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SettingCommand}" CommandParameter="faq" NumberOfTapsRequired="1"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+            <!--#endregion-->
+
+            <!--#region RateApp Field-->
+            <StackLayout Spacing="0" HorizontalOptions="FillAndExpand">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="0,15,0,0">
+                    <Label Text="{strings:Translate setting_RateApp}" Style="{StaticResource SPBlack2MediumLabel}" FontSize="15"/>
+                    <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuRightArrowImageStyle}" HorizontalOptions="Center" Source="resource://Khadamat_CustomerApp.SvgImages.ic_next.svg"/>
+                </StackLayout>
+                <BoxView Style="{StaticResource HorizontalBoxViewStyle}" Margin="0,15,0,0"/>
+
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SettingCommand}" CommandParameter="rateapp" NumberOfTapsRequired="1"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+            <!--#endregion-->
+        </StackLayout>
+    </Grid>
+</ContentPage>

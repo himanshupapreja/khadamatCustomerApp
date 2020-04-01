@@ -1,0 +1,1046 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="about_AboutUsTitle" xml:space="preserve">
+    <value>About Us</value>
+    <comment>AboutUsPage</comment>
+  </data>
+  <data name="AddPhoto" xml:space="preserve">
+    <value>Add Photo</value>
+  </data>
+  <data name="ago" xml:space="preserve">
+    <value>ago</value>
+  </data>
+  <data name="backerror_fileImage" xml:space="preserve">
+    <value>You can't go back till file/image is uploading.</value>
+  </data>
+  <data name="Camera" xml:space="preserve">
+    <value>Camera</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="changelang_Arabic" xml:space="preserve">
+    <value>العربية</value>
+    <comment>ChangeLanguagePage</comment>
+  </data>
+  <data name="changelang_English" xml:space="preserve">
+    <value>English</value>
+    <comment>ChangeLanguagePage</comment>
+  </data>
+  <data name="changelang_PickerPlaceholder" xml:space="preserve">
+    <value>Choose Language</value>
+    <comment>ChangeLanguagePage</comment>
+  </data>
+  <data name="chatdetail_EnterMsgPlaceHolder" xml:space="preserve">
+    <value>Type a Message</value>
+    <comment>ChatDetailPage</comment>
+  </data>
+  <data name="chatDisable" xml:space="preserve">
+    <value>Sending or receiving messages won't work on the completed job requests.</value>
+    <comment>ChatListpage</comment>
+  </data>
+  <data name="chat_DeleteChat" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chat_HeaderTitle" xml:space="preserve">
+    <value>Chat</value>
+    <comment>ChatListPage</comment>
+  </data>
+  <data name="contact_ContactUsBtn" xml:space="preserve">
+    <value>SEND</value>
+    <comment>ContactUsPage</comment>
+  </data>
+  <data name="contact_ContactUsEmailTitle" xml:space="preserve">
+    <value>Email</value>
+    <comment>ContactUsPage</comment>
+  </data>
+  <data name="contact_ContactUsEmailValue" xml:space="preserve">
+    <value>Enter your email</value>
+    <comment>ContactUsPage</comment>
+  </data>
+  <data name="contact_ContactUsNameTitle" xml:space="preserve">
+    <value>Name</value>
+    <comment>ContactUsPage</comment>
+  </data>
+  <data name="contact_ContactUsNameValue" xml:space="preserve">
+    <value>Enter your name</value>
+    <comment>ContactUsPage</comment>
+  </data>
+  <data name="contact_ContactUsServiceTitle" xml:space="preserve">
+    <value>Message</value>
+    <comment>ContactUsPage</comment>
+  </data>
+  <data name="contact_ContactUsServiceValue" xml:space="preserve">
+    <value>Write your message here</value>
+    <comment>ContactUsPage</comment>
+  </data>
+  <data name="contact_ContactUsTitle" xml:space="preserve">
+    <value>Contact Us</value>
+    <comment>ContactUsPage</comment>
+  </data>
+  <data name="coordinator_Name" xml:space="preserve">
+    <value>Customer Service</value>
+  </data>
+  <data name="cyp_Button" xml:space="preserve">
+    <value>LET'S START</value>
+    <comment>CompleteYourProfilePage</comment>
+  </data>
+  <data name="cyp_Country" xml:space="preserve">
+    <value>Country *</value>
+    <comment>CompleteYourProfilePage</comment>
+  </data>
+  <data name="cyp_CountryPlaceholder" xml:space="preserve">
+    <value>Select your Country</value>
+    <comment>CompleteYourProfilePage</comment>
+  </data>
+  <data name="cyp_CurrentJob" xml:space="preserve">
+    <value>Current Job</value>
+    <comment>CompleteYourProfilePage</comment>
+  </data>
+  <data name="cyp_CurrentJobPlaceholder" xml:space="preserve">
+    <value>Enter your current job</value>
+    <comment>CompleteYourProfilePage</comment>
+  </data>
+  <data name="cyp_DOB" xml:space="preserve">
+    <value>Date of Birth *</value>
+    <comment>CompleteYourProfilePage</comment>
+  </data>
+  <data name="cyp_DOBPlaceholder" xml:space="preserve">
+    <value>Please select your Date of Birth</value>
+    <comment>CompleteYourProfilePage</comment>
+  </data>
+  <data name="cyp_Email" xml:space="preserve">
+    <value>Email</value>
+    <comment>CompleteYourProfilePage</comment>
+  </data>
+  <data name="cyp_EmailPlaceholder" xml:space="preserve">
+    <value>Enter your email</value>
+    <comment>CompleteYourProfilePage</comment>
+  </data>
+  <data name="cyp_HeaderTitle" xml:space="preserve">
+    <value>Complete Your Profile</value>
+    <comment>CompleteYourProfilePage</comment>
+  </data>
+  <data name="cyp_Location" xml:space="preserve">
+    <value>Description of Location *</value>
+    <comment>CompleteYourProfilePage</comment>
+  </data>
+  <data name="cyp_LocationPickupAlert" xml:space="preserve">
+    <value>Current Location successfully taken.</value>
+  </data>
+  <data name="cyp_LocationPlaceholder" xml:space="preserve">
+    <value>Write description of your location here...</value>
+    <comment>CompleteYourProfilePage</comment>
+  </data>
+  <data name="cyp_MaritalStatus" xml:space="preserve">
+    <value>Marital Status</value>
+    <comment>CompleteYourProfilePage</comment>
+  </data>
+  <data name="cyp_MaritalStatusPlaceholder" xml:space="preserve">
+    <value>Select your marital status</value>
+    <comment>CompleteYourProfilePage</comment>
+  </data>
+  <data name="cyp_Name" xml:space="preserve">
+    <value>Name *</value>
+    <comment>CompleteYourProfilePage</comment>
+  </data>
+  <data name="cyp_NamePlaceholder" xml:space="preserve">
+    <value>Enter your name</value>
+    <comment>CompleteYourProfilePage</comment>
+  </data>
+  <data name="cyp_Province" xml:space="preserve">
+    <value>Province *</value>
+    <comment>CompleteYourProfilePage</comment>
+  </data>
+  <data name="cyp_ProvincePlaceholder" xml:space="preserve">
+    <value>Select your Provience</value>
+    <comment>CompleteYourProfilePage</comment>
+  </data>
+  <data name="cyp_RequiredField" xml:space="preserve">
+    <value>The fields with the * symbol are required.</value>
+    <comment>CompleteYourProfilePage</comment>
+  </data>
+  <data name="cyp_Street" xml:space="preserve">
+    <value>Street </value>
+    <comment>CompleteYourProfilePage</comment>
+  </data>
+  <data name="cyp_StreetPlaceholder" xml:space="preserve">
+    <value>Tap here to get your current location.</value>
+    <comment>CompleteYourProfilePage</comment>
+  </data>
+  <data name="cyp_TermConditionBlack" xml:space="preserve">
+    <value>I have read &amp; agree with Term &amp; Conditions</value>
+    <comment>CompleteYourProfilePage</comment>
+  </data>
+  <data name="day" xml:space="preserve">
+    <value>day</value>
+  </data>
+  <data name="days" xml:space="preserve">
+    <value>days</value>
+  </data>
+  <data name="DeleteChat" xml:space="preserve">
+    <value>Delete Chat</value>
+  </data>
+  <data name="DeleteChatConfirm" xml:space="preserve">
+    <value>Are you sure you want to delete chat?</value>
+  </data>
+  <data name="DeleteGroup" xml:space="preserve">
+    <value>Delete Group</value>
+  </data>
+  <data name="DeleteGroupConfirm" xml:space="preserve">
+    <value>Are you sure you want to delete this group?</value>
+  </data>
+  <data name="downloadFile_Error" xml:space="preserve">
+    <value>Error while saving the file</value>
+  </data>
+  <data name="downloadFile_Success" xml:space="preserve">
+    <value>File Saved Successfully in khadamat_download folder</value>
+  </data>
+  <data name="downloadFile_Title" xml:space="preserve">
+    <value>Khadamat Downloader</value>
+  </data>
+  <data name="editprofile_EditProfileSaveBtn" xml:space="preserve">
+    <value>Save</value>
+    <comment>EditProfilePage</comment>
+  </data>
+  <data name="editprofile_EditProfileTitle" xml:space="preserve">
+    <value>Edit Profile</value>
+    <comment>EditProfilePage</comment>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="error_AppLocationPermissionDisable" xml:space="preserve">
+    <value>Location permission is denied for the app. Do you want to give permission?</value>
+  </data>
+  <data name="error_backpress" xml:space="preserve">
+    <value>You can't go back till file/image is uploading.</value>
+  </data>
+  <data name="error_BlankAllField" xml:space="preserve">
+    <value>Please enter name, email and description.</value>
+    <comment>Error</comment>
+  </data>
+  <data name="error_Blankemail" xml:space="preserve">
+    <value>Please enter your email</value>
+  </data>
+  <data name="error_BlankOtp" xml:space="preserve">
+    <value>Please Enter OTP.</value>
+    <comment>Error</comment>
+  </data>
+  <data name="error_BlankPhone" xml:space="preserve">
+    <value>Please enter phone number.</value>
+    <comment>Error</comment>
+  </data>
+  <data name="error_BlankPhonePassword" xml:space="preserve">
+    <value>Please Enter Phone Number and password.</value>
+    <comment>Error</comment>
+  </data>
+  <data name="error_BlankRequiredField" xml:space="preserve">
+    <value>Please Fill all the required fields.</value>
+    <comment>Error</comment>
+  </data>
+  <data name="error_ContactUsDescription" xml:space="preserve">
+    <value>Please write description.</value>
+    <comment>Error</comment>
+  </data>
+  <data name="error_ContactUsEmail" xml:space="preserve">
+    <value>Please enter email id.</value>
+    <comment>Error</comment>
+  </data>
+  <data name="error_ContactUsName" xml:space="preserve">
+    <value>Please enter name.</value>
+    <comment>Error</comment>
+  </data>
+  <data name="error_DeviceLocationDisable" xml:space="preserve">
+    <value>Your Device GPS location is disabled. Do you want to enable location service?</value>
+  </data>
+  <data name="error_DOBError" xml:space="preserve">
+    <value>Your date of birth must not be greater than current date.</value>
+  </data>
+  <data name="error_EmailValidation" xml:space="preserve">
+    <value>Please enter valid email.</value>
+    <comment>Error</comment>
+  </data>
+  <data name="error_FileUploading" xml:space="preserve">
+    <value>Error occuring while sending file</value>
+  </data>
+  <data name="error_ImageUploading" xml:space="preserve">
+    <value>Error occuring while sending Image</value>
+  </data>
+  <data name="error_InternetError" xml:space="preserve">
+    <value>Please check your Internet Connection</value>
+    <comment>Error</comment>
+  </data>
+  <data name="error_invalidFileExtension" xml:space="preserve">
+    <value>File Extension is invalid</value>
+  </data>
+  <data name="error_jobdatetime" xml:space="preserve">
+    <value>Selected Date &amp; Time must be greater than Current Date &amp; Time.</value>
+  </data>
+  <data name="error_JobRequestServiceDescriptionBlank" xml:space="preserve">
+    <value>Please enter description of your service.</value>
+    <comment>Error</comment>
+  </data>
+  <data name="error_JobRequestVenueBlank" xml:space="preserve">
+    <value>Please enter venue name.</value>
+    <comment>Error</comment>
+  </data>
+  <data name="error_ReviewError" xml:space="preserve">
+    <value>Please rate the worker job.</value>
+    <comment>ReviewPage</comment>
+  </data>
+  <data name="error_ServerError" xml:space="preserve">
+    <value>There is some issue while connecting to server. Please check your internet connection or try again after some time.</value>
+  </data>
+  <data name="error_TermCondition" xml:space="preserve">
+    <value>Please accept terms and conditions.</value>
+    <comment>Error</comment>
+  </data>
+  <data name="error_underAge" xml:space="preserve">
+    <value>Your age must be 18 or above</value>
+  </data>
+  <data name="error_ValidPhone" xml:space="preserve">
+    <value>Please enter valid phone number</value>
+  </data>
+  <data name="err_BlankPassword" xml:space="preserve">
+    <value>Password cannot be blank.</value>
+    <comment>Error</comment>
+  </data>
+  <data name="err_ConfirmPassword" xml:space="preserve">
+    <value>Confirm password didn't match.</value>
+    <comment>Error</comment>
+  </data>
+  <data name="expressTab_title" xml:space="preserve">
+    <value>Express Service</value>
+  </data>
+  <data name="faq" xml:space="preserve">
+    <value>FAQ</value>
+    <comment>FAQPage</comment>
+  </data>
+  <data name="finance_officername" xml:space="preserve">
+    <value>Finance Officer</value>
+  </data>
+  <data name="forgot_PasswordMsg" xml:space="preserve">
+    <value>Enter Your phone number associated with your account. We'll send you OTP to reset your password</value>
+    <comment>ForgotPasswordPage</comment>
+  </data>
+  <data name="forgot_PasswordTitle" xml:space="preserve">
+    <value>FORGOT YOUR PASSWORD</value>
+    <comment>ForgotPasswordPage</comment>
+  </data>
+  <data name="Gallery" xml:space="preserve">
+    <value>Gallery</value>
+  </data>
+  <data name="home_ACRepair" xml:space="preserve">
+    <value>Air Conditioner</value>
+    <comment>HomePage</comment>
+  </data>
+  <data name="home_AppliancesRepair" xml:space="preserve">
+    <value>Home Appliance Repairs</value>
+    <comment>HomePage</comment>
+  </data>
+  <data name="home_CleaningService" xml:space="preserve">
+    <value>Home Cleaning</value>
+    <comment>HomePage</comment>
+  </data>
+  <data name="home_ElectricianService" xml:space="preserve">
+    <value>Electrician</value>
+    <comment>HomePage</comment>
+  </data>
+  <data name="home_LaptopRepair" xml:space="preserve">
+    <value>Laptop Repair</value>
+    <comment>HomePage</comment>
+  </data>
+  <data name="home_Maintenance" xml:space="preserve">
+    <value>Home Maintenance</value>
+    <comment>HomePage</comment>
+  </data>
+  <data name="home_PageTitle" xml:space="preserve">
+    <value>Welcome</value>
+    <comment>HomePage</comment>
+  </data>
+  <data name="home_PainterService" xml:space="preserve">
+    <value>Painter</value>
+    <comment>HomePage</comment>
+  </data>
+  <data name="home_PlumbingService" xml:space="preserve">
+    <value>Plumbing</value>
+    <comment>HomePage</comment>
+  </data>
+  <data name="home_searchPlaceHolder" xml:space="preserve">
+    <value>Search Service</value>
+    <comment>HomePage</comment>
+  </data>
+  <data name="home_searchTitle" xml:space="preserve">
+    <value>Search Your Service</value>
+    <comment>HomePage</comment>
+  </data>
+  <data name="home_searchTitle2" xml:space="preserve">
+    <value>Lorem Ipsum is Simply dummy text of the printing</value>
+    <comment>HomePage</comment>
+  </data>
+  <data name="hour" xml:space="preserve">
+    <value>hour</value>
+  </data>
+  <data name="hours" xml:space="preserve">
+    <value>hours</value>
+  </data>
+  <data name="jobDetail_Title" xml:space="preserve">
+    <value>Job Detail</value>
+    <comment>JobDetailPage</comment>
+  </data>
+  <data name="jobrequest_CategoryTitle" xml:space="preserve">
+    <value>Category *</value>
+    <comment>JobRequestPage</comment>
+  </data>
+  <data name="jobrequest_DateTimeTitle" xml:space="preserve">
+    <value>Date &amp; Time *</value>
+    <comment>JobRequestPage</comment>
+  </data>
+  <data name="jobrequest_DescriptionPlaceHolder" xml:space="preserve">
+    <value>write job description here...</value>
+    <comment>JobRequestPage</comment>
+  </data>
+  <data name="jobrequest_fetch_location" xml:space="preserve">
+    <value>Fetching Location</value>
+  </data>
+  <data name="jobrequest_HeaderTitle" xml:space="preserve">
+    <value>Service Request</value>
+    <comment>JobRequestPage</comment>
+  </data>
+  <data name="jobrequest_JobCloseReason" xml:space="preserve">
+    <value>Job Cancel Reason</value>
+  </data>
+  <data name="jobrequest_Location" xml:space="preserve">
+    <value>Location</value>
+    <comment>JobRequestPage</comment>
+  </data>
+  <data name="jobrequest_PopupBtn" xml:space="preserve">
+    <value>OK</value>
+    <comment>JobRequestPage</comment>
+  </data>
+  <data name="jobrequest_PopupMsg" xml:space="preserve">
+    <value>Your service request have been submitted. We will get back you soon.</value>
+    <comment>JobRequestPage</comment>
+  </data>
+  <data name="jobrequest_QuoteDescriptionTitle" xml:space="preserve">
+    <value>Quote Description</value>
+  </data>
+  <data name="jobrequest_QuoteTitle" xml:space="preserve">
+    <value>Quote</value>
+  </data>
+  <data name="jobrequest_ServiceDescription" xml:space="preserve">
+    <value>Description of Service *</value>
+    <comment>JobRequestPage</comment>
+  </data>
+  <data name="jobrequest_ServiceTypeTitle" xml:space="preserve">
+    <value>Type of Service *</value>
+    <comment>JobRequestPage</comment>
+  </data>
+  <data name="jobrequest_SubmitBtn" xml:space="preserve">
+    <value>SUBMIT REQUEST</value>
+    <comment>JobRequestPage</comment>
+  </data>
+  <data name="jobrequest_VenuePlaceHolder" xml:space="preserve">
+    <value>Enter job venue...</value>
+    <comment>JobRequestPage</comment>
+  </data>
+  <data name="jobrequest_VenueTitle" xml:space="preserve">
+    <value>Venue *</value>
+    <comment>JobRequestPage</comment>
+  </data>
+  <data name="login_ForgotPswd" xml:space="preserve">
+    <value>Forgot Password?</value>
+    <comment>LoginPage</comment>
+  </data>
+  <data name="login_Password" xml:space="preserve">
+    <value>Password</value>
+    <comment>LoginPage</comment>
+  </data>
+  <data name="login_PasswordPlaceholder" xml:space="preserve">
+    <value>Enter your password</value>
+    <comment>LoginPage</comment>
+  </data>
+  <data name="login_PhoneNumber" xml:space="preserve">
+    <value>Phone Number</value>
+    <comment>LoginPage</comment>
+  </data>
+  <data name="login_PhoneNumberPlaceholder" xml:space="preserve">
+    <value>Enter your phone number</value>
+    <comment>LoginPage</comment>
+  </data>
+  <data name="login_Signup1" xml:space="preserve">
+    <value>New User ! </value>
+    <comment>LoginPage</comment>
+  </data>
+  <data name="login_Signup2" xml:space="preserve">
+    <value>Sign Up</value>
+    <comment>LoginPage</comment>
+  </data>
+  <data name="login_Title" xml:space="preserve">
+    <value>LOGIN</value>
+    <comment>LoginPage</comment>
+  </data>
+  <data name="login_TitleMsg" xml:space="preserve">
+    <value>Enter Your Phone Number &amp; Password</value>
+    <comment>LoginPage</comment>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="LogoutMsg" xml:space="preserve">
+    <value>Are you sure you want to logout?</value>
+  </data>
+  <data name="map_headerTitle" xml:space="preserve">
+    <value>Choose Location</value>
+  </data>
+  <data name="marital_Engaged" xml:space="preserve">
+    <value>Engaged</value>
+    <comment>MaritalStatus Enum</comment>
+  </data>
+  <data name="marital_ItsComplicated" xml:space="preserve">
+    <value>Its Complicated</value>
+    <comment>MaritalStatus Enum</comment>
+  </data>
+  <data name="marital_Married" xml:space="preserve">
+    <value>Married</value>
+    <comment>MaritalStatus Enum</comment>
+  </data>
+  <data name="marital_OpenRelation" xml:space="preserve">
+    <value>In An OpenRelationship</value>
+    <comment>MaritalStatus Enum</comment>
+  </data>
+  <data name="marital_relation" xml:space="preserve">
+    <value>In A Relationship</value>
+    <comment>MaritalStatus Enum</comment>
+  </data>
+  <data name="marital_Single" xml:space="preserve">
+    <value>Single</value>
+    <comment>MaritalStatus Enum</comment>
+  </data>
+  <data name="marital_Widowed" xml:space="preserve">
+    <value>Widowed</value>
+    <comment>MaritalStatus Enum</comment>
+  </data>
+  <data name="menu_AboutUs" xml:space="preserve">
+    <value>About us</value>
+    <comment>MenuPage</comment>
+  </data>
+  <data name="menu_Chats" xml:space="preserve">
+    <value>Chats</value>
+    <comment>MenuPage</comment>
+  </data>
+  <data name="menu_ContactUs" xml:space="preserve">
+    <value>Contact us</value>
+    <comment>MenuPage</comment>
+  </data>
+  <data name="menu_Home" xml:space="preserve">
+    <value>Home</value>
+    <comment>MenuPage</comment>
+  </data>
+  <data name="menu_LogOut" xml:space="preserve">
+    <value>Log out</value>
+    <comment>MenuPage</comment>
+  </data>
+  <data name="menu_MyBooking" xml:space="preserve">
+    <value>My Booking</value>
+    <comment>MenuPage</comment>
+  </data>
+  <data name="menu_PrivacyPolicy" xml:space="preserve">
+    <value>Privacy Policy</value>
+    <comment>MenuPage</comment>
+  </data>
+  <data name="menu_Profile" xml:space="preserve">
+    <value>Profile</value>
+    <comment>MenuPage</comment>
+  </data>
+  <data name="menu_TermCondition" xml:space="preserve">
+    <value>Terms &amp; Conditions</value>
+    <comment>MenuPage</comment>
+  </data>
+  <data name="menu_ViewProfile" xml:space="preserve">
+    <value>View Profile</value>
+    <comment>MenuPage</comment>
+  </data>
+  <data name="minute" xml:space="preserve">
+    <value>minute</value>
+  </data>
+  <data name="minutes" xml:space="preserve">
+    <value>minutes</value>
+  </data>
+  <data name="month" xml:space="preserve">
+    <value>month</value>
+  </data>
+  <data name="months" xml:space="preserve">
+    <value>months</value>
+  </data>
+  <data name="msg_Today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="msg_Yesterday" xml:space="preserve">
+    <value>Yesterday</value>
+  </data>
+  <data name="mybooking_BookAgain" xml:space="preserve">
+    <value>Book Again</value>
+    <comment>MyBookingPage</comment>
+  </data>
+  <data name="mybooking_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>MyBookingPage</comment>
+  </data>
+  <data name="mybooking_Cancelled" xml:space="preserve">
+    <value>Cancelled</value>
+    <comment>MyBookingPage</comment>
+  </data>
+  <data name="mybooking_Chat" xml:space="preserve">
+    <value>Chat</value>
+    <comment>MyBookingPage</comment>
+  </data>
+  <data name="mybooking_CheckReview" xml:space="preserve">
+    <value>Check Review</value>
+    <comment>MyBookingPage</comment>
+  </data>
+  <data name="mybooking_Completed" xml:space="preserve">
+    <value>Completed</value>
+    <comment>MyBookingPage</comment>
+  </data>
+  <data name="mybooking_Coordinator" xml:space="preserve">
+    <value>Coordinator</value>
+    <comment>MyBookingPage</comment>
+  </data>
+  <data name="mybooking_GiveReview" xml:space="preserve">
+    <value>Give Review</value>
+    <comment>MyBookingPage</comment>
+  </data>
+  <data name="mybooking_HeaderTitle" xml:space="preserve">
+    <value>My Bookings</value>
+    <comment>MyBookingPage</comment>
+  </data>
+  <data name="mybooking_InProgress" xml:space="preserve">
+    <value>In-Progress</value>
+    <comment>MyBookingPage</comment>
+  </data>
+  <data name="mybooking_NoBookingFound" xml:space="preserve">
+    <value>Currently, you don't have any booking</value>
+    <comment>MyBookingPage</comment>
+  </data>
+  <data name="mybooking_Pending" xml:space="preserve">
+    <value>Pending</value>
+    <comment>MyBookingPage</comment>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="NoDataPresent" xml:space="preserve">
+    <value>No Data Present</value>
+  </data>
+  <data name="noInternet_msg1" xml:space="preserve">
+    <value>Connection Lost</value>
+  </data>
+  <data name="noInternet_msg2" xml:space="preserve">
+    <value>Please check your internet connection.</value>
+  </data>
+  <data name="noInternet_TryAgainBtn" xml:space="preserve">
+    <value>Try Again</value>
+  </data>
+  <data name="notification_Accept" xml:space="preserve">
+    <value>Accept</value>
+    <comment>NotificationPage</comment>
+  </data>
+  <data name="notification_date" xml:space="preserve">
+    <value>8 days ago</value>
+    <comment>NotificationPage</comment>
+  </data>
+  <data name="notification_PageTitle" xml:space="preserve">
+    <value>Notifications</value>
+    <comment>NotificationPage</comment>
+  </data>
+  <data name="notification_Reject" xml:space="preserve">
+    <value>Reject</value>
+    <comment>NotificationPage</comment>
+  </data>
+  <data name="notification_title" xml:space="preserve">
+    <value>Nate Parker has completed your job request.</value>
+    <comment>NotificationPage</comment>
+  </data>
+  <data name="notification_ViewDetail" xml:space="preserve">
+    <value>View Details</value>
+    <comment>NotificationPage</comment>
+  </data>
+  <data name="notification_ViewInvoice" xml:space="preserve">
+    <value>View Invoice</value>
+    <comment>NotificationPage</comment>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="otp_Callme" xml:space="preserve">
+    <value>You have exceeded OTP request max attempts , please call to the customer service number in order to get your OTP.</value>
+  </data>
+  <data name="otp_EmailVerificationCodeMsg" xml:space="preserve">
+    <value>We sent verification code on your registered Email.</value>
+    <comment>OtpPage</comment>
+  </data>
+  <data name="otp_EnterOtpTitle" xml:space="preserve">
+    <value>ENTER OTP</value>
+    <comment>OtpPage</comment>
+  </data>
+  <data name="otp_Resend" xml:space="preserve">
+    <value>Resend OTP</value>
+    <comment>OtpPage</comment>
+  </data>
+  <data name="otp_VerificationCodeMsg" xml:space="preserve">
+    <value>We sent verification code on your Mobile</value>
+    <comment>OtpPage</comment>
+  </data>
+  <data name="picker_Day" xml:space="preserve">
+    <value>Day</value>
+  </data>
+  <data name="picker_Month" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="picker_Year" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="privacy_PrivacyPolicyTitle" xml:space="preserve">
+    <value>Privacy Policy</value>
+    <comment>Privacy Policy Page</comment>
+  </data>
+  <data name="profile_Country" xml:space="preserve">
+    <value>Country </value>
+    <comment>ProfilePage</comment>
+  </data>
+  <data name="profile_CurrentJob" xml:space="preserve">
+    <value>Current Job</value>
+    <comment>ProfilePage</comment>
+  </data>
+  <data name="profile_DOB" xml:space="preserve">
+    <value>Date of Birth</value>
+    <comment>ProfilePage</comment>
+  </data>
+  <data name="profile_Email" xml:space="preserve">
+    <value>Email</value>
+    <comment>ProfilePage</comment>
+  </data>
+  <data name="profile_Location" xml:space="preserve">
+    <value>Description of Location</value>
+    <comment>ProfilePage</comment>
+  </data>
+  <data name="profile_MaritalStatus" xml:space="preserve">
+    <value>Marital Status</value>
+    <comment>ProfilePage</comment>
+  </data>
+  <data name="profile_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>ProfilePage</comment>
+  </data>
+  <data name="profile_PopupEmailTitle" xml:space="preserve">
+    <value>Change Your Email ID</value>
+    <comment>ProfilePage</comment>
+  </data>
+  <data name="profile_PopupPhoneTitle" xml:space="preserve">
+    <value>Change Your Phone Number</value>
+    <comment>ProfilePage</comment>
+  </data>
+  <data name="profile_ProfileTitle" xml:space="preserve">
+    <value>Profile</value>
+    <comment>ProfilePage</comment>
+  </data>
+  <data name="profile_Province" xml:space="preserve">
+    <value>Province</value>
+    <comment>ProfilePage</comment>
+  </data>
+  <data name="profile_Street" xml:space="preserve">
+    <value>Street</value>
+    <comment>ProfilePage</comment>
+  </data>
+  <data name="pswd_ChangePswdTitle" xml:space="preserve">
+    <value>CHANGE YOUR PASSWORD</value>
+    <comment>ChangePasswordPage</comment>
+  </data>
+  <data name="pswd_ChoosePswdLogin" xml:space="preserve">
+    <value>Choose your password to login</value>
+    <comment>CreatePasswordPage</comment>
+  </data>
+  <data name="pswd_ConfirmPassword" xml:space="preserve">
+    <value>Confirm Password</value>
+    <comment>ChangePasswordPage</comment>
+  </data>
+  <data name="pswd_ConfirmPswdPlaceholder" xml:space="preserve">
+    <value>Confirm Password</value>
+    <comment>CreatePasswordPage</comment>
+  </data>
+  <data name="pswd_CreatePswdTitle" xml:space="preserve">
+    <value>CREATE YOUR PASSWORD</value>
+    <comment>CreatePasswordPage</comment>
+  </data>
+  <data name="pswd_EnterPswdPlaceholder" xml:space="preserve">
+    <value>Enter Password</value>
+    <comment>CreatePasswordPage</comment>
+  </data>
+  <data name="pswd_NewPassword" xml:space="preserve">
+    <value>New Password</value>
+    <comment>ChangePasswordPage</comment>
+  </data>
+  <data name="pswd_NewPasswordPlaceholder" xml:space="preserve">
+    <value>Enter your new password</value>
+    <comment>ChangePasswordPage</comment>
+  </data>
+  <data name="pswd_OldPassword" xml:space="preserve">
+    <value>Old Password</value>
+    <comment>ChangePasswordPage</comment>
+  </data>
+  <data name="pswd_OldPasswordPlaceholder" xml:space="preserve">
+    <value>Enter your old password</value>
+    <comment>ChangePasswordPage</comment>
+  </data>
+  <data name="reg_EnterPhoneNumberTitle" xml:space="preserve">
+    <value>ENTER YOUR PHONE</value>
+    <comment>RegisterPage</comment>
+  </data>
+  <data name="reg_PhoneNumber" xml:space="preserve">
+    <value>Enter your phone number</value>
+    <comment>RegisterPage</comment>
+  </data>
+  <data name="reg_SubmitBtn" xml:space="preserve">
+    <value>SUBMIT</value>
+    <comment>RegisterPage</comment>
+  </data>
+  <data name="reg_VerificationCodeMsg" xml:space="preserve">
+    <value>We'll send verification code on your mobile</value>
+    <comment>RegisterPage</comment>
+  </data>
+  <data name="review_CommentPlaceHolder" xml:space="preserve">
+    <value>Write here...</value>
+    <comment>ReviewPage</comment>
+  </data>
+  <data name="review_CommentTitle" xml:space="preserve">
+    <value>WRITE SOMETHING</value>
+    <comment>ReviewPage</comment>
+  </data>
+  <data name="review_CommentTitle1" xml:space="preserve">
+    <value>Your Comment</value>
+    <comment>ReviewPage</comment>
+  </data>
+  <data name="review_DoneBtn" xml:space="preserve">
+    <value>DONE</value>
+    <comment>ReviewPage</comment>
+  </data>
+  <data name="review_RatingTitle" xml:space="preserve">
+    <value>HOW WOULD YOU RATE?</value>
+    <comment>ReviewPage</comment>
+  </data>
+  <data name="review_RatingTitle1" xml:space="preserve">
+    <value>Your rating</value>
+    <comment>ReviewPage</comment>
+  </data>
+  <data name="review_ReviewTitle" xml:space="preserve">
+    <value>Give Review</value>
+    <comment>ReviewPage</comment>
+  </data>
+  <data name="review_ReviewTitle1" xml:space="preserve">
+    <value>Check Your Review</value>
+    <comment>ReviewPage</comment>
+  </data>
+  <data name="second" xml:space="preserve">
+    <value>second</value>
+  </data>
+  <data name="seconds" xml:space="preserve">
+    <value>seconds</value>
+  </data>
+  <data name="setting_ChangeLanguage" xml:space="preserve">
+    <value>Change Language</value>
+    <comment>SettingPage</comment>
+  </data>
+  <data name="setting_ChangePassword" xml:space="preserve">
+    <value>Change Password</value>
+    <comment>SettingPage</comment>
+  </data>
+  <data name="setting_ContactUs" xml:space="preserve">
+    <value>Contact Us</value>
+    <comment>SettingPage</comment>
+  </data>
+  <data name="setting_HeaderTitle" xml:space="preserve">
+    <value>Settings</value>
+    <comment>SettingPage</comment>
+  </data>
+  <data name="setting_RateApp" xml:space="preserve">
+    <value>Rate This App</value>
+    <comment>SettingPage</comment>
+  </data>
+  <data name="spjob_PopTitle" xml:space="preserve">
+    <value>Are you sure?</value>
+    <comment>JobRequestPage</comment>
+  </data>
+  <data name="spjob_popupErrorMsg" xml:space="preserve">
+    <value>Please write the your comments why you want to cancel this job</value>
+    <comment>JobRequestPage</comment>
+  </data>
+  <data name="spjob_PopupMsg" xml:space="preserve">
+    <value>You want to cancel this request.</value>
+    <comment>JobRequestPage</comment>
+  </data>
+  <data name="spjob_PopupMsg1" xml:space="preserve">
+    <value>Please let us know why you want to cancel this job request?</value>
+    <comment>JobRequestPage</comment>
+  </data>
+  <data name="spjob_PopupPlaceholder" xml:space="preserve">
+    <value>Please add your comments</value>
+    <comment>JobRequestPage</comment>
+  </data>
+  <data name="subservice_serviceName1" xml:space="preserve">
+    <value>Tap, Wash Basin and Sink</value>
+    <comment>ServiceDetailPage</comment>
+  </data>
+  <data name="subservice_serviceName2" xml:space="preserve">
+    <value>Blocks and Leakages</value>
+    <comment>ServiceDetailPage</comment>
+  </data>
+  <data name="subservice_serviceName3" xml:space="preserve">
+    <value>Toilet and Sanitary Work</value>
+    <comment>ServiceDetailPage</comment>
+  </data>
+  <data name="success_FileUploading" xml:space="preserve">
+    <value>Sending file Successfully</value>
+  </data>
+  <data name="success_ImageUploading" xml:space="preserve">
+    <value>Sending Image Successfully</value>
+  </data>
+  <data name="support_HeaderTitle" xml:space="preserve">
+    <value>Support</value>
+  </data>
+  <data name="term_Title" xml:space="preserve">
+    <value>Terms &amp; Conditions</value>
+    <comment>termConditionPage</comment>
+  </data>
+  <data name="webview_InvoiceHeader" xml:space="preserve">
+    <value>Invoice Detail</value>
+    <comment>Webview</comment>
+  </data>
+  <data name="year" xml:space="preserve">
+    <value>year</value>
+  </data>
+  <data name="years" xml:space="preserve">
+    <value>years</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+</root>

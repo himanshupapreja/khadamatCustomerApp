@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:strings="clr-namespace:Khadamat_CustomerApp;assembly=Khadamat_CustomerApp"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:commonheader="clr-namespace:Khadamat_CustomerApp.Views"
+             xmlns:img="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             BackgroundColor="{StaticResource Black1Color}"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Khadamat_CustomerApp.Views.MenuPage">
+    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="15" Padding="20">
+        <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuImageCrossStyle}" HorizontalOptions="End" VerticalOptions="Start" Source="resource://Khadamat_CustomerApp.SvgImages.close.svg">
+            <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding MenuCloseCommand}" NumberOfTapsRequired="1"/>
+            </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+        </ffimageloadingsvg:SvgCachedImage>
+
+        <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,10,0,0">
+            <img:CircleImage Source="{Binding UserProfilePic}" HeightRequest="80" WidthRequest="80" HorizontalOptions="Start" BorderColor="{StaticResource WhiteColor}" BorderThickness="2"/>
+            <StackLayout Orientation="Vertical" VerticalOptions="Center" Spacing="5">
+                <Label Text="{Binding UserName}" Style="{StaticResource menuPageBoldLabel}" LineBreakMode="TailTruncation" FontSize="{StaticResource MainLabelFontSize3}"/>
+                <Label Text="{strings:Translate menu_ViewProfile}" Style="{StaticResource menuPageYellowLabel}" LineBreakMode="TailTruncation" FontSize="{StaticResource MainLabelFontSize1}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding MenuProfileCommand}" NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+        </StackLayout>
+
+        <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Orientation="Vertical" HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never">
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="0">
+                <!--Profile View-->
+                <StackLayout Spacing="0" Margin="0,0,0,15" HorizontalOptions="FillAndExpand">
+                    <StackLayout Orientation="Horizontal" Spacing="15" HorizontalOptions="FillAndExpand" Margin="0,15,0,0">
+                        <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuImageStyle}" Source="resource://Khadamat_CustomerApp.SvgImages.user.svg"/>
+
+                        <Label Text="{strings:Translate menu_Profile}" Style="{StaticResource menuPageLabel}" FontSize="{StaticResource MainLabelFontSize3}"/>
+                    </StackLayout>
+                    <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuRightArrowImageStyle}" Source="resource://Khadamat_CustomerApp.SvgImages.arrowpointright.svg" Margin="0,0,10,0" HorizontalOptions="End"/>
+
+                    <BoxView Style="{StaticResource HorizontalBoxViewStyle}" Margin="28,10,0,0"/>
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding MenuProfileCommand}" NumberOfTapsRequired="1"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+
+                <!--Home View-->
+                <StackLayout Spacing="0" Margin="0,0,0,15" HorizontalOptions="FillAndExpand">
+                    <StackLayout Orientation="Horizontal" Spacing="15" HorizontalOptions="FillAndExpand" Margin="0,15,0,0">
+                        <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuImageStyle}" Source="resource://Khadamat_CustomerApp.SvgImages.home.svg"/>
+
+                        <Label Text="{strings:Translate menu_Home}" Style="{StaticResource menuPageLabel}" FontSize="{StaticResource MainLabelFontSize3}"/>
+                    </StackLayout>
+                    <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuRightArrowImageStyle}" Source="resource://Khadamat_CustomerApp.SvgImages.arrowpointright.svg" Margin="0,0,10,0" HorizontalOptions="End"/>
+
+                    <BoxView Style="{StaticResource HorizontalBoxViewStyle}" Margin="28,10,0,0"/>
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding MenuHomeCommand}" NumberOfTapsRequired="1"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+
+                <!--MyBooking View-->
+                <StackLayout Spacing="0" Margin="0,0,0,15" HorizontalOptions="FillAndExpand">
+                    <StackLayout Orientation="Horizontal" Spacing="15" HorizontalOptions="FillAndExpand" Margin="0,15,0,0">
+                        <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuImageStyle}" Source="resource://Khadamat_CustomerApp.SvgImages.filter.svg"/>
+
+                        <Label Text="{strings:Translate menu_MyBooking}" Style="{StaticResource menuPageLabel}" FontSize="{StaticResource MainLabelFontSize3}"/>
+                    </StackLayout>
+                    <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuRightArrowImageStyle}" Source="resource://Khadamat_CustomerApp.SvgImages.arrowpointright.svg" Margin="0,0,10,0" HorizontalOptions="End"/>
+
+                    <BoxView Style="{StaticResource HorizontalBoxViewStyle}" Margin="28,10,0,0"/>
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding MenuMyBookingCommand}" NumberOfTapsRequired="1"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+
+                <!--Chats View-->
+                <StackLayout Spacing="0" Margin="0,0,0,15" HorizontalOptions="FillAndExpand">
+                    <StackLayout Orientation="Horizontal" Spacing="15" HorizontalOptions="FillAndExpand" Margin="0,15,0,0">
+                        <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuImageStyle}" Source="resource://Khadamat_CustomerApp.SvgImages.comment.svg"/>
+
+                        <Label Text="{strings:Translate menu_Chats}" Style="{StaticResource menuPageLabel}" FontSize="{StaticResource MainLabelFontSize3}"/>
+                    </StackLayout>
+                    <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuRightArrowImageStyle}" Source="resource://Khadamat_CustomerApp.SvgImages.arrowpointright.svg" Margin="0,0,10,0" HorizontalOptions="End"/>
+
+                    <BoxView Style="{StaticResource HorizontalBoxViewStyle}" Margin="28,10,0,0"/>
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding MenuChatCommand}" NumberOfTapsRequired="1"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+
+                <!--Support View-->
+                <StackLayout Spacing="0" Margin="0,0,0,15" HorizontalOptions="FillAndExpand">
+                    <StackLayout Orientation="Horizontal" Spacing="15" HorizontalOptions="FillAndExpand" Margin="0,15,0,0">
+                        <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuImageStyle}" Source="resource://Khadamat_CustomerApp.SvgImages.ic_support.svg"/>
+
+                        <Label Text="{strings:Translate support_HeaderTitle}" Style="{StaticResource menuPageLabel}" FontSize="{StaticResource MainLabelFontSize3}"/>
+
+                        <BoxView HeightRequest="10" WidthRequest="10" VerticalOptions="Center" BackgroundColor="{StaticResource RedColor}" CornerRadius="5" IsVisible="{Binding newSupportChat}"/>
+                    </StackLayout>
+                    <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuRightArrowImageStyle}" Source="resource://Khadamat_CustomerApp.SvgImages.arrowpointright.svg" Margin="0,0,10,0" HorizontalOptions="End"/>
+
+                    <BoxView Style="{StaticResource HorizontalBoxViewStyle}" Margin="28,10,0,0"/>
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding MenuSupportCommand}" NumberOfTapsRequired="1"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+
+
+                <!--Settings View-->
+                <StackLayout Spacing="0" Margin="0,0,0,15" HorizontalOptions="FillAndExpand">
+                    <StackLayout Orientation="Horizontal" Spacing="15" HorizontalOptions="FillAndExpand" Margin="0,15,0,0">
+                        <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuImageStyle}" Source="resource://Khadamat_CustomerApp.SvgImages.ic_settings.svg"/>
+
+                        <Label Text="{strings:Translate setting_HeaderTitle}" Style="{StaticResource menuPageLabel}" FontSize="{StaticResource MainLabelFontSize3}"/>
+                    </StackLayout>
+                    <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuRightArrowImageStyle}" Source="resource://Khadamat_CustomerApp.SvgImages.arrowpointright.svg" Margin="0,0,10,0" HorizontalOptions="End"/>
+
+                    <!--<BoxView Style="{StaticResource HorizontalBoxViewStyle}" Margin="28,10,0,0"/>-->
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding MenuSettingCommand}" NumberOfTapsRequired="1"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+
+                <!--HorizontalLine View-->
+                <StackLayout Spacing="0" Margin="0,0,0,15" HorizontalOptions="FillAndExpand">
+                    <BoxView HeightRequest="1" BackgroundColor="{StaticResource GrayColor}" WidthRequest="60" HorizontalOptions="Start" Margin="28,10,0,0" Opacity="0.5"/>
+                </StackLayout>
+
+                <!--TermCondition View-->
+                <StackLayout Spacing="0" Padding="0,10" HorizontalOptions="FillAndExpand">
+                    <Label Text="{strings:Translate menu_TermCondition}" Style="{StaticResource menuPageLabel}" FontSize="{StaticResource MainLabelFontSize2}" Margin="28,10,0,0"/>
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding MenuTermConditionCommand}" NumberOfTapsRequired="1"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+
+                <!--Privacy Policy View-->
+                <StackLayout Spacing="0" Padding="0,10" HorizontalOptions="FillAndExpand">
+                    <Label Text="{strings:Translate menu_PrivacyPolicy}" Style="{StaticResource menuPageLabel}" FontSize="{StaticResource MainLabelFontSize2}" Margin="28,10,0,0"/>
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding MenuPrivacyPolicyCommand}" NumberOfTapsRequired="1"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+
+                <!--Contactus View-->
+                <StackLayout Spacing="0" Padding="0,10" HorizontalOptions="FillAndExpand">
+                    <Label Text="{strings:Translate menu_ContactUs}" Style="{StaticResource menuPageLabel}" FontSize="{StaticResource MainLabelFontSize2}" Margin="28,10,0,0"/>
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding MenuContactUsCommand}" NumberOfTapsRequired="1"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+
+                <!--AboutUs View-->
+                <StackLayout Spacing="0" Padding="0,10" HorizontalOptions="FillAndExpand">
+                    <Label Text="{strings:Translate menu_AboutUs}" Style="{StaticResource menuPageLabel}" FontSize="{StaticResource MainLabelFontSize2}" Margin="28,10,0,0"/>
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding MenuAboutUsCommand}" NumberOfTapsRequired="1"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+
+                <!--Logout View-->
+                <StackLayout Spacing="0" Padding="0,10" HorizontalOptions="FillAndExpand">
+                    <Label Text="{strings:Translate menu_LogOut}" Style="{StaticResource menuPageBlueLabel}" FontSize="{StaticResource MainLabelFontSize2}" Margin="28,10,0,0"/>
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding MenuLogoutCommand}" NumberOfTapsRequired="1"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

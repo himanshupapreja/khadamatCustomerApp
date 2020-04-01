@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:strings="clr-namespace:Khadamat_CustomerApp;assembly=Khadamat_CustomerApp"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:commonheader="clr-namespace:Khadamat_CustomerApp.Views"
+             xmlns:img="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             BackgroundColor="{StaticResource PageBGColor}"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Khadamat_CustomerApp.Views.ReviewPage">
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--Header Bar-->
+        <commonheader:BackArrowHeader HorizontalOptions="FillAndExpand" TitleText="{Binding ReviewTitle}"/>
+
+        <StackLayout Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="15" Padding="20,35">
+            <Image Source="rating.png" HeightRequest="100" WidthRequest="100" HorizontalOptions="Center"/>
+
+            <Label Style="{StaticResource reviewTitleStyle}" Text="{Binding RatingTitle}" FontSize="{StaticResource MainLabelFontSize3}"/>
+
+            <!--Rating Field-->
+            <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal" Spacing="10">
+                <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuImageCrossStyle}" HorizontalOptions="Center" Source="{Binding Star1}">
+                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RatingCommand}" CommandParameter="1" NumberOfTapsRequired="1"/>
+                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                </ffimageloadingsvg:SvgCachedImage>
+                <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuImageCrossStyle}" HorizontalOptions="Center" Source="{Binding Star2}">
+                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RatingCommand}" CommandParameter="2" NumberOfTapsRequired="1"/>
+                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                </ffimageloadingsvg:SvgCachedImage>
+                <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuImageCrossStyle}" HorizontalOptions="Center" Source="{Binding Star3}">
+                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RatingCommand}" CommandParameter="3" NumberOfTapsRequired="1"/>
+                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                </ffimageloadingsvg:SvgCachedImage>
+                <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuImageCrossStyle}" HorizontalOptions="Center" Source="{Binding Star4}">
+                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RatingCommand}" CommandParameter="4" NumberOfTapsRequired="1"/>
+                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                </ffimageloadingsvg:SvgCachedImage>
+                <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuImageCrossStyle}" HorizontalOptions="Center" Source="{Binding Star5}">
+                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RatingCommand}" CommandParameter="5" NumberOfTapsRequired="1"/>
+                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                </ffimageloadingsvg:SvgCachedImage>
+            </StackLayout>
+
+            <BoxView Style="{StaticResource HorizontalBoxViewStyle}" Margin="-20,0"/>
+
+            <Label Style="{StaticResource reviewTitleStyle}" Text="{Binding CommentTitle}" FontSize="{StaticResource MainLabelFontSize3}"/>
+
+            <!--rating Comment Entry-->
+            <Frame Padding="10" HeightRequest="150" HorizontalOptions="FillAndExpand" HasShadow="True">
+                <Editor Placeholder="{strings:Translate review_CommentPlaceHolder}" PlaceholderColor="{StaticResource GrayColor}" HorizontalOptions="Fill" VerticalOptions="Fill" TextColor="{StaticResource Black1Color}" FontSize="{StaticResource MainLabelFontSize1}" Text="{Binding WorkerReviewValue}" IsEnabled="{Binding IsNewReview}"/>
+            </Frame>
+
+            <!--Done Button-->
+            <Button Padding="20,0" Text="{strings:Translate review_DoneBtn}" Style="{ StaticResource YellowButtonFillStyle}" Command="{Binding DoneBtnCommand}" Margin="10,10" IsVisible="{Binding IsNewReview}"/>
+        </StackLayout>
+
+
+
+        <Grid HorizontalOptions="FillAndExpand" Grid.RowSpan="2" VerticalOptions="FillAndExpand" IsVisible="{Binding IsNoInternetView}">
+            <StackLayout BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="10">
+                <Image Source="nointernet.png" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="250" Margin="0,30,0,0"></Image>
+                <Label Text="{strings:Translate noInternet_msg1}" FontSize="Large" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" 
+                           VerticalOptions="Center" Style="{StaticResource BlackSemiBoldLabel}"/>
+                <Label Text="{strings:Translate noInternet_msg2}" FontSize="Medium" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" 
+                           VerticalOptions="Center" Style="{StaticResource BlackMediumLabel}"/>
+
+            </StackLayout>
+        </Grid>
+
+        <BoxView Grid.RowSpan="2" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Black1Color}" Opacity="0.8" VerticalOptions="FillAndExpand" IsVisible="{Binding IsLoaderBusy}"/>
+        <StackLayout Grid.RowSpan="2" HorizontalOptions="CenterAndExpand" BackgroundColor="{StaticResource TransparentColor}" VerticalOptions="CenterAndExpand" IsVisible="{Binding IsLoaderBusy}">
+            <ActivityIndicator IsVisible="{Binding IsLoaderBusy}" IsRunning="{Binding IsLoaderBusy}" Color="{StaticResource BlueColor}" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>

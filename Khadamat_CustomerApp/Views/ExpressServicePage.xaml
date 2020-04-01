@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:strings="clr-namespace:Khadamat_CustomerApp;assembly=Khadamat_CustomerApp"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:commonheader="clr-namespace:Khadamat_CustomerApp.Views"
+             xmlns:suave="clr-namespace:SuaveControls.DynamicStackLayout;assembly=SuaveControls.DynamicStackLayout"
+             BackgroundColor="{StaticResource PageBGColor}"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Khadamat_CustomerApp.Views.ExpressServicePage">
+  <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--Header Bar-->
+        <commonheader:CustomMenuHeader HorizontalOptions="FillAndExpand" MenuIconImage="{Binding MenuIcon}" TitleText="{strings:Translate home_PageTitle}" RightIconImage="{Binding NotificationIcon}" Right1IconImage="{Binding ChatIcon}"/>
+
+        <!--Services List-->
+        <RefreshView Grid.Row="1" IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid Padding="20,0" RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="250"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" Source="{Binding HeaderBanner}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill" Margin="-20,0"/>
+                    <BoxView Grid.Row="0" BackgroundColor="{StaticResource Black1Color}" Opacity="0.6" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="-20,0"/>
+                    <StackLayout Padding="0,25" Spacing="10">
+                        <Label Text="{strings:Translate home_searchTitle}" Style="{StaticResource WhiteMediumLabel}" FontSize="{StaticResource MainLabelFontSize5}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" LineBreakMode="WordWrap"/>
+                        <BoxView HeightRequest="1" BackgroundColor="{StaticResource WhiteColor}" WidthRequest="60" HorizontalOptions="Start"/>
+                        <Label Text="{Binding HeaderBannerTitle}" Style="{StaticResource WhiteRegularLabel}" FontSize="{StaticResource MainLabelFontSize2}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" LineBreakMode="WordWrap" MaxLines="3"/>
+                    </StackLayout>
+
+                    <StackLayout Spacing="10" Grid.Row="1" Margin="-20,0" Padding="20,0,20,0">
+                        <Frame Style="{StaticResource Frame50h}" BackgroundColor="{StaticResource WhiteColor}" CornerRadius="25" Padding="0" TranslationY="-25">
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0" ColumnSpacing="0" BackgroundColor="Transparent">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="60"/>
+                                </Grid.ColumnDefinitions>
+                                <Entry Placeholder="{strings:Translate home_searchPlaceHolder}" Text="{Binding SearchServiceEntry}" Grid.Column="0" Margin="15,0"/>
+                                <BoxView Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource LightYellowColor}"/>
+                                <ffimageloadingsvg:SvgCachedImage Grid.Column="1" Style="{StaticResource MenuImageStyle}" HorizontalOptions="Center" Source="resource://Khadamat_CustomerApp.SvgImages.search.svg"/>
+                            </Grid>
+                        </Frame>
+
+                        <StackLayout BackgroundColor="{StaticResource TransparentColor}" Spacing="20">
+                            <!--<Label Text="{Binding sub_category_name}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />-->
+                            <Label Text="{strings:Translate expressTab_title}" FontSize="{StaticResource MainLabelFontSize4}" Style="{StaticResource BlackSemiBoldLabel}" FontAttributes="Bold" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"/>
+
+                            <commonheader:ExpressServiceListContentView/>
+                        </StackLayout>
+                        
+                        <StackLayout BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="FillAndExpand" Spacing="10" IsVisible="{Binding IsNodataFound}">
+                            <Image Source="no_data_found.png" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="200" Margin="0,15,0,0"></Image>
+                            <Label Text="{strings:Translate NoDataPresent}" FontSize="Medium" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource BlackMediumLabel}"/>
+                        </StackLayout>
+                    </StackLayout>
+
+                </Grid>
+            </ScrollView>
+        </RefreshView>
+
+        <BoxView Grid.RowSpan="2" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Black1Color}" Opacity="0.8" VerticalOptions="FillAndExpand" IsVisible="{Binding IsLoaderBusy}"/>
+        <ActivityIndicator Grid.RowSpan="2" IsVisible="{Binding IsLoaderBusy}" IsRunning="{Binding IsLoaderBusy}" Color="{StaticResource BlueColor}" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"/>
+    </Grid>
+</ContentPage>

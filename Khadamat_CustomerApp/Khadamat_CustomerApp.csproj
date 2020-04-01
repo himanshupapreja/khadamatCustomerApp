@@ -1,0 +1,334 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="SvgImages\air_conditioner.svg" />
+    <None Remove="SvgImages\arrowpointright.svg" />
+    <None Remove="SvgImages\attachment.svg" />
+    <None Remove="SvgImages\avatar.svg" />
+    <None Remove="SvgImages\blank_check_box.svg" />
+    <None Remove="SvgImages\broom.svg" />
+    <None Remove="SvgImages\calendar.svg" />
+    <None Remove="SvgImages\chat.svg" />
+    <None Remove="SvgImages\close.svg" />
+    <None Remove="SvgImages\close_black.svg" />
+    <None Remove="SvgImages\comment.svg" />
+    <None Remove="SvgImages\delete.svg" />
+    <None Remove="SvgImages\deleteRed.svg" />
+    <None Remove="SvgImages\docicon.svg" />
+    <None Remove="SvgImages\downarrowwhite.svg" />
+    <None Remove="SvgImages\download.svg" />
+    <None Remove="SvgImages\dropdownarrow.svg" />
+    <None Remove="SvgImages\edit.svg" />
+    <None Remove="SvgImages\electrician.svg" />
+    <None Remove="SvgImages\email.svg" />
+    <None Remove="SvgImages\fileupload.svg" />
+    <None Remove="SvgImages\filter.svg" />
+    <None Remove="SvgImages\flag.svg" />
+    <None Remove="SvgImages\furniture_and_household.svg" />
+    <None Remove="SvgImages\hidepswd.svg" />
+    <None Remove="SvgImages\home.svg" />
+    <None Remove="SvgImages\ic_blank_check_box.svg" />
+    <None Remove="SvgImages\ic_checkbox.svg" />
+    <None Remove="SvgImages\ic_coins.svg" />
+    <None Remove="SvgImages\ic_edit.svg" />
+    <None Remove="SvgImages\ic_electrician.svg" />
+    <None Remove="SvgImages\ic_email.svg" />
+    <None Remove="SvgImages\ic_face_normal.svg" />
+    <None Remove="SvgImages\ic_id.svg" />
+    <None Remove="SvgImages\ic_next.svg" />
+    <None Remove="SvgImages\ic_passport.svg" />
+    <None Remove="SvgImages\ic_sad_face.svg" />
+    <None Remove="SvgImages\ic_send.svg" />
+    <None Remove="SvgImages\ic_servicelist.svg" />
+    <None Remove="SvgImages\ic_settings.svg" />
+    <None Remove="SvgImages\ic_smiling.svg" />
+    <None Remove="SvgImages\ic_star_active.svg" />
+    <None Remove="SvgImages\ic_star_blank.svg" />
+    <None Remove="SvgImages\ic_star_grey.svg" />
+    <None Remove="SvgImages\ic_support.svg" />
+    <None Remove="SvgImages\ic_tick.svg" />
+    <None Remove="SvgImages\ic_time.svg" />
+    <None Remove="SvgImages\imageupload.svg" />
+    <None Remove="SvgImages\key.svg" />
+    <None Remove="SvgImages\laptop.svg" />
+    <None Remove="SvgImages\left_arrow.svg" />
+    <None Remove="SvgImages\list.svg" />
+    <None Remove="SvgImages\map.svg" />
+    <None Remove="SvgImages\menu.svg" />
+    <None Remove="SvgImages\menudot.svg" />
+    <None Remove="SvgImages\newcomment.svg" />
+    <None Remove="SvgImages\newnotification.svg" />
+    <None Remove="SvgImages\notification.svg" />
+    <None Remove="SvgImages\paint.svg" />
+    <None Remove="SvgImages\pencil.svg" />
+    <None Remove="SvgImages\phonecall.svg" />
+    <None Remove="SvgImages\photo_camera.svg" />
+    <None Remove="SvgImages\pin.svg" />
+    <None Remove="SvgImages\pipe.svg" />
+    <None Remove="SvgImages\placeholder.svg" />
+    <None Remove="SvgImages\portfolio.svg" />
+    <None Remove="SvgImages\search.svg" />
+    <None Remove="SvgImages\showpswd.svg" />
+    <None Remove="SvgImages\sink.svg" />
+    <None Remove="SvgImages\sink1.svg" />
+    <None Remove="SvgImages\sink2.svg" />
+    <None Remove="SvgImages\tap.svg" />
+    <None Remove="SvgImages\telephone.svg" />
+    <None Remove="SvgImages\toilet.svg" />
+    <None Remove="SvgImages\toolbar.svg" />
+    <None Remove="SvgImages\user.svg" />
+    <None Remove="SvgImages\water.svg" />
+    <None Remove="SvgImages\worldwide.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="SvgImages\air_conditioner.svg" />
+    <EmbeddedResource Include="SvgImages\arrowpointright.svg" />
+    <EmbeddedResource Include="SvgImages\attachment.svg" />
+    <EmbeddedResource Include="SvgImages\avatar.svg" />
+    <EmbeddedResource Include="SvgImages\blank_check_box.svg" />
+    <EmbeddedResource Include="SvgImages\broom.svg" />
+    <EmbeddedResource Include="SvgImages\calendar.svg" />
+    <EmbeddedResource Include="SvgImages\chat.svg" />
+    <EmbeddedResource Include="SvgImages\close.svg" />
+    <EmbeddedResource Include="SvgImages\close_black.svg" />
+    <EmbeddedResource Include="SvgImages\comment.svg" />
+    <EmbeddedResource Include="SvgImages\delete.svg" />
+    <EmbeddedResource Include="SvgImages\deleteRed.svg" />
+    <EmbeddedResource Include="SvgImages\docicon.svg" />
+    <EmbeddedResource Include="SvgImages\downarrowwhite.svg" />
+    <EmbeddedResource Include="SvgImages\download.svg" />
+    <EmbeddedResource Include="SvgImages\dropdownarrow.svg" />
+    <EmbeddedResource Include="SvgImages\edit.svg" />
+    <EmbeddedResource Include="SvgImages\electrician.svg" />
+    <EmbeddedResource Include="SvgImages\email.svg" />
+    <EmbeddedResource Include="SvgImages\fileupload.svg" />
+    <EmbeddedResource Include="SvgImages\filter.svg" />
+    <EmbeddedResource Include="SvgImages\flag.svg" />
+    <EmbeddedResource Include="SvgImages\furniture_and_household.svg" />
+    <EmbeddedResource Include="SvgImages\hidepswd.svg" />
+    <EmbeddedResource Include="SvgImages\home.svg" />
+    <EmbeddedResource Include="SvgImages\ic_blank_check_box.svg" />
+    <EmbeddedResource Include="SvgImages\ic_checkbox.svg" />
+    <EmbeddedResource Include="SvgImages\ic_coins.svg" />
+    <EmbeddedResource Include="SvgImages\ic_edit.svg" />
+    <EmbeddedResource Include="SvgImages\ic_electrician.svg" />
+    <EmbeddedResource Include="SvgImages\ic_email.svg" />
+    <EmbeddedResource Include="SvgImages\ic_face_normal.svg" />
+    <EmbeddedResource Include="SvgImages\ic_id.svg" />
+    <EmbeddedResource Include="SvgImages\ic_next.svg" />
+    <EmbeddedResource Include="SvgImages\ic_passport.svg" />
+    <EmbeddedResource Include="SvgImages\ic_sad_face.svg" />
+    <EmbeddedResource Include="SvgImages\ic_send.svg" />
+    <EmbeddedResource Include="SvgImages\ic_servicelist.svg" />
+    <EmbeddedResource Include="SvgImages\ic_settings.svg" />
+    <EmbeddedResource Include="SvgImages\ic_smiling.svg" />
+    <EmbeddedResource Include="SvgImages\ic_star_active.svg" />
+    <EmbeddedResource Include="SvgImages\ic_star_blank.svg" />
+    <EmbeddedResource Include="SvgImages\ic_star_grey.svg" />
+    <EmbeddedResource Include="SvgImages\ic_support.svg" />
+    <EmbeddedResource Include="SvgImages\ic_tick.svg" />
+    <EmbeddedResource Include="SvgImages\ic_time.svg" />
+    <EmbeddedResource Include="SvgImages\imageupload.svg" />
+    <EmbeddedResource Include="SvgImages\key.svg" />
+    <EmbeddedResource Include="SvgImages\laptop.svg" />
+    <EmbeddedResource Include="SvgImages\left_arrow.svg" />
+    <EmbeddedResource Include="SvgImages\list.svg" />
+    <EmbeddedResource Include="SvgImages\map.svg" />
+    <EmbeddedResource Include="SvgImages\menu.svg" />
+    <EmbeddedResource Include="SvgImages\menudot.svg" />
+    <EmbeddedResource Include="SvgImages\newcomment.svg" />
+    <EmbeddedResource Include="SvgImages\newnotification.svg" />
+    <EmbeddedResource Include="SvgImages\notification.svg" />
+    <EmbeddedResource Include="SvgImages\paint.svg" />
+    <EmbeddedResource Include="SvgImages\pencil.svg" />
+    <EmbeddedResource Include="SvgImages\phonecall.svg" />
+    <EmbeddedResource Include="SvgImages\photo_camera.svg" />
+    <EmbeddedResource Include="SvgImages\pin.svg" />
+    <EmbeddedResource Include="SvgImages\pipe.svg" />
+    <EmbeddedResource Include="SvgImages\placeholder.svg" />
+    <EmbeddedResource Include="SvgImages\portfolio.svg" />
+    <EmbeddedResource Include="SvgImages\search.svg" />
+    <EmbeddedResource Include="SvgImages\showpswd.svg" />
+    <EmbeddedResource Include="SvgImages\sink.svg" />
+    <EmbeddedResource Include="SvgImages\sink1.svg" />
+    <EmbeddedResource Include="SvgImages\sink2.svg" />
+    <EmbeddedResource Include="SvgImages\tap.svg" />
+    <EmbeddedResource Include="SvgImages\telephone.svg" />
+    <EmbeddedResource Include="SvgImages\toilet.svg" />
+    <EmbeddedResource Include="SvgImages\toolbar.svg" />
+    <EmbeddedResource Include="SvgImages\user.svg" />
+    <EmbeddedResource Include="SvgImages\water.svg" />
+    <EmbeddedResource Include="SvgImages\worldwide.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DynamicStackLayout" Version="2017.12.4" />
+    <PackageReference Include="FirebaseDatabase.net" Version="4.0.4" />
+    <PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
+    <PackageReference Include="LiteDB" Version="4.1.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Plugin.FirebasePushNotification" Version="2.3.6" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="1.2.0.223" />
+    <PackageReference Include="SkiaRate.Forms" Version="0.5.2-pre" />
+    <PackageReference Include="Xam.Plugin.Geolocator" Version="4.5.0.6" />
+    <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
+    <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.0.0.5" />
+    <PackageReference Include="Xamarin.Build.Download" Version="0.9.0" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.0" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Forms" Version="4.3.0.991221" />
+    <PackageReference Include="Prism.DryIoc.Forms" Version="7.2.0.1422" />
+    <PackageReference Include="Xamarin.Forms.Maps" Version="4.3.0.991221" />
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="1.3.7" />
+    <PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.1.34" />
+    <PackageReference Include="XF.Material" Version="1.5.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\ChangeLanguagePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ChangePasswordPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ChatDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ChatListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ContentViewsCell\ExpressServiceListContentView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\CustomMapPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\EditProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ExpressServicePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\FaqPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\HomePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\HomeTabbedPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\JobDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\JobRequestPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MenuFlow\AboutUsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\CompleteProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MenuFlow\ContactUsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\CreatePasswordPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ForgotPasswordPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\LoginPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MenuFlow\MasterPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MenuPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MyBookingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\NoInternetPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\NotificationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\OtpPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MenuFlow\PrivacyPolicyPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\RegisterationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MenuFlow\TermConditionPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ReviewPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ServiceDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SettingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SplashScreen.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SupportPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Views\ChatDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ChatListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ContentViewsCell\HorizontalListContentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\CustomMapPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\HomePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\JobDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\JobRequestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\NoInternetPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\NotificationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ReviewPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ServiceDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+
+</Project>

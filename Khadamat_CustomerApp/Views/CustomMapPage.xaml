@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:cc="clr-namespace:Khadamat_CustomerApp.CustomControls"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:strings="clr-namespace:Khadamat_CustomerApp;assembly=Khadamat_CustomerApp"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:commonheader="clr-namespace:Khadamat_CustomerApp.Views"
+             xmlns:suave="clr-namespace:SuaveControls.DynamicStackLayout;assembly=SuaveControls.DynamicStackLayout"
+             BackgroundColor="{StaticResource PageBGColor}"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Khadamat_CustomerApp.Views.CustomMapPage">
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <!--<RowDefinition Height="50"/>-->
+        </Grid.RowDefinitions>
+        <commonheader:BackArrowHeader HorizontalOptions="FillAndExpand" TitleText="{strings:Translate jobrequest_Location}"/>
+
+        <!--Map-->
+        <cc:CustomMap x:Name="customMap" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsEnabled="False"/>
+
+        <!--Center Map Pin Icon-->
+        <ffimageloadingsvg:SvgCachedImage Grid.Row="1" WidthRequest="30" HeightRequest="30" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,-15,-15,0" Source="resource://Khadamat_CustomerApp.SvgImages.pin.svg"/>
+
+        <!--Submit Button-->
+        <!--<Button Grid.Row="2" Padding="20,0" Text="{strings:Translate reg_SubmitBtn}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Style="{ StaticResource YellowButtonStyle}" Command="{Binding SubmitBtnCommand}" />-->
+    </Grid>
+</ContentPage>

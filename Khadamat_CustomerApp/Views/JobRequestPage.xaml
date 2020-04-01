@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:strings="clr-namespace:Khadamat_CustomerApp;assembly=Khadamat_CustomerApp"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:commonheader="clr-namespace:Khadamat_CustomerApp.Views"
+             BackgroundColor="{StaticResource PageBGColor}"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Khadamat_CustomerApp.Views.JobRequestPage">
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--Header Bar-->
+        <commonheader:BackArrowHeader HorizontalOptions="FillAndExpand" TitleText="{strings:Translate jobrequest_HeaderTitle}"/>
+
+        <StackLayout Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Label Text="{strings:Translate cyp_RequiredField}" TextColor="{StaticResource Black1Color}" FontFamily="{StaticResource SemiBoldFontFamily}" FontSize="16" HorizontalOptions="FillAndExpand" Margin="20,10,0,0"/>
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout Spacing="20" Padding="25,15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource TransparentColor}">
+                    <!--Category Field-->
+                    <Frame Padding="10" HeightRequest="50" HorizontalOptions="FillAndExpand" HasShadow="False">
+                        <StackLayout Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Label Text="{strings:Translate jobrequest_CategoryTitle}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize2}" Style="{StaticResource BlackMediumLabel}"/>
+
+                            <Label Text="{Binding CategoryName}" FontFamily="{StaticResource DefaultFontFamily}" FontSize="{StaticResource MainLabelFontSize1}" HorizontalOptions="Start"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <!--Type of service Field-->
+                    <Frame Padding="10" HeightRequest="50" HorizontalOptions="FillAndExpand" HasShadow="False">
+                        <StackLayout Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Label Text="{strings:Translate jobrequest_ServiceTypeTitle}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize2}" Style="{StaticResource BlackMediumLabel}"/>
+
+                            <Label Text="{Binding CategoryServiceName}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize1}" FontFamily="{StaticResource DefaultFontFamily}"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <!--DateTime Field-->
+                    <Frame Padding="10" HeightRequest="50" HorizontalOptions="FillAndExpand" HasShadow="False">
+                        <StackLayout Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Label Text="{strings:Translate jobrequest_DateTimeTitle}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize2}" Style="{StaticResource BlackMediumLabel}"/>
+
+                            <Label Text="{Binding JobDateTimeValue}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize1}" FontFamily="{StaticResource DefaultFontFamily}"/>
+
+                        </StackLayout>
+
+
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding DateTimePickerCommand}" CommandParameter="Start" NumberOfTapsRequired="1"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                    <DatePicker x:Name="datePicker" IsVisible="False" Unfocused="DatePicker_Unfocused"/>
+                    <TimePicker x:Name="timePicker" IsVisible="False" Unfocused="TimePicker_Unfocused"/>
+
+                    <!--Venue Field-->
+                    <Frame Padding="10" HeightRequest="100" HorizontalOptions="FillAndExpand" HasShadow="False">
+                        <StackLayout Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Label Text="{strings:Translate jobrequest_VenueTitle}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize2}" Style="{StaticResource BlackMediumLabel}"/>
+
+                            <!--<Editor Text="{Binding VenueName}" HorizontalOptions="FillAndExpand"/>-->
+                            <Editor Placeholder="{strings:Translate jobrequest_VenuePlaceHolder}" FontSize="{StaticResource MainLabelFontSize1}" PlaceholderColor="{StaticResource GrayColor}" FontFamily="{StaticResource DefaultFontFamily}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="{Binding VenueName}"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <!--Location Field-->
+                    <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="10" BackgroundColor="White" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+                        <Frame Padding="10" HorizontalOptions="FillAndExpand" HasShadow="False" IsClippedToBounds="True">
+                            <StackLayout Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Label Text="{strings:Translate jobrequest_Location}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize2}" Style="{StaticResource BlackMediumLabel}"/>
+
+                                <!--<Editor Text="{Binding VenueName}" HorizontalOptions="FillAndExpand"/>-->
+                                <Label Text="{Binding Location}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize1}" FontFamily="{StaticResource DefaultFontFamily}"/>
+                            </StackLayout>
+
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding LocationCommand}" NumberOfTapsRequired="1"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <ffimageloadingsvg:SvgCachedImage Grid.Column="1" WidthRequest="20" BackgroundColor="{StaticResource TransparentColor}" Margin="10,0" HeightRequest="20" Source="resource://Khadamat_CustomerApp.SvgImages.map.svg" VerticalOptions="CenterAndExpand" HorizontalOptions="End">
+                            <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding MapLocationCommand}" NumberOfTapsRequired="1"/>
+                            </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                        </ffimageloadingsvg:SvgCachedImage>
+
+                        <BoxView Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource TransparentColor}">
+                            <BoxView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding MapLocationCommand}" NumberOfTapsRequired="1"/>
+                            </BoxView.GestureRecognizers>
+                        </BoxView>
+                    </Grid>
+
+                    <!--Description of service Field-->
+                    <Frame Padding="10" HeightRequest="150" HorizontalOptions="FillAndExpand" HasShadow="False">
+                        <StackLayout Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Label Text="{strings:Translate jobrequest_ServiceDescription}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize2}" Style="{StaticResource BlackMediumLabel}"/>
+
+                            <!--<Editor Text="{Binding ServiceDescriptionValue}" HorizontalOptions="FillAndExpand"/>-->
+                            <Editor Placeholder="{strings:Translate jobrequest_DescriptionPlaceHolder}" FontSize="{StaticResource MainLabelFontSize1}" PlaceholderColor="{StaticResource GrayColor}" FontFamily="{StaticResource DefaultFontFamily}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" TextColor="{StaticResource Black1Color}" Text="{Binding ServiceDescriptionValue}"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <!--Term Condition-->
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Spacing="10" Margin="0,10,0,0">
+                        <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuImageStyle}" Source="{Binding TermConditionCheck}">
+                            <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding TermConditionCheckCommand}" NumberOfTapsRequired="1"/>
+                            </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                        </ffimageloadingsvg:SvgCachedImage>
+
+                        <Label Text="{strings:Translate cyp_TermConditionBlack}" TextColor="{StaticResource Black3Color}" VerticalTextAlignment="Center" HorizontalOptions="Start" FontSize="16" FontFamily="{StaticResource DefaultFontFamily}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding TermConditionCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+
+                    <Button Padding="20,0" Text="{strings:Translate jobrequest_SubmitBtn}" Style="{ StaticResource YellowButtonStyle}" Command="{Binding SubmitBtnCommand}" Margin="0,10,0,0"/>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+
+        <!--Job Success Post Popup-->
+        <Grid Grid.Row="0" Grid.RowSpan="2" IsVisible="{Binding IsPopupVisible}">
+            <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource Black1Color}" Opacity="0.6">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding PopupCloseCommand}" NumberOfTapsRequired="1"/>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+
+            <Frame Padding="20" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Margin="20,0">
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="10">
+                    <Image Source="ic_job_request.png" HeightRequest="100" WidthRequest="100" HorizontalOptions="Center"/>
+
+                    <Label Text="{strings:Translate jobrequest_PopupMsg}" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="{StaticResource MainLabelFontSize1}" FontFamily="{StaticResource DefaultFontFamily}" LineBreakMode="WordWrap"/>
+
+                    <Button Padding="40,0" Text="{strings:Translate jobrequest_PopupBtn}" Style="{ StaticResource OkpopupButtonStyle}" Command="{Binding OkBtnCommand}" Margin="0" HeightRequest="30"/>
+                </StackLayout>
+            </Frame>
+        </Grid>
+
+
+        <BoxView Grid.RowSpan="2" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Black1Color}" Opacity="0.8" VerticalOptions="FillAndExpand" IsVisible="{Binding IsLoaderBusy}"/>
+        <StackLayout Grid.RowSpan="2" HorizontalOptions="CenterAndExpand" BackgroundColor="{StaticResource TransparentColor}" VerticalOptions="CenterAndExpand" IsVisible="{Binding IsLoaderBusy}">
+            <ActivityIndicator IsVisible="{Binding IsLoaderBusy}" IsRunning="{Binding IsLoaderBusy}" Color="{StaticResource BlueColor}" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"/>
+            <Label Text="{strings:Translate jobrequest_fetch_location}" TextColor="{StaticResource WhiteColor}" FontSize="18" HorizontalOptions="Center"/>
+        </StackLayout>
+
+    </Grid>
+</ContentPage>

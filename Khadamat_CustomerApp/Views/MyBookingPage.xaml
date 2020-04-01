@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:strings="clr-namespace:Khadamat_CustomerApp;assembly=Khadamat_CustomerApp"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:commonheader="clr-namespace:Khadamat_CustomerApp.Views"
+             xmlns:img="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             BackgroundColor="{StaticResource PageBGColor}"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:skiarate="clr-namespace:SkiaRate;assembly=SkiaRate.Forms"
+             x:Class="Khadamat_CustomerApp.Views.MyBookingPage">
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--Header Bar-->
+        <commonheader:BackArrowHeader HorizontalOptions="FillAndExpand" TitleText="{strings:Translate mybooking_HeaderTitle}"/>
+
+        <!--Booking List-->
+        <RefreshView Grid.Row="1" IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0,0,0,5" RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never" Padding="10,0" Grid.Row="0">
+                    <Grid HeightRequest="60" HorizontalOptions="FillAndExpand" ColumnSpacing="15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0" Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                            <Label x:Name="pendinglabel" Text="{strings:Translate mybooking_Pending}" TextColor="{Binding PendingTextColor}" FontSize="{StaticResource MainLabelFontSize3}" FontFamily="{StaticResource MediumFontFamily}" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                            <BoxView HeightRequest="2" HorizontalOptions="Center" WidthRequest="{Binding Source={x:Reference pendinglabel}, Path=Width}" BackgroundColor="{Binding PendingTextColor}" IsVisible="{Binding IsJobPending}"/>
+                            <BoxView HeightRequest="2" HorizontalOptions="Center" WidthRequest="{Binding Source={x:Reference pendinglabel}, Path=Width}" BackgroundColor="{StaticResource TransparentColor}" IsVisible="{Binding IsJobPending, Converter={StaticResource BoolToNotBoolConverter}}"/>
+                        </StackLayout>
+                        <BoxView Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource TransparentColor}">
+                            <BoxView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding JobStatusCommand}" CommandParameter="pending" NumberOfTapsRequired="1"/>
+                            </BoxView.GestureRecognizers>
+                        </BoxView>
+
+                        <StackLayout Grid.Column="1" Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                            <Label x:Name="inprogresslabel" Text="{strings:Translate mybooking_InProgress}" TextColor="{Binding InProgressTextColor}" FontSize="{StaticResource MainLabelFontSize3}" FontFamily="{StaticResource MediumFontFamily}" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                            <BoxView HeightRequest="2" HorizontalOptions="Center" WidthRequest="{Binding Source={x:Reference inprogresslabel}, Path=Width}" BackgroundColor="{Binding InProgressTextColor}" IsVisible="{Binding IsJobInprogress}"/>
+                            <BoxView HeightRequest="2" HorizontalOptions="Center" WidthRequest="{Binding Source={x:Reference inprogresslabel}, Path=Width}" BackgroundColor="{StaticResource TransparentColor}" IsVisible="{Binding IsJobInprogress, Converter={StaticResource BoolToNotBoolConverter}}"/>
+                        </StackLayout>
+                        <BoxView Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource TransparentColor}">
+                            <BoxView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding JobStatusCommand}" CommandParameter="inprogress" NumberOfTapsRequired="1"/>
+                            </BoxView.GestureRecognizers>
+                        </BoxView>
+
+                        <StackLayout Grid.Column="2" Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                            <Label x:Name="completedlabel" Text="{strings:Translate mybooking_Completed}" FontFamily="{StaticResource MediumFontFamily}" TextColor="{Binding CompletedTextColor}" FontSize="{StaticResource MainLabelFontSize3}" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                            <BoxView HeightRequest="2" HorizontalOptions="Center" WidthRequest="{Binding Source={x:Reference completedlabel}, Path=Width}" BackgroundColor="{Binding CompletedTextColor}" IsVisible="{Binding IsJobCompleted}"/>
+                            <BoxView HeightRequest="2" HorizontalOptions="Center" WidthRequest="{Binding Source={x:Reference completedlabel}, Path=Width}" BackgroundColor="{StaticResource TransparentColor}" IsVisible="{Binding IsJobCompleted, Converter={StaticResource BoolToNotBoolConverter}}"/>
+                        </StackLayout>
+                        <BoxView Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource TransparentColor}">
+                            <BoxView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding JobStatusCommand}" CommandParameter="completed" NumberOfTapsRequired="1"/>
+                            </BoxView.GestureRecognizers>
+                        </BoxView>
+
+                        <StackLayout Grid.Column="3" Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                            <Label x:Name="cancelledlabel" Text="{strings:Translate mybooking_Cancelled}" FontFamily="{StaticResource MediumFontFamily}" TextColor="{Binding CancelledTextColor}" FontSize="{StaticResource MainLabelFontSize3}" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                            <BoxView HeightRequest="2" HorizontalOptions="Center" WidthRequest="{Binding Source={x:Reference cancelledlabel}, Path=Width}" BackgroundColor="{Binding CancelledTextColor}" IsVisible="{Binding IsJobCancelled}"/>
+                            <BoxView HeightRequest="2" HorizontalOptions="Center" WidthRequest="{Binding Source={x:Reference cancelledlabel}, Path=Width}" BackgroundColor="{StaticResource TransparentColor}" IsVisible="{Binding IsJobCancelled, Converter={StaticResource BoolToNotBoolConverter}}"/>
+                        </StackLayout>
+                        <BoxView Grid.Column="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource TransparentColor}">
+                            <BoxView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding JobStatusCommand}" CommandParameter="cancelled" NumberOfTapsRequired="1"/>
+                            </BoxView.GestureRecognizers>
+                        </BoxView>
+                    </Grid>
+                </ScrollView>
+
+                <CollectionView x:Name="myBookingList" ItemsSource="{Binding MyBookingList}" Grid.Row="1"
+                                    SelectedItem="{Binding JobDetailSelected}" SelectionMode="Single"
+                                    SelectionChanged="myBookingList_ItemSelected"  VerticalOptions="FillAndExpand">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid x:Name="myBookingListItem" Padding="20,12">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Frame Grid.Row="0" Padding="0" CornerRadius="5" HorizontalOptions="Fill" HasShadow="False" BackgroundColor="{StaticResource WhiteColor}">
+                                    <Grid>
+                                        <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical" VerticalOptions="FillAndExpand" Spacing="10" Padding="20">
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="0">
+                                                <Label Text="{Binding display_category_name}" Style="{StaticResource bookingBlueBoldLabel}" HorizontalOptions="FillAndExpand" FontSize="18" VerticalOptions="Center" VerticalTextAlignment="Center" />
+
+                                                <Frame BackgroundColor="{StaticResource ratingBlueColor}" CornerRadius="20" Padding="0" HeightRequest="40" VerticalOptions="Center" WidthRequest="40" HorizontalOptions="End" Margin="0,0,0,0" IsClippedToBounds="True" IsVisible="{Binding IsChatVisible}">
+                                                    <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuImageStyle}" HorizontalOptions="Center" Source="resource://Khadamat_CustomerApp.SvgImages.comment.svg"/>
+
+                                                    <Frame.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.ChatCommand, Source={x:Reference myBookingList}}" CommandParameter="{Binding Source={x:Reference myBookingListItem}, Path=BindingContext}"/>
+                                                    </Frame.GestureRecognizers>
+                                                </Frame>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                                <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuImageStyle}" Source="resource://Khadamat_CustomerApp.SvgImages.calendar.svg"/>
+                                                <Label Text="{Binding job_date}" Style="{StaticResource bookinglistlightblackLabel}" FontSize="15"/>
+                                                <BoxView HeightRequest="20" WidthRequest="1" BackgroundColor="{StaticResource Black1Color}"/>
+                                                <Label Text="{Binding job_time}" Style="{StaticResource bookinglistlightblackLabel}" FontSize="15"/>
+                                            </StackLayout>
+
+                                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                                <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuImageStyle}" Source="resource://Khadamat_CustomerApp.SvgImages.placeholder.svg"/>
+                                                <Label Text="{Binding venue}" Style="{StaticResource bookinglightblackLabel}" FontSize="15"/>
+                                            </StackLayout>
+
+                                            <BoxView Style="{StaticResource HorizontalBoxViewStyle}" Margin="-20,10" IsVisible="{Binding IsNoJobStatusPending}"/>
+
+                                            <StackLayout Orientation="Horizontal" Spacing="10" IsVisible="{Binding IsNoJobStatusPending}" HorizontalOptions="FillAndExpand">
+                                                <Frame Padding="0" CornerRadius="3" BackgroundColor="{StaticResource TransparentColor}" Style="{StaticResource Frame50hw}">
+                                                    <Image Source="{Binding WorkerImage}" Aspect="AspectFill"/>
+                                                </Frame>
+                                                <StackLayout Orientation="Vertical" Spacing="0" HorizontalOptions="FillAndExpand">
+                                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                                        <Label Text="{Binding WorkerName}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" Style="{StaticResource bookingBlackboldLabel}" FontSize="15"/>
+                                                        <!--<StackLayout HorizontalOptions="End" Orientation="Horizontal" Spacing="5" IsVisible="{Binding IsRatingVisible}">
+                                                            <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuRightArrowImageStyle}" HorizontalOptions="Center" Source="resource://Khadamat_CustomerApp.SvgImages.ic_star_active.svg"/>
+                                                            <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuRightArrowImageStyle}" HorizontalOptions="Center" Source="resource://Khadamat_CustomerApp.SvgImages.ic_star_active.svg"/>
+                                                            <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuRightArrowImageStyle}" HorizontalOptions="Center" Source="resource://Khadamat_CustomerApp.SvgImages.ic_star_active.svg"/>
+                                                            <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuRightArrowImageStyle}" HorizontalOptions="Center" Source="resource://Khadamat_CustomerApp.SvgImages.ic_star_blank.svg"/>
+                                                            <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuRightArrowImageStyle}" HorizontalOptions="Center" Source="resource://Khadamat_CustomerApp.SvgImages.ic_star_blank.svg"/>
+                                                        </StackLayout>-->
+                                                        <skiarate:RatingView x:Name="workerjobratingview" IsVisible="{Binding IsRatingVisible}" Count="5" RatingType="Full" ColorOn="#F1C40F" WidthRequest="80" HeightRequest="20" HorizontalOptions="End" Value="{Binding user_review}" OutlineOffColor="Black" IsEnabled="False"/>
+                                                    </StackLayout>
+                                                    <Label Text="{Binding WorkerServiceName}" Style="{StaticResource bookinglightblackLabel}" VerticalOptions="Start" FontSize="15"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </StackLayout>
+
+                                        <Frame BackgroundColor="{StaticResource LightYellowColor}" CornerRadius="3" Padding="0" HeightRequest="30" TranslationY="10" VerticalOptions="End" WidthRequest="150" HorizontalOptions="End" Margin="20,0,20,0" IsVisible="{Binding IsJobPending}" IsClippedToBounds="True">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="40"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label Grid.Column="0" Text="{strings:Translate mybooking_Cancel}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" FontSize="14" Style="{StaticResource bookingblackLabel}"/>
+
+                                                <BoxView Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource ratingBlueColor}"/>
+                                                <ffimageloadingsvg:SvgCachedImage Grid.Column="1" Style="{StaticResource MenuImageStyle}" Source="resource://Khadamat_CustomerApp.SvgImages.close.svg"/>
+                                            </Grid>
+
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.JobCancelCommand, Source={x:Reference myBookingList}}" CommandParameter="{Binding Source={x:Reference myBookingListItem}, Path=BindingContext}"/>
+                                            </Frame.GestureRecognizers>
+                                        </Frame>
+
+                                        <Frame BackgroundColor="{StaticResource LightYellowColor}" CornerRadius="3" Padding="0" HeightRequest="30" TranslationY="10" VerticalOptions="End" WidthRequest="150" HorizontalOptions="End" Margin="20,0,20,0" IsVisible="{Binding IsJobCompleted}" IsClippedToBounds="True">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="40"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label Grid.Column="0" Text="{Binding WorkerReviewText}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" FontSize="14" Style="{StaticResource bookingblackLabel}"/>
+
+                                                <BoxView Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource ratingBlueColor}"/>
+                                                <ffimageloadingsvg:SvgCachedImage Grid.Column="1" Style="{StaticResource MenuImageStyle}" Source="resource://Khadamat_CustomerApp.SvgImages.ic_star_grey.svg"/>
+                                            </Grid>
+
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.ReviewCommand, Source={x:Reference myBookingList}}" CommandParameter="{Binding Source={x:Reference myBookingListItem}, Path=BindingContext}"/>
+                                            </Frame.GestureRecognizers>
+                                        </Frame>
+
+                                        <Frame BackgroundColor="{StaticResource LightYellowColor}" CornerRadius="3" Padding="0" HeightRequest="30" TranslationY="10" VerticalOptions="End" WidthRequest="150" HorizontalOptions="End" Margin="20,0,20,0" IsVisible="{Binding IsJobCancelled}" IsClippedToBounds="True">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="40"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label Grid.Column="0" Text="{strings:Translate mybooking_BookAgain}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" FontSize="14" Style="{StaticResource bookingblackLabel}"/>
+
+                                                <BoxView Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource ratingBlueColor}"/>
+                                                <ffimageloadingsvg:SvgCachedImage Grid.Column="1" Style="{StaticResource MenuImageStyle}" Source="resource://Khadamat_CustomerApp.SvgImages.ic_tick.svg"/>
+                                            </Grid>
+
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.BookAgainCommand, Source={x:Reference myBookingList}}" CommandParameter="{Binding Source={x:Reference myBookingListItem}, Path=BindingContext}"/>
+                                            </Frame.GestureRecognizers>
+                                        </Frame>
+                                    </Grid>
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+
+                <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding IsNoDataFoundView}">
+                    <StackLayout BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="10">
+                        <Image Source="no_data_found.png" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="250" Margin="0,30,0,0"></Image>
+                        <Label Text="{strings:Translate NoDataPresent}" FontSize="Medium" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" 
+                           VerticalOptions="Center" Style="{StaticResource BlackMediumLabel}"/>
+
+                    </StackLayout>
+                </Grid>
+                <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding IsNoInternetView}">
+                    <StackLayout BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="10">
+                        <Image Source="nointernet.png" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="250" Margin="0,30,0,0"></Image>
+                        <Label Text="{strings:Translate noInternet_msg1}" FontSize="Large" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" 
+                           VerticalOptions="Center" Style="{StaticResource BlackSemiBoldLabel}"/>
+                        <Label Text="{strings:Translate noInternet_msg2}" FontSize="Medium" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" 
+                           VerticalOptions="Center" Style="{StaticResource BlackMediumLabel}"/>
+
+                    </StackLayout>
+                </Grid>
+            </Grid>
+        </RefreshView>
+
+
+        <!--popup-->
+        <Grid Grid.RowSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding IsPopupVisible}">
+                <BoxView BackgroundColor="{StaticResource GreenColor}" Opacity="0.4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PopupCloseCommand}"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+                <Frame Margin="30,0" Padding="10,15" HasShadow="False" BackgroundColor="{StaticResource WhiteColor}" CornerRadius="8" VerticalOptions="CenterAndExpand">
+                    <Grid>
+                        <Image Source="ic_cross.png" VerticalOptions="Start" HeightRequest="30" WidthRequest="30" HorizontalOptions="EndAndExpand" Margin="0,-15,-10,0" TranslationY="-15" TranslationX="15">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding PopupCloseCommand}" NumberOfTapsRequired="1"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <StackLayout Orientation="Vertical" Spacing="0" HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="10" Margin="10,0,10,5">
+                                <Label Text="{strings:Translate spjob_PopTitle}" Style="{StaticResource SPGreenBoldCenterLabel}" FontSize="18"/>
+                                <Label Text="{strings:Translate spjob_PopupMsg}" Style="{StaticResource SPBlack2MediumCenterLabel}" FontSize="15"/>
+                                <Label Text="{strings:Translate spjob_PopupMsg1}" Style="{StaticResource SPBlack2MediumLabel}" FontSize="15" Margin="0,15,0,0"/>
+                                <Frame HeightRequest="130" HasShadow="False" BorderColor="{StaticResource PopupEditorColor}" CornerRadius="3" Padding="15,10" HorizontalOptions="Fill" BackgroundColor="{StaticResource PopupEditorColor}">
+                                    <Editor Text="{Binding ServiceCancelMessage}" HorizontalOptions="Fill" VerticalOptions="Fill" Placeholder="{strings:Translate spjob_PopupPlaceholder}" FontSize="16" BackgroundColor="{StaticResource TransparentColor}"/>
+                                </Frame>
+                                <Button Padding="20,0" Text="{strings:Translate reg_SubmitBtn}" Style="{ StaticResource YellowButtonStyle}" HeightRequest="40" Command="{Binding SubmitBtnCommand}" />
+                            </StackLayout>
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+            </Grid>
+
+
+
+
+        <BoxView Grid.RowSpan="2" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Black1Color}" Opacity="0.8" VerticalOptions="FillAndExpand" IsVisible="{Binding IsLoaderBusy}"/>
+        <ActivityIndicator Grid.RowSpan="2" IsVisible="{Binding IsLoaderBusy}" IsRunning="{Binding IsLoaderBusy}" Color="{StaticResource BlueColor}" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"/>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:strings="clr-namespace:Khadamat_CustomerApp;assembly=Khadamat_CustomerApp"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:commonheader="clr-namespace:Khadamat_CustomerApp.Views"
+             BackgroundColor="{StaticResource PageBGColor}"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Khadamat_CustomerApp.Views.JobDetailPage">
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--Header Bar-->
+        <commonheader:BackArrowHeader HorizontalOptions="FillAndExpand" TitleText="{strings:Translate jobDetail_Title}"/>
+
+        <ScrollView Grid.Row="1">
+            <StackLayout Spacing="20" Padding="25,15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource TransparentColor}">
+                <!--Category Field-->
+                <Frame Padding="10" HeightRequest="50" HorizontalOptions="FillAndExpand" HasShadow="False">
+                    <StackLayout Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Label Text="{strings:Translate jobrequest_CategoryTitle}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize2}" Style="{StaticResource BlackMediumLabel}"/>
+
+                        <Label Text="{Binding JobDetailData.display_category_name}" FontFamily="{StaticResource DefaultFontFamily}" FontSize="{StaticResource MainLabelFontSize1}" HorizontalOptions="Start"/>
+                    </StackLayout>
+                </Frame>
+
+                <!--Type of service Field-->
+                <Frame Padding="10" HeightRequest="50" HorizontalOptions="FillAndExpand" HasShadow="False">
+                    <StackLayout Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Label Text="{strings:Translate jobrequest_ServiceTypeTitle}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize2}" Style="{StaticResource BlackMediumLabel}"/>
+
+                        <Label Text="{Binding JobDetailData.display_sub_category_name}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize1}" FontFamily="{StaticResource DefaultFontFamily}"/>
+                    </StackLayout>
+                </Frame>
+
+                <!--DateTime Field-->
+                <Frame Padding="10" HeightRequest="50" HorizontalOptions="FillAndExpand" HasShadow="False">
+                    <StackLayout Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Label Text="{strings:Translate jobrequest_DateTimeTitle}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize2}" Style="{StaticResource BlackMediumLabel}"/>
+
+                        <Label Text="{Binding JobDetailData.job_date_time}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize1}" FontFamily="{StaticResource DefaultFontFamily}"/>
+
+                    </StackLayout>
+                </Frame>
+
+                <!--Job Close Field-->
+                <Frame Padding="10" HeightRequest="50" HorizontalOptions="FillAndExpand" HasShadow="False" IsVisible="{Binding JobDetailData.IsJobCancel}">
+                    <StackLayout Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Label Text="{strings:Translate jobrequest_JobCloseReason}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize2}" Style="{StaticResource BlackMediumLabel}"/>
+
+                        <Label Text="{Binding JobDetailData.cancel_reason}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize1}" FontFamily="{StaticResource DefaultFontFamily}"/>
+
+                    </StackLayout>
+                </Frame>
+
+                <!--Quote Price Field-->
+                <Frame Padding="10" HeightRequest="50" HorizontalOptions="FillAndExpand" HasShadow="False" IsVisible="{Binding JobDetailData.IsQuotePrice}">
+                    <StackLayout Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Label Text="{strings:Translate jobrequest_QuoteTitle}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize2}" Style="{StaticResource BlackMediumLabel}"/>
+
+                        <Label Text="{Binding JobDetailData.JobQuote}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize1}" FontFamily="{StaticResource DefaultFontFamily}"/>
+
+                    </StackLayout>
+                </Frame>
+
+                <!--Quote Description Field-->
+                <Frame Padding="10" HeightRequest="150" HorizontalOptions="FillAndExpand" HasShadow="False" IsVisible="{Binding JobDetailData.IsQuoteDescription}">
+                    <StackLayout Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Label Text="{strings:Translate jobrequest_QuoteDescriptionTitle}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize2}" Style="{StaticResource BlackMediumLabel}"/>
+
+                        <!--<Editor Text="{Binding VenueName}" HorizontalOptions="FillAndExpand"/>-->
+                        <Label FontSize="{StaticResource MainLabelFontSize1}" FontFamily="{StaticResource DefaultFontFamily}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="{Binding JobDetailData.quote_description}"/>
+                    </StackLayout>
+                </Frame>
+
+                <!--Venue Field-->
+                <Frame Padding="10" HeightRequest="100" HorizontalOptions="FillAndExpand" HasShadow="False">
+                    <StackLayout Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Label Text="{strings:Translate jobrequest_VenueTitle}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize2}" Style="{StaticResource BlackMediumLabel}"/>
+
+                        <!--<Editor Text="{Binding VenueName}" HorizontalOptions="FillAndExpand"/>-->
+                        <Label FontSize="{StaticResource MainLabelFontSize1}" FontFamily="{StaticResource DefaultFontFamily}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="{Binding JobDetailData.venue}"/>
+                    </StackLayout>
+                </Frame>
+
+                <!--Location Field-->
+                <Frame Padding="10" HorizontalOptions="FillAndExpand" HasShadow="False" IsClippedToBounds="True" IsVisible="{Binding JobDetailData.IsLocationAvailable}">
+                    <StackLayout Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Label Text="{strings:Translate jobrequest_Location}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize2}" Style="{StaticResource BlackMediumLabel}"/>
+
+                        <!--<Editor Text="{Binding VenueName}" HorizontalOptions="FillAndExpand"/>-->
+                        <Label Text="{Binding JobDetailData.location}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize1}" FontFamily="{StaticResource DefaultFontFamily}"/>
+                    </StackLayout>
+                </Frame>
+
+                <!--Description of service Field-->
+                <Frame Padding="10" HeightRequest="150" HorizontalOptions="FillAndExpand" HasShadow="False">
+                    <StackLayout Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Label Text="{strings:Translate jobrequest_ServiceDescription}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize2}" Style="{StaticResource BlackMediumLabel}"/>
+
+                        <!--<Editor Text="{Binding ServiceDescriptionValue}" HorizontalOptions="FillAndExpand"/>-->
+                        <Label FontSize="{StaticResource MainLabelFontSize1}" FontFamily="{StaticResource DefaultFontFamily}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" TextColor="{StaticResource Black1Color}" Text="{Binding JobDetailData.description}"/>
+                    </StackLayout>
+                </Frame>
+
+                <!--<StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="20">
+                        <Button Padding="20,0" Text="{strings:Translate notification_Accept}" Style="{ StaticResource YellowButtonStyle}" Command="{Binding AcceptBtnCommand}" Margin="0,10,0,0"/>
+                        <Button Padding="20,0" Text="{strings:Translate notification_Reject}" Style="{ StaticResource BlueButtonStyle}" Command="{Binding RejectBtnCommand}" Margin="0,10,0,0"/>
+                    </StackLayout>-->
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

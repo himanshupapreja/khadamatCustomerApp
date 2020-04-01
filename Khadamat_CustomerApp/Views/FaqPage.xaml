@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:strings="clr-namespace:Khadamat_CustomerApp;assembly=Khadamat_CustomerApp"
+             xmlns:custom="clr-namespace:Khadamat_CustomerApp.CustomControls"
+             xmlns:local="clr-namespace:Khadamat_CustomerApp.ViewModels"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White"
+             xmlns:commonheader1="clr-namespace:Khadamat_CustomerApp.Views"
+             x:Class="Khadamat_CustomerApp.Views.FaqPage">
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--Header Bar-->
+        <commonheader1:BackArrowHeader HorizontalOptions="FillAndExpand" TitleText="{strings:Translate faq}"/>
+
+        <StackLayout Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="0" IsVisible="{Binding IsNodataFound,Converter={StaticResource BoolToNotBoolConverter}}">
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                <StackLayout BackgroundColor="Transparent" Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <custom:RepeaterView ItemsSource="{Binding List}">
+                        <custom:RepeaterView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout>
+                                        <StackLayout HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" BackgroundColor="Transparent">
+                                            <Frame OutlineColor="#cfcfcf" BackgroundColor="White" Padding="3" HasShadow="False" HorizontalOptions="FillAndExpand" VerticalOptions="Start" CornerRadius="20">
+                                                <StackLayout>
+                                                    <Frame OutlineColor="#cfcfcf" BackgroundColor="White" Margin="-3" Padding="3" HasShadow="False" HorizontalOptions="FillAndExpand" VerticalOptions="Start" CornerRadius="20">
+                                                        <StackLayout>
+                                                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="10">
+                                                                <Label Text="{Binding question}" HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand" FontSize="Default" TextColor="Black" Margin="20,0,0,0"/>
+                                                                <Image HorizontalOptions="EndAndExpand" VerticalOptions="Center" Source="{Binding Icon}" Aspect="AspectFit" HeightRequest="15" WidthRequest="15"/>
+                                                            </StackLayout>
+                                                        </StackLayout>
+                                                        <Frame.GestureRecognizers>
+                                                            <TapGestureRecognizer Tapped="Question_Tapped"/>
+                                                        </Frame.GestureRecognizers>
+                                                    </Frame>
+
+                                                    <Label LineHeight="1.3" Margin="15,10,10,10" Text="{Binding answer}"  IsVisible="{Binding IsViewVisible}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" FontSize="Small" TextColor="Black"/>
+                                                </StackLayout>
+                                            </Frame>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </custom:RepeaterView.ItemTemplate>
+                    </custom:RepeaterView>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+
+
+        <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding IsNodataFound}">
+            <StackLayout BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="10">
+                <Image Source="no_data_found.png" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="250" Margin="0,30,0,0"></Image>
+                <Label Text="{strings:Translate NoDataPresent}" FontSize="Medium" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" 
+                           VerticalOptions="Center" Style="{StaticResource BlackMediumLabel}"/>
+
+            </StackLayout>
+        </Grid>
+
+        <Grid HorizontalOptions="FillAndExpand" Grid.Row="1" VerticalOptions="FillAndExpand" IsVisible="{Binding IsNoInternetView}">
+            <StackLayout BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="10">
+                <Image Source="nointernet.png" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="250" Margin="0,30,0,0"></Image>
+                <Label Text="{strings:Translate noInternet_msg1}" FontSize="Large" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" 
+                           VerticalOptions="Center" Style="{StaticResource BlackSemiBoldLabel}"/>
+                <Label Text="{strings:Translate noInternet_msg2}" FontSize="Medium" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" 
+                           VerticalOptions="Center" Style="{StaticResource BlackMediumLabel}"/>
+
+            </StackLayout>
+        </Grid>
+
+        <BoxView Grid.RowSpan="2" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Black1Color}" Opacity="0.8" VerticalOptions="FillAndExpand" IsVisible="{Binding IsLoaderBusy}"/>
+        <ActivityIndicator Grid.RowSpan="2" IsVisible="{Binding IsLoaderBusy}" IsRunning="{Binding IsLoaderBusy}" Color="{StaticResource BlueColor}" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"/>
+    </Grid>
+</ContentPage>

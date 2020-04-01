@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:strings="clr-namespace:Khadamat_CustomerApp;assembly=Khadamat_CustomerApp"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:commonheader="clr-namespace:Khadamat_CustomerApp.Views"
+             BackgroundColor="{StaticResource PageBGColor}"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Khadamat_CustomerApp.Views.CompleteProfilePage">
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--Header Bar-->
+        <commonheader:BackArrowHeader Grid.Row="0" HorizontalOptions="FillAndExpand" TitleText="{strings:Translate cyp_HeaderTitle}"/>
+        <BoxView Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource BlueColor}"/>
+
+        <StackLayout Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="20,0" BackgroundColor="{StaticResource TransparentColor}">
+            <Frame Style="{StaticResource Frame80hw}" Padding="2" CornerRadius="5" Margin="0" TranslationY="-20" IsClippedToBounds="True" HorizontalOptions="Center" VerticalOptions="Start">
+                <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0">
+                    <Image Source="{Binding UserPic}" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+
+
+                    <Frame Style="{StaticResource Frame60h}" HorizontalOptions="End" VerticalOptions="End" CornerRadius="3" Padding="0" BackgroundColor="{StaticResource WhiteColor}" HeightRequest="20" WidthRequest="20" Margin="0,0,-2,-2">
+                        <ffimageloadingsvg:SvgCachedImage Margin="10,0" WidthRequest="10" HeightRequest="10" Source="resource://Khadamat_CustomerApp.SvgImages.photo_camera.svg" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ChangeUserPicCommand}" NumberOfTapsRequired="1"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                </Grid>
+            </Frame>
+        </StackLayout>
+        <StackLayout Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="10" Padding="20,0" BackgroundColor="{StaticResource TransparentColor}">
+
+            <Label Text="{strings:Translate cyp_RequiredField}" TextColor="{StaticResource Black1Color}" FontFamily="{StaticResource SemiBoldFontFamily}" FontSize="16" HorizontalOptions="FillAndExpand"/>
+
+            <ScrollView Orientation="Vertical" Padding="0">
+                <StackLayout Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+                    <!--Name-->
+                    <Frame Style="{StaticResource Frame60h}" Padding="0" CornerRadius="5" Margin="0" IsClippedToBounds="True">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="10"  Margin="0,0,10,0" VerticalOptions="CenterAndExpand">
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="5" Padding="10,0">
+                                <Label Text="{strings:Translate cyp_Name}" TextColor="{StaticResource Black1Color}" FontFamily="{StaticResource SemiBoldFontFamily}" FontSize="16" HorizontalOptions="FillAndExpand"/>
+                                <Entry Text="{Binding Name}" PlaceholderColor="{StaticResource Black3Color}" Placeholder="{strings:Translate cyp_NamePlaceholder}" TextColor="{StaticResource Black3Color}" FontFamily="{StaticResource DefaultFontFamily}" FontSize="16" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" ReturnType="Next"/>
+                            </StackLayout>
+                            <ffimageloadingsvg:SvgCachedImage Margin="10,0" WidthRequest="20" HeightRequest="20" Source="resource://Khadamat_CustomerApp.SvgImages.avatar.svg"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <!--Email-->
+                    <Frame Style="{StaticResource Frame60h}" Padding="0" CornerRadius="5" Margin="0" IsClippedToBounds="True">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="10"  Margin="0,0,10,0" VerticalOptions="CenterAndExpand">
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="5" Padding="10,0">
+                                <Label Text="{strings:Translate cyp_Email}" TextColor="{StaticResource Black1Color}" FontFamily="{StaticResource SemiBoldFontFamily}" FontSize="16" HorizontalOptions="FillAndExpand"/>
+                                <Entry Text="{Binding Email}" PlaceholderColor="{StaticResource Black3Color}" Placeholder="{strings:Translate cyp_EmailPlaceholder}" TextColor="{StaticResource Black3Color}" FontFamily="{StaticResource DefaultFontFamily}" FontSize="16" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" ReturnType="Next"/>
+                            </StackLayout>
+                            <ffimageloadingsvg:SvgCachedImage Margin="10,0" WidthRequest="20" HeightRequest="20" Source="resource://Khadamat_CustomerApp.SvgImages.email.svg"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <!--DOB-->
+                    <Frame x:Name="dobframe" Style="{StaticResource Frame80h}" Padding="0" CornerRadius="5" Margin="0,10,0,0" IsClippedToBounds="True">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="10"  Margin="0,0,10,0" VerticalOptions="CenterAndExpand">
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="5" Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.ColumnSpan="3" Text="{strings:Translate cyp_DOB}" TextColor="{StaticResource Black1Color}" FontFamily="{StaticResource SemiBoldFontFamily}" FontSize="16" HorizontalOptions="FillAndExpand"/>
+                                <!--<Label Text="{Binding DOB}" TextColor="{StaticResource Black3Color}" FontFamily="{StaticResource DefaultFontFamily}" FontSize="16" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"/>-->
+
+                                <!--Month picker Field-->
+                                <Frame Grid.Row="1" Grid.Column="1" HeightRequest="30" HorizontalOptions="FillAndExpand" HasShadow="False" IsClippedToBounds="True" CornerRadius="5" Padding="10,0" BorderColor="{StaticResource Black2Color}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Picker x:Name="mmm_Picker" Title="{strings:Translate picker_Month}" TitleColor="{StaticResource Black3Color}" FontSize="15" FontFamily="{StaticResource DefaultFontFamily}" ItemsSource="{Binding DOBMonthList}" SelectedItem="{Binding MonthSelected}" HorizontalOptions="FillAndExpand"/>
+
+                                        <ffimageloadingsvg:SvgCachedImage Margin="10,0" Grid.Column="1" WidthRequest="15" HeightRequest="15" Source="resource://Khadamat_CustomerApp.SvgImages.dropdownarrow.svg"/>
+                                    </Grid>
+
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="MMM_TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+
+                                <!--Day picker Field-->
+                                <Frame Grid.Row="1" Grid.Column="0" HeightRequest="30" HorizontalOptions="FillAndExpand" HasShadow="False" IsClippedToBounds="True" CornerRadius="5" Padding="10,0" BorderColor="{StaticResource Black2Color}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Picker x:Name="dd_Picker" Title="{strings:Translate picker_Day}" TitleColor="{StaticResource Black3Color}" FontSize="15" FontFamily="{StaticResource DefaultFontFamily}" ItemsSource="{Binding DOBDateList}" SelectedItem="{Binding DateSelected}" HorizontalOptions="FillAndExpand"/>
+
+                                        <ffimageloadingsvg:SvgCachedImage Margin="10,0" Grid.Column="1" WidthRequest="15" HeightRequest="15" Source="resource://Khadamat_CustomerApp.SvgImages.dropdownarrow.svg"/>
+                                    </Grid>
+
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="DD_TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+
+                                <!--Year picker Field-->
+                                <Frame Grid.Row="1" Grid.Column="2" HeightRequest="30" HorizontalOptions="FillAndExpand" HasShadow="False" IsClippedToBounds="True" CornerRadius="5" Padding="10,0" BorderColor="{StaticResource Black2Color}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Picker x:Name="yyyy_Picker" Title="{strings:Translate picker_Year}" TitleColor="{StaticResource Black3Color}" FontSize="15" FontFamily="{StaticResource DefaultFontFamily}" ItemsSource="{Binding DOBYearList}" SelectedItem="{Binding YearSelected}" HorizontalOptions="FillAndExpand"/>
+
+                                        <ffimageloadingsvg:SvgCachedImage Margin="10,0" Grid.Column="1" WidthRequest="15" HeightRequest="15" Source="resource://Khadamat_CustomerApp.SvgImages.dropdownarrow.svg"/>
+                                    </Grid>
+
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="YYYY_TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                            </Grid>
+                            <ffimageloadingsvg:SvgCachedImage Margin="10,0" WidthRequest="20" HeightRequest="20" Source="resource://Khadamat_CustomerApp.SvgImages.calendar.svg"/>
+                        </StackLayout>
+                    </Frame>
+                    <!--<DatePicker x:Name="dobPicker" IsVisible="False" Unfocused="DobPicker_Unfocused"/>-->
+
+                    <!--Current Job-->
+                    <Frame Style="{StaticResource Frame60h}" Padding="0" CornerRadius="5" Margin="0,10,0,0" IsClippedToBounds="True">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="10"  Margin="0,0,10,0" VerticalOptions="CenterAndExpand">
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="5" Padding="10,0">
+                                <Label Text="{strings:Translate cyp_CurrentJob}" TextColor="{StaticResource Black1Color}" FontFamily="{StaticResource SemiBoldFontFamily}" FontSize="16" HorizontalOptions="FillAndExpand"/>
+                                <Entry Text="{Binding CurrentJob}" PlaceholderColor="{StaticResource Black3Color}" Placeholder="{strings:Translate cyp_CurrentJobPlaceholder}" TextColor="{StaticResource Black3Color}" FontFamily="{StaticResource DefaultFontFamily}" FontSize="16" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"/>
+                            </StackLayout>
+                            <ffimageloadingsvg:SvgCachedImage Margin="10,0" WidthRequest="20" HeightRequest="20" Source="resource://Khadamat_CustomerApp.SvgImages.portfolio.svg"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <!--Marital Status-->
+                    <Frame Style="{StaticResource Frame60h}" Padding="0" CornerRadius="5" Margin="0,10,0,0" IsClippedToBounds="True">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="10"  Margin="0,0,10,0" VerticalOptions="CenterAndExpand">
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="5" Padding="10,0">
+                                <Label Text="{strings:Translate cyp_MaritalStatus}" TextColor="{StaticResource Black1Color}" FontFamily="{StaticResource SemiBoldFontFamily}" FontSize="16" HorizontalOptions="FillAndExpand"/>
+                                <Picker Title="{strings:Translate cyp_MaritalStatusPlaceholder}" TitleColor="{StaticResource Black3Color}" FontFamily="{StaticResource DefaultFontFamily}" ItemsSource="{Binding MaritalStatusList}" ItemDisplayBinding="{Binding MaritalStatusDisplay}" SelectedItem="{Binding MaritalStatus}" HorizontalOptions="FillAndExpand">
+                                </Picker>
+                            </StackLayout>
+                            <ffimageloadingsvg:SvgCachedImage Margin="10,0" WidthRequest="20" HeightRequest="20" Source="resource://Khadamat_CustomerApp.SvgImages.avatar.svg"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <!--Country-->
+                    <Frame Style="{StaticResource Frame60h}" Padding="0" CornerRadius="5" Margin="0,10,0,0" IsClippedToBounds="True">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="10"  Margin="0,0,10,0" VerticalOptions="CenterAndExpand">
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="5" Padding="10,0">
+                                <Label Text="{strings:Translate cyp_Country}" TextColor="{StaticResource Black1Color}" FontFamily="{StaticResource SemiBoldFontFamily}" FontSize="16" HorizontalOptions="FillAndExpand"/>
+                                <Label Text="{Binding Country}" TextColor="{StaticResource Black3Color}" FontFamily="{StaticResource DefaultFontFamily}" FontSize="16" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"/>
+
+
+                            </StackLayout>
+                            <ffimageloadingsvg:SvgCachedImage Margin="10,0" WidthRequest="20" HeightRequest="20" Source="resource://Khadamat_CustomerApp.SvgImages.flag.svg"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <!--Province-->
+                    <Frame Style="{StaticResource Frame60h}" Padding="0" CornerRadius="5" Margin="0,10,0,0" IsClippedToBounds="True">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="10"  Margin="0,0,10,0" VerticalOptions="CenterAndExpand">
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="5" Padding="10,0">
+                                <Label Text="{strings:Translate cyp_Province}" TextColor="{StaticResource Black1Color}" FontFamily="{StaticResource SemiBoldFontFamily}" FontSize="16" HorizontalOptions="FillAndExpand"/>
+                                <Picker Title="{strings:Translate cyp_ProvincePlaceholder}" TitleColor="{StaticResource Black3Color}" FontFamily="{StaticResource DefaultFontFamily}" ItemsSource="{Binding ProvinceList}" ItemDisplayBinding="{Binding display_province_name}" SelectedItem="{Binding Province}" HorizontalOptions="FillAndExpand" SelectedIndex="{Binding ProviencePickerSelectedindex}"/>
+                            </StackLayout>
+                            <ffimageloadingsvg:SvgCachedImage Margin="10,0" WidthRequest="20" HeightRequest="20" Source="resource://Khadamat_CustomerApp.SvgImages.worldwide.svg"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <!--Street-->
+                    <Frame HorizontalOptions="FillAndExpand" IsClippedToBounds="True" HasShadow="False" Padding="0" CornerRadius="5" Margin="0,10,0,0" >
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="10"  Margin="0,0,10,0" VerticalOptions="CenterAndExpand">
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="5" Padding="10">
+                                <Label Text="{strings:Translate cyp_Street}" TextColor="{StaticResource Black1Color}" FontFamily="{StaticResource SemiBoldFontFamily}" FontSize="16" HorizontalOptions="FillAndExpand"/>
+                                <Label Text="{Binding Street}" TextColor="{StaticResource Black3Color}" FontFamily="{StaticResource DefaultFontFamily}" FontSize="16" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" LineBreakMode="WordWrap"/>
+
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding LocationCommand}" NumberOfTapsRequired="1"/>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                            <ffimageloadingsvg:SvgCachedImage Margin="10,0" WidthRequest="20" HeightRequest="20" Source="resource://Khadamat_CustomerApp.SvgImages.map.svg">
+                                <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding MapLocationCommand}" NumberOfTapsRequired="1"/>
+                                </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                            </ffimageloadingsvg:SvgCachedImage>
+                        </StackLayout>
+
+                        <!--<Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding LocationCommand}" NumberOfTapsRequired="1"/>
+                            </Frame.GestureRecognizers>-->
+                    </Frame>
+
+                    <!--Description of Location-->
+                    <Frame Style="{StaticResource Frame60h}" Padding="0" CornerRadius="5" Margin="0,10,0,0" IsClippedToBounds="True">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="10"  Margin="0,0,10,0" VerticalOptions="CenterAndExpand">
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="5" Padding="10,0">
+                                <Label Text="{strings:Translate cyp_Location}" TextColor="{StaticResource Black1Color}" FontFamily="{StaticResource SemiBoldFontFamily}" FontSize="16" HorizontalOptions="FillAndExpand"/>
+                                <Entry Text="{Binding Location}" PlaceholderColor="{StaticResource Black3Color}" Placeholder="{strings:Translate cyp_LocationPlaceholder}" TextColor="{StaticResource Black3Color}" FontFamily="{StaticResource DefaultFontFamily}" FontSize="16" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"/>
+                            </StackLayout>
+                            <ffimageloadingsvg:SvgCachedImage Margin="10,0" WidthRequest="20" HeightRequest="20" Source="resource://Khadamat_CustomerApp.SvgImages.list.svg"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <!--TermCondition Field-->
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="10" Margin="0,10,0,0">
+                        <ffimageloadingsvg:SvgCachedImage Margin="10,0" Style="{StaticResource MenuImageStyle}" Source="{Binding TermConditionCheck}">
+                            <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding TermConditionCheckCommand}" NumberOfTapsRequired="1"/>
+                            </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                        </ffimageloadingsvg:SvgCachedImage>
+                        <Label VerticalTextAlignment="Center" Text="{strings:Translate cyp_TermConditionBlack}" TextColor="{StaticResource Black3Color}" HorizontalOptions="Start" FontSize="16" FontFamily="{StaticResource DefaultFontFamily}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding TermConditionCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+
+                    <!--Lets Start Button-->
+                    <Button Padding="40,0" Text="{strings:Translate cyp_Button}" Style="{ StaticResource YellowButtonStyle}" Command="{Binding SubmitBtnCommand}" Margin="0,20"/>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+
+        <BoxView Grid.RowSpan="4" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Black1Color}" Opacity="0.8" VerticalOptions="FillAndExpand" IsVisible="{Binding IsLoaderBusy}"/>
+        <StackLayout Grid.RowSpan="4" HorizontalOptions="CenterAndExpand" BackgroundColor="{StaticResource TransparentColor}" VerticalOptions="CenterAndExpand" IsVisible="{Binding IsLoaderBusy}">
+            <ActivityIndicator IsVisible="{Binding IsLoaderBusy}" IsRunning="{Binding IsLoaderBusy}" Color="{StaticResource BlueColor}" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"/>
+            <Label Text="{strings:Translate jobrequest_fetch_location}" TextColor="{StaticResource WhiteColor}" FontSize="18" HorizontalOptions="Center" IsVisible="{Binding IsLocationFetch}"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>
