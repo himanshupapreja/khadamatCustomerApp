@@ -94,5 +94,15 @@ namespace Khadamat_CustomerApp.Views
             }
         }
         #endregion
+
+        protected override bool OnBackButtonPressed()
+        {
+            var data = MasterPage.IsMasterPageVisible();
+            if (MasterPage.IsMasterPageVisible())
+            {
+                MessagingCenter.Send("MenuCloseIconClick", "MenuCloseIconClick");
+            }
+            return data;
+        }
     }
 }

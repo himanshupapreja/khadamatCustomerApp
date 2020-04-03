@@ -21,6 +21,10 @@ namespace Khadamat_CustomerApp.Models
         public bool status { get; set; }
         public string message { get; set; }
         public ForgotPasswordOtpModel userData { get; set; }
+        public object lastUpdatedDate { get; set;}
+        public string phone_number_one { get; set; }
+        public string phone_number_two { get; set; }
+        public string phone_number_three { get; set; }
     }
     public class ForgotPasswordOtpModel
     {

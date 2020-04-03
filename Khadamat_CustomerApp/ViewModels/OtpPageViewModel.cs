@@ -39,6 +39,16 @@ namespace Khadamat_CustomerApp.ViewModels
         }
         #endregion
 
+        #region IsCallErrorvisible Field
+        private bool _IsCallErrorvisible;
+
+        public bool IsCallErrorvisible
+        {
+            get { return _IsCallErrorvisible; }
+            set { SetProperty(ref _IsCallErrorvisible, value); }
+        }
+        #endregion
+
         #region IsCallButtonvisible Field
         private bool _IsCallButtonvisible;
 
@@ -47,7 +57,7 @@ namespace Khadamat_CustomerApp.ViewModels
             get { return _IsCallButtonvisible; }
             set { SetProperty(ref _IsCallButtonvisible, value); }
         }
-        #endregion
+        # endregion
 
         #region IsLoaderBusy Field
         private bool _IsLoaderBusy;
@@ -72,6 +82,7 @@ namespace Khadamat_CustomerApp.ViewModels
                 {
                     ResendOtpEnabled = false;
                     IsCallButtonvisible = true;
+                    IsCallErrorvisible = true;
                 }
             }
         }
@@ -216,6 +227,7 @@ namespace Khadamat_CustomerApp.ViewModels
 
             IsLoaderBusy = false;
             IsCallButtonvisible = false;
+            IsCallErrorvisible = false;
             //PhoneNumber = phoneNumber;
             //ForgotPassword = forgotPassword;
             //ProfilePage = profilepage;
@@ -460,18 +472,40 @@ namespace Khadamat_CustomerApp.ViewModels
             if (parameters.ContainsKey("IsForgotPassword"))
             {
                 ForgotPassword = (bool)parameters["IsForgotPassword"];
+                IsCallButtonvisible = true;
+                IsCallErrorvisible = false;
+
+                if (parameters.ContainsKey("ForgotData"))
+                {
+                    var data = (ForgotPasswordResponseModel)parameters["ForgotData"];
+                    PhoneNumber_One = data.phone_number_one;
+                    PhoneNumber_Two = data.phone_number_two;
+                    PhoneNumber_Three = data.phone_number_three;
+                }
             }
             else
             {
                 ForgotPassword = false;
+                IsCallButtonvisible = false;
             }
             if (parameters.ContainsKey("IsProfilePage"))
             {
                 ProfilePage = (bool)parameters["IsProfilePage"];
+                IsCallButtonvisible = true;
+                IsCallErrorvisible = false;
+
+                if (parameters.ContainsKey("ProfileData"))
+                {
+                    var data = (VerifyResendOtpResponseModel)parameters["ProfileData"];
+                    PhoneNumber_One = data.phone_number_one;
+                    PhoneNumber_Two = data.phone_number_two;
+                    PhoneNumber_Three = data.phone_number_three;
+                }
             }
             else
             {
                 ProfilePage = false;
+                IsCallButtonvisible = false;
             }
         }
     }

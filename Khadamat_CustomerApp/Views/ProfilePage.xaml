@@ -57,7 +57,7 @@
                 <BoxView Style="{StaticResource HorizontalBoxViewStyle}"/>
 
                 <!--Email-->
-                <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="10" RowSpacing="0">
+                <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="10" RowSpacing="0" IsVisible="{Binding IsEmailVisible}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -81,7 +81,7 @@
                         </BoxView>-->
                 </Grid>
 
-                <BoxView Style="{StaticResource HorizontalBoxViewStyle}"/>
+                <BoxView Style="{StaticResource HorizontalBoxViewStyle}" IsVisible="{Binding IsEmailVisible}"/>
 
                 <!--Phone Number-->
                 <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="10" RowSpacing="0">

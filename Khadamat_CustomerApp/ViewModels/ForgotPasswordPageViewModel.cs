@@ -99,6 +99,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                     param.Add("PhoneNumber", PhoneNumber);
                                     param.Add("IsForgotPassword", true);
                                     param.Add("IsProfilePage", false);
+                                    param.Add("ForgotData", response);
                                     await NavigationService.NavigateAsync(nameof(OtpPage), param);
                                 }
                                 else

@@ -237,6 +237,7 @@ namespace Khadamat_CustomerApp.ViewModels
             IsNoDataFoundView = false;
             IsChatOpen = false;
             IsNoInternetView = false;
+            GetBookingData();
         }
         #endregion
 
@@ -333,7 +334,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                     item.display_category_name = Common.GetLanguage() != "ar-AE" ? item.category_name : item.category_name_arabic;
                                     item.display_sub_category_name = Common.GetLanguage() != "ar-AE" ? item.sub_category_name : item.sub_category_name_arabic;
                                     item.IsNoJobStatusPending = item.status == Convert.ToInt32(JobRequestEnum.Pending) || (string.IsNullOrEmpty(item.coordinator_name) && string.IsNullOrEmpty(item.coordinator_name_one)) ? false : true;
-                                    item.IsChatVisible = item.status == Convert.ToInt32(JobRequestEnum.Pending) || item.status == Convert.ToInt32(JobRequestEnum.Completed) || (string.IsNullOrEmpty(item.coordinator_name) && string.IsNullOrEmpty(item.coordinator_name_one) && string.IsNullOrEmpty(item.service_provider_name)) ? false : true;
+                                    item.IsChatVisible = item.status == Convert.ToInt32(JobRequestEnum.Pending) || item.status == Convert.ToInt32(JobRequestEnum.Completed) || item.status == Convert.ToInt32(JobRequestEnum.Canceled) || (string.IsNullOrEmpty(item.coordinator_name) && string.IsNullOrEmpty(item.coordinator_name_one) && string.IsNullOrEmpty(item.service_provider_name)) ? false : true;
                                     item.IsJobCancelled = item.status == Convert.ToInt32(JobRequestEnum.Canceled) || item.status == Convert.ToInt32(JobRequestEnum.QuoteCanceled) ? true : false;
                                     item.IsJobCompleted = item.status == Convert.ToInt32(JobRequestEnum.Completed) ? true : false;
                                     item.IsJobPending = item.status == Convert.ToInt32(JobRequestEnum.Pending) || item.status == Convert.ToInt32(JobRequestEnum.Accepted) ? true : false;
@@ -770,7 +771,7 @@ namespace Khadamat_CustomerApp.ViewModels
         public void OnAppearing()
         {
             IsChatOpen = false;
-            GetBookingData();
+            //GetBookingData();
         }
         #endregion
 

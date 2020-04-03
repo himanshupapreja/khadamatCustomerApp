@@ -71,6 +71,16 @@ namespace Khadamat_CustomerApp.ViewModels
         }
         #endregion
 
+        #region IsEmailVisible
+        private bool _IsEmailVisible;
+
+        public bool IsEmailVisible
+        {
+            get { return _IsEmailVisible; }
+            set { SetProperty(ref _IsEmailVisible, value); }
+        }
+        #endregion
+
         #region IsMaritalStatusVisible
         private bool _IsMaritalStatusVisible;
 
@@ -348,7 +358,14 @@ namespace Khadamat_CustomerApp.ViewModels
             }
             Street = profileData.street;
             Location = profileData.description_location;
-
+            if (!string.IsNullOrEmpty(Email) && !string.IsNullOrWhiteSpace(Email))
+            {
+                IsEmailVisible = true;
+            }
+            else
+            {
+                IsEmailVisible = false;
+            }
             if (!string.IsNullOrEmpty(CurrentJob) && !string.IsNullOrWhiteSpace(CurrentJob))
             {
                 IsCurrentJobVisible = true;
@@ -498,6 +515,7 @@ namespace Khadamat_CustomerApp.ViewModels
                         param.Add("PhoneNumber", phoneNumber);
                         param.Add("IsForgotPassword", false);
                         param.Add("IsProfilePage", true);
+                        param.Add("ProfileData", response);
                         await NavigationService.NavigateAsync(nameof(OtpPage), param);
                         IsPopupVisible = false;
                         PhoneEmailField = string.Empty;

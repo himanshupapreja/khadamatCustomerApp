@@ -13,7 +13,7 @@
 namespace Khadamat_CustomerApp.Views {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Views\\CreatePasswordPage.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Views/CreatePasswordPage.xaml")]
     public partial class CreatePasswordPage : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]

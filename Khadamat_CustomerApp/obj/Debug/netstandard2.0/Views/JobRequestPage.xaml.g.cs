@@ -13,7 +13,7 @@
 namespace Khadamat_CustomerApp.Views {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Views\\JobRequestPage.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Views/JobRequestPage.xaml")]
     public partial class JobRequestPage : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]

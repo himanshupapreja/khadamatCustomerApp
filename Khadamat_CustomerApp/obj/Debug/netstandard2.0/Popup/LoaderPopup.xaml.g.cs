@@ -13,7 +13,7 @@
 namespace Khadamat_CustomerApp.Views {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Popup\\LoaderPopup.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Popup/LoaderPopup.xaml")]
     public partial class LoaderPopup : global::Rg.Plugins.Popup.Pages.PopupPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]

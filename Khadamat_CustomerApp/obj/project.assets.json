@@ -697,6 +697,7 @@
       "path": "microsoft.netcore.targets/1.1.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/netstandard1.0/_._",
@@ -711,6 +712,7 @@
       "path": "netstandard.library/2.0.3",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
         "build/netstandard2.0/NETStandard.Library.targets",
@@ -892,7 +894,6 @@
         "lib/MonoAndroid90/Plugin.FirebasePushNotification.dll.mdb",
         "lib/MonoAndroid90/Plugin.FirebasePushNotification.pdb",
         "lib/Xamarin.iOS10/Plugin.FirebasePushNotification.Abstractions.dll",
-        "lib/Xamarin.iOS10/Plugin.FirebasePushNotification.Abstractions.dll.mdb",
         "lib/Xamarin.iOS10/Plugin.FirebasePushNotification.Abstractions.pdb",
         "lib/Xamarin.iOS10/Plugin.FirebasePushNotification.Abstractions.xml",
         "lib/Xamarin.iOS10/Plugin.FirebasePushNotification.XML",
@@ -1002,7 +1003,6 @@
         "lib/MonoTouch/Rg.Plugins.Popup.dll",
         "lib/MonoTouch/Rg.Plugins.Popup.pdb",
         "lib/Xamarin.IOS/Rg.Plugins.Popup.IOS.dll",
-        "lib/Xamarin.IOS/Rg.Plugins.Popup.IOS.dll.mdb",
         "lib/Xamarin.IOS/Rg.Plugins.Popup.IOS.pdb",
         "lib/Xamarin.IOS/Rg.Plugins.Popup.dll",
         "lib/Xamarin.IOS/Rg.Plugins.Popup.pdb",
@@ -1331,6 +1331,7 @@
       "path": "system.reflection.emit.ilgeneration/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -2529,33 +2530,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\papre\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "/Users/sachtech/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Git\\khadamatCustomerApp\\Khadamat_CustomerApp\\Khadamat_CustomerApp.csproj",
+      "projectUniqueName": "/Users/sachtech/Xam/khadamatCustomerApp/Khadamat_CustomerApp/Khadamat_CustomerApp.csproj",
       "projectName": "Khadamat_CustomerApp",
-      "projectPath": "E:\\Git\\khadamatCustomerApp\\Khadamat_CustomerApp\\Khadamat_CustomerApp.csproj",
-      "packagesPath": "C:\\Users\\papre\\.nuget\\packages\\",
-      "outputPath": "E:\\Git\\khadamatCustomerApp\\Khadamat_CustomerApp\\obj\\",
+      "projectPath": "/Users/sachtech/Xam/khadamatCustomerApp/Khadamat_CustomerApp/Khadamat_CustomerApp.csproj",
+      "packagesPath": "/Users/sachtech/.nuget/packages/",
+      "outputPath": "/Users/sachtech/Xam/khadamatCustomerApp/Khadamat_CustomerApp/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\papre\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "/Users/sachtech/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2673,7 +2665,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.200/RuntimeIdentifierGraph.json"
       }
     }
   },

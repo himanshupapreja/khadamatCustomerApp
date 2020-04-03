@@ -13,7 +13,7 @@
 namespace Khadamat_CustomerApp.Views {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Views\\ExpressServicePage.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Views/ExpressServicePage.xaml")]
     public partial class ExpressServicePage : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]

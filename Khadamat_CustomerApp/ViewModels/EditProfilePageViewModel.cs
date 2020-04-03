@@ -484,7 +484,11 @@ namespace Khadamat_CustomerApp.ViewModels
                                     {
                                         multipartContent.Add(new StringContent(CurrentJob), "current_job");
                                     }
-                                    multipartContent.Add(new StringContent(MaritalStatus.MaritalStatusEnumValue.ToString()), "martial_status");
+                                    if (MaritalStatus != null)
+                                    {
+
+                                        multipartContent.Add(new StringContent(MaritalStatus.MaritalStatusEnumValue.ToString()), "martial_status");
+                                    }
                                     multipartContent.Add(new StringContent(Province.province_id.ToString()), "province");
                                     if (Street != AppResource.cyp_StreetPlaceholder)
                                     {

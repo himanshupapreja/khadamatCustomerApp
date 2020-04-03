@@ -4,6 +4,7 @@ namespace Khadamat_CustomerApp.Views
 {
     public partial class MasterPage : MasterDetailPage
     {
+        static bool IsMasterOpen;
         public MasterPage()
         {
             try
@@ -13,6 +14,11 @@ namespace Khadamat_CustomerApp.Views
             catch (System.Exception ex)
             {
             }
+
+            IsMasterOpen = IsPresented;
+
+            IsPresentedChanged += MasterPage_IsPresentedChanged;
+
             if (Application.Current.Properties.ContainsKey("AppLocale") && !string.IsNullOrEmpty(Application.Current.Properties["AppLocale"].ToString()))
             {
                 var languageculture = Application.Current.Properties["AppLocale"].ToString();
@@ -30,6 +36,12 @@ namespace Khadamat_CustomerApp.Views
                 this.FlowDirection = FlowDirection.LeftToRight;
             }
         }
+
+        private void MasterPage_IsPresentedChanged(object sender, System.EventArgs e)
+        {
+            IsMasterOpen = IsPresented;
+        }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -51,6 +63,11 @@ namespace Khadamat_CustomerApp.Views
             base.OnDisappearing();
 
             MessagingCenter.Unsubscribe<string>(this, "MenuIconClick");
+        }
+
+        public static bool IsMasterPageVisible()
+        {
+            return IsMasterOpen;
         }
     }
 }

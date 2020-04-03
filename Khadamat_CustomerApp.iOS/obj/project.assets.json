@@ -4909,7 +4909,6 @@
         "lib/MonoAndroid90/Plugin.FirebasePushNotification.dll.mdb",
         "lib/MonoAndroid90/Plugin.FirebasePushNotification.pdb",
         "lib/Xamarin.iOS10/Plugin.FirebasePushNotification.Abstractions.dll",
-        "lib/Xamarin.iOS10/Plugin.FirebasePushNotification.Abstractions.dll.mdb",
         "lib/Xamarin.iOS10/Plugin.FirebasePushNotification.Abstractions.pdb",
         "lib/Xamarin.iOS10/Plugin.FirebasePushNotification.Abstractions.xml",
         "lib/Xamarin.iOS10/Plugin.FirebasePushNotification.XML",
@@ -5019,7 +5018,6 @@
         "lib/MonoTouch/Rg.Plugins.Popup.dll",
         "lib/MonoTouch/Rg.Plugins.Popup.pdb",
         "lib/Xamarin.IOS/Rg.Plugins.Popup.IOS.dll",
-        "lib/Xamarin.IOS/Rg.Plugins.Popup.IOS.dll.mdb",
         "lib/Xamarin.IOS/Rg.Plugins.Popup.IOS.pdb",
         "lib/Xamarin.IOS/Rg.Plugins.Popup.dll",
         "lib/Xamarin.IOS/Rg.Plugins.Popup.pdb",
@@ -8754,39 +8752,32 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\papre\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "/Users/sachtech/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Git\\khadamatCustomerApp\\Khadamat_CustomerApp.iOS\\Khadamat_CustomerApp.iOS.csproj",
+      "projectUniqueName": "/Users/sachtech/Xam/khadamatCustomerApp/Khadamat_CustomerApp.iOS/Khadamat_CustomerApp.iOS.csproj",
       "projectName": "Khadamat_CustomerApp.iOS",
-      "projectPath": "E:\\Git\\khadamatCustomerApp\\Khadamat_CustomerApp.iOS\\Khadamat_CustomerApp.iOS.csproj",
-      "packagesPath": "C:\\Users\\papre\\.nuget\\packages\\",
-      "outputPath": "E:\\Git\\khadamatCustomerApp\\Khadamat_CustomerApp.iOS\\obj\\",
+      "projectPath": "/Users/sachtech/Xam/khadamatCustomerApp/Khadamat_CustomerApp.iOS/Khadamat_CustomerApp.iOS.csproj",
+      "packagesPath": "/Users/sachtech/.nuget/packages/",
+      "outputPath": "/Users/sachtech/Xam/khadamatCustomerApp/Khadamat_CustomerApp.iOS/obj/",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\papre\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "/Users/sachtech/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "xamarinios10"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "xamarinios10": {
           "projectReferences": {
-            "E:\\Git\\khadamatCustomerApp\\Khadamat_CustomerApp\\Khadamat_CustomerApp.csproj": {
-              "projectPath": "E:\\Git\\khadamatCustomerApp\\Khadamat_CustomerApp\\Khadamat_CustomerApp.csproj"
+            "/Users/sachtech/Xam/khadamatCustomerApp/Khadamat_CustomerApp/Khadamat_CustomerApp.csproj": {
+              "projectPath": "/Users/sachtech/Xam/khadamatCustomerApp/Khadamat_CustomerApp/Khadamat_CustomerApp.csproj"
             }
           }
         }
