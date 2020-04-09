@@ -2,7 +2,7 @@
 <resources>
 
   <style name="MainTheme" parent="MainTheme.Base">
-    <item name="android:windowBackground">@drawable/splash</item>
+    <!--<item name="android:windowBackground">@drawable/splash</item>-->
   </style>
   <!-- Base theme applied no matter what API -->
   <style name="MainTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -35,5 +35,18 @@
     <item name="android:windowBackground">@drawable/splash</item>
     <item name="android:windowNoTitle">true</item>
     <item name="android:windowFullscreen">true</item>
+    <item name="android:windowEnableSplitTouch">false</item>
+    <item name="android:splitMotionEvents">false</item>
+  </style>
+
+<!-- Splash Screen Theme-->
+  <style name="SplashScreenTheme" parent="SplashScreenTheme.Base">
+  </style>
+  <style name="SplashScreenTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="android:windowBackground">@drawable/splash</item>
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowIsTranslucent">false</item>
+    <item name="android:windowIsFloating">false</item>
+    <item name="android:backgroundDimEnabled">true</item>
   </style>
 </resources>

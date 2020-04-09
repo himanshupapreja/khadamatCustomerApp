@@ -13,18 +13,15 @@ namespace Khadamat_CustomerApp.Views
                 var languageculture = Application.Current.Properties["AppLocale"].ToString();
                 if (languageculture == "ar-AE")
                 {
-                    langPicker.SelectedIndex = 0;
                     this.FlowDirection = FlowDirection.RightToLeft;
                 }
                 else
                 {
-                    langPicker.SelectedIndex = 1;
                     this.FlowDirection = FlowDirection.LeftToRight;
                 }
             }
             else
             {
-                langPicker.SelectedIndex = -1;
                 this.FlowDirection = FlowDirection.LeftToRight;
             }
         }

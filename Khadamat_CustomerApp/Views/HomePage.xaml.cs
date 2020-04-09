@@ -104,5 +104,10 @@ namespace Khadamat_CustomerApp.Views
             }
             return data;
         }
+
+        private void ExpressTab_Tapped(object sender, EventArgs e)
+        {
+            MessagingCenter.Send("ExpressTab", "TabSelected");
+        }
     }
 }

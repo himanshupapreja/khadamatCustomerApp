@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "J/F+xXOprG2Pcw+yopbyik9d48VBervPXXbo0y4msA+/dVhA9ZTIP0SHVzedkdFU+IDevtmsIJRaFr5gAk23Jg==",
+  "dgSpecHash": "gX1UF/5oQfkhZgIx+TKgJbBrOrvrSfpQS6pg42S06UpKYW4Ym5z/k3KTXNBo0wUvYtS30sAjaSSdwjYDgVmUJw==",
   "success": true,
-  "projectFilePath": "E:\\Git\\khadamatCustomerApp\\Khadamat_CustomerApp\\Khadamat_CustomerApp.csproj",
+  "projectFilePath": "E:\\Git\\hunny\\khadamatCustomerApp\\Khadamat_CustomerApp\\Khadamat_CustomerApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\papre\\.nuget\\packages\\com.airbnb.xamarin.forms.lottie\\3.0.3\\com.airbnb.xamarin.forms.lottie.3.0.3.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\dryioc.dll\\4.0.7\\dryioc.dll.4.0.7.nupkg.sha512",

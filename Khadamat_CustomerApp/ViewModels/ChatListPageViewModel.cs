@@ -18,7 +18,7 @@ using Newtonsoft.Json;
 
 namespace Khadamat_CustomerApp.ViewModels
 {
-    public class ChatListPageViewModel : BaseViewModel
+    public class ChatListPageViewModel : BaseViewModel, INavigationAware
     {
         private readonly INavigationService NavigationService;
         private bool IsChatDetailOpen;
@@ -94,7 +94,7 @@ namespace Khadamat_CustomerApp.ViewModels
             {
                 IsChatDetailOpen = true;
                 await App.Current.MainPage.Navigation.PushPopupAsync(new LoaderPopup());
-                if (chatSelected.name.StartsWith("Group"))
+                if (chatSelected.name.StartsWith("Group") || chatSelected.name.StartsWith("Order"))
                 {
                     JobChatModel jobChatModel = new JobChatModel()
                     {
@@ -134,7 +134,7 @@ namespace Khadamat_CustomerApp.ViewModels
         {
             NavigationService = navigationService;
             IsChatDetailOpen = false;
-            GetChat();
+            //GetChat();
         }
         #endregion
 
@@ -428,5 +428,15 @@ namespace Khadamat_CustomerApp.ViewModels
             }
         }
         #endregion
+
+        public void OnNavigatedFrom(INavigationParameters parameters)
+        {
+
+        }
+
+        public void OnNavigatedTo(INavigationParameters parameters)
+        {
+            GetChat();
+        }
     }
 }

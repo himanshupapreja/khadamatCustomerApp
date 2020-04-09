@@ -13,7 +13,7 @@
 namespace Khadamat_CustomerApp.Views {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Views/ContentViewsCell/ServiceListContentView.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Views\\ContentViewsCell\\ServiceListContentView.xaml")]
     public partial class ServiceListContentView : global::Xamarin.Forms.ContentView {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]

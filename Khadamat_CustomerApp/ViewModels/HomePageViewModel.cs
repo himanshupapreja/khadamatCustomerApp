@@ -549,6 +549,48 @@ namespace Khadamat_CustomerApp.ViewModels
             {
                 chatTimer = new Timer(_ => GetChat(), null, 0, 10000);
             });
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                try
+                {
+                    app.UpdateDeviceInfo();
+                }
+                catch (Exception ex)
+                {
+                }
+            });
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                try
+                {
+                    app.GetCountriesApi();
+                }
+                catch (Exception ex)
+                {
+                }
+            });
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                try
+                {
+                    var request = new ChangeLanguagesModel();
+                    if (Application.Current.Properties.ContainsKey("AppLocale") && (Application.Current.Properties["AppLocale"].ToString()).Contains("en"))
+                    {
+                        request.language = "en";
+                        request.user_id = BaseViewModel.user_id;
+                    }
+                    else
+                    {
+                        request.language = "ar";
+                        request.user_id = BaseViewModel.user_id;
+                    }
+
+                    app.UpdateLanguageServer(request);
+                }
+                catch (Exception ex)
+                {
+                }
+            });
         }
         #endregion
 

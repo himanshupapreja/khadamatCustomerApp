@@ -147,12 +147,12 @@ namespace Khadamat_CustomerApp.ViewModels
         }
         #endregion
 
-        #region MainCategoryList
+        #region ExpressCategories
         public CategoryListModel searchedCategory = new CategoryListModel();
-        public ObservableCollection<CategoryListModel> SearchCategoriesList = new ObservableCollection<CategoryListModel>();
-        public ObservableCollection<CategoryListModel> AllCategoriesList = new ObservableCollection<CategoryListModel>();
-        private ObservableCollection<CategoryListModel> _Categories = new ObservableCollection<CategoryListModel>();
-        public ObservableCollection<CategoryListModel> Categories
+        public ObservableCollection<ExpressData> SearchCategoriesList = new ObservableCollection<ExpressData>();
+        public ObservableCollection<ExpressData> AllCategoriesList = new ObservableCollection<ExpressData>();
+        private ObservableCollection<ExpressData> _Categories = new ObservableCollection<ExpressData>();
+        public ObservableCollection<ExpressData> Categories
         {
             get { return _Categories; }
             set { SetProperty(ref _Categories, value); }
@@ -163,7 +163,7 @@ namespace Khadamat_CustomerApp.ViewModels
         public ExpressServicePageViewModel(INavigationService navigationService)
         {
             NavigationService = navigationService;
-            GetServiceData();
+            GetExpressServiceData();
             ChatIcon = ImageHelpers.ChatIcon;
             NotificationIcon = ImageHelpers.NotificationIcon;
             MenuIcon = ImageHelpers.MenuIcon;
@@ -189,29 +189,106 @@ namespace Khadamat_CustomerApp.ViewModels
                 return new Command(() =>
                 {
                     SearchServiceEntry = string.Empty;
-                    GetServiceData();
+                    GetExpressServiceData();
                 });
             }
         }
         #endregion
 
         #region GetServiceData Api Method
-        private void GetServiceData()
+        private async void GetExpressServiceData()
         {
-            AllCategoriesList = new ObservableCollection<CategoryListModel>();
-            for (int i = 0; i < 6; i++)
+            try
             {
-                AllCategoriesList.Add(new CategoryListModel
+                if (Common.CheckConnection())
                 {
-                    icon = "ic_top_arrow.png",
-                    service_category_name = "Plumbing",
-                    picture = "homeservicebg.jpg"
-                }); 
+                    IsLoaderBusy = true;
+                    ExpressDataResponseModel response;
+                    try
+                    {
+                        response = await _webApiRestClient.GetAsync<ExpressDataResponseModel>(ApiUrl.GetExpressList);
+                    }
+                    catch (Exception ex)
+                    {
+                        response = null;
+                        IsLoaderBusy = false;
+                        IsRefreshing = false;
+                        //await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
+                        //return;
+                    }
+                    if (response != null)
+                    {
+
+                        if (response.status)
+                        {
+                            Application.Current.Properties["ExpressPageData"] = JsonConvert.SerializeObject(response);
+                            Application.Current.SavePropertiesAsync();
+
+                            //HeaderBanner = Common.IsImagesValid(response.ExpressData.upper_banner_image, ApiUrl.BaseUrl);
+                            //HeaderBannerTitle = Common.GetLanguage() != "ar-AE" ? Common.FirstCharToUpper(response.CategoryData.upper_banner_title) : Common.FirstCharToUpper(response.CategoryData.upper_banner_title_arabic);
+                            if (response.ExpressData != null && response.ExpressData.Count > 0)
+                            {
+                                AllCategoriesList = new ObservableCollection<ExpressData>(response.ExpressData);
+                                foreach (var item in AllCategoriesList)
+                                {
+                                    var index = AllCategoriesList.IndexOf(item);
+                                    AllCategoriesList[index].service_category_name = Common.GetLanguage() != "ar-AE" ? item.title : item.title_arabic;
+                                    AllCategoriesList[index].IsEnglishView = Common.GetLanguage() != "ar-AE" ? true : false;
+                                    AllCategoriesList[index].picture = Common.IsImagesValid(item.picture, ApiUrl.ServiceImageBaseUrl);
+                                    AllCategoriesList[index].icon = Common.IsImagesValid(item.icon, ApiUrl.ServiceImageBaseUrl);
+                                }
+
+
+                                Categories = AllCategoriesList;
+
+                                ServiceListHeight = Categories.Count % 2 == 0 ? ((Categories.Count / 2) * 210 + (Categories.Count / 2) * 2 * 5) : (((Categories.Count / 2) + 1) * 210 + ((Categories.Count / 2) + 1) * 2 * 5);
+                                IsNodataFound = false;
+                            }
+                            else
+                            {
+                                IsNodataFound = true;
+                            }
+                        }
+                        else
+                        {
+                            await MaterialDialog.Instance.SnackbarAsync(message: response.message,
+                                        msDuration: 3000);
+                        }
+                    }
+                    else
+                    {
+                        if (Application.Current.Properties.ContainsKey("ExpressPageData") && !string.IsNullOrEmpty(Application.Current.Properties["ExpressPageData"].ToString()) && !string.IsNullOrWhiteSpace(Application.Current.Properties["ExpressPageData"].ToString()))
+                        {
+                            OfflineData();
+                        }
+                        else
+                        {
+                            IsNodataFound = true;
+                        }
+                    }
+                }
+                else
+                {
+                    if (Application.Current.Properties.ContainsKey("ExpressPageData") && !string.IsNullOrEmpty(Application.Current.Properties["ExpressPageData"].ToString()) && !string.IsNullOrWhiteSpace(Application.Current.Properties["ExpressPageData"].ToString()))
+                    {
+                        OfflineData();
+                    }
+                    else
+                    {
+                        await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_InternetError,
+                                                msDuration: 3000);
+                    }
+                }
             }
-
-            Categories = AllCategoriesList;
-
-            ServiceListHeight = Categories.Count % 2 == 0 ? ((Categories.Count / 2) * 200 + (Categories.Count / 2) * 2 * 5) : (((Categories.Count / 2) + 1) * 200 + ((Categories.Count / 2) + 1) * 2 * 5);
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("featching Category data ::-->> " + ex.Message);
+            }
+            finally
+            {
+                IsLoaderBusy = false;
+                IsRefreshing = false;
+            }
             //try
             //{
             //    if (Common.CheckConnection())
@@ -307,6 +384,30 @@ namespace Khadamat_CustomerApp.ViewModels
             //    IsLoaderBusy = false;
             //    IsRefreshing = false;
             //}
+        }
+
+        private void OfflineData()
+        {
+            var response = JsonConvert.DeserializeObject<ExpressDataResponseModel>(Application.Current.Properties["ExpressPageData"].ToString());
+            if (response.ExpressData != null && response.ExpressData.Count > 0)
+            {
+                AllCategoriesList = new ObservableCollection<ExpressData>(response.ExpressData);
+                foreach (var item in AllCategoriesList)
+                {
+                    var index = AllCategoriesList.IndexOf(item);
+                    AllCategoriesList[index].service_category_name = Common.GetLanguage() != "ar-AE" ? item.title : item.title_arabic;
+                }
+
+
+                Categories = AllCategoriesList;
+
+                ServiceListHeight = Categories.Count % 2 == 0 ? ((Categories.Count / 2) * 210 + (Categories.Count / 2) * 2 * 5) : (((Categories.Count / 2) + 1) * 210 + ((Categories.Count / 2) + 1) * 2 * 5);
+                IsNodataFound = false;
+            }
+            else
+            {
+                IsNodataFound = true;
+            }
         }
         #endregion
 

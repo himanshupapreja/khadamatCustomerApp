@@ -16,6 +16,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <!--Header Bar-->
         <commonheader:CustomMenuHeader HorizontalOptions="FillAndExpand" MenuIconImage="{Binding MenuIcon}" TitleText="{strings:Translate home_PageTitle}" RightIconImage="{Binding NotificationIcon}" Right1IconImage="{Binding ChatIcon}"/>
@@ -66,7 +67,25 @@
             </ScrollView>
         </RefreshView>
 
-        <BoxView Grid.RowSpan="2" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Black1Color}" Opacity="0.8" VerticalOptions="FillAndExpand" IsVisible="{Binding IsLoaderBusy}"/>
-        <ActivityIndicator Grid.RowSpan="2" IsVisible="{Binding IsLoaderBusy}" IsRunning="{Binding IsLoaderBusy}" Color="{StaticResource BlueColor}" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"/>
+        <Grid Grid.Row="2" ColumnSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <BoxView Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource BlueColor}"/>
+            <Image Grid.Column="0" Source="home_un_select.png" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="40" WidthRequest="120"/>
+            <BoxView Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource TransparentColor}">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="HomeTab_Tapped" NumberOfTapsRequired="1"/>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+
+            <BoxView Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource YellowColor}"/>
+            <Image Grid.Column="1" Source="express_select.png" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="40" WidthRequest="120"/>
+            <BoxView Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource TransparentColor}"/>
+        </Grid>
+
+        <BoxView Grid.RowSpan="3" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Black1Color}" Opacity="0.8" VerticalOptions="FillAndExpand" IsVisible="{Binding IsLoaderBusy}"/>
+        <ActivityIndicator Grid.RowSpan="3" IsVisible="{Binding IsLoaderBusy}" IsRunning="{Binding IsLoaderBusy}" Color="{StaticResource BlueColor}" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"/>
     </Grid>
 </ContentPage>

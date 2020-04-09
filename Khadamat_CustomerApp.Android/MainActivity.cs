@@ -15,12 +15,13 @@ using Plugin.CurrentActivity;
 using Plugin.FirebasePushNotification;
 using Prism;
 using Prism.Ioc;
+using System.IO;
 using Xamarin;
 using Xamarin.Forms;
 
 namespace Khadamat_CustomerApp.Droid
 {
-    [Activity(Label = "Khadamat_CustomerApp", Icon = "@drawable/logo", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "Khadamat_CustomerApp", Icon = "@drawable/logo", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, LaunchMode = LaunchMode.SingleTop)]
 
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
@@ -34,7 +35,7 @@ namespace Khadamat_CustomerApp.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-
+            base.SetTheme(Resource.Style.MainTheme);
             base.OnCreate(bundle);
 
             Xamarin.Essentials.Platform.Init(this, bundle);
@@ -77,6 +78,9 @@ namespace Khadamat_CustomerApp.Droid
         {
             base.OnNewIntent(intent);
             FirebasePushNotificationManager.ProcessIntent(this, intent);
+            Toast.MakeText(this, intent.ToString(), ToastLength.Long);
+            var filename = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "myFile.txt");
+            System.IO.File.WriteAllText(filename, intent.ToString());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

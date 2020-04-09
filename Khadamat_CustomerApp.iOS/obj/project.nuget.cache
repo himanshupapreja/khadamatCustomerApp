@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GJuRjo3jgCZEmugMBPHrORKmagrZtsEtuA8fiUxGQwP+YSwoD3E9ndqf1T92sQxk2zw7jOki+5AGVHreWKyL0g==",
+  "dgSpecHash": "s1Qv+ZYIksZ23Twtg5pw5NZfr1d/FoFvN2ZgY9Mbnuqi83/JoMCmB7kQPiFcyT4ekvfRhEp5wlr02BI4XTO6pA==",
   "success": true,
-  "projectFilePath": "E:\\Git\\khadamatCustomerApp\\Khadamat_CustomerApp.iOS\\Khadamat_CustomerApp.iOS.csproj",
+  "projectFilePath": "E:\\Git\\hunny\\khadamatCustomerApp\\Khadamat_CustomerApp.iOS\\Khadamat_CustomerApp.iOS.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\papre\\.nuget\\packages\\com.airbnb.ios.lottie\\2.5.10\\com.airbnb.ios.lottie.2.5.10.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\com.airbnb.xamarin.forms.lottie\\3.0.3\\com.airbnb.xamarin.forms.lottie.3.0.3.nupkg.sha512",

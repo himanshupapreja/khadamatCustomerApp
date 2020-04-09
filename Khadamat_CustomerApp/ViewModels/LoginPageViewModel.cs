@@ -225,7 +225,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                             }
 
                                             //App.Current.MainPage = new NavigationPage(new MasterPage());
-                                            await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
+                                            await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomeTabbedPage", UriKind.Absolute));
                                         }
                                         else
                                         {
@@ -331,6 +331,45 @@ namespace Khadamat_CustomerApp.ViewModels
                 });
             }
         }
+        #endregion
+
+        #region OnAppearing
+        public static void OnAppearing()
+        {
+
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                try
+                {
+                    app.GetCountriesApi();
+                }
+                catch (Exception ex)
+                {
+                }
+            });
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                try
+                {
+                    var request = new ChangeLanguagesModel();
+                    if (Application.Current.Properties.ContainsKey("AppLocale") && (Application.Current.Properties["AppLocale"].ToString()).Contains("en"))
+                    {
+                        request.language = "en";
+                        request.user_id = BaseViewModel.user_id;
+                    }
+                    else
+                    {
+                        request.language = "ar";
+                        request.user_id = BaseViewModel.user_id;
+                    }
+
+                    app.UpdateLanguageServer(request);
+                }
+                catch (Exception ex)
+                {
+                }
+            });
+        } 
         #endregion
     }
 }

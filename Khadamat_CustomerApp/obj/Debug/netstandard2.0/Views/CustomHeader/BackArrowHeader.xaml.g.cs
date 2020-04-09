@@ -13,7 +13,7 @@
 namespace Khadamat_CustomerApp.Views {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Views/CustomHeader/BackArrowHeader.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Views\\CustomHeader\\BackArrowHeader.xaml")]
     public partial class BackArrowHeader : global::Xamarin.Forms.ContentView {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]

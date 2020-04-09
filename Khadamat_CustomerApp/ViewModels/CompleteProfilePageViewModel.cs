@@ -710,7 +710,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                                 fileContent.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/octet-stream");
                                                 fileContent.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("form-data")
                                                 {
-                                                    Name = "profile_pic",
+                                                    Name = "PicturePath",
                                                     FileName = "profilepic" + ".png",
                                                 };
 
@@ -797,7 +797,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                                     UpdateLanguageServer(request);
                                                 });
                                                 //App.Current.MainPage = new NavigationPage(new MasterPage());
-                                                await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
+                                                await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomeTabbedPage", UriKind.Absolute));
                                                 #region Resend_Otp_Api_Call
                                                 //if (response.userData.email_verified.HasValue && response.userData.email_verified.Value)
                                                 //{

@@ -105,7 +105,7 @@ namespace Khadamat_CustomerApp.ViewModels
                         {
                             Application.Current.Properties["TermsConditionsData"] = response.TermsConditionsData;
                             Application.Current.SavePropertiesAsync();
-                            TermConditionText = htmlToText.Convert(Common.GetLanguage() == "ar-AE" ? response.TermsConditionsData.text_arabic : response.TermsConditionsData.text);
+                          
                             //var htmltext = new HtmlWebViewSource
                             //{
                             //    Html = response.TermsConditionsData.text

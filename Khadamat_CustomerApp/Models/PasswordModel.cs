@@ -40,6 +40,7 @@ namespace Khadamat_CustomerApp.Models
     {
         public long user_id { get; set; }
         public string password { get; set; }
+        public bool is_approved { get; set; }
     }
     public class CreatePasswordResponseModel
     {

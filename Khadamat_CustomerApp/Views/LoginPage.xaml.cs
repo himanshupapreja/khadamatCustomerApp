@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Khadamat_CustomerApp.ViewModels;
+using Xamarin.Forms;
 
 namespace Khadamat_CustomerApp.Views
 {
@@ -29,6 +30,12 @@ namespace Khadamat_CustomerApp.Views
             {
                 this.FlowDirection = FlowDirection.LeftToRight;
             }
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            LoginPageViewModel.OnAppearing();
         }
     }
 }

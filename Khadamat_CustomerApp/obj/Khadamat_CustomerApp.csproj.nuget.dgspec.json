@@ -1,25 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "/Users/sachtech/Xam/khadamatCustomerApp/Khadamat_CustomerApp/Khadamat_CustomerApp.csproj": {}
+    "E:\\Git\\hunny\\khadamatCustomerApp\\Khadamat_CustomerApp\\Khadamat_CustomerApp.csproj": {}
   },
   "projects": {
-    "/Users/sachtech/Xam/khadamatCustomerApp/Khadamat_CustomerApp/Khadamat_CustomerApp.csproj": {
+    "E:\\Git\\hunny\\khadamatCustomerApp\\Khadamat_CustomerApp\\Khadamat_CustomerApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/sachtech/Xam/khadamatCustomerApp/Khadamat_CustomerApp/Khadamat_CustomerApp.csproj",
+        "projectUniqueName": "E:\\Git\\hunny\\khadamatCustomerApp\\Khadamat_CustomerApp\\Khadamat_CustomerApp.csproj",
         "projectName": "Khadamat_CustomerApp",
-        "projectPath": "/Users/sachtech/Xam/khadamatCustomerApp/Khadamat_CustomerApp/Khadamat_CustomerApp.csproj",
-        "packagesPath": "/Users/sachtech/.nuget/packages/",
-        "outputPath": "/Users/sachtech/Xam/khadamatCustomerApp/Khadamat_CustomerApp/obj/",
+        "projectPath": "E:\\Git\\hunny\\khadamatCustomerApp\\Khadamat_CustomerApp\\Khadamat_CustomerApp.csproj",
+        "packagesPath": "C:\\Users\\papre\\.nuget\\packages\\",
+        "outputPath": "E:\\Git\\hunny\\khadamatCustomerApp\\Khadamat_CustomerApp\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "/Users/sachtech/.config/NuGet/NuGet.Config"
+          "C:\\Users\\papre\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -137,7 +144,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.200/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1791,12 +1791,6 @@
           "build/MonoAndroid80/Xamarin.Firebase.Common.targets": {}
         }
       },
-      "Xamarin.Firebase.Core/60.1142.1": {
-        "type": "package",
-        "dependencies": {
-          "Xamarin.Firebase.Analytics": "[60.1142.1]"
-        }
-      },
       "Xamarin.Firebase.Database/60.1142.1": {
         "type": "package",
         "dependencies": {
@@ -2381,6 +2375,7 @@
         "lib/MonoAndroid90/Plugin.FirebasePushNotification.dll.mdb",
         "lib/MonoAndroid90/Plugin.FirebasePushNotification.pdb",
         "lib/Xamarin.iOS10/Plugin.FirebasePushNotification.Abstractions.dll",
+        "lib/Xamarin.iOS10/Plugin.FirebasePushNotification.Abstractions.dll.mdb",
         "lib/Xamarin.iOS10/Plugin.FirebasePushNotification.Abstractions.pdb",
         "lib/Xamarin.iOS10/Plugin.FirebasePushNotification.Abstractions.xml",
         "lib/Xamarin.iOS10/Plugin.FirebasePushNotification.XML",
@@ -2490,6 +2485,7 @@
         "lib/MonoTouch/Rg.Plugins.Popup.dll",
         "lib/MonoTouch/Rg.Plugins.Popup.pdb",
         "lib/Xamarin.IOS/Rg.Plugins.Popup.IOS.dll",
+        "lib/Xamarin.IOS/Rg.Plugins.Popup.IOS.dll.mdb",
         "lib/Xamarin.IOS/Rg.Plugins.Popup.IOS.pdb",
         "lib/Xamarin.IOS/Rg.Plugins.Popup.dll",
         "lib/Xamarin.IOS/Rg.Plugins.Popup.pdb",
@@ -6546,17 +6542,6 @@
         "xamarin.firebase.common.nuspec"
       ]
     },
-    "Xamarin.Firebase.Core/60.1142.1": {
-      "sha512": "dXGjtHNv17haUk3XjliKXYraHTjO29dmfvjKLpnobZh+UY09QxmHPdcMNxDgtMqxFiV2Roikr05XwCzhl/0GpA==",
-      "type": "package",
-      "path": "xamarin.firebase.core/60.1142.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "xamarin.firebase.core.60.1142.1.nupkg.sha512",
-        "xamarin.firebase.core.nuspec"
-      ]
-    },
     "Xamarin.Firebase.Database/60.1142.1": {
       "sha512": "hpUY4xQoz+/yMQHFKIvYMi9ApAizCE7U+gP9ZcmAjj0ps1yFH9RE/6nzMxReZzdCb6Yux8J8OcC5Rc7fI5dvRg==",
       "type": "package",
@@ -7089,7 +7074,6 @@
       "Xamarin.FFImageLoading.Svg.Forms >= 2.4.11.982",
       "Xamarin.Firebase.Analytics >= 60.1142.1",
       "Xamarin.Firebase.Common >= 60.1142.1",
-      "Xamarin.Firebase.Core >= 60.1142.1",
       "Xamarin.Firebase.Database >= 60.1142.1",
       "Xamarin.Firebase.Dynamic.Links >= 60.1142.1",
       "Xamarin.Firebase.Iid >= 60.1142.1",
@@ -7104,32 +7088,39 @@
     ]
   },
   "packageFolders": {
-    "/Users/sachtech/.nuget/packages/": {}
+    "C:\\Users\\papre\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/sachtech/Xam/khadamatCustomerApp/Khadamat_CustomerApp.Android/Khadamat_CustomerApp.Android.csproj",
+      "projectUniqueName": "E:\\Git\\hunny\\khadamatCustomerApp\\Khadamat_CustomerApp.Android\\Khadamat_CustomerApp.Android.csproj",
       "projectName": "Khadamat_CustomerApp.Android",
-      "projectPath": "/Users/sachtech/Xam/khadamatCustomerApp/Khadamat_CustomerApp.Android/Khadamat_CustomerApp.Android.csproj",
-      "packagesPath": "/Users/sachtech/.nuget/packages/",
-      "outputPath": "/Users/sachtech/Xam/khadamatCustomerApp/Khadamat_CustomerApp.Android/obj/",
+      "projectPath": "E:\\Git\\hunny\\khadamatCustomerApp\\Khadamat_CustomerApp.Android\\Khadamat_CustomerApp.Android.csproj",
+      "packagesPath": "C:\\Users\\papre\\.nuget\\packages\\",
+      "outputPath": "E:\\Git\\hunny\\khadamatCustomerApp\\Khadamat_CustomerApp.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
+      "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "/Users/sachtech/.config/NuGet/NuGet.Config"
+        "C:\\Users\\papre\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "monoandroid90"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "monoandroid90": {
           "projectReferences": {
-            "/Users/sachtech/Xam/khadamatCustomerApp/Khadamat_CustomerApp/Khadamat_CustomerApp.csproj": {
-              "projectPath": "/Users/sachtech/Xam/khadamatCustomerApp/Khadamat_CustomerApp/Khadamat_CustomerApp.csproj"
+            "E:\\Git\\hunny\\khadamatCustomerApp\\Khadamat_CustomerApp\\Khadamat_CustomerApp.csproj": {
+              "projectPath": "E:\\Git\\hunny\\khadamatCustomerApp\\Khadamat_CustomerApp\\Khadamat_CustomerApp.csproj"
             }
           }
         }
@@ -7219,10 +7210,6 @@
             "version": "[60.1142.1, )"
           },
           "Xamarin.Firebase.Common": {
-            "target": "Package",
-            "version": "[60.1142.1, )"
-          },
-          "Xamarin.Firebase.Core": {
             "target": "Package",
             "version": "[60.1142.1, )"
           },

@@ -13,8 +13,8 @@
 namespace Khadamat_CustomerApp.Views {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Views/HomeTabbedPage.xaml")]
-    public partial class HomeTabbedPage : global::Xamarin.Forms.TabbedPage {
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Views\\HomeTabbedPage.xaml")]
+    public partial class HomeTabbedPage : global::Khadamat_CustomerApp.CustomControls.HiddenTabbedPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {

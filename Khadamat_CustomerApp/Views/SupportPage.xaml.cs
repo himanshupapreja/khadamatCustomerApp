@@ -60,7 +60,7 @@ namespace Khadamat_CustomerApp.Views
             }
             else
             {
-                return false;
+                return base.OnBackButtonPressed();
             }
         }
 

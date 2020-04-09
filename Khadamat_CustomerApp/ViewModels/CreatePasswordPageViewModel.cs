@@ -174,7 +174,8 @@ namespace Khadamat_CustomerApp.ViewModels
                                     CreatePasswordRequestModel requestModel = new CreatePasswordRequestModel()
                                     {
                                         user_id = user_id,
-                                        password = NewPassword
+                                        password = NewPassword,
+                                        is_approved = ForgotPassword
                                     };
                                     try
                                     {

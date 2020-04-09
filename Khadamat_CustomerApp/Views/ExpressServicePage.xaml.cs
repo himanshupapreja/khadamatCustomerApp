@@ -94,5 +94,10 @@ namespace Khadamat_CustomerApp.Views
             }
         }
         #endregion
+
+        private void HomeTab_Tapped(object sender, EventArgs e)
+        {
+            MessagingCenter.Send("HomeTab", "TabSelected");
+        }
     }
 }

@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+<customcontrols:HiddenTabbedPage  xmlns="http://xamarin.com/schemas/2014/forms"
+                                  xmlns:customcontrols="clr-namespace:Khadamat_CustomerApp.CustomControls"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:prism="http://prismlibrary.com"
             xmlns:views="clr-namespace:Khadamat_CustomerApp.Views"
             NavigationPage.HasNavigationBar="False"
             prism:ViewModelLocator.AutowireViewModel="True"
             x:Class="Khadamat_CustomerApp.Views.HomeTabbedPage">
-    <TabbedPage.Children>
+    <customcontrols:HiddenTabbedPage.Children>
         <views:HomePage IconImageSource="home_un_select.png"/>
         <views:ExpressServicePage IconImageSource="express_un_select.png"/>
-    </TabbedPage.Children>
-</TabbedPage>
+    </customcontrols:HiddenTabbedPage.Children>
+</customcontrols:HiddenTabbedPage>

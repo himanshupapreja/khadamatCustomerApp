@@ -521,7 +521,7 @@ namespace Khadamat_CustomerApp.ViewModels
                             byte[] myfile;
                             file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
                             {
-                                PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
+                                //PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
 
                             });
                             if (file != null)
@@ -567,6 +567,7 @@ namespace Khadamat_CustomerApp.ViewModels
                         }
                         if (file != null)
                         {
+
                             var item = new ChatDetailListModel()
                             {
                                 sender_user_id = user_id,
@@ -614,7 +615,7 @@ namespace Khadamat_CustomerApp.ViewModels
                             } 
                         }
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
 
                     }
@@ -716,7 +717,7 @@ namespace Khadamat_CustomerApp.ViewModels
                     {
                         FileuploadModel.DataArray = data.DataArray;
                         FileuploadModel.FileName = data.FileName;
-
+                        
 
                         if (Common.FileExtensionCheck(FileuploadModel.FileName, extenstionList))
                         {

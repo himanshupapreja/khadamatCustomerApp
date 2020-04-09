@@ -11,6 +11,7 @@ namespace Khadamat_CustomerApp.Helpers
         public const string BaseUrl = "http://3.136.104.115/Images/Users/";
         public const string ApiBaseUrl = "http://3.136.104.115/api/";
         public const string PdfBaseUrl = "http://3.136.104.115/Images/InvoicePDF/";
+        public const string ServiceImageBaseUrl = "http://3.136.104.115/Images/Category/";
 
         public const string SendOtp = "Account/SendOtp";
         public const string VerifyOtp = "Account/VerifyOtp";
@@ -35,6 +36,7 @@ namespace Khadamat_CustomerApp.Helpers
         public const string GetFaqData = "Settings/GetFaqData";
         public const string ContactUs = "Settings/ContactUs";
         public const string GetCategories = "Category/GetCategories?user_id={0}";
+        public const string GetExpressList = "category/GetExpressList";
         public const string GetSubCategories = "Category/GetSubCategories?category_id={0}";
 
         public const string AddJobRequest = "Order/AddJobRequest";

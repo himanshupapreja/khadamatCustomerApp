@@ -168,6 +168,8 @@ namespace Khadamat_CustomerApp.ViewModels
         #endregion
         #endregion
 
+        public static App app;
+
         private string _title;
         public string Title
         {

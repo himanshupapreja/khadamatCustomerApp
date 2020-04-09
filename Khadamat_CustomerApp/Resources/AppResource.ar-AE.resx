@@ -346,6 +346,9 @@
   <data name="err_ConfirmPassword" xml:space="preserve">
     <value>تأكيد كلمة المرور غير مطابق</value>
   </data>
+  <data name="expressTab_title" xml:space="preserve">
+    <value>خدمة سريعة</value>
+  </data>
   <data name="faq" xml:space="preserve">
     <value>الأسئلة الشائعة</value>
   </data>

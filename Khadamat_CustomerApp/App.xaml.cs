@@ -89,26 +89,26 @@ namespace Khadamat_CustomerApp
                 //MainPage = userdataindb.email_verified.HasValue && userdataindb.email_verified.Value ? new NavigationPage(new MasterPage()) : new NavigationPage(new LoginPage());
                 //MainPage = new NavigationPage(new MasterPage());
                 //await NavigationService.NavigateAsync(new Uri("/"+nameof(MasterPage)+"/" + nameof(NavigationPage)+"/"+nameof(HomePage), UriKind.Absolute));
-                await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
+                await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomeTabbedPage", UriKind.Absolute));
 
-                UpdateDeviceInfo();
+                //UpdateDeviceInfo();
 
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    var request = new ChangeLanguagesModel();
-                    if (Application.Current.Properties.ContainsKey("AppLocale") && (Application.Current.Properties["AppLocale"].ToString()).Contains("en"))
-                    {
-                        request.language = "en";
-                        request.user_id = BaseViewModel.user_id;
-                    }
-                    else
-                    {
-                        request.language = "ar";
-                        request.user_id = BaseViewModel.user_id;
-                    }
+                //Device.BeginInvokeOnMainThread(() =>
+                //{
+                //    var request = new ChangeLanguagesModel();
+                //    if (Application.Current.Properties.ContainsKey("AppLocale") && (Application.Current.Properties["AppLocale"].ToString()).Contains("en"))
+                //    {
+                //        request.language = "en";
+                //        request.user_id = BaseViewModel.user_id;
+                //    }
+                //    else
+                //    {
+                //        request.language = "ar";
+                //        request.user_id = BaseViewModel.user_id;
+                //    }
 
-                    UpdateLanguageServer(request);
-                });
+                //    UpdateLanguageServer(request);
+                //});
             }
             else
             {
@@ -116,8 +116,10 @@ namespace Khadamat_CustomerApp
                 await NavigationService.NavigateAsync("NavigationPage/LoginPage");
             }
 
-            GetCountriesApi();
+            //GetCountriesApi();
 
+
+            BaseViewModel.app = this;
 
             if (Device.RuntimePlatform == Device.Android || Device.RuntimePlatform == Device.iOS)
             {
@@ -208,14 +210,14 @@ namespace Khadamat_CustomerApp
                                     var data = $"{p.Data["aps.alert"]}";
                                     if (data.Contains("You have new message regarding your job request") || data.Contains("لديك رسالة جديدة بخصوص طلب عملك.") || data.Contains("You have new message") || data.Contains("لديك رسالة جديدة"))
                                     {
-                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
+                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomeTabbedPage", UriKind.Absolute));
                                         await NavigationService.NavigateAsync(nameof(ChatListPage));
                                         //App.Current.MainPage = new NavigationPage(new MasterPage());
                                         //App.Current.MainPage.Navigation.PushAsync(new ChatListPage());
                                     }
                                     else if (data.Contains("You have new message from support team") || data.Contains("لديك رسالة جديدة من فريق الدعم"))
                                     {
-                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
+                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomeTabbedPage", UriKind.Absolute));
                                         await NavigationService.NavigateAsync(nameof(SupportPage));
                                     }
                                     else if (data.Contains("Your password has been reset by the admin, In order to continue please contact administrator.") || data.Contains("تمت إعادة تعيين كلمة المرور الخاصة بك من قبل المشرف ، للمتابعة ، يرجى الاتصال بالمسؤول") || data.Contains("Your account has been de-activated by the admin, in order to continue please contact administrator") || data.Contains("تم إلغاء تنشيط حسابك من قبل المشرف ، للمتابعة ، يرجى الاتصال بالمسؤول"))
@@ -232,7 +234,7 @@ namespace Khadamat_CustomerApp
                                     }
                                     else
                                     {
-                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
+                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomeTabbedPage", UriKind.Absolute));
                                         await NavigationService.NavigateAsync(nameof(NotificationPage));
                                         //if (Application.Current.Properties.ContainsKey("AppStatus"))
                                         //{
@@ -261,14 +263,14 @@ namespace Khadamat_CustomerApp
 
                                     if (data.Contains("You have new message regarding your job request") || data.Contains("لديك رسالة جديدة بخصوص طلب عملك.") || data.Contains("You have new message") || data.Contains("لديك رسالة جديدة"))
                                     {
-                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
+                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomeTabbedPage", UriKind.Absolute));
                                         await NavigationService.NavigateAsync(nameof(ChatListPage));
                                         //App.Current.MainPage = new NavigationPage(new MasterPage());
                                         //App.Current.MainPage.Navigation.PushAsync(new ChatListPage());
                                     }
                                     else if (data.Contains("You have new message from support team") || data.Contains("لديك رسالة جديدة من فريق الدعم"))
                                     {
-                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
+                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomeTabbedPage", UriKind.Absolute));
                                         await NavigationService.NavigateAsync(nameof(SupportPage));
                                     }
                                     else if (data.Contains("Your password has been reset by the admin, In order to continue please contact administrator.") || data.Contains("تمت إعادة تعيين كلمة المرور الخاصة بك من قبل المشرف ، للمتابعة ، يرجى الاتصال بالمسؤول") || data.Contains("Your account has been de-activated by the admin, in order to continue please contact administrator") || data.Contains("تم إلغاء تنشيط حسابك من قبل المشرف ، للمتابعة ، يرجى الاتصال بالمسؤول"))
@@ -285,7 +287,7 @@ namespace Khadamat_CustomerApp
                                     }
                                     else
                                     {
-                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
+                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomeTabbedPage", UriKind.Absolute));
                                         await NavigationService.NavigateAsync(nameof(NotificationPage));
                                         //if (Application.Current.Properties.ContainsKey("AppStatus"))
                                         //{
@@ -334,7 +336,7 @@ namespace Khadamat_CustomerApp
             }
         }
 
-        private async void UpdateLanguageServer(ChangeLanguagesModel request)
+        public async void UpdateLanguageServer(ChangeLanguagesModel request)
         {
             CommonResponseModel resonse;
             try
@@ -355,7 +357,7 @@ namespace Khadamat_CustomerApp
                 {
                     if (userdataindb != null)
                     {
-                        UpdateDeviceInfo(); 
+                        UpdateDeviceInfo();
                     }
                 });
 
@@ -393,7 +395,7 @@ namespace Khadamat_CustomerApp
         #endregion
 
         #region GetProvienceApi Api Call Method
-        private async void GetProvienceApi(int country_id)
+        public async void GetProvienceApi(int country_id)
         {
             if (Common.CheckConnection())
             {
@@ -443,7 +445,7 @@ namespace Khadamat_CustomerApp
         #endregion
 
         #region GetCountriesApi Api Call Method
-        private async void GetCountriesApi()
+        public async void GetCountriesApi()
         {
             if (Common.CheckConnection())
             {
@@ -484,33 +486,36 @@ namespace Khadamat_CustomerApp
         #endregion
 
         #region UpdateDeviceInfo
-        private async void UpdateDeviceInfo()
+        public async void UpdateDeviceInfo()
         {
-            var deviceRequestmodel = new UpdateDeviceInfoModel()
+            if (userdataindb != null)
             {
-                device_id = Device.RuntimePlatform == Device.Android ? 1 : Device.RuntimePlatform == Device.iOS ? 2 : 0,
-                user_id = userdataindb.user_id,
-                device_token = Application.Current.Properties.ContainsKey("AppFirebaseToken") ? Application.Current.Properties["AppFirebaseToken"].ToString() : null
-            };
-            UpdateDeviceInfoResponse deviceInfoResponse;
-            try
-            {
-                deviceInfoResponse = await _webApiRestClient.PostAsync<UpdateDeviceInfoModel, UpdateDeviceInfoResponse>(ApiUrl.UpdateDeviceInfo, deviceRequestmodel);
-            }
-            catch (Exception ex)
-            {
-                deviceInfoResponse = null;
-            }
-            if (deviceInfoResponse != null)
-            {
-                //if (deviceInfoResponse.status)
-                //{
-                //    //await MaterialDialog.Instance.SnackbarAsync(message: deviceInfoResponse.message, msDuration: 3000);
-                //}
-                //else
-                //{
-                //    await MaterialDialog.Instance.SnackbarAsync(message: deviceInfoResponse.message, msDuration: 3000);
-                //}
+                var deviceRequestmodel = new UpdateDeviceInfoModel()
+                {
+                    device_id = Device.RuntimePlatform == Device.Android ? 1 : Device.RuntimePlatform == Device.iOS ? 2 : 0,
+                    user_id = userdataindb.user_id,
+                    device_token = Application.Current.Properties.ContainsKey("AppFirebaseToken") ? Application.Current.Properties["AppFirebaseToken"].ToString() : null
+                };
+                UpdateDeviceInfoResponse deviceInfoResponse;
+                try
+                {
+                    deviceInfoResponse = await _webApiRestClient.PostAsync<UpdateDeviceInfoModel, UpdateDeviceInfoResponse>(ApiUrl.UpdateDeviceInfo, deviceRequestmodel);
+                }
+                catch (Exception ex)
+                {
+                    deviceInfoResponse = null;
+                }
+                if (deviceInfoResponse != null)
+                {
+                    //if (deviceInfoResponse.status)
+                    //{
+                    //    //await MaterialDialog.Instance.SnackbarAsync(message: deviceInfoResponse.message, msDuration: 3000);
+                    //}
+                    //else
+                    //{
+                    //    await MaterialDialog.Instance.SnackbarAsync(message: deviceInfoResponse.message, msDuration: 3000);
+                    //}
+                } 
             }
         }
         #endregion
@@ -551,7 +556,6 @@ namespace Khadamat_CustomerApp
             containerRegistry.RegisterForNavigation<EditProfilePage, EditProfilePageViewModel>();
             containerRegistry.RegisterForNavigation<MyBookingPage, MyBookingPageViewModel>();
             containerRegistry.RegisterForNavigation<MenuPage, MenuPageViewModel>();
-            containerRegistry.RegisterForNavigation<SplashScreen, SplashScreenViewModel>();
             containerRegistry.RegisterForNavigation<HomeTabbedPage, HomeTabbedPageViewModel>();
             containerRegistry.RegisterForNavigation<ExpressServicePage, ExpressServicePageViewModel>();
         } 

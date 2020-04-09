@@ -48,7 +48,7 @@
 
                                         <Image Style="{StaticResource MenuImageCrossStyle}" HorizontalOptions="Center" Source="{Binding icon}"/>
                                     </Grid>
-                                    <Label Text="{Binding service_category_name}" Style="{StaticResource homelistname}" VerticalOptions="Center" VerticalTextAlignment="Center" TranslationY="-20"/>
+                                    <Label Text="{Binding service_category_name}" Style="{StaticResource homelistname}" VerticalOptions="Center" VerticalTextAlignment="Center" TranslationY="-20" LineBreakMode="TailTruncation"/>
                                 </StackLayout>
                             </Grid>
                         </Frame>

@@ -13,7 +13,7 @@
 namespace Khadamat_CustomerApp.Views {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Views/CustomHeader/CustomMenuHeader.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Views\\CustomHeader\\CustomMenuHeader.xaml")]
     public partial class CustomMenuHeader : global::Xamarin.Forms.ContentView {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
