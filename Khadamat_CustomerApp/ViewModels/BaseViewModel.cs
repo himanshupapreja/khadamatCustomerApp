@@ -17,6 +17,7 @@ namespace Khadamat_CustomerApp.ViewModels
 {
     public class BaseViewModel : BindableBase
     {
+
         #region Existing Data
 
         public static long user_id;

@@ -334,9 +334,9 @@ namespace Khadamat_CustomerApp.ViewModels
         #endregion
 
         #region OnAppearing
-        public static void OnAppearing()
+        public void OnAppearing()
         {
-
+            Xamarin.Essentials.Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
             Device.BeginInvokeOnMainThread(() =>
             {
                 try
@@ -369,7 +369,43 @@ namespace Khadamat_CustomerApp.ViewModels
                 {
                 }
             });
-        } 
+        }
         #endregion
+
+        #region OnDisappearing
+        public void OnDisappearing()
+        {
+            Xamarin.Essentials.Connectivity.ConnectivityChanged -= Connectivity_ConnectivityChanged;
+        }
+        #endregion
+
+        private void Connectivity_ConnectivityChanged(object sender, Xamarin.Essentials.ConnectivityChangedEventArgs e)
+        {
+            if ((e.ConnectionProfiles.Contains(Xamarin.Essentials.ConnectionProfile.WiFi) || e.ConnectionProfiles.Contains(Xamarin.Essentials.ConnectionProfile.Cellular)) && e.NetworkAccess == Xamarin.Essentials.NetworkAccess.Internet)
+            {
+
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    var request = new ChangeLanguagesModel();
+                    if (Application.Current.Properties.ContainsKey("AppLocale") && (Application.Current.Properties["AppLocale"].ToString()).Contains("en"))
+                    {
+                        request.language = "en";
+                        request.user_id = BaseViewModel.user_id;
+                    }
+                    else
+                    {
+                        request.language = "ar";
+                        request.user_id = BaseViewModel.user_id;
+                    }
+
+                    UpdateLanguageServer(request);
+                });
+
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    app.GetCountriesApi();
+                });
+            }
+        }
     }
 }

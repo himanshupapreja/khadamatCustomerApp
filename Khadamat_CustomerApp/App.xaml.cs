@@ -42,7 +42,7 @@ namespace Khadamat_CustomerApp
             XF.Material.Forms.Material.Init(this);
             userDataDbService = new UserDataDbService();
 
-            Xamarin.Essentials.Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
+            //Xamarin.Essentials.Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
 
             try
             {
@@ -55,8 +55,8 @@ namespace Khadamat_CustomerApp
                 }
                 else
                 {
-                    Application.Current.Properties["AppLocale"] = "ar-AE";
-                    Setlanguage("ar-AE");
+                    Application.Current.Properties["AppLocale"] = "en-US";
+                    Setlanguage("en-US");
                     Application.Current.Properties["IsAppAlreadyInstalled"] = true;
                     Application.Current.SavePropertiesAsync();
                 }
@@ -67,16 +67,16 @@ namespace Khadamat_CustomerApp
             }
 
 
-            //await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            //await NavigationService.NavigateAsync("NavigationPage/LoginPage");
 
-            if (Application.Current.Properties.ContainsKey("CountryList"))
-            {
-                BaseViewModel.countryDataModels = JsonConvert.DeserializeObject<List<CountryDataModel>>(Application.Current.Properties["CountryList"].ToString());
-            }
-            if (Application.Current.Properties.ContainsKey("ProvinceList"))
-            {
-                BaseViewModel.provienceDataModels = JsonConvert.DeserializeObject<List<ProvienceDataModel>>(Application.Current.Properties["ProvinceList"].ToString());
-            }
+            //if (Application.Current.Properties.ContainsKey("CountryList"))
+            //{
+            //    BaseViewModel.countryDataModels = JsonConvert.DeserializeObject<List<CountryDataModel>>(Application.Current.Properties["CountryList"].ToString());
+            //}
+            //if (Application.Current.Properties.ContainsKey("ProvinceList"))
+            //{
+            //    BaseViewModel.provienceDataModels = JsonConvert.DeserializeObject<List<ProvienceDataModel>>(Application.Current.Properties["ProvinceList"].ToString());
+            //}
 
             if (userDataDbService.IsUserDbPresentInDB())
             {
@@ -86,33 +86,13 @@ namespace Khadamat_CustomerApp
                 BaseViewModel.user_pic = Common.IsImagesValid(userdataindb.profile_pic, ApiUrl.BaseUrl);
                 BaseViewModel.email_verified = userdataindb.email_verified.HasValue ? userdataindb.email_verified.Value : false;
 
-                //MainPage = userdataindb.email_verified.HasValue && userdataindb.email_verified.Value ? new NavigationPage(new MasterPage()) : new NavigationPage(new LoginPage());
-                //MainPage = new NavigationPage(new MasterPage());
-                //await NavigationService.NavigateAsync(new Uri("/"+nameof(MasterPage)+"/" + nameof(NavigationPage)+"/"+nameof(HomePage), UriKind.Absolute));
-                await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomeTabbedPage", UriKind.Absolute));
-
-                //UpdateDeviceInfo();
-
-                //Device.BeginInvokeOnMainThread(() =>
-                //{
-                //    var request = new ChangeLanguagesModel();
-                //    if (Application.Current.Properties.ContainsKey("AppLocale") && (Application.Current.Properties["AppLocale"].ToString()).Contains("en"))
-                //    {
-                //        request.language = "en";
-                //        request.user_id = BaseViewModel.user_id;
-                //    }
-                //    else
-                //    {
-                //        request.language = "ar";
-                //        request.user_id = BaseViewModel.user_id;
-                //    }
-
-                //    UpdateLanguageServer(request);
-                //});
+                Device.BeginInvokeOnMainThread(async() =>
+                {
+                    await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomeTabbedPage", UriKind.Absolute));
+                });
             }
             else
             {
-                //MainPage = new NavigationPage(new LoginPage());
                 await NavigationService.NavigateAsync("NavigationPage/LoginPage");
             }
 
@@ -120,6 +100,15 @@ namespace Khadamat_CustomerApp
 
 
             BaseViewModel.app = this;
+
+            if (Application.Current.Properties.ContainsKey("CountryList"))
+            {
+                BaseViewModel.countryDataModels = JsonConvert.DeserializeObject<List<CountryDataModel>>(Application.Current.Properties["CountryList"].ToString());
+            }
+            if (Application.Current.Properties.ContainsKey("ProvinceList"))
+            {
+                BaseViewModel.provienceDataModels = JsonConvert.DeserializeObject<List<ProvienceDataModel>>(Application.Current.Properties["ProvinceList"].ToString());
+            }
 
             if (Device.RuntimePlatform == Device.Android || Device.RuntimePlatform == Device.iOS)
             {
@@ -205,7 +194,7 @@ namespace Khadamat_CustomerApp
                         {
                             if (p.Data.ContainsKey("aps.alert"))
                             {
-                                Device.BeginInvokeOnMainThread(async() =>
+                                Device.BeginInvokeOnMainThread(async () =>
                                 {
                                     var data = $"{p.Data["aps.alert"]}";
                                     if (data.Contains("You have new message regarding your job request") || data.Contains("لديك رسالة جديدة بخصوص طلب عملك.") || data.Contains("You have new message") || data.Contains("لديك رسالة جديدة"))
@@ -257,7 +246,7 @@ namespace Khadamat_CustomerApp
                         {
                             if (p.Data.ContainsKey("body"))
                             {
-                                Device.BeginInvokeOnMainThread(async() =>
+                                Device.BeginInvokeOnMainThread(async () =>
                                 {
                                     var data = $"{p.Data["body"]}";
 
@@ -349,42 +338,6 @@ namespace Khadamat_CustomerApp
             }
         }
 
-        private void Connectivity_ConnectivityChanged(object sender, Xamarin.Essentials.ConnectivityChangedEventArgs e)
-        {
-            if((e.ConnectionProfiles.Contains(Xamarin.Essentials.ConnectionProfile.WiFi) || e.ConnectionProfiles.Contains(Xamarin.Essentials.ConnectionProfile.Cellular)) && e.NetworkAccess == Xamarin.Essentials.NetworkAccess.Internet)
-            {
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    if (userdataindb != null)
-                    {
-                        UpdateDeviceInfo();
-                    }
-                });
-
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    var request = new ChangeLanguagesModel();
-                    if (Application.Current.Properties.ContainsKey("AppLocale") && (Application.Current.Properties["AppLocale"].ToString()).Contains("en"))
-                    {
-                        request.language = "en";
-                        request.user_id = BaseViewModel.user_id;
-                    }
-                    else
-                    {
-                        request.language = "ar";
-                        request.user_id = BaseViewModel.user_id;
-                    }
-
-                    UpdateLanguageServer(request);
-                });
-
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    GetCountriesApi();
-                });
-            }
-        }
-
         #region Setlanguage
         public static void Setlanguage(string culturevalue)
         {
@@ -457,7 +410,7 @@ namespace Khadamat_CustomerApp
                 catch (Exception ex)
                 {
                     response = null;
-                    await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
+                    //await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
                     //countryDetailData = null;
                 }
                 if (response != null)
@@ -558,6 +511,8 @@ namespace Khadamat_CustomerApp
             containerRegistry.RegisterForNavigation<MenuPage, MenuPageViewModel>();
             containerRegistry.RegisterForNavigation<HomeTabbedPage, HomeTabbedPageViewModel>();
             containerRegistry.RegisterForNavigation<ExpressServicePage, ExpressServicePageViewModel>();
+            containerRegistry.RegisterForNavigation<SplashPage, SplashPageViewModel>();
+            containerRegistry.RegisterForNavigation<ExpressServiceDetailPage, ExpressServiceDetailPageViewModel>();
         } 
         #endregion
     }

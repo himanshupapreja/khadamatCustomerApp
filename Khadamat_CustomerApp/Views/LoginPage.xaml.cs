@@ -5,6 +5,7 @@ namespace Khadamat_CustomerApp.Views
 {
     public partial class LoginPage : ContentPage
     {
+        LoginPageViewModel loginPageViewModel;
         public LoginPage()
         {
             try
@@ -30,12 +31,18 @@ namespace Khadamat_CustomerApp.Views
             {
                 this.FlowDirection = FlowDirection.LeftToRight;
             }
+            loginPageViewModel = this.BindingContext as LoginPageViewModel;
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            LoginPageViewModel.OnAppearing();
+            loginPageViewModel.OnAppearing();
+        }
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            loginPageViewModel.OnDisappearing();
         }
     }
 }

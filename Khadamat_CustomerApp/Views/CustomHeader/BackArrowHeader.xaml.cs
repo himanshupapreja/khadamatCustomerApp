@@ -34,7 +34,7 @@ namespace Khadamat_CustomerApp.Views
 
             MessagingCenter.Subscribe<string>(this, "CompleteProfilePage", (sender) =>
             {
-                backarrow.IsVisible = false;
+                //backarrow.IsVisible = false;
                 backarrowclickbox.IsVisible = false;
             });
         }

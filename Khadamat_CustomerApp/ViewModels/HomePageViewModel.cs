@@ -33,7 +33,10 @@ namespace Khadamat_CustomerApp.ViewModels
         public string HeaderBanner
         {
             get { return _HeaderBanner; }
-            set { SetProperty(ref _HeaderBanner, value); }
+            set 
+            { 
+                SetProperty(ref _HeaderBanner, value);
+            }
         }
         #endregion
 
@@ -73,7 +76,10 @@ namespace Khadamat_CustomerApp.ViewModels
         public string HeaderBannerTitle
         {
             get { return _HeaderBannerTitle; }
-            set { SetProperty(ref _HeaderBannerTitle, value); }
+            set 
+            { 
+                SetProperty(ref _HeaderBannerTitle, value);
+            }
         }
         #endregion
 
@@ -207,20 +213,20 @@ namespace Khadamat_CustomerApp.ViewModels
         public HomePageViewModel(INavigationService navigationService)
         {
             NavigationService = navigationService;
-            GetServiceData();
+            //GetServiceData();
             ChatIcon = ImageHelpers.ChatIcon;
             NotificationIcon = ImageHelpers.NotificationIcon;
             MenuIcon = ImageHelpers.MenuIcon;
             IsNotificationClick = false;
             IsChatClick = false;
 
+            //Device.BeginInvokeOnMainThread(() =>
+            //{
+            //    UpdateNotificationCount();
+            //});
             Device.BeginInvokeOnMainThread(() =>
             {
-                UpdateNotificationCount();
-            });
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                GetChat();
+                GetServiceData();
             });
         }
         #endregion
@@ -541,6 +547,7 @@ namespace Khadamat_CustomerApp.ViewModels
         #region Appearing View Method
         public void OnAppearing()
         {
+            Xamarin.Essentials.Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
             Device.BeginInvokeOnMainThread(() =>
             {
                 notificationTimer = new Timer(_ => UpdateNotificationCount(), null, 0, 10000);
@@ -597,6 +604,7 @@ namespace Khadamat_CustomerApp.ViewModels
         #region Disappearing View Method
         public void OnDisappearing()
         {
+            Xamarin.Essentials.Connectivity.ConnectivityChanged -= Connectivity_ConnectivityChanged;
             if (notificationTimer != null)
             {
                 notificationTimer.Dispose();
@@ -607,5 +615,38 @@ namespace Khadamat_CustomerApp.ViewModels
             }
         }
         #endregion
+
+        private void Connectivity_ConnectivityChanged(object sender, Xamarin.Essentials.ConnectivityChangedEventArgs e)
+        {
+            if ((e.ConnectionProfiles.Contains(Xamarin.Essentials.ConnectionProfile.WiFi) || e.ConnectionProfiles.Contains(Xamarin.Essentials.ConnectionProfile.Cellular)) && e.NetworkAccess == Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    app.UpdateDeviceInfo();
+                });
+
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    var request = new ChangeLanguagesModel();
+                    if (Application.Current.Properties.ContainsKey("AppLocale") && (Application.Current.Properties["AppLocale"].ToString()).Contains("en"))
+                    {
+                        request.language = "en";
+                        request.user_id = BaseViewModel.user_id;
+                    }
+                    else
+                    {
+                        request.language = "ar";
+                        request.user_id = BaseViewModel.user_id;
+                    }
+
+                    app.UpdateLanguageServer(request);
+                });
+
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    app.GetCountriesApi();
+                });
+            }
+        }
     }
 }

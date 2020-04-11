@@ -36,10 +36,18 @@
                                 <Grid Grid.Row="1" HorizontalOptions="End" VerticalOptions="End" IsVisible="{Binding IsEnglishView}">
                                     <Image Source="ic_circle.png" HeightRequest="70" HorizontalOptions="EndAndExpand" TranslationX="20" TranslationY="25"/>
                                     <Image Source="arrow_next_black.png" Style="{StaticResource MenuRightArrowImageStyle}" TranslationX="15" TranslationY="20"/>
+
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer BindingContext="{Binding Source={x:Reference expresscategorieslistview}, Path=BindingContext}" CommandParameter="{Binding Source={x:Reference expresscategorieslistviewItem}, Path=BindingContext}" Tapped="TapGestureRecognizer_Tapped" Command="{Binding ServiceListSelected}"/>
+                                    </Grid.GestureRecognizers>
                                 </Grid>
                                 <Grid Grid.Row="1" HorizontalOptions="End" VerticalOptions="End" IsVisible="{Binding IsEnglishView, Converter={StaticResource BoolToNotBoolConverter}}">
                                     <Image Source="ic_circle.png" HeightRequest="70" HorizontalOptions="EndAndExpand" TranslationX="-20" TranslationY="25"/>
                                     <Image Source="arrow_next_black.png" Style="{StaticResource MenuRightArrowImageStyle}" TranslationX="-15" TranslationY="20"/>
+
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer BindingContext="{Binding Source={x:Reference expresscategorieslistview}, Path=BindingContext}" CommandParameter="{Binding Source={x:Reference expresscategorieslistviewItem}, Path=BindingContext}" Tapped="TapGestureRecognizer_Tapped" Command="{Binding ServiceListSelected}"/>
+                                    </Grid.GestureRecognizers>
                                 </Grid>
                             </Grid>
                         </Frame>

@@ -53,16 +53,15 @@ namespace Khadamat_CustomerApp.Views
                 IsServiceClick = true;
                 try
                 {
-                    var a = (CategoryListModel)(((TappedEventArgs)e).Parameter);
+                    var a = (ExpressData2)(((TappedEventArgs)e).Parameter);
                     if (a != null)
                     {
                         //await App.Current.MainPage.Navigation.PushPopupAsync(new LoaderPopup());
                         //GetSubServiceData(a.service_category_name, a.SubCategories, a.terms_conditions);
                         var param = new NavigationParameters();
-                        param.Add("ServiceDetailTitle", a.service_category_name);
-                        param.Add("ServiceDetailData", a.SubCategories);
-                        param.Add("ServiceDetailTermData", a.terms_conditions);
-                        await ExpressServicePageViewModel.NavigationService.NavigateAsync(nameof(ServiceDetailPage), param);
+                        param.Add("ExpressServiceDetailTitle", a.service_category_name);
+                        param.Add("ExpressServiceDetailData", a.SubCategories);
+                        await ExpressServicePageViewModel.NavigationService.NavigateAsync(nameof(ExpressServiceDetailPage), param);
 
                     }
                 }

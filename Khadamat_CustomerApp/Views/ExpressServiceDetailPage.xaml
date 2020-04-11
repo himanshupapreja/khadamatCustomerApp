@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:strings="clr-namespace:Khadamat_CustomerApp;assembly=Khadamat_CustomerApp"
+             xmlns:commonheader="clr-namespace:Khadamat_CustomerApp.Views"
+             BackgroundColor="{StaticResource PageBGColor}"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Khadamat_CustomerApp.Views.ExpressServiceDetailPage">
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--Header Bar-->
+        <commonheader:BackArrowHeader x:Name="titleName" TitleText="{Binding Title}" HorizontalOptions="FillAndExpand"/>
+
+        <StackLayout Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="20">
+
+            <!--Sub Services Field-->
+            <CollectionView x:Name="expressServicelist1" BackgroundColor="{StaticResource TransparentColor}" SelectionMode="None" HeightRequest="{Binding SubServiceListHeight}" IsVisible="{Binding IsNodataFound, Converter={StaticResource BoolToNotBoolConverter}}"
+                                                  VerticalScrollBarVisibility="Never" ItemsSource="{Binding SubServiceList}" >
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" HorizontalItemSpacing="5" Span="3"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="0,5,0,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Frame x:Name="item1" Padding="0" BackgroundColor="{StaticResource WhiteColor}" CornerRadius="3" WidthRequest="150">
+                                <Grid RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="7*"/>
+                                        <RowDefinition Height="3*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0" BackgroundColor="{StaticResource TransparentColor}" Padding="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Image Source="sub_bg.png" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource MenuImage75Style}"/>
+                                        <Image Source="ic_circle.png" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource RatingImageStyle}"/>
+
+                                        <Image Style="{StaticResource MenuImageStyle}" HorizontalOptions="Center" Source="{Binding icon}"/>
+                                    </Grid>
+                                    <Label Grid.Row="1" HorizontalOptions="Center" Style="{StaticResource BlackMediumLabel}" FontSize="{StaticResource MainLabelFontSize2}" Text="{Binding sub_express_category_name}"/>
+
+                                    <!--<Grid.GestureRecognizers>
+                                        <TapGestureRecognizer BindingContext="{Binding Source={x:Reference servicelist1}, Path=BindingContext}" CommandParameter="{Binding Source={x:Reference item1}, Path=BindingContext}" Tapped="TapGestureRecognizer_Tapped" Command="{Binding ServiceListSelected}"/>
+                                    </Grid.GestureRecognizers>-->
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+            <!--No Data Found Field-->
+            <StackLayout BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="10" IsVisible="{Binding IsNodataFound}">
+                <Image Source="no_data_found.png" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="200" Margin="0,15,0,0"></Image>
+                <Label Text="{strings:Translate NoDataPresent}" FontSize="Medium" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" 
+                           VerticalOptions="Center" Style="{StaticResource BlackMediumLabel}"/>
+
+            </StackLayout>
+        </StackLayout>
+    </Grid>  
+</ContentPage>

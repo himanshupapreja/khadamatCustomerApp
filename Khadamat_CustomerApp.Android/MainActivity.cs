@@ -21,40 +21,47 @@ using Xamarin.Forms;
 
 namespace Khadamat_CustomerApp.Droid
 {
-    [Activity(Label = "Khadamat_CustomerApp", Icon = "@drawable/logo", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, LaunchMode = LaunchMode.SingleTop)]
+    [Activity(Label = "Khadamat_CustomerApp", Theme = "@style/ThemeSplashHKD", Icon = "@drawable/logo", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, LaunchMode = LaunchMode.SingleTop)]
 
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-        string HOCKEYAPP_APPID = "febab6eb36ed4e3bb55ba976df3d2df4";
-        protected override void OnResume()
-        {
-            base.OnResume();
-            CrashManager.Register(this, HOCKEYAPP_APPID);
-        }
+        //string HOCKEYAPP_APPID = "febab6eb36ed4e3bb55ba976df3d2df4";
+        //protected override void OnResume()
+        //{
+        //    base.OnResume();
+        //    CrashManager.Register(this, HOCKEYAPP_APPID);
+        //}
         protected override void OnCreate(Bundle bundle)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
             base.SetTheme(Resource.Style.MainTheme);
             base.OnCreate(bundle);
-
-            Xamarin.Essentials.Platform.Init(this, bundle);
+            
             Forms.SetFlags("CollectionView_Experimental");
             Forms.SetFlags("FastRenderers_Experimental");
+
+            Xamarin.Essentials.Platform.Init(this, bundle);
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            CrossCurrentActivity.Current.Init(this, bundle);
-            FormsMaps.Init(this, bundle);
-            XF.Material.Droid.Material.Init(this, bundle);
-            Rg.Plugins.Popup.Popup.Init(this, bundle);
-            ImageCircleRenderer.Init();
+
+
             CachedImageRenderer.Init(true);
             var ignore = typeof(SvgCachedImage);
-            FirebaseApp.InitializeApp(this);
-            GetGalleryPermissions();
             LoadApplication(new App(new AndroidInitializer()));
 
-            CheckForGoogleServices();
-            FirebasePushNotificationManager.ProcessIntent(this, Intent);
+            XF.Material.Droid.Material.Init(this, bundle);
+
+            //Forms.SetFlags("CollectionView_Experimental");
+            //Forms.SetFlags("FastRenderers_Experimental");
+            CrossCurrentActivity.Current.Init(this, bundle);
+            FormsMaps.Init(this, bundle);
+            Rg.Plugins.Popup.Popup.Init(this, bundle);
+            ImageCircleRenderer.Init();
+            FirebaseApp.InitializeApp(this);
+            GetGalleryPermissions();
+
+            //CheckForGoogleServices();
+            //FirebasePushNotificationManager.ProcessIntent(this, Intent);
         }
 
         public bool CheckForGoogleServices()

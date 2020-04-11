@@ -149,10 +149,10 @@ namespace Khadamat_CustomerApp.ViewModels
 
         #region ExpressCategories
         public CategoryListModel searchedCategory = new CategoryListModel();
-        public ObservableCollection<ExpressData> SearchCategoriesList = new ObservableCollection<ExpressData>();
-        public ObservableCollection<ExpressData> AllCategoriesList = new ObservableCollection<ExpressData>();
-        private ObservableCollection<ExpressData> _Categories = new ObservableCollection<ExpressData>();
-        public ObservableCollection<ExpressData> Categories
+        public ObservableCollection<ExpressData2> SearchCategoriesList = new ObservableCollection<ExpressData2>();
+        public ObservableCollection<ExpressData2> AllCategoriesList = new ObservableCollection<ExpressData2>();
+        private ObservableCollection<ExpressData2> _Categories = new ObservableCollection<ExpressData2>();
+        public ObservableCollection<ExpressData2> Categories
         {
             get { return _Categories; }
             set { SetProperty(ref _Categories, value); }
@@ -163,20 +163,20 @@ namespace Khadamat_CustomerApp.ViewModels
         public ExpressServicePageViewModel(INavigationService navigationService)
         {
             NavigationService = navigationService;
-            GetExpressServiceData();
+            //GetExpressServiceData();
             ChatIcon = ImageHelpers.ChatIcon;
             NotificationIcon = ImageHelpers.NotificationIcon;
             MenuIcon = ImageHelpers.MenuIcon;
             IsNotificationClick = false;
             IsChatClick = false;
 
+            //Device.BeginInvokeOnMainThread(() =>
+            //{
+            //    UpdateNotificationCount();
+            //});
             Device.BeginInvokeOnMainThread(() =>
             {
-                UpdateNotificationCount();
-            });
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                GetChat();
+                GetExpressServiceData();
             });
         }
         #endregion
@@ -224,11 +224,11 @@ namespace Khadamat_CustomerApp.ViewModels
                             Application.Current.Properties["ExpressPageData"] = JsonConvert.SerializeObject(response);
                             Application.Current.SavePropertiesAsync();
 
-                            //HeaderBanner = Common.IsImagesValid(response.ExpressData.upper_banner_image, ApiUrl.BaseUrl);
-                            //HeaderBannerTitle = Common.GetLanguage() != "ar-AE" ? Common.FirstCharToUpper(response.CategoryData.upper_banner_title) : Common.FirstCharToUpper(response.CategoryData.upper_banner_title_arabic);
-                            if (response.ExpressData != null && response.ExpressData.Count > 0)
+                            HeaderBanner = Common.IsImagesValid(response.ExpressData.upper_banner_image, ApiUrl.BaseUrl);
+                            HeaderBannerTitle = Common.GetLanguage() != "ar-AE" ? Common.FirstCharToUpper(response.ExpressData.upper_banner_title) : Common.FirstCharToUpper(response.ExpressData.upper_banner_title_arabic);
+                            if (response.ExpressData.ExpressData != null && response.ExpressData.ExpressData.Count > 0)
                             {
-                                AllCategoriesList = new ObservableCollection<ExpressData>(response.ExpressData);
+                                AllCategoriesList = new ObservableCollection<ExpressData2>(response.ExpressData.ExpressData);
                                 foreach (var item in AllCategoriesList)
                                 {
                                     var index = AllCategoriesList.IndexOf(item);
@@ -389,13 +389,16 @@ namespace Khadamat_CustomerApp.ViewModels
         private void OfflineData()
         {
             var response = JsonConvert.DeserializeObject<ExpressDataResponseModel>(Application.Current.Properties["ExpressPageData"].ToString());
-            if (response.ExpressData != null && response.ExpressData.Count > 0)
+            if (response.ExpressData != null && response.ExpressData.ExpressData != null && response.ExpressData.ExpressData.Count > 0)
             {
-                AllCategoriesList = new ObservableCollection<ExpressData>(response.ExpressData);
+                AllCategoriesList = new ObservableCollection<ExpressData2>(response.ExpressData.ExpressData);
                 foreach (var item in AllCategoriesList)
                 {
                     var index = AllCategoriesList.IndexOf(item);
                     AllCategoriesList[index].service_category_name = Common.GetLanguage() != "ar-AE" ? item.title : item.title_arabic;
+                    AllCategoriesList[index].IsEnglishView = Common.GetLanguage() != "ar-AE" ? true : false;
+                    AllCategoriesList[index].picture = Common.IsImagesValid(item.picture, ApiUrl.ServiceImageBaseUrl);
+                    AllCategoriesList[index].icon = Common.IsImagesValid(item.icon, ApiUrl.ServiceImageBaseUrl);
                 }
 
 

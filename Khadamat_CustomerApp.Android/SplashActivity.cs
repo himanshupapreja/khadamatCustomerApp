@@ -13,7 +13,7 @@ using Android.Content.PM;
 
 namespace Khadamat_CustomerApp.Droid
 {
-    [Activity(Theme = "@style/ThemeSplashHKD", MainLauncher = false, NoHistory = true,
+    [Activity(Theme = "@style/ThemeSplashHKD", MainLauncher = false, NoHistory = false,
         Label = "Khadamat_CustomerApp", Icon = "@drawable/logo", 
           ScreenOrientation = ScreenOrientation.Portrait)]
     public class SplashActivity : Activity
@@ -25,11 +25,6 @@ namespace Khadamat_CustomerApp.Droid
             {
                 Finish();
                 var intent = new Intent(Application.Context, typeof(MainActivity));
-                if(Intent.Extras != null)
-                {
-                    intent.PutExtras(Intent.Extras);
-                }
-                intent.SetFlags(ActivityFlags.SingleTop);
                 StartActivity(intent);
                 //new Handler().PostDelayed(() =>
                 //{
