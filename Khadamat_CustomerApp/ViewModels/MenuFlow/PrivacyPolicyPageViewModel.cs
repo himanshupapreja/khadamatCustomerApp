@@ -108,11 +108,6 @@ namespace Khadamat_CustomerApp.ViewModels
                             Application.Current.Properties["PrivacyPolicyData"] = response.PrivacyPolicyData;
                             Application.Current.SavePropertiesAsync();
                             PrivacyPolicyText = htmlToText.Convert(Common.GetLanguage() == "ar-AE" ? response.PrivacyPolicyData.text_arabic : response.PrivacyPolicyData.text);
-                            //var htmltext = new HtmlWebViewSource
-                            //{
-                            //    Html = response.PrivacyPolicyData.text
-                            //};
-                            //PolicyWebViewSource = htmltext;
                             IsNodataFound = false;
                         }
                         else

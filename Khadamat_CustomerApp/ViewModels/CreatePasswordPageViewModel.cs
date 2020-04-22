@@ -175,7 +175,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                     {
                                         user_id = user_id,
                                         password = NewPassword,
-                                        is_approved = ForgotPassword
+                                        is_approved = !ForgotPassword
                                     };
                                     try
                                     {

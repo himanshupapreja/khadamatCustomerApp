@@ -55,8 +55,8 @@ namespace Khadamat_CustomerApp
                 }
                 else
                 {
-                    Application.Current.Properties["AppLocale"] = "en-US";
-                    Setlanguage("en-US");
+                    Application.Current.Properties["AppLocale"] = "ar-AE";
+                    Setlanguage("ar-AE");
                     Application.Current.Properties["IsAppAlreadyInstalled"] = true;
                     Application.Current.SavePropertiesAsync();
                 }
@@ -88,7 +88,7 @@ namespace Khadamat_CustomerApp
 
                 Device.BeginInvokeOnMainThread(async() =>
                 {
-                    await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomeTabbedPage", UriKind.Absolute));
+                    await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
                 });
             }
             else
@@ -199,14 +199,14 @@ namespace Khadamat_CustomerApp
                                     var data = $"{p.Data["aps.alert"]}";
                                     if (data.Contains("You have new message regarding your job request") || data.Contains("لديك رسالة جديدة بخصوص طلب عملك.") || data.Contains("You have new message") || data.Contains("لديك رسالة جديدة"))
                                     {
-                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomeTabbedPage", UriKind.Absolute));
+                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
                                         await NavigationService.NavigateAsync(nameof(ChatListPage));
                                         //App.Current.MainPage = new NavigationPage(new MasterPage());
                                         //App.Current.MainPage.Navigation.PushAsync(new ChatListPage());
                                     }
                                     else if (data.Contains("You have new message from support team") || data.Contains("لديك رسالة جديدة من فريق الدعم"))
                                     {
-                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomeTabbedPage", UriKind.Absolute));
+                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
                                         await NavigationService.NavigateAsync(nameof(SupportPage));
                                     }
                                     else if (data.Contains("Your password has been reset by the admin, In order to continue please contact administrator.") || data.Contains("تمت إعادة تعيين كلمة المرور الخاصة بك من قبل المشرف ، للمتابعة ، يرجى الاتصال بالمسؤول") || data.Contains("Your account has been de-activated by the admin, in order to continue please contact administrator") || data.Contains("تم إلغاء تنشيط حسابك من قبل المشرف ، للمتابعة ، يرجى الاتصال بالمسؤول"))
@@ -223,7 +223,7 @@ namespace Khadamat_CustomerApp
                                     }
                                     else
                                     {
-                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomeTabbedPage", UriKind.Absolute));
+                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
                                         await NavigationService.NavigateAsync(nameof(NotificationPage));
                                         //if (Application.Current.Properties.ContainsKey("AppStatus"))
                                         //{
@@ -252,14 +252,14 @@ namespace Khadamat_CustomerApp
 
                                     if (data.Contains("You have new message regarding your job request") || data.Contains("لديك رسالة جديدة بخصوص طلب عملك.") || data.Contains("You have new message") || data.Contains("لديك رسالة جديدة"))
                                     {
-                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomeTabbedPage", UriKind.Absolute));
+                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
                                         await NavigationService.NavigateAsync(nameof(ChatListPage));
                                         //App.Current.MainPage = new NavigationPage(new MasterPage());
                                         //App.Current.MainPage.Navigation.PushAsync(new ChatListPage());
                                     }
                                     else if (data.Contains("You have new message from support team") || data.Contains("لديك رسالة جديدة من فريق الدعم"))
                                     {
-                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomeTabbedPage", UriKind.Absolute));
+                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
                                         await NavigationService.NavigateAsync(nameof(SupportPage));
                                     }
                                     else if (data.Contains("Your password has been reset by the admin, In order to continue please contact administrator.") || data.Contains("تمت إعادة تعيين كلمة المرور الخاصة بك من قبل المشرف ، للمتابعة ، يرجى الاتصال بالمسؤول") || data.Contains("Your account has been de-activated by the admin, in order to continue please contact administrator") || data.Contains("تم إلغاء تنشيط حسابك من قبل المشرف ، للمتابعة ، يرجى الاتصال بالمسؤول"))
@@ -276,7 +276,7 @@ namespace Khadamat_CustomerApp
                                     }
                                     else
                                     {
-                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomeTabbedPage", UriKind.Absolute));
+                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
                                         await NavigationService.NavigateAsync(nameof(NotificationPage));
                                         //if (Application.Current.Properties.ContainsKey("AppStatus"))
                                         //{

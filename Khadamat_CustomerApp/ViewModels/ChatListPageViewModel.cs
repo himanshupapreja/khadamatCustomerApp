@@ -93,8 +93,8 @@ namespace Khadamat_CustomerApp.ViewModels
             if (!IsChatDetailOpen)
             {
                 IsChatDetailOpen = true;
-                await App.Current.MainPage.Navigation.PushPopupAsync(new LoaderPopup());
-                if (chatSelected.name.StartsWith("Group") || chatSelected.name.StartsWith("Order"))
+                //await App.Current.MainPage.Navigation.PushPopupAsync(new LoaderPopup());
+                if (chatSelected.job_request_id.HasValue && chatSelected.job_request_id.Value > 0)
                 {
                     JobChatModel jobChatModel = new JobChatModel()
                     {
@@ -123,7 +123,7 @@ namespace Khadamat_CustomerApp.ViewModels
                     param.Add("RecieverId", Convert.ToInt32(chatSelected.user_id.Value));
                     await NavigationService.NavigateAsync(nameof(SupportPage), param);
                 }
-                LoaderPopup.CloseAllPopup();
+                //LoaderPopup.CloseAllPopup();
                 IsChatDetailOpen = false;
             }
         }
@@ -289,7 +289,7 @@ namespace Khadamat_CustomerApp.ViewModels
                             Application.Current.Properties["ChatListData"] = JsonConvert.SerializeObject(response.data);
                             Application.Current.SavePropertiesAsync();
                             AllChatList.Clear();
-                            var chatData = response.data.Where(x => x.user_type != Convert.ToInt32(Enums.UserTypeEnum.Admin)).ToList();
+                            var chatData = response.data.Where(x => x.user_type != Convert.ToInt32(Enums.UserTypeEnum.Admin)).OrderByDescending(x=>x.created_date).ToList();
                             foreach (var item in chatData)
                             {
                                 item.display_created_date = Common.GetLanguage() != "ar-AE" ? item.created_date_str : item.created_date_str_arabic;

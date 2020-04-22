@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -242,5 +243,20 @@ namespace Khadamat_CustomerApp.Models
         public long job_id { get; set; }
         public string job_Name { get; set; }
         public int? job_Status { get; set; }
+    }
+
+
+    public class GroupChatDBModel
+    {
+        public int ID { get; set; }
+        public long GroupJobId { get; set; }
+        public ObservableCollection<ChatDetailListModel> UserMessagesList { get; set; }
+    }
+    public class SingleChatDBModel
+    {
+        public int ID { get; set; }
+        public string SingleMessageName { get; set; }
+        public int RecieverId { get; set; }
+        public ObservableCollection<SingleChatListModel> UserMessagesList { get; set; }
     }
 }

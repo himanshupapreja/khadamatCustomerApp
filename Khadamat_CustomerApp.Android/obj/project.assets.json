@@ -1791,6 +1791,24 @@
           "build/MonoAndroid80/Xamarin.Firebase.Common.targets": {}
         }
       },
+      "Xamarin.Firebase.Crash/60.1142.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Firebase.Analytics": "[60.1142.1]",
+          "Xamarin.Firebase.Common": "[60.1142.1]",
+          "Xamarin.Firebase.Iid": "[60.1142.1]",
+          "Xamarin.GooglePlayServices.Basement": "[60.1142.1]"
+        },
+        "compile": {
+          "lib/MonoAndroid80/Xamarin.Firebase.Crash.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid80/Xamarin.Firebase.Crash.dll": {}
+        },
+        "build": {
+          "build/MonoAndroid80/Xamarin.Firebase.Crash.targets": {}
+        }
+      },
       "Xamarin.Firebase.Database/60.1142.1": {
         "type": "package",
         "dependencies": {
@@ -6542,6 +6560,19 @@
         "xamarin.firebase.common.nuspec"
       ]
     },
+    "Xamarin.Firebase.Crash/60.1142.1": {
+      "sha512": "DTzDn3nikIkWzE6hXm5D9rcO/PUqX5EODCeSMW1VeKU6hbcMYM5KcG2kWgUbSNy0CYU2v/y0KJkkgXeCkmhCCw==",
+      "type": "package",
+      "path": "xamarin.firebase.crash/60.1142.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/MonoAndroid80/Xamarin.Firebase.Crash.targets",
+        "lib/MonoAndroid80/Xamarin.Firebase.Crash.dll",
+        "xamarin.firebase.crash.60.1142.1.nupkg.sha512",
+        "xamarin.firebase.crash.nuspec"
+      ]
+    },
     "Xamarin.Firebase.Database/60.1142.1": {
       "sha512": "hpUY4xQoz+/yMQHFKIvYMi9ApAizCE7U+gP9ZcmAjj0ps1yFH9RE/6nzMxReZzdCb6Yux8J8OcC5Rc7fI5dvRg==",
       "type": "package",
@@ -7074,6 +7105,7 @@
       "Xamarin.FFImageLoading.Svg.Forms >= 2.4.11.982",
       "Xamarin.Firebase.Analytics >= 60.1142.1",
       "Xamarin.Firebase.Common >= 60.1142.1",
+      "Xamarin.Firebase.Crash >= 60.1142.1",
       "Xamarin.Firebase.Database >= 60.1142.1",
       "Xamarin.Firebase.Dynamic.Links >= 60.1142.1",
       "Xamarin.Firebase.Iid >= 60.1142.1",
@@ -7114,7 +7146,8 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://nuget.syncfusion.com/nuget_xamarin/nuget/getsyncfusionpackages/xamarin": {}
       },
       "frameworks": {
         "monoandroid90": {
@@ -7210,6 +7243,10 @@
             "version": "[60.1142.1, )"
           },
           "Xamarin.Firebase.Common": {
+            "target": "Package",
+            "version": "[60.1142.1, )"
+          },
+          "Xamarin.Firebase.Crash": {
             "target": "Package",
             "version": "[60.1142.1, )"
           },

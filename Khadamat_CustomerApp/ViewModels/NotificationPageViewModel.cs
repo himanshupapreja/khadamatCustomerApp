@@ -114,7 +114,7 @@ namespace Khadamat_CustomerApp.ViewModels
                             {
                                 item.display_text = Common.GetLanguage() != "ar-AE" ? item.text : item.arabic_text;
                                 item.display_created_date = Common.GetLanguage() != "ar-AE" ? item.created_date_str : item.created_date_str_arabic;
-                                item.UserPic = item.notification_status != Convert.ToInt32(NotificationStatus.AcceptedQuotation) && item.notification_status != Convert.ToInt32(NotificationStatus.RejectedQuotation) ? Common.IsImagesValid(item.from_user_image, ApiUrl.BaseUrl) : Common.IsImagesValid(item.to_user_name, ApiUrl.BaseUrl);
+                                item.UserPic = item.notification_status != Convert.ToInt32(NotificationStatus.AcceptedQuotation) && item.notification_status != Convert.ToInt32(NotificationStatus.RejectedQuotation) ? Common.IsImagesValid(item.from_user_image, ApiUrl.BaseUrl) : Common.IsImagesValid(item.to_user_image, ApiUrl.BaseUrl);
                                 item.IsQuoteSent = item.notification_status == Convert.ToInt32(NotificationStatus.SentQuotation) ? true : false;
                                 item.IsViewDetail = item.job_request_id.HasValue && item.job_request_id.Value > 0 ? true : false;
                                 item.ViewNotificationBtn = !string.IsNullOrEmpty(item.pdf_file) && !string.IsNullOrWhiteSpace(item.pdf_file) ? AppResource.notification_ViewInvoice : AppResource.notification_ViewDetail;
@@ -299,10 +299,17 @@ namespace Khadamat_CustomerApp.ViewModels
         {
             get
             {
-                return new Command((e) =>
+                return new Command(async(e) =>
                 {
-                    var item = (NotificationsModel)e;
-                    AcceptrejectQuote(true, item);
+                    if (Common.CheckConnection())
+                    {
+                        var item = (NotificationsModel)e;
+                        AcceptrejectQuote(true, item);
+                    }
+                    else
+                    {
+                        await MaterialDialog.Instance.SnackbarAsync(AppResource.error_InternetError, msDuration: 3000);
+                    }
                 });
             }
         }

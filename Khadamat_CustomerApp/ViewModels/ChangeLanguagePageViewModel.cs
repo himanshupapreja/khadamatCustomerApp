@@ -73,7 +73,7 @@ namespace Khadamat_CustomerApp.ViewModels
                             UpdateLanguageServer(request);
                         });
 
-                        NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomeTabbedPage", UriKind.Absolute));
+                        NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
                         Application.Current.Properties["IsAppAlreadyInstalled"] = true;
                         Application.Current.SavePropertiesAsync();
                     }

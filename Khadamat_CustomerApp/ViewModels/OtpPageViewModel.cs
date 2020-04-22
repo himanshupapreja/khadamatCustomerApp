@@ -416,7 +416,7 @@ namespace Khadamat_CustomerApp.ViewModels
                 {
                     try
                     {
-                        var result = await App.Current.MainPage.DisplayActionSheet("Call Support Team",null,null,PhoneNumber_One, PhoneNumber_Two, PhoneNumber_Three);
+                        var result = await App.Current.MainPage.DisplayActionSheet(AppResource.otp_SupportCall, null,null,PhoneNumber_One, PhoneNumber_Two, PhoneNumber_Three);
                         PhoneDialer.Open(result);
                     }
                     catch (Exception)
@@ -481,6 +481,15 @@ namespace Khadamat_CustomerApp.ViewModels
                     PhoneNumber_One = data.phone_number_one;
                     PhoneNumber_Two = data.phone_number_two;
                     PhoneNumber_Three = data.phone_number_three;
+
+
+                    Device.BeginInvokeOnMainThread(async() =>
+                    {
+                        if (data.userData.otp.Value <=0)
+                        {
+                            await App.Current.MainPage.DisplayAlert("", data.message, "Ok"); 
+                        }
+                    });
                 }
             }
             else
@@ -496,10 +505,18 @@ namespace Khadamat_CustomerApp.ViewModels
 
                 if (parameters.ContainsKey("ProfileData"))
                 {
-                    var data = (VerifyResendOtpResponseModel)parameters["ProfileData"];
+                    var data = (EditPhoneResponseModel)parameters["ProfileData"];
                     PhoneNumber_One = data.phone_number_one;
                     PhoneNumber_Two = data.phone_number_two;
                     PhoneNumber_Three = data.phone_number_three;
+
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        if (data.otpCode.otp <= 0)
+                        {
+                            await App.Current.MainPage.DisplayAlert("", data.message, "Ok");
+                        }
+                    });
                 }
             }
             else

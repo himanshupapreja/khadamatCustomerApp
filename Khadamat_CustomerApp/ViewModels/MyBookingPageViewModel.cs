@@ -342,7 +342,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                     item.job_time = item.job_date_time.HasValue ? item.job_date_time.Value.ToString("HH:mm") : null;
                                     item.WorkerImage = !string.IsNullOrEmpty(item.service_provider_name) && !string.IsNullOrWhiteSpace(item.service_provider_name) ? Common.IsImagesValid(item.service_provider_image, ApiUrl.BaseUrl) : item.status == Convert.ToInt32(JobRequestEnum.Canceled) ? Common.IsImagesValid(item.coordinator_image_one, ApiUrl.BaseUrl) : Common.IsImagesValid(item.coordinator_image, ApiUrl.BaseUrl);
                                     item.WorkerName = !string.IsNullOrEmpty(item.service_provider_name) && !string.IsNullOrWhiteSpace(item.service_provider_name) ? item.service_provider_name : item.status == Convert.ToInt32(JobRequestEnum.Canceled) ? item.coordinator_name_one : item.coordinator_name;
-                                    item.WorkerServiceName = !string.IsNullOrEmpty(item.service_provider_name) && !string.IsNullOrWhiteSpace(item.service_provider_name) ? item.category_name : AppResource.mybooking_Coordinator;
+                                    item.WorkerServiceName = !string.IsNullOrEmpty(item.service_provider_name) && !string.IsNullOrWhiteSpace(item.service_provider_name) ? item.category_name : string.Empty;
                                     item.IsRatingVisible = !string.IsNullOrEmpty(item.service_provider_name) && !string.IsNullOrWhiteSpace(item.service_provider_name) ? true : false;
                                     item.WorkerReviewText = item.user_rating.HasValue && item.user_rating.Value > 0.0 ? AppResource.mybooking_CheckReview : AppResource.mybooking_GiveReview;
                                     AllBookingList.Add(item);

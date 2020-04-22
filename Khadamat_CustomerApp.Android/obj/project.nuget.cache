@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "0zS8xQ/do/DRGO0C68TpwHF6ZebHyICk6fefI6AWcxcJXoYkLZ/CaumUk4WstJTEq/sB7bFK3vYZUe/2Z0MZjg==",
+  "dgSpecHash": "cMfwpGs3DgMJxQ68aEB+qLgHaVLQ9CNOvAXwjsBNrsU7X86AafwPmPO5Kh1hYrciPJ3kVXa9jiRrxF3pVe5N2g==",
   "success": true,
   "projectFilePath": "E:\\Git\\hunny\\khadamatCustomerApp\\Khadamat_CustomerApp.Android\\Khadamat_CustomerApp.Android.csproj",
   "expectedPackageFiles": [
@@ -124,6 +124,7 @@
     "C:\\Users\\papre\\.nuget\\packages\\xamarin.firebase.analytics\\60.1142.1\\xamarin.firebase.analytics.60.1142.1.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xamarin.firebase.analytics.impl\\60.1142.1\\xamarin.firebase.analytics.impl.60.1142.1.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xamarin.firebase.common\\60.1142.1\\xamarin.firebase.common.60.1142.1.nupkg.sha512",
+    "C:\\Users\\papre\\.nuget\\packages\\xamarin.firebase.crash\\60.1142.1\\xamarin.firebase.crash.60.1142.1.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xamarin.firebase.database\\60.1142.1\\xamarin.firebase.database.60.1142.1.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xamarin.firebase.database.connection\\60.1142.1\\xamarin.firebase.database.connection.60.1142.1.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xamarin.firebase.dynamic.links\\60.1142.1\\xamarin.firebase.dynamic.links.60.1142.1.nupkg.sha512",

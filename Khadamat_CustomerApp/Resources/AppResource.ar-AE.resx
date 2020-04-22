@@ -139,7 +139,7 @@
     <value>اكتب رسالة</value>
   </data>
   <data name="chatDisable" xml:space="preserve">
-    <value>إرسال أو استقبال الرسائل لن يعمل على طلبات العمل المكتملة.</value>
+    <value>لن يعمل إرسال أو استقبال الرسائل على طلبات العمل المكتملة / الملغاة.</value>
     <comment>ChatListpage</comment>
   </data>
   <data name="chat_HeaderTitle" xml:space="preserve">
@@ -248,16 +248,13 @@
     <value>حذف المحادثة</value>
   </data>
   <data name="DeleteChatConfirm" xml:space="preserve">
-    <value>هل أنت متأكد أنك تريد حذف المحادثة؟</value>
+    <value>هل تريد حذف هذه المحادثة؟</value>
   </data>
-  <data name="downloadFile_Error" xml:space="preserve">
-    <value>Error while saving the file</value>
+  <data name="DeleteGroup" xml:space="preserve">
+    <value>حذف المجموعة</value>
   </data>
-  <data name="downloadFile_Success" xml:space="preserve">
-    <value>File Saved Successfully in khadamat_download folder</value>
-  </data>
-  <data name="downloadFile_Title" xml:space="preserve">
-    <value>Khadamat Downloader</value>
+  <data name="DeleteGroupConfirm" xml:space="preserve">
+    <value>هل تريد حذف هذه المحادثة؟</value>
   </data>
   <data name="editprofile_EditProfileSaveBtn" xml:space="preserve">
     <value>حفظ</value>
@@ -547,6 +544,9 @@
   <data name="months" xml:space="preserve">
     <value>أشهر</value>
   </data>
+  <data name="msg_attachmentError" xml:space="preserve">
+    <value>Attachment size must be less than 1 MB.</value>
+  </data>
   <data name="msg_Today" xml:space="preserve">
     <value>اليوم</value>
   </data>
@@ -622,6 +622,10 @@
   <data name="notification_ViewDetail" xml:space="preserve">
     <value>عرض التفاصيل</value>
   </data>
+  <data name="notification_ViewInvoice" xml:space="preserve">
+    <value>عرض الفاتورة</value>
+    <comment>NotificationPage</comment>
+  </data>
   <data name="Ok" xml:space="preserve">
     <value>موافق</value>
   </data>
@@ -636,6 +640,9 @@
   </data>
   <data name="otp_Resend" xml:space="preserve">
     <value>إعادة إرسال الشفرة</value>
+  </data>
+  <data name="otp_SupportCall" xml:space="preserve">
+    <value>اتصل بفريق الدعم</value>
   </data>
   <data name="otp_VerificationCodeMsg" xml:space="preserve">
     <value>لقد تم إرسال شفرة التحقق إلى هاتفك المحمول</value>

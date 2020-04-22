@@ -126,7 +126,7 @@ namespace Khadamat_CustomerApp.ViewModels
                 return new Command(() =>
                 {
                     //MessagingCenter.Send("HomePage", "MenuCloseIconClick");
-                    NavigationService.NavigateAsync(new Uri("/NavigationPage/HomeTabbedPage", UriKind.Relative));
+                    NavigationService.NavigateAsync(new Uri("/NavigationPage/HomePage", UriKind.Relative));
                 });
             }
         }

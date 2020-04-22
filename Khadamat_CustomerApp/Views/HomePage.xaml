@@ -16,7 +16,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto"/>
+            <!--<RowDefinition Height="50"/>-->
         </Grid.RowDefinitions>
         <!--Header Bar-->
         <commonheader:CustomMenuHeader HorizontalOptions="FillAndExpand" MenuIconImage="{Binding MenuIcon}" TitleText="{strings:Translate home_PageTitle}" RightIconImage="{Binding NotificationIcon}" Right1IconImage="{Binding ChatIcon}"/>
@@ -75,7 +76,7 @@
             </ScrollView>
         </RefreshView>
 
-        <Grid Grid.Row="2" ColumnSpacing="0">
+        <!--<Grid Grid.Row="2" ColumnSpacing="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -90,7 +91,7 @@
                     <TapGestureRecognizer Tapped="ExpressTab_Tapped" NumberOfTapsRequired="1"/>
                 </BoxView.GestureRecognizers>
             </BoxView>
-        </Grid>
+        </Grid>-->
         <BoxView Grid.RowSpan="3" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Black1Color}" Opacity="0.8" VerticalOptions="FillAndExpand" IsVisible="{Binding IsLoaderBusy}"/>
         <ActivityIndicator Grid.RowSpan="3" IsVisible="{Binding IsLoaderBusy}" IsRunning="{Binding IsLoaderBusy}" Color="{StaticResource BlueColor}" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"/>
     </Grid>

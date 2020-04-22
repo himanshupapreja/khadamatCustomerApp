@@ -797,7 +797,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                                     UpdateLanguageServer(request);
                                                 });
                                                 //App.Current.MainPage = new NavigationPage(new MasterPage());
-                                                await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomeTabbedPage", UriKind.Absolute));
+                                                await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
                                                 #region Resend_Otp_Api_Call
                                                 //if (response.userData.email_verified.HasValue && response.userData.email_verified.Value)
                                                 //{

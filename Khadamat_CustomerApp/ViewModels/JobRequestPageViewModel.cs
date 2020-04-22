@@ -393,6 +393,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                             category_id = SelectedSubSubService.category_id,
                                             description = ServiceDescriptionValue,
                                             job_date_time = JobDateTime,
+                                            job_date_time_str = JobDateTime.ToString("dd-MM-yyyy, hh:mm tt"),
                                             sub_sub_category_id = SelectedSubSubService.sub_sub_category_id,
                                             user_id = (int)user_id,
                                             venue = VenueName,

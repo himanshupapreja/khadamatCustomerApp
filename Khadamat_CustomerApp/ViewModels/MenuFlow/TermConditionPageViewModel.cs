@@ -85,7 +85,10 @@ namespace Khadamat_CustomerApp.ViewModels
         {
             try
             {
-                IsLoaderBusy = true;
+                if (!Application.Current.Properties.ContainsKey("TermsConditionsData"))
+                {
+                    IsLoaderBusy = true;
+                }
                 if (Common.CheckConnection())
                 {
                     TermConditionResponseModel response;
@@ -103,15 +106,26 @@ namespace Khadamat_CustomerApp.ViewModels
                     {
                         if (response.status)
                         {
-                            Application.Current.Properties["TermsConditionsData"] = response.TermsConditionsData;
-                            Application.Current.SavePropertiesAsync();
-                          
-                            //var htmltext = new HtmlWebViewSource
-                            //{
-                            //    Html = response.TermsConditionsData.text
-                            //};
-                            //TermWebViewSource = htmltext;
-                            IsNodataFound = false;
+                            if (Application.Current.Properties.ContainsKey("TermsConditionsData"))
+                            {
+                                var termConditionData = (TermsConditionsData)Application.Current.Properties["TermsConditionsData"];
+                                if(response.TermsConditionsData != termConditionData)
+                                {
+                                    Application.Current.Properties["TermsConditionsData"] = response.TermsConditionsData;
+                                    Application.Current.SavePropertiesAsync();
+
+                                    TermConditionText = htmlToText.Convert(Common.GetLanguage() == "ar-AE" ? response.TermsConditionsData.text_arabic : response.TermsConditionsData.text);
+                                    IsNodataFound = false;
+                                }
+                            }
+                            else
+                            {
+                                Application.Current.Properties["TermsConditionsData"] = response.TermsConditionsData;
+                                Application.Current.SavePropertiesAsync();
+
+                                TermConditionText = htmlToText.Convert(Common.GetLanguage() == "ar-AE" ? response.TermsConditionsData.text_arabic : response.TermsConditionsData.text);
+                                IsNodataFound = false;
+                            }
                         }
                         else
                         {
@@ -185,6 +199,12 @@ namespace Khadamat_CustomerApp.ViewModels
             }
             else
             {
+                if (Application.Current.Properties.ContainsKey("TermsConditionsData"))
+                {
+                    var termConditionData = (TermsConditionsData)Application.Current.Properties["TermsConditionsData"];
+                    TermConditionText = htmlToText.Convert(Common.GetLanguage() == "ar-AE" ? termConditionData.text_arabic : termConditionData.text);
+                    IsNodataFound = false;
+                }
                 TermConditionApi();
             }
         } 

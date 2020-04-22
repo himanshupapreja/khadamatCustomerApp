@@ -10,7 +10,6 @@ using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Khadamat_CustomerApp.Helpers
@@ -172,7 +171,7 @@ namespace Khadamat_CustomerApp.Helpers
             //}
         }
 
-        public static string IsImagesValid(string input, string apiImageBaseUrl=ApiUrl.BaseUrl)
+        public static string IsImagesValid(string input, string apiImageBaseUrl = ApiUrl.BaseUrl)
         {
             if (!string.IsNullOrEmpty(input) && !string.IsNullOrWhiteSpace(input))
             {
@@ -306,6 +305,11 @@ namespace Khadamat_CustomerApp.Helpers
             {
                 return "ar-AE";
             }
+        }
+
+        public static double ConvertBytesToMegabytes(long bytes)
+        {
+            return (bytes / 1024f) / 1024f;
         }
     }
 }

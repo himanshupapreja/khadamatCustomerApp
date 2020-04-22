@@ -2,6 +2,8 @@
 using Khadamat_CustomerApp.Helpers;
 using Khadamat_CustomerApp.Models;
 using Khadamat_CustomerApp.Resources;
+using Khadamat_CustomerApp.Services.DBService.LiteDB.ModelDB;
+using LiteDB;
 using Plugin.FilePicker;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
@@ -23,6 +25,9 @@ namespace Khadamat_CustomerApp.ViewModels
 {
     public class ChatDetailPageViewModel : BaseViewModel, INavigationAware
     {
+
+        public GroupChatMessagesDbService groupChatMessagesDbService;
+
         public static bool IsBackPress;
         private readonly INavigationService NavigationService;
         public JobChatModel JobData;
@@ -133,10 +138,14 @@ namespace Khadamat_CustomerApp.ViewModels
         public ChatDetailPageViewModel(INavigationService navigationService)
         {
             NavigationService = navigationService;
+
+            groupChatMessagesDbService = new GroupChatMessagesDbService();
             downloader = DependencyService.Get<IDownloader>();
             downloader.OnFileDownloaded += Downloader_OnFileDownloaded;
             IsPopupVisible = false;
             IsBackPress = true;
+
+            
         }
 
         private void Downloader_OnFileDownloaded(object sender, DownloadEventArgs e)
@@ -165,12 +174,44 @@ namespace Khadamat_CustomerApp.ViewModels
                 chatlistdetail = new List<ChatDetailListModel>();
                 //await MaterialDialog.Instance.SnackbarAsync(AppResource.error_ServerError, 3000);
             }
-            AllChatDetailList = new ObservableCollection<ChatDetailListModel>(chatlistdetail);
-            ChatDetailList = AllChatDetailList;
-            COUNT = ChatDetailList.Count;
-            MessagingCenter.Send("", "ScrollToEnd");
-            MessagingCenter.Unsubscribe<string, int>(this, "ChatDetailTitle");
 
+            if (AllChatDetailList != null && AllChatDetailList.Count == chatlistdetail.Count)
+            {
+
+            }
+            else
+            {
+                AllChatDetailList = new ObservableCollection<ChatDetailListModel>(chatlistdetail);
+                ChatDetailList = AllChatDetailList;
+                COUNT = ChatDetailList.Count;
+                MessagingCenter.Send("", "ScrollToEnd");
+                MessagingCenter.Unsubscribe<string, int>(this, "ChatDetailTitle");
+
+
+                var msgItem = new GroupChatDBModel()
+                {
+                    GroupJobId = JobData.job_id,
+                    UserMessagesList = ChatDetailList
+                };
+                if (groupChatMessagesDbService.IsGroupChatPresentInDB())
+                {
+                    var newmsgItem = groupChatMessagesDbService.ReadAllItems().Where(x => x.GroupJobId == JobData.job_id).ToList();
+                    if (newmsgItem != null && newmsgItem.Count > 0)
+                    {
+                        var msgID = newmsgItem.FirstOrDefault().ID;
+                        BsonValue bsonid = msgID;
+                        groupChatMessagesDbService.UpdateGroupChatDataInDb(bsonid, msgItem);
+                    }
+                    else
+                    {
+                        groupChatMessagesDbService.CreateGroupChatDataInDB(msgItem);
+                    }
+                }
+                else
+                {
+                    groupChatMessagesDbService.CreateGroupChatDataInDB(msgItem);
+                }
+            }
             if (ChatDetailList != null && ChatDetailList.Count > 0)
             {
                 ToolbarIcon = "resource://Khadamat_CustomerApp.SvgImages.toolbar.svg";
@@ -216,6 +257,31 @@ namespace Khadamat_CustomerApp.ViewModels
                     ChatDetailList = AllChatDetailList;
                     COUNT = ChatDetailList.Count;
                     MessagingCenter.Send("", "ScrollToEnd");
+
+
+                    var msgItem = new GroupChatDBModel()
+                    {
+                        GroupJobId = JobData.job_id,
+                        UserMessagesList = ChatDetailList
+                    };
+                    if (groupChatMessagesDbService.IsGroupChatPresentInDB())
+                    {
+                        var newmsgItem = groupChatMessagesDbService.ReadAllItems().Where(x => x.GroupJobId == JobData.job_id).ToList();
+                        if (newmsgItem != newmsgItem)
+                        {
+                            var msgID = newmsgItem.FirstOrDefault().ID;
+                            BsonValue bsonid = msgID;
+                            groupChatMessagesDbService.UpdateGroupChatDataInDb(bsonid, msgItem);
+                        }
+                        else
+                        {
+                            groupChatMessagesDbService.CreateGroupChatDataInDB(msgItem);
+                        }
+                    }
+                    else
+                    {
+                        groupChatMessagesDbService.CreateGroupChatDataInDB(msgItem);
+                    }
                 }
 
                 if (ChatDetailList != null && ChatDetailList.Count > 0)
@@ -299,6 +365,32 @@ namespace Khadamat_CustomerApp.ViewModels
                             await MaterialDialog.Instance.SnackbarAsync(message: response.message,
                                         msDuration: 3000);
                         }
+
+
+                        var msgItem = new GroupChatDBModel()
+                        {
+                            GroupJobId = JobData.job_id,
+                            UserMessagesList = ChatDetailList
+                        };
+                        if (groupChatMessagesDbService.IsGroupChatPresentInDB())
+                        {
+                            var newmsgItem = groupChatMessagesDbService.ReadAllItems().Where(x => x.GroupJobId == JobData.job_id).ToList();
+                            if (newmsgItem != null && newmsgItem.Count > 0)
+                            {
+                                var msgID = newmsgItem.FirstOrDefault().ID;
+                                msgItem.ID = msgID;
+                                BsonValue bsonid = msgID;
+                                groupChatMessagesDbService.UpdateGroupChatDataInDb(bsonid, msgItem);
+                            }
+                            else
+                            {
+                                groupChatMessagesDbService.CreateGroupChatDataInDB(msgItem);
+                            }
+                        }
+                        else
+                        {
+                            groupChatMessagesDbService.CreateGroupChatDataInDB(msgItem);
+                        }
                     }
 
                     IsBackPress = true;
@@ -312,8 +404,8 @@ namespace Khadamat_CustomerApp.ViewModels
             }
             catch (Exception ex)
             {
-                await MaterialDialog.Instance.SnackbarAsync(message: ex.Message,
-                                            msDuration: 3000);
+                //await MaterialDialog.Instance.SnackbarAsync(message: ex.Message,
+                //                            msDuration: 3000);
                 IsBackPress = true;
                 Console.WriteLine("SendMsgCommand_Exception:- " + ex.Message);
             }
@@ -386,6 +478,8 @@ namespace Khadamat_CustomerApp.ViewModels
                             MessagingCenter.Send("", "ScrollToEnd");
                             MessageEntry = string.Empty;
                             var data = await FirebaseChatHelper.AddChatMessageForGroup(item, "GroupChat");
+
+
                         }
                         else if (response.message == null)
                         {
@@ -407,6 +501,31 @@ namespace Khadamat_CustomerApp.ViewModels
                             await MaterialDialog.Instance.SnackbarAsync(message: response.message,
                                         msDuration: 3000);
                         }
+
+                        var msgItem = new GroupChatDBModel()
+                        {
+                            GroupJobId = JobData.job_id,
+                            UserMessagesList = ChatDetailList
+                        };
+                        if (groupChatMessagesDbService.IsGroupChatPresentInDB())
+                        {
+                            var newmsgItem = groupChatMessagesDbService.ReadAllItems().Where(x => x.GroupJobId == JobData.job_id).ToList();
+                            if (newmsgItem != null && newmsgItem.Count > 0)
+                            {
+                                var msgID = newmsgItem.FirstOrDefault().ID;
+                                msgItem.ID = msgID;
+                                BsonValue bsonid = msgID;
+                                groupChatMessagesDbService.UpdateGroupChatDataInDb(bsonid, msgItem);
+                            }
+                            else
+                            {
+                                groupChatMessagesDbService.CreateGroupChatDataInDB(msgItem);
+                            }
+                        }
+                        else
+                        {
+                            groupChatMessagesDbService.CreateGroupChatDataInDB(msgItem);
+                        }
                     }
                 }
                 else
@@ -418,8 +537,8 @@ namespace Khadamat_CustomerApp.ViewModels
             }
             catch (Exception ex)
             {
-                await MaterialDialog.Instance.SnackbarAsync(message: ex.Message,
-                                            msDuration: 3000);
+                //await MaterialDialog.Instance.SnackbarAsync(message: ex.Message,
+                //                            msDuration: 3000);
                 Console.WriteLine("SendMsgCommand_Exception:- " + ex.Message);
             }
         }
@@ -567,52 +686,60 @@ namespace Khadamat_CustomerApp.ViewModels
                         }
                         if (file != null)
                         {
-
-                            var item = new ChatDetailListModel()
+                            var fileinfo = new FileInfo(file.Path);
+                            var fileLength = Common.ConvertBytesToMegabytes(fileinfo.Length);
+                            if (fileLength < 1.2)
                             {
-                                sender_user_id = user_id,
-                                job_id = JobData.job_id,
-                                coordinator_id = JobData.coordinator_id,
-                                worker_id = JobData.worker_id,
-                                customer_id = null,
-                                sender_user_Name = user_name,
-                                coordinator_Name = !string.IsNullOrEmpty(JobData.coordinator_Name) ? AppResource.coordinator_Name : JobData.coordinator_Name,
-                                job_Name = ChatDetailTitle,
-                                receiver_user_Name = null,
-                                worker_Name = JobData.worker_Name,
-                                customer_Name = null,
-                                image_url = null,
-                                file_url = null,
-                                is_loading = true,
-                                IsViewBtnVisible = false,
-                                is_file = false,
-                                is_image = true,
-                                is_message = false,
-                                user_message = string.Empty,
-                                user_message_time = DateTime.Now.ToString("dd/MM/yyyy, hh:mm:ss tt"),
-                                is_sender = true,
-                                msg_datetime = DateTime.Now,
-                                time_stamp = DependencyService.Get<IGetTimeStamp>().TimeStamp()
-                            };
-                            IsBackPress = false;
-                            try
-                            {
-                                AllChatDetailList.Add(item);
+                                var item = new ChatDetailListModel()
+                                {
+                                    sender_user_id = user_id,
+                                    job_id = JobData.job_id,
+                                    coordinator_id = JobData.coordinator_id,
+                                    worker_id = JobData.worker_id,
+                                    customer_id = null,
+                                    sender_user_Name = user_name,
+                                    coordinator_Name = !string.IsNullOrEmpty(JobData.coordinator_Name) ? AppResource.coordinator_Name : JobData.coordinator_Name,
+                                    job_Name = ChatDetailTitle,
+                                    receiver_user_Name = null,
+                                    worker_Name = JobData.worker_Name,
+                                    customer_Name = null,
+                                    image_url = null,
+                                    file_url = null,
+                                    is_loading = true,
+                                    IsViewBtnVisible = false,
+                                    is_file = false,
+                                    is_image = true,
+                                    is_message = false,
+                                    user_message = string.Empty,
+                                    user_message_time = DateTime.Now.ToString("dd/MM/yyyy, hh:mm:ss tt"),
+                                    is_sender = true,
+                                    msg_datetime = DateTime.Now,
+                                    time_stamp = DependencyService.Get<IGetTimeStamp>().TimeStamp()
+                                };
+                                IsBackPress = false;
+                                try
+                                {
+                                    AllChatDetailList.Add(item);
+                                }
+                                catch (Exception ex)
+                                {
+                                }
+                                ChatDetailList = AllChatDetailList;
+                                var returnUrl = await FirebaseChatHelper.StoreImages(file.GetStream(), Path.GetFileName(file.Path));
+                                var index = ChatDetailList.IndexOf(ChatDetailList.LastOrDefault());
+                                ChatDetailList[index].is_loading = false;
+                                ChatDetailList[index].IsViewBtnVisible = true;
+                                ChatDetailList[index].image_url = returnUrl;
+                                if (ChatDetailList.Count > COUNT)
+                                {
+                                    COUNT = ChatDetailList.Count;
+                                    AddMessageFirebase(ChatDetailList[index]);
+                                }
                             }
-                            catch (Exception ex)
+                            else
                             {
+                                await MaterialDialog.Instance.SnackbarAsync(AppResource.msg_attachmentError, 3000);
                             }
-                            ChatDetailList = AllChatDetailList;
-                            var returnUrl = await FirebaseChatHelper.StoreImages(file.GetStream(), Path.GetFileName(file.Path));
-                            var index = ChatDetailList.IndexOf(ChatDetailList.LastOrDefault());
-                            ChatDetailList[index].is_loading = false;
-                            ChatDetailList[index].IsViewBtnVisible = true;
-                            ChatDetailList[index].image_url = returnUrl;
-                            if (ChatDetailList.Count > COUNT)
-                            {
-                                COUNT = ChatDetailList.Count;
-                                AddMessageFirebase(ChatDetailList[index]);
-                            } 
                         }
                     }
                     catch (Exception ex)
@@ -715,70 +842,86 @@ namespace Khadamat_CustomerApp.ViewModels
                     var data = await CrossFilePicker.Current.PickFile();
                     if (data != null)
                     {
-                        FileuploadModel.DataArray = data.DataArray;
-                        FileuploadModel.FileName = data.FileName;
-                        
-
-                        if (Common.FileExtensionCheck(FileuploadModel.FileName, extenstionList))
+                        var fileinfo = new FileInfo(data.FilePath);
+                        double fileLength;
+                        try
                         {
-                            var item = new ChatDetailListModel()
+                            fileLength = Common.ConvertBytesToMegabytes(fileinfo.Length);
+                        }
+                        catch (Exception ex)
+                        {
+                            fileLength = 0;
+                        }
+                        if (fileLength < 1.2)
+                        {
+                            FileuploadModel.DataArray = data.DataArray;
+                            FileuploadModel.FileName = data.FileName;
+
+
+                            if (Common.FileExtensionCheck(FileuploadModel.FileName, extenstionList))
                             {
-                                sender_user_id = user_id,
-                                job_id = JobData.job_id,
-                                coordinator_id = JobData.coordinator_id,
-                                worker_id = JobData.worker_id,
-                                customer_id = null,
-                                sender_user_Name = user_name,
-                                coordinator_Name = !string.IsNullOrEmpty(JobData.coordinator_Name) ? AppResource.coordinator_Name : JobData.coordinator_Name,
-                                job_Name = ChatDetailTitle,
-                                receiver_user_Name = null,
-                                worker_Name = JobData.worker_Name,
-                                customer_Name = null,
-                                image_url = null,
-                                file_url = null,
-                                is_loading = true,
-                                is_file = true,
-                                is_image = false,
-                                IsViewBtnVisible = false,
-                                is_message = false,
-                                file_name = FileuploadModel.FileName,
-                                user_message = string.Empty,
-                                user_message_time = DateTime.Now.ToString("dd/MM/yyyy, hh:mm:ss tt"),
-                                is_sender = true,
-                                msg_datetime = DateTime.Now,
-                                time_stamp = DependencyService.Get<IGetTimeStamp>().TimeStamp()
-                            };
-                            IsBackPress = false;
-                            try
-                            {
-                                AllChatDetailList.Add(item);
-                            }
-                            catch (Exception ex)
-                            {
-                            }
-                            ChatDetailList = AllChatDetailList;
-                            var returnUrl = await FirebaseChatHelper.StoreImages(new MemoryStream(FileuploadModel.DataArray), Path.GetFileName(FileuploadModel.FileName));
-                            var index = ChatDetailList.IndexOf(ChatDetailList.LastOrDefault());
-                            ChatDetailList[index].is_loading = false;
-                            ChatDetailList[index].IsViewBtnVisible = true;
-                            ChatDetailList[index].file_url = returnUrl;
-                            if (ChatDetailList.Count > COUNT)
-                            {
-                                if (string.IsNullOrEmpty(returnUrl) || string.IsNullOrWhiteSpace(returnUrl))
+                                var item = new ChatDetailListModel()
                                 {
-                                    await App.Current.MainPage.DisplayAlert("", AppResource.error_FileUploading, AppResource.Ok);
-                                }
-                                else
+                                    sender_user_id = user_id,
+                                    job_id = JobData.job_id,
+                                    coordinator_id = JobData.coordinator_id,
+                                    worker_id = JobData.worker_id,
+                                    customer_id = null,
+                                    sender_user_Name = user_name,
+                                    coordinator_Name = !string.IsNullOrEmpty(JobData.coordinator_Name) ? AppResource.coordinator_Name : JobData.coordinator_Name,
+                                    job_Name = ChatDetailTitle,
+                                    receiver_user_Name = null,
+                                    worker_Name = JobData.worker_Name,
+                                    customer_Name = null,
+                                    image_url = null,
+                                    file_url = null,
+                                    is_loading = true,
+                                    is_file = true,
+                                    is_image = false,
+                                    IsViewBtnVisible = false,
+                                    is_message = false,
+                                    file_name = FileuploadModel.FileName,
+                                    user_message = string.Empty,
+                                    user_message_time = DateTime.Now.ToString("dd/MM/yyyy, hh:mm:ss tt"),
+                                    is_sender = true,
+                                    msg_datetime = DateTime.Now,
+                                    time_stamp = DependencyService.Get<IGetTimeStamp>().TimeStamp()
+                                };
+                                IsBackPress = false;
+                                try
                                 {
-                                    await App.Current.MainPage.DisplayAlert("", AppResource.success_FileUploading, AppResource.Ok);
+                                    AllChatDetailList.Add(item);
                                 }
-                                COUNT = ChatDetailList.Count;
-                                AddMessageFirebase(ChatDetailList[index]);
+                                catch (Exception ex)
+                                {
+                                }
+                                ChatDetailList = AllChatDetailList;
+                                var returnUrl = await FirebaseChatHelper.StoreImages(new MemoryStream(FileuploadModel.DataArray), Path.GetFileName(FileuploadModel.FileName));
+                                var index = ChatDetailList.IndexOf(ChatDetailList.LastOrDefault());
+                                ChatDetailList[index].is_loading = false;
+                                ChatDetailList[index].IsViewBtnVisible = true;
+                                ChatDetailList[index].file_url = returnUrl;
+                                if (ChatDetailList.Count > COUNT)
+                                {
+                                    if (string.IsNullOrEmpty(returnUrl) || string.IsNullOrWhiteSpace(returnUrl))
+                                    {
+                                        await App.Current.MainPage.DisplayAlert("", AppResource.error_FileUploading, AppResource.Ok);
+                                    }
+                                    else
+                                    {
+                                        COUNT = ChatDetailList.Count;
+                                        AddMessageFirebase(ChatDetailList[index]);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                await App.Current.MainPage.DisplayAlert("", AppResource.error_invalidFileExtension, AppResource.Ok);
                             }
                         }
                         else
                         {
-                            await App.Current.MainPage.DisplayAlert("", AppResource.error_invalidFileExtension, AppResource.Ok);
+                            await MaterialDialog.Instance.SnackbarAsync(AppResource.msg_attachmentError, 3000);
                         }
                     }
                 });
@@ -837,7 +980,7 @@ namespace Khadamat_CustomerApp.ViewModels
             {
                 JobData = (JobChatModel)parameters["ChatDetailData"];
             }
-            if(JobData !=null && JobData.job_Status.HasValue && JobData.job_Status.Value == Convert.ToInt32(JobRequestEnum.Completed))
+            if(JobData !=null && JobData.job_Status.HasValue && (JobData.job_Status.Value == Convert.ToInt32(JobRequestEnum.Completed) || JobData.job_Status.Value == Convert.ToInt32(JobRequestEnum.Canceled) || JobData.job_Status.Value == Convert.ToInt32(JobRequestEnum.Closed) || JobData.job_Status.Value == Convert.ToInt32(JobRequestEnum.QuoteCanceled)))
             {
                 IsJobCompleted = true;
             }
@@ -845,11 +988,29 @@ namespace Khadamat_CustomerApp.ViewModels
             {
                 IsJobCompleted = false;
             }
-            GetChatList();
-            Device.BeginInvokeOnMainThread(() =>
+
+            if (groupChatMessagesDbService.IsGroupChatPresentInDB())
             {
-                MakeGroupChatRead();
-            });
+                var dataitem = groupChatMessagesDbService.ReadAllItems().Where(x => x.GroupJobId == JobData.job_id).ToList();
+                if (dataitem != null && dataitem.Count > 0)
+                {
+                    var data = dataitem.FirstOrDefault();
+                    AllChatDetailList = data.UserMessagesList;
+                    ChatDetailList = AllChatDetailList;
+                    MessagingCenter.Send("", "ScrollToEnd"); 
+                }
+            }
+            if (Common.CheckConnection())
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    GetChatList();
+                });
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    MakeGroupChatRead();
+                });
+            }
         }
         #endregion
 

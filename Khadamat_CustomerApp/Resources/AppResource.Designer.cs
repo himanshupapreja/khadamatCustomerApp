@@ -86,6 +86,16 @@ namespace Khadamat_CustomerApp.Resources {
                 return ResourceManager.GetString("ago", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Attachment size must be less than 1 MB.
+        /// </summary>
+        internal static string msg_attachmentError
+        {
+            get {
+                return ResourceManager.GetString("msg_attachmentError", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Camera.
@@ -1659,6 +1669,16 @@ namespace Khadamat_CustomerApp.Resources {
         internal static string otp_Resend {
             get {
                 return ResourceManager.GetString("otp_Resend", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Support Call.
+        /// </summary>
+        internal static string otp_SupportCall
+        {
+            get {
+                return ResourceManager.GetString("otp_SupportCall", resourceCulture);
             }
         }
         

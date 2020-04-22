@@ -490,10 +490,10 @@ namespace Khadamat_CustomerApp.ViewModels
             try
             {
                 IsLoaderBusy = true;
-                VerifyResendOtpResponseModel response;
+                EditPhoneResponseModel response;
                 try
                 {
-                    response = await _webApiRestClient.PostAsync<VerifyResendOtpModel, VerifyResendOtpResponseModel>(ApiUrl.EditPhoneNumber, requestModel);
+                    response = await _webApiRestClient.PostAsync<VerifyResendOtpModel, EditPhoneResponseModel>(ApiUrl.EditPhoneNumber, requestModel);
                 }
                 catch (Exception ex)
                 {
@@ -507,9 +507,9 @@ namespace Khadamat_CustomerApp.ViewModels
                     if (response.status)
                     {
                         await MaterialDialog.Instance.SnackbarAsync(response.message, 3000);
-                        if (PhoneEmailPlaceholder == AppResource.reg_PhoneNumber)
+                        if (response.otpCode.otp > 0)
                         {
-                            await App.Current.MainPage.DisplayAlert("Otp Received", response.otpCode.Value.ToString(), AppResource.Ok);
+                            await App.Current.MainPage.DisplayAlert("", response.otpCode.otp.ToString(), AppResource.Ok);
                         }
                         var param = new NavigationParameters();
                         param.Add("PhoneNumber", phoneNumber);
@@ -522,7 +522,14 @@ namespace Khadamat_CustomerApp.ViewModels
                     }
                     else
                     {
-                        await MaterialDialog.Instance.SnackbarAsync(response.message, 3000);
+                        var param = new NavigationParameters();
+                        param.Add("PhoneNumber", phoneNumber);
+                        param.Add("IsForgotPassword", false);
+                        param.Add("IsProfilePage", true);
+                        param.Add("ProfileData", response);
+                        await NavigationService.NavigateAsync(nameof(OtpPage), param);
+                        IsPopupVisible = false;
+                        PhoneEmailField = string.Empty;
                     }
                 }
             }

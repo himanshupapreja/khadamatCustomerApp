@@ -153,7 +153,7 @@
     <comment>ChatDetailPage</comment>
   </data>
   <data name="chatDisable" xml:space="preserve">
-    <value>Sending or receiving messages won't work on the completed job requests.</value>
+    <value>Sending or receiving messages won't work on the completed/cancelled job requests.</value>
     <comment>ChatListpage</comment>
   </data>
   <data name="chat_DeleteChat" xml:space="preserve">
@@ -691,6 +691,9 @@
   <data name="months" xml:space="preserve">
     <value>months</value>
   </data>
+  <data name="msg_attachmentError" xml:space="preserve">
+    <value>Attachment size must be less than 1 MB.</value>
+  </data>
   <data name="msg_Today" xml:space="preserve">
     <value>Today</value>
   </data>
@@ -805,6 +808,9 @@
   <data name="otp_Resend" xml:space="preserve">
     <value>Resend OTP</value>
     <comment>OtpPage</comment>
+  </data>
+  <data name="otp_SupportCall" xml:space="preserve">
+    <value>Support Call</value>
   </data>
   <data name="otp_VerificationCodeMsg" xml:space="preserve">
     <value>We sent verification code on your Mobile</value>

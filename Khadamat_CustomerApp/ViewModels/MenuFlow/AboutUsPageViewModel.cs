@@ -77,6 +77,12 @@ namespace Khadamat_CustomerApp.ViewModels
         {
             NavigationService = navigationService;
             htmlToText = new HtmlToText();
+            if (Application.Current.Properties.ContainsKey("AboutUsData"))
+            {
+                var aboutusData = (AboutUsData)Application.Current.Properties["AboutUsData"];
+                AboutUsText = htmlToText.Convert(Common.GetLanguage() == "ar-AE" ? aboutusData.text_arabic : aboutusData.text);
+                IsNodataFound = false;
+            }
             AboutUsDataApi();
         }
         #endregion
@@ -84,7 +90,10 @@ namespace Khadamat_CustomerApp.ViewModels
         #region AboutUsDataApi
         private async void AboutUsDataApi()
         {
-            IsLoaderBusy = true;
+            if (!Application.Current.Properties.ContainsKey("AboutUsData"))
+            {
+                IsLoaderBusy = true;
+            }
             try
             {
                 if (Common.CheckConnection())
@@ -97,26 +106,38 @@ namespace Khadamat_CustomerApp.ViewModels
                     catch (Exception ex)
                     {
                         response = null;
-                        //await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
                         IsLoaderBusy = false;
                     }
                     if (response != null)
                     {
                         if (response.status)
                         {
-                            Application.Current.Properties["AboutUsData"] = response.AboutUsData;
-                            Application.Current.SavePropertiesAsync();
-                            AboutUsText = htmlToText.Convert(Common.GetLanguage() == "ar-AE" ? response.AboutUsData.text_arabic : response.AboutUsData.text);
-                            //var htmltext = new HtmlWebViewSource
-                            //{
-                            //    Html = response.AboutUsData.text
-                            //};
-                            //AboutWebViewSource = htmltext;
-                            IsNodataFound = false;
+                            if (Application.Current.Properties.ContainsKey("AboutUsData"))
+                            {
+                                var aboutusData = (AboutUsData)Application.Current.Properties["AboutUsData"];
+                                if(response.AboutUsData != aboutusData)
+                                {
+                                    Application.Current.Properties["AboutUsData"] = response.AboutUsData;
+                                    Application.Current.SavePropertiesAsync();
+                                    AboutUsText = htmlToText.Convert(Common.GetLanguage() == "ar-AE" ? response.AboutUsData.text_arabic : response.AboutUsData.text);
+                                    IsNodataFound = false;
+                                }
+                            }
+                            else
+                            {
+                                Application.Current.Properties["AboutUsData"] = response.AboutUsData;
+                                Application.Current.SavePropertiesAsync();
+                                AboutUsText = htmlToText.Convert(Common.GetLanguage() == "ar-AE" ? response.AboutUsData.text_arabic : response.AboutUsData.text);
+                                IsNodataFound = false;
+                            }
                         }
                         else
                         {
-                            await MaterialDialog.Instance.SnackbarAsync(message: response.message, msDuration: 3000);
+
+                            if (!Application.Current.Properties.ContainsKey("AboutUsData"))
+                            {
+                                await MaterialDialog.Instance.SnackbarAsync(message: response.message, msDuration: 3000);
+                            }
                         }
                     }
                     else

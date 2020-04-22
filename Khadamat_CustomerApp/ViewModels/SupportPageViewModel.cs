@@ -2,6 +2,8 @@
 using Khadamat_CustomerApp.Helpers;
 using Khadamat_CustomerApp.Models;
 using Khadamat_CustomerApp.Resources;
+using Khadamat_CustomerApp.Services.DBService.LiteDB.ModelDB;
+using LiteDB;
 using Plugin.FilePicker;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
@@ -23,6 +25,7 @@ namespace Khadamat_CustomerApp.ViewModels
 {
     public class SupportPageViewModel : BaseViewModel, INavigationAware
     {
+        public SingleChatMessagesDbService singleChatMessagesDbService;
         public static bool IsBackPress;
         private readonly INavigationService NavigationService;
 
@@ -81,6 +84,7 @@ namespace Khadamat_CustomerApp.ViewModels
         public SupportPageViewModel(INavigationService navigationService)
         {
             NavigationService = navigationService;
+            singleChatMessagesDbService = new SingleChatMessagesDbService();
             IsBackPress = true;
         }
         #endregion
@@ -152,6 +156,32 @@ namespace Khadamat_CustomerApp.ViewModels
                             await MaterialDialog.Instance.SnackbarAsync(message: response.message,
                                         msDuration: 3000);
                         }
+
+                        var msgItem = new SingleChatDBModel()
+                        {
+                            SingleMessageName = ChatDetailTitle,
+                            UserMessagesList = SupportChatList, 
+                            RecieverId = RecieverId
+                        };
+                        if (singleChatMessagesDbService.IsSingleChatPresentInDB())
+                        {
+                            var newmsgItem = singleChatMessagesDbService.ReadAllItems().Where(x => x.RecieverId == RecieverId).ToList();
+                            if (newmsgItem != null && newmsgItem.Count > 0)
+                            {
+                                var msgID = newmsgItem.FirstOrDefault().ID;
+                                msgItem.ID = msgID;
+                                BsonValue id = new BsonValue(msgID);
+                                singleChatMessagesDbService.UpdateSingleChatDataInDb(id, msgItem);
+                            }
+                            else
+                            {
+                                singleChatMessagesDbService.CreateSingleChatDataInDB(msgItem);
+                            }
+                        }
+                        else
+                        {
+                            singleChatMessagesDbService.CreateSingleChatDataInDB(msgItem);
+                        }
                     }
                     IsBackPress = true;
                 }
@@ -164,8 +194,8 @@ namespace Khadamat_CustomerApp.ViewModels
             }
             catch (Exception ex)
             {
-                await MaterialDialog.Instance.SnackbarAsync(message: ex.Message,
-                                            msDuration: 3000);
+                //await MaterialDialog.Instance.SnackbarAsync(message: ex.Message,
+                //                            msDuration: 3000);
                 IsBackPress = true;
                 Console.WriteLine("SendMsgCommand_Exception:- " + ex.Message);
             }
@@ -206,31 +236,74 @@ namespace Khadamat_CustomerApp.ViewModels
             {
                 supportchatlistdetail = new List<SingleChatListModel>();
             }
-            //var _sortedlist = supportchatlistdetail.OrderBy(x => x.TimeStamp).ToList();
-            AllSupportChatList = new ObservableCollection<SingleChatListModel>();
-            try
+
+            if (AllSupportChatList != null && AllSupportChatList.Count == supportchatlistdetail.Count)
             {
-                foreach (var item in supportchatlistdetail)
+
+            }
+            else
+            {
+
+
+                //var _sortedlist = supportchatlistdetail.OrderBy(x => x.TimeStamp).ToList();
+                AllSupportChatList = new ObservableCollection<SingleChatListModel>();
+                try
                 {
-                    //if (!string.IsNullOrEmpty(item.image_url) && !string.IsNullOrWhiteSpace(item.image_url))
-                    //{
-                    //    item.displayimage_url = new UriImageSource()
-                    //    {
-                    //        Uri = new Uri(item.image_url),
-                    //        CachingEnabled = true,
-                    //        CacheValidity = new TimeSpan(5, 0, 0, 0)
-                    //    };
-                    //}
-                    AllSupportChatList.Add(item);
+                    foreach (var item in supportchatlistdetail)
+                    {
+                        //if (!string.IsNullOrEmpty(item.image_url) && !string.IsNullOrWhiteSpace(item.image_url))
+                        //{
+                        //    item.displayimage_url = new UriImageSource()
+                        //    {
+                        //        Uri = new Uri(item.image_url),
+                        //        CachingEnabled = true,
+                        //        CacheValidity = new TimeSpan(5, 0, 0, 0)
+                        //    };
+                        //}
+                        AllSupportChatList.Add(item);
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+
+                SupportChatList = AllSupportChatList;
+
+                COUNT = SupportChatList.Count;
+                MessagingCenter.Send("", "ScrollToEnd");
+                MessagingCenter.Unsubscribe<string, int>(this, "ChatDetailTitle");
+
+
+
+                var msgItem = new SingleChatDBModel()
+                {
+                    SingleMessageName = ChatDetailTitle,
+                    UserMessagesList = SupportChatList,
+                    RecieverId = RecieverId
+                };
+                if (singleChatMessagesDbService.IsSingleChatPresentInDB())
+                {
+                    var newmsgItem = singleChatMessagesDbService.ReadAllItems().Where(x => x.RecieverId == RecieverId).ToList();
+                    if (newmsgItem != null && newmsgItem.Count > 0)
+                    {
+                        var msgID = newmsgItem.FirstOrDefault().ID;
+                        msgItem.ID = msgID;
+                        BsonValue id = new BsonValue(msgID);
+                        singleChatMessagesDbService.UpdateSingleChatDataInDb(id, msgItem);
+                    }
+                    else
+                    {
+                        singleChatMessagesDbService.CreateSingleChatDataInDB(msgItem);
+                    }
+                }
+                else
+                {
+                    singleChatMessagesDbService.CreateSingleChatDataInDB(msgItem);
                 }
             }
-            catch (Exception ex)
-            {
 
-            }
 
-            SupportChatList = AllSupportChatList;
-            COUNT = SupportChatList.Count;
             if (SupportChatList != null && SupportChatList.Count > 0)
             {
                 DeleteChatIcon = "resource://Khadamat_CustomerApp.SvgImages.delete.svg";
@@ -239,8 +312,6 @@ namespace Khadamat_CustomerApp.ViewModels
             {
                 DeleteChatIcon = string.Empty;
             }
-            MessagingCenter.Send("", "ScrollToEnd");
-            MessagingCenter.Unsubscribe<string, int>(this, "ChatDetailTitle");
 
 
             chatTimer = new Timer(_ => UpdateChatFromFirebase(), null, 0, 1000);
@@ -290,6 +361,33 @@ namespace Khadamat_CustomerApp.ViewModels
                     SupportChatList = AllSupportChatList;
                     COUNT = SupportChatList.Count;
                     MessagingCenter.Send("", "ScrollToEnd");
+
+
+                    var msgItem = new SingleChatDBModel()
+                    {
+                        SingleMessageName = ChatDetailTitle,
+                        UserMessagesList = SupportChatList,
+                        RecieverId = RecieverId
+                    };
+                    if (singleChatMessagesDbService.IsSingleChatPresentInDB())
+                    {
+                        var newmsgItem = singleChatMessagesDbService.ReadAllItems().Where(x => x.RecieverId == RecieverId).ToList();
+                        if (newmsgItem != null && newmsgItem.Count > 0)
+                        {
+                            var msgID = newmsgItem.FirstOrDefault().ID;
+                            msgItem.ID = msgID;
+                            BsonValue id = new BsonValue(msgID);
+                            singleChatMessagesDbService.UpdateSingleChatDataInDb(id, msgItem);
+                        }
+                        else
+                        {
+                            singleChatMessagesDbService.CreateSingleChatDataInDB(msgItem);
+                        }
+                    }
+                    else
+                    {
+                        singleChatMessagesDbService.CreateSingleChatDataInDB(msgItem);
+                    }
                 }
 
 
@@ -403,6 +501,33 @@ namespace Khadamat_CustomerApp.ViewModels
                                         await MaterialDialog.Instance.SnackbarAsync(message: response.message,
                                                     msDuration: 3000);
                                     }
+
+
+                                    var msgItem = new SingleChatDBModel()
+                                    {
+                                        SingleMessageName = ChatDetailTitle,
+                                        UserMessagesList = SupportChatList, 
+                                        RecieverId =RecieverId
+                                    };
+                                    if (singleChatMessagesDbService.IsSingleChatPresentInDB())
+                                    {
+                                        var newmsgItem = singleChatMessagesDbService.ReadAllItems().Where(x => x.RecieverId == RecieverId).ToList();
+                                        if (newmsgItem != null && newmsgItem.Count > 0)
+                                        {
+                                            var msgID = newmsgItem.FirstOrDefault().ID;
+                                            msgItem.ID = msgID;
+                                            BsonValue id = new BsonValue(msgID);
+                                            singleChatMessagesDbService.UpdateSingleChatDataInDb(id, msgItem);
+                                        }
+                                        else
+                                        {
+                                            singleChatMessagesDbService.CreateSingleChatDataInDB(msgItem);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        singleChatMessagesDbService.CreateSingleChatDataInDB(msgItem);
+                                    }
                                 }
                             }
                             else
@@ -415,8 +540,8 @@ namespace Khadamat_CustomerApp.ViewModels
                     }
                     catch (Exception ex)
                     {
-                        await MaterialDialog.Instance.SnackbarAsync(message: ex.Message,
-                                                    msDuration: 3000);
+                        //await MaterialDialog.Instance.SnackbarAsync(message: ex.Message,
+                        //                            msDuration: 3000);
                         Console.WriteLine("SendMsgCommand_Exception:- " + ex.Message);
                     }
                 });
@@ -573,74 +698,83 @@ namespace Khadamat_CustomerApp.ViewModels
                         }
                         if (file != null)
                         {
-                            var item = new SingleChatListModel()
+                            var fileinfo = new FileInfo(file.Path);
+                            var fileLength = Common.ConvertBytesToMegabytes(fileinfo.Length);
+                            if (fileLength < 1.2)
                             {
-                                sender_user_id = user_id,
-                                receiver_user_id = RecieverId,
-                                user_message = string.Empty,
-                                user_message_time = DateTime.Now.ToString("dd/MM/yyyy, hh:mm tt"),
-                                msg_datetime = DateTime.Now,
-                                is_sender = true,
-                                is_header_visible = false,
-                                is_message = false,
-                                IsViewBtnVisible = false,
-                                is_loading = true,
-                                is_file = false,
-                                is_image = true,
-                                image_url = null,
-                                //displayimage_url = null,
-                                file_url = null,
-                                time_stamp = DependencyService.Get<IGetTimeStamp>().TimeStamp(),
-                            };
-                            IsBackPress = false;
-                            //var request = new ChatDetailModelApi()
-                            //{
-                            //    from_user_id = user_id,
-                            //    to_user_id = RecieverId
-                            //};
-                            //Chatdetailresponse response;
-                            try
-                            {
-                                AllSupportChatList.Add(item);
-                            }
-                            catch (Exception ex)
-                            {
-                            }
-
-                            SupportChatList = AllSupportChatList;
-                            var returnUrl = await FirebaseChatHelper.StoreImages(file.GetStream(), Path.GetFileName(file.Path));
-                            var index = SupportChatList.IndexOf(SupportChatList.LastOrDefault());
-                            if (!string.IsNullOrEmpty(returnUrl) && !string.IsNullOrWhiteSpace(returnUrl))
-                            {
-                                SupportChatList[index].is_loading = false;
-                                SupportChatList[index].IsViewBtnVisible = true;
-                                SupportChatList[index].image_url = returnUrl;
-                                //SupportChatList[index].displayimage_url = new UriImageSource()
-                                //{
-                                //    Uri = new Uri(returnUrl),
-                                //    CachingEnabled = true,
-                                //    CacheValidity = new TimeSpan(5, 0, 0, 0)
-                                //};
-                            }
-                            else
-                            {
-                                AllSupportChatList.Remove(item);
-                                SupportChatList = AllSupportChatList;
-                            }
-
-                            if (string.IsNullOrEmpty(returnUrl) || string.IsNullOrWhiteSpace(returnUrl))
-                            {
-                                await App.Current.MainPage.DisplayAlert("", AppResource.error_ImageUploading, AppResource.Ok);
-                                IsBackPress = true;
-                            }
-                            else
-                            {
-                                if (SupportChatList.Count > COUNT)
+                                var item = new SingleChatListModel()
                                 {
-                                    COUNT = SupportChatList.Count;
-                                    AddMessageFirebase(SupportChatList[index]);
+                                    sender_user_id = user_id,
+                                    receiver_user_id = RecieverId,
+                                    user_message = string.Empty,
+                                    user_message_time = DateTime.Now.ToString("dd/MM/yyyy, hh:mm tt"),
+                                    msg_datetime = DateTime.Now,
+                                    is_sender = true,
+                                    is_header_visible = false,
+                                    is_message = false,
+                                    IsViewBtnVisible = false,
+                                    is_loading = true,
+                                    is_file = false,
+                                    is_image = true,
+                                    image_url = null,
+                                    //displayimage_url = null,
+                                    file_url = null,
+                                    time_stamp = DependencyService.Get<IGetTimeStamp>().TimeStamp(),
+                                };
+                                IsBackPress = false;
+                                //var request = new ChatDetailModelApi()
+                                //{
+                                //    from_user_id = user_id,
+                                //    to_user_id = RecieverId
+                                //};
+                                //Chatdetailresponse response;
+                                try
+                                {
+                                    AllSupportChatList.Add(item);
                                 }
-                            } 
+                                catch (Exception ex)
+                                {
+                                }
+
+                                SupportChatList = AllSupportChatList;
+                                var returnUrl = await FirebaseChatHelper.StoreImages(file.GetStream(), Path.GetFileName(file.Path));
+                                var index = SupportChatList.IndexOf(SupportChatList.LastOrDefault());
+                                if (!string.IsNullOrEmpty(returnUrl) && !string.IsNullOrWhiteSpace(returnUrl))
+                                {
+                                    SupportChatList[index].is_loading = false;
+                                    SupportChatList[index].IsViewBtnVisible = true;
+                                    SupportChatList[index].image_url = returnUrl;
+                                    //SupportChatList[index].displayimage_url = new UriImageSource()
+                                    //{
+                                    //    Uri = new Uri(returnUrl),
+                                    //    CachingEnabled = true,
+                                    //    CacheValidity = new TimeSpan(5, 0, 0, 0)
+                                    //};
+                                }
+                                else
+                                {
+                                    AllSupportChatList.Remove(item);
+                                    SupportChatList = AllSupportChatList;
+                                }
+
+                                if (string.IsNullOrEmpty(returnUrl) || string.IsNullOrWhiteSpace(returnUrl))
+                                {
+                                    await App.Current.MainPage.DisplayAlert("", AppResource.error_ImageUploading, AppResource.Ok);
+                                    IsBackPress = true;
+                                }
+                                else
+                                {
+                                    if (SupportChatList.Count > COUNT)
+                                    {
+                                        COUNT = SupportChatList.Count;
+                                        AddMessageFirebase(SupportChatList[index]);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                await MaterialDialog.Instance.SnackbarAsync(AppResource.msg_attachmentError, 3000);
+                            }
                         }
 
                         //try
@@ -754,70 +888,87 @@ namespace Khadamat_CustomerApp.ViewModels
                     var data = await CrossFilePicker.Current.PickFile();
                     if (data != null)
                     {
-                        FileuploadModel.DataArray = data.DataArray;
-                        FileuploadModel.FileName = data.FileName;
-
-
-                        if (Common.FileExtensionCheck(FileuploadModel.FileName, extenstionList))
+                        var fileinfo = new FileInfo(data.FilePath);
+                        double fileLength;
+                        try
                         {
-                            var item = new SingleChatListModel()
+                            fileLength = Common.ConvertBytesToMegabytes(fileinfo.Length);
+                        }
+                        catch (Exception ex)
+                        {
+                            fileLength = 0;
+                        }
+                        if (fileLength < 1.2)
+                        {
+                            FileuploadModel.DataArray = data.DataArray;
+                            FileuploadModel.FileName = data.FileName;
+
+
+                            if (Common.FileExtensionCheck(FileuploadModel.FileName, extenstionList))
                             {
-                                sender_user_id = user_id,
-                                receiver_user_id = RecieverId,
-                                user_message = string.Empty,
-                                user_message_time = DateTime.Now.ToString("dd/MM/yyyy, hh:mm tt"),
-                                msg_datetime = DateTime.Now,
-                                is_sender = true,
-                                is_header_visible = false,
-                                is_message = false,
-                                IsViewBtnVisible = false,
-                                is_loading = true,
-                                is_file = true,
-                                file_name = FileuploadModel.FileName,
-                                is_image = false,
-                                image_url = null,
-                                file_url = null,
-                                time_stamp = DependencyService.Get<IGetTimeStamp>().TimeStamp(),
-                            };
-                            IsBackPress = false;
-                            try
-                            {
-                                AllSupportChatList.Add(item);
-                            }
-                            catch (Exception ex)
-                            {
-                            }
-                            SupportChatList = AllSupportChatList;
-                            var returnUrl = await FirebaseChatHelper.StoreImages(new MemoryStream(FileuploadModel.DataArray), Path.GetFileName(FileuploadModel.FileName));
-                            var index = SupportChatList.IndexOf(SupportChatList.LastOrDefault());
-                            if (!string.IsNullOrEmpty(returnUrl) && !string.IsNullOrWhiteSpace(returnUrl))
-                            {
-                                SupportChatList[index].is_loading = false;
-                                SupportChatList[index].IsViewBtnVisible = true;
-                                SupportChatList[index].file_url = returnUrl;
-                            }
-                            else
-                            {
-                                AllSupportChatList.Remove(item);
-                                SupportChatList = AllSupportChatList;
-                            }
-                            if (SupportChatList.Count > COUNT)
-                            {
-                                if (string.IsNullOrEmpty(returnUrl) || string.IsNullOrWhiteSpace(returnUrl))
+                                var item = new SingleChatListModel()
                                 {
-                                    await App.Current.MainPage.DisplayAlert("", AppResource.error_FileUploading, AppResource.Ok);
-                                    IsBackPress = true;
+                                    sender_user_id = user_id,
+                                    receiver_user_id = RecieverId,
+                                    user_message = string.Empty,
+                                    user_message_time = DateTime.Now.ToString("dd/MM/yyyy, hh:mm tt"),
+                                    msg_datetime = DateTime.Now,
+                                    is_sender = true,
+                                    is_header_visible = false,
+                                    is_message = false,
+                                    IsViewBtnVisible = false,
+                                    is_loading = true,
+                                    is_file = true,
+                                    file_name = FileuploadModel.FileName,
+                                    is_image = false,
+                                    image_url = null,
+                                    file_url = null,
+                                    time_stamp = DependencyService.Get<IGetTimeStamp>().TimeStamp(),
+                                };
+                                IsBackPress = false;
+                                try
+                                {
+                                    AllSupportChatList.Add(item);
+                                }
+                                catch (Exception ex)
+                                {
+                                }
+                                SupportChatList = AllSupportChatList;
+                                var returnUrl = await FirebaseChatHelper.StoreImages(new MemoryStream(FileuploadModel.DataArray), Path.GetFileName(FileuploadModel.FileName));
+                                var index = SupportChatList.IndexOf(SupportChatList.LastOrDefault());
+                                if (!string.IsNullOrEmpty(returnUrl) && !string.IsNullOrWhiteSpace(returnUrl))
+                                {
+                                    SupportChatList[index].is_loading = false;
+                                    SupportChatList[index].IsViewBtnVisible = true;
+                                    SupportChatList[index].file_url = returnUrl;
                                 }
                                 else
                                 {
-                                    COUNT = SupportChatList.Count;
-                                    AddMessageFirebase(SupportChatList[index]);
+                                    AllSupportChatList.Remove(item);
+                                    SupportChatList = AllSupportChatList;
                                 }
+                                if (SupportChatList.Count > COUNT)
+                                {
+                                    if (string.IsNullOrEmpty(returnUrl) || string.IsNullOrWhiteSpace(returnUrl))
+                                    {
+                                        await App.Current.MainPage.DisplayAlert("", AppResource.error_FileUploading, AppResource.Ok);
+                                        IsBackPress = true;
+                                    }
+                                    else
+                                    {
+                                        COUNT = SupportChatList.Count;
+                                        AddMessageFirebase(SupportChatList[index]);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                await App.Current.MainPage.DisplayAlert("", AppResource.error_invalidFileExtension, AppResource.Ok);
                             }
                         }
                         else
                         {
-                            await App.Current.MainPage.DisplayAlert("", AppResource.error_invalidFileExtension, AppResource.Ok);
+                            await MaterialDialog.Instance.SnackbarAsync(AppResource.msg_attachmentError, 3000);
                         }
                     }
                 });
@@ -912,21 +1063,39 @@ namespace Khadamat_CustomerApp.ViewModels
                 ChatDetailTitle = AppResource.support_HeaderTitle;
             }
 
-            //if (RecieverId != 5)
-            //{
-            //    ChatDetailTitle = name;
-            //}
-            //else
-            //{
-            //    ChatDetailTitle = AppResource.support_HeaderTitle;
-            //}
+
+            if (singleChatMessagesDbService.IsSingleChatPresentInDB())
+            {
+                var dataitem = singleChatMessagesDbService.ReadAllItems().Where(x => x.RecieverId == RecieverId).ToList();
+                if (dataitem != null && dataitem.Count > 0)
+                {
+                    var data = dataitem.FirstOrDefault();
+                    AllSupportChatList = data.UserMessagesList;
+                    SupportChatList = AllSupportChatList;
+                    MessagingCenter.Send("", "ScrollToEnd");
+
+                    if (SupportChatList != null && SupportChatList.Count > 0)
+                    {
+                        DeleteChatIcon = "resource://Khadamat_CustomerApp.SvgImages.delete.svg";
+                    }
+                    else
+                    {
+                        DeleteChatIcon = string.Empty;
+                    }
+                }
+            }
+
+
             if (Common.CheckConnection())
             {
                 Device.BeginInvokeOnMainThread(() =>
                     {
+                        GetFirebaseChatList();
+                    });
+                Device.BeginInvokeOnMainThread(() =>
+                    {
                         MakeChatRead();
                     });
-                GetFirebaseChatList(); 
             }
         }
         #endregion

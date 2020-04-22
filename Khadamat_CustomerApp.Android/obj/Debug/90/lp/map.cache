@@ -62,6 +62,7 @@ Xamarin.Essentials
 Xamarin.Firebase.Analytics
 Xamarin.Firebase.Analytics.Impl
 Xamarin.Firebase.Common
+Xamarin.Firebase.Crash
 Xamarin.Firebase.Database.Connection
 Xamarin.Firebase.Database
 Xamarin.Firebase.Dynamic.Links

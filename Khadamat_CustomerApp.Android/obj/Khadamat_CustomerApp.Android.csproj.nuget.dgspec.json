@@ -27,7 +27,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.syncfusion.com/nuget_xamarin/nuget/getsyncfusionpackages/xamarin": {}
         },
         "frameworks": {
           "monoandroid90": {
@@ -126,6 +127,10 @@
               "target": "Package",
               "version": "[60.1142.1, )"
             },
+            "Xamarin.Firebase.Crash": {
+              "target": "Package",
+              "version": "[60.1142.1, )"
+            },
             "Xamarin.Firebase.Database": {
               "target": "Package",
               "version": "[60.1142.1, )"
@@ -197,7 +202,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.syncfusion.com/nuget_xamarin/nuget/getsyncfusionpackages/xamarin": {}
         },
         "frameworks": {
           "netstandard2.0": {

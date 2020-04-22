@@ -69,18 +69,18 @@ namespace Khadamat_CustomerApp.Views
             MessagingCenter.Unsubscribe<string>(this, "ScrollToEnd");
         }
 
-        protected override bool OnBackButtonPressed()
-        {
-            if (!ChatDetailPageViewModel.IsBackPress)
-            {
-                //MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_backpress, msDuration: 3000);
-                return true;
-            }
-            else
-            {
-                return base.OnBackButtonPressed();
-            }
-        }
+        //protected override bool OnBackButtonPressed()
+        //{
+        //    if (!ChatDetailPageViewModel.IsBackPress)
+        //    {
+        //        //MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_backpress, msDuration: 3000);
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return base.OnBackButtonPressed();
+        //    }
+        //}
 
         private void TapGestureRecognizer_Tapped(object sender, System.EventArgs e)
         {

@@ -348,7 +348,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                 {
                                     if (response.status)
                                     {
-                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomeTabbedPage", UriKind.Absolute));
+                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
                                     }
                                     else
                                     {

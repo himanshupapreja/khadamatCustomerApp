@@ -51,18 +51,18 @@ namespace Khadamat_CustomerApp.Views
             }
         }
 
-        protected override bool OnBackButtonPressed()
-        {
-            if (!SupportPageViewModel.IsBackPress)
-            {
-                //MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_backpress, msDuration: 3000);
-                return true;
-            }
-            else
-            {
-                return base.OnBackButtonPressed();
-            }
-        }
+        //protected override bool OnBackButtonPressed()
+        //{
+        //    if (!SupportPageViewModel.IsBackPress)
+        //    {
+        //        //MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_backpress, msDuration: 3000);
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return base.OnBackButtonPressed();
+        //    }
+        //}
 
         protected override void OnDisappearing()
         {
