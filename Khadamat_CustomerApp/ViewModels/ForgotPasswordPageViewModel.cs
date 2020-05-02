@@ -95,7 +95,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                     user_id = response.userData.user_id.Value;
                                     if (response.userData.otp.Value > 0)
                                     {
-                                        await App.Current.MainPage.DisplayAlert("", response.userData.otp.Value.ToString(), "Ok");
+                                        //await App.Current.MainPage.DisplayAlert("", response.userData.otp.Value.ToString(), "Ok");
                                     }
                                     //Common.CustomNavigation(_navigation, new OtpPage(PhoneNumber, true));
                                     var param = new NavigationParameters();

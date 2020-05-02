@@ -14,7 +14,7 @@ using Android.Content.PM;
 namespace Khadamat_CustomerApp.Droid
 {
     [Activity(Theme = "@style/ThemeSplashHKD", MainLauncher = false, NoHistory = false,
-        Label = "Khadamat_CustomerApp", Icon = "@drawable/logo", 
+        Label = "أي خدمات", Icon = "@drawable/logo", 
           ScreenOrientation = ScreenOrientation.Portrait)]
     public class SplashActivity : Activity
     {

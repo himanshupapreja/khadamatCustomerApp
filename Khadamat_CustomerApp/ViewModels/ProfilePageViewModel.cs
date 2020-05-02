@@ -507,29 +507,39 @@ namespace Khadamat_CustomerApp.ViewModels
                     if (response.status)
                     {
                         await MaterialDialog.Instance.SnackbarAsync(response.message, 3000);
-                        if (response.otpCode.otp > 0)
+                        if (response.otpCode != null)
                         {
-                            await App.Current.MainPage.DisplayAlert("", response.otpCode.otp.ToString(), AppResource.Ok);
+                            if (response.otpCode.otp > 0)
+                            {
+                                //await App.Current.MainPage.DisplayAlert("", response.otpCode.otp.ToString(), AppResource.Ok);
+                            }
+                            var param = new NavigationParameters();
+                            param.Add("PhoneNumber", phoneNumber);
+                            param.Add("IsForgotPassword", false);
+                            param.Add("IsProfilePage", true);
+                            param.Add("ProfileData", response);
+                            await NavigationService.NavigateAsync(nameof(OtpPage), param);
+                            IsPopupVisible = false;
+                            PhoneEmailField = string.Empty; 
                         }
-                        var param = new NavigationParameters();
-                        param.Add("PhoneNumber", phoneNumber);
-                        param.Add("IsForgotPassword", false);
-                        param.Add("IsProfilePage", true);
-                        param.Add("ProfileData", response);
-                        await NavigationService.NavigateAsync(nameof(OtpPage), param);
-                        IsPopupVisible = false;
-                        PhoneEmailField = string.Empty;
                     }
                     else
                     {
-                        var param = new NavigationParameters();
-                        param.Add("PhoneNumber", phoneNumber);
-                        param.Add("IsForgotPassword", false);
-                        param.Add("IsProfilePage", true);
-                        param.Add("ProfileData", response);
-                        await NavigationService.NavigateAsync(nameof(OtpPage), param);
-                        IsPopupVisible = false;
-                        PhoneEmailField = string.Empty;
+                        if (response.otpCode != null)
+                        {
+                            var param = new NavigationParameters();
+                            param.Add("PhoneNumber", phoneNumber);
+                            param.Add("IsForgotPassword", false);
+                            param.Add("IsProfilePage", true);
+                            param.Add("ProfileData", response);
+                            await NavigationService.NavigateAsync(nameof(OtpPage), param);
+                            IsPopupVisible = false;
+                            PhoneEmailField = string.Empty;
+                        }
+                        else
+                        {
+                            await MaterialDialog.Instance.SnackbarAsync(response.message, 3000);
+                        }
                     }
                 }
             }

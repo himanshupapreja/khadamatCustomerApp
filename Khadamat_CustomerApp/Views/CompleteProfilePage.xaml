@@ -29,9 +29,9 @@
                 <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0">
                     <Image Source="{Binding UserPic}" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
 
-
+                    
                     <Frame Style="{StaticResource Frame60h}" HorizontalOptions="End" VerticalOptions="End" CornerRadius="3" Padding="0" BackgroundColor="{StaticResource WhiteColor}" HeightRequest="20" WidthRequest="20" Margin="0,0,-2,-2">
-                        <ffimageloadingsvg:SvgCachedImage Margin="10,0" WidthRequest="10" HeightRequest="10" Source="resource://Khadamat_CustomerApp.SvgImages.photo_camera.svg" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <ffimageloadingsvg:SvgCachedImage WidthRequest="15" HeightRequest="15" Source="resource://Khadamat_CustomerApp.SvgImages.photo_camera.svg" HorizontalOptions="Center" VerticalOptions="Center"/>
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding ChangeUserPicCommand}" NumberOfTapsRequired="1"/>
                         </Frame.GestureRecognizers>

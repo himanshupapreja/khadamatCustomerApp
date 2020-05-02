@@ -290,7 +290,7 @@ namespace Khadamat_CustomerApp.ViewModels
             IsLocationFetch = false;
             IsLoaderBusy = false;
 
-            UserPic = "logo.png";
+            //UserPic = "logo.png";
             IsLoaderBusy = false;
             Street = AppResource.cyp_StreetPlaceholder;
             DOB = AppResource.cyp_DOBPlaceholder;
@@ -553,7 +553,7 @@ namespace Khadamat_CustomerApp.ViewModels
 
                                     if (resultrs != Plugin.Permissions.Abstractions.PermissionStatus.Granted)
                                     {
-                                        var result = await App.Current.MainPage.DisplayAlert("", AppResource.error_AppLocationPermissionDisable, "Yes", "No");
+                                        var result = await App.Current.MainPage.DisplayAlert("", AppResource.error_AppLocationPermissionDisable, AppResource.Yes, AppResource.No);
                                         if (result)
                                         {
                                             CrossPermissions.Current.OpenAppSettings();
@@ -571,7 +571,7 @@ namespace Khadamat_CustomerApp.ViewModels
                             }
                             else
                             {
-                                var result = await App.Current.MainPage.DisplayAlert("", AppResource.error_DeviceLocationDisable, "Yes", "No");
+                                var result = await App.Current.MainPage.DisplayAlert("", AppResource.error_DeviceLocationDisable, AppResource.Yes, AppResource.No);
                                 if (result)
                                 {
                                     DependencyService.Get<IDeviceLocationService>().OpenDeviceSetting();

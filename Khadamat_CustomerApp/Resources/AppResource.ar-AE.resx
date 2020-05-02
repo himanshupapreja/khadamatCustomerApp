@@ -415,6 +415,9 @@
   <data name="jobrequest_HeaderTitle" xml:space="preserve">
     <value>طلب الخدمة</value>
   </data>
+  <data name="jobrequest_JobCloseReason" xml:space="preserve">
+    <value>سبب إلغاء الطلب</value>
+  </data>
   <data name="jobrequest_Location" xml:space="preserve">
     <value>موقعك (باستخدام خدمة الموقع)</value>
   </data>

@@ -343,10 +343,10 @@ namespace Khadamat_CustomerApp.ViewModels
                                 //await MaterialDialog.Instance.SnackbarAsync(response.message, 3000);
                                 resendOtpCount = response.otpData.otp_attempts.HasValue ? response.otpData.otp_attempts.Value : 0;
                                 OTP1 = OTP2 = OTP3 = OTP4 = OTP5 = string.Empty;
-                                if (response.otpData.otp_attempts.HasValue && response.otpData.otp_attempts.Value <= 3)
-                                {
-                                    await App.Current.MainPage.DisplayAlert("Otp Received", response.otpData.otp.Value.ToString(), "Ok");
-                                }
+                                //if (response.otpData.otp_attempts.HasValue && response.otpData.otp_attempts.Value <= 3)
+                                //{
+                                //    await App.Current.MainPage.DisplayAlert("Otp Received", response.otpData.otp.Value.ToString(), "Ok");
+                                //}
 
                                 PhoneNumber_One = response.phone_number_one;
                                 PhoneNumber_Two = response.phone_number_two;

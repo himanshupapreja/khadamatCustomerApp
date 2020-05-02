@@ -187,7 +187,7 @@ namespace Khadamat_CustomerApp.Helpers
             }
             else
             {
-                return "profile.png";
+                return "";
             }
         }
 

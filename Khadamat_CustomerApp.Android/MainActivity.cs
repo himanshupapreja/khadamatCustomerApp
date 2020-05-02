@@ -21,7 +21,7 @@ using Xamarin.Forms;
 
 namespace Khadamat_CustomerApp.Droid
 {
-    [Activity(Label = "Khadamat_CustomerApp", Theme = "@style/ThemeSplashHKD", Icon = "@drawable/logo", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, LaunchMode = LaunchMode.SingleTop)]
+    [Activity(Label = "أي خدمات", Theme = "@style/ThemeSplashHKD", Icon = "@drawable/logo", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, LaunchMode = LaunchMode.SingleTop)]
 
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {

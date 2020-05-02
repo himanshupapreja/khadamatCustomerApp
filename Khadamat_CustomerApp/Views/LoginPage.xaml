@@ -7,7 +7,7 @@
              ios:Page.UseSafeArea="True"
              xmlns:strings="clr-namespace:Khadamat_CustomerApp;assembly=Khadamat_CustomerApp" xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              NavigationPage.HasNavigationBar="False"
-             BackgroundColor="{StaticResource PageBGColor}"
+             BackgroundColor="{StaticResource BlueColor}"
              x:Class="Khadamat_CustomerApp.Views.LoginPage">
     <Grid>
         <!--Background Image-->

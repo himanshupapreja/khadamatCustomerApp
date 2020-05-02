@@ -99,7 +99,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                         user_id = responseModel.otpData.user_id.Value;
                                         if (responseModel.otpData.otp_attempts.HasValue && responseModel.otpData.otp_attempts.Value <= 3)
                                         {
-                                            await App.Current.MainPage.DisplayAlert("Otp Received", responseModel.otpData.otp.Value.ToString(), "Ok"); 
+                                            //await App.Current.MainPage.DisplayAlert("Otp Received", responseModel.otpData.otp.Value.ToString(), "Ok"); 
                                         }
                                         //Common.CustomNavigation(_navigation, new OtpPage(PhoneNumber));
                                         var param = new NavigationParameters();
