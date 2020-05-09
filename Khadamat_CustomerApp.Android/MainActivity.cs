@@ -21,7 +21,7 @@ using Xamarin.Forms;
 
 namespace Khadamat_CustomerApp.Droid
 {
-    [Activity(Label = "أي خدمات", Theme = "@style/ThemeSplashHKD", Icon = "@drawable/logo", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, LaunchMode = LaunchMode.SingleTop)]
+    [Activity(Label = "Ai-Khadmat", Theme = "@style/ThemeSplashHKD", Icon = "@drawable/logo", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, LaunchMode = LaunchMode.SingleTop)]
 
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
@@ -44,11 +44,12 @@ namespace Khadamat_CustomerApp.Droid
             Xamarin.Essentials.Platform.Init(this, bundle);
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
+            Fabric.Fabric.With(this, new Crashlytics.Crashlytics());
+            Crashlytics.Crashlytics.HandleManagedExceptions();
 
             CachedImageRenderer.Init(true);
             var ignore = typeof(SvgCachedImage);
             LoadApplication(new App(new AndroidInitializer()));
-
             XF.Material.Droid.Material.Init(this, bundle);
 
             //Forms.SetFlags("CollectionView_Experimental");

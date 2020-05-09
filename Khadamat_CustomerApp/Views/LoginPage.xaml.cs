@@ -32,6 +32,7 @@ namespace Khadamat_CustomerApp.Views
                 this.FlowDirection = FlowDirection.LeftToRight;
             }
             loginPageViewModel = this.BindingContext as LoginPageViewModel;
+            LoginPageViewModel.LoginPswd = loginPswd;
         }
 
         protected override void OnAppearing()

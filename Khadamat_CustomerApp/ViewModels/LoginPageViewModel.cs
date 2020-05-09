@@ -21,6 +21,7 @@ namespace Khadamat_CustomerApp.ViewModels
         private readonly INavigationService NavigationService;
         bool IsForgotClick;
         bool IsSignupClick;
+        public static Entry LoginPswd;
 
         List<string> PhoneStartingValue = new List<string>()
         {
@@ -115,6 +116,7 @@ namespace Khadamat_CustomerApp.ViewModels
                             ShowHidePswdIcon = "resource://Khadamat_CustomerApp.SvgImages.hidepswd.svg";
                             IsPassword = true;
                         }
+                        LoginPswd.Focus();
                     }
                     catch (Exception ex)
                     {

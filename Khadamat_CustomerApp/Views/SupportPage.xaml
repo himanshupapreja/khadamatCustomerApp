@@ -121,7 +121,8 @@
                             </BoxView>
                             <ffimageloadingsvg:SvgCachedImage Grid.Row="1" Grid.Column="0" Style="{StaticResource MenuImageCrossStyle}" HorizontalOptions="Center" Source="resource://Khadamat_CustomerApp.SvgImages.attachment.svg">
                                 <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding AttachmentCommand}" NumberOfTapsRequired="1"/>
+                                    <!--<TapGestureRecognizer Command="{Binding AttachmentCommand}" NumberOfTapsRequired="1"/>-->
+                                    <TapGestureRecognizer Command="{Binding ImageUploadCommand}" NumberOfTapsRequired="1"/>
                                 </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
                             </ffimageloadingsvg:SvgCachedImage>
 
@@ -149,7 +150,7 @@
 
 
         <!--Popup-->
-        <BoxView Grid.RowSpan="3" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Black1Color}" Opacity="0.8" VerticalOptions="FillAndExpand" IsVisible="{Binding IsPopupVisible}"/>
+        <!--<BoxView Grid.RowSpan="3" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Black1Color}" Opacity="0.8" VerticalOptions="FillAndExpand" IsVisible="{Binding IsPopupVisible}"/>
         <Grid Grid.RowSpan="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent" IsVisible="{Binding IsPopupVisible}">
             <StackLayout BackgroundColor="Transparent"  Margin="0,0,0,50" VerticalOptions="End" 
                     HorizontalOptions="FillAndExpand"
@@ -198,6 +199,6 @@
             <Grid.GestureRecognizers>
                 <TapGestureRecognizer  Command="{Binding CloseCommand}"/>
             </Grid.GestureRecognizers>
-        </Grid>
+        </Grid>-->
     </Grid>
 </ContentPage>

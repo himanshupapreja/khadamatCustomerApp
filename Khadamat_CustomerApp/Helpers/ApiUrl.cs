@@ -8,10 +8,10 @@ namespace Khadamat_CustomerApp.Helpers
     {
         //public const string BaseUrl = "http://appmantechnologies.com:8020/Images/Users/";
         //public const string ApiBaseUrl = "http://appmantechnologies.com:8020/api/";
-        public const string BaseUrl = "http://3.136.104.115/Images/Users/";
-        public const string ApiBaseUrl = "http://3.136.104.115/api/";
-        public const string PdfBaseUrl = "http://3.136.104.115/Images/InvoicePDF/";
-        public const string ServiceImageBaseUrl = "http://3.136.104.115/Images/Category/";
+        public const string BaseUrl = "https://ai-khadamat.com/Images/Users/";
+        public const string ApiBaseUrl = "https://ai-khadamat.com/api/";
+        public const string PdfBaseUrl = "https://ai-khadamat.com/Images/InvoicePDF/";
+        public const string ServiceImageBaseUrl = "https://ai-khadamat.com/Images/Category/";
 
         public const string SendOtp = "Account/SendOtp";
         public const string VerifyOtp = "Account/VerifyOtp";

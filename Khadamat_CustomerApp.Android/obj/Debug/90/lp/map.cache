@@ -26,6 +26,11 @@ Xamarin.Android.Arch.Lifecycle.LiveData.Core
 Xamarin.Android.Arch.Lifecycle.LiveData
 Xamarin.Android.Arch.Lifecycle.Runtime
 Xamarin.Android.Arch.Lifecycle.ViewModel
+Xamarin.Android.Crashlytics.Answers
+Xamarin.Android.Crashlytics.Beta
+Xamarin.Android.Crashlytics.Core
+Xamarin.Android.Crashlytics
+Xamarin.Android.Fabric
 Xamarin.Android.Support.Animated.Vector.Drawable
 Xamarin.Android.Support.Annotations
 Xamarin.Android.Support.AsyncLayoutInflater
@@ -78,3 +83,8 @@ Xamarin.GooglePlayServices.Location
 Xamarin.GooglePlayServices.Maps
 Xamarin.GooglePlayServices.Tasks
 XF.Material
+fabric
+crashlytics-core
+crashlytics-beta
+crashlytics-answers
+crashlytics

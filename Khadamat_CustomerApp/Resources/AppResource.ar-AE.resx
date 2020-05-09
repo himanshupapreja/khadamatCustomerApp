@@ -548,7 +548,7 @@
     <value>أشهر</value>
   </data>
   <data name="msg_attachmentError" xml:space="preserve">
-    <value>Attachment size must be less than 1 MB.</value>
+    <value>يجب أن لايزيد حجم المرفق عن1 ميغابايت</value>
   </data>
   <data name="msg_Today" xml:space="preserve">
     <value>اليوم</value>

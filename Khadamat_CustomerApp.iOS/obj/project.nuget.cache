@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "kiSGGqNPqsl95stFeG6pxYlh79qfnk1MuVnm4JHpTrLM48EqNvcIS+jmz5me+TqYMuq/2dSYxSst4ELlzhXSEg==",
+  "dgSpecHash": "CIDlleXgJJ8f7a2PjdPXhlPjxsuab3M2F9fehyhv5pXJNmt9lkLB1h/gl+JTHiDfc36gKhKVSFsv/ExpYFc+1w==",
   "success": true,
   "projectFilePath": "E:\\Git\\hunny\\khadamatCustomerApp\\Khadamat_CustomerApp.iOS\\Khadamat_CustomerApp.iOS.csproj",
   "expectedPackageFiles": [
@@ -84,6 +84,7 @@
     "C:\\Users\\papre\\.nuget\\packages\\xamarin.firebase.ios.analytics\\6.2.1\\xamarin.firebase.ios.analytics.6.2.1.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xamarin.firebase.ios.cloudmessaging\\4.1.1.2\\xamarin.firebase.ios.cloudmessaging.4.1.1.2.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xamarin.firebase.ios.core\\6.6.0\\xamarin.firebase.ios.core.6.6.0.nupkg.sha512",
+    "C:\\Users\\papre\\.nuget\\packages\\xamarin.firebase.ios.crashreporting\\2.0.0.5\\xamarin.firebase.ios.crashreporting.2.0.0.5.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xamarin.firebase.ios.database\\6.0.0.1\\xamarin.firebase.ios.database.6.0.0.1.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xamarin.firebase.ios.dynamiclinks\\4.0.1.1\\xamarin.firebase.ios.dynamiclinks.4.0.1.1.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xamarin.firebase.ios.instanceid\\4.3.0\\xamarin.firebase.ios.instanceid.4.3.0.nupkg.sha512",

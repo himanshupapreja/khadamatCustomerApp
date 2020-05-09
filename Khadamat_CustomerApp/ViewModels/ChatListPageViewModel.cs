@@ -429,6 +429,7 @@ namespace Khadamat_CustomerApp.ViewModels
         }
         #endregion
 
+        #region Navigation Aware
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
 
@@ -437,6 +438,7 @@ namespace Khadamat_CustomerApp.ViewModels
         public void OnNavigatedTo(INavigationParameters parameters)
         {
             GetChat();
-        }
+        } 
+        #endregion
     }
 }

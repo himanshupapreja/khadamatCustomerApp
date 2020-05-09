@@ -302,35 +302,35 @@ namespace Khadamat_CustomerApp.ViewModels
                 MaritalStatusDisplay = Common.GetLanguage() != "ar-AE" ? Common.GetEnumDescription(MartialStatusEnum.Single) : Common.GetEnumDescription(MartialStatusArabicEnum.Single),
                 MaritalStatusEnumValue = Convert.ToInt32(MartialStatusEnum.Single)
             });
-            MaritalStatusList.Add(new MaritalStatusPickerModel
-            {
-                MaritalStatusDisplay = Common.GetLanguage() != "ar-AE" ? Common.GetEnumDescription(MartialStatusEnum.InARelationship) : Common.GetEnumDescription(MartialStatusArabicEnum.InARelationship),
-                MaritalStatusEnumValue = Convert.ToInt32(MartialStatusEnum.InARelationship)
-            });
-            MaritalStatusList.Add(new MaritalStatusPickerModel
-            {
-                MaritalStatusDisplay = Common.GetLanguage() != "ar-AE" ? Common.GetEnumDescription(MartialStatusEnum.Engaged) : Common.GetEnumDescription(MartialStatusArabicEnum.Engaged),
-                MaritalStatusEnumValue = Convert.ToInt32(MartialStatusEnum.Engaged)
-            });
+            //MaritalStatusList.Add(new MaritalStatusPickerModel
+            //{
+            //    MaritalStatusDisplay = Common.GetLanguage() != "ar-AE" ? Common.GetEnumDescription(MartialStatusEnum.InARelationship) : Common.GetEnumDescription(MartialStatusArabicEnum.InARelationship),
+            //    MaritalStatusEnumValue = Convert.ToInt32(MartialStatusEnum.InARelationship)
+            //});
+            //MaritalStatusList.Add(new MaritalStatusPickerModel
+            //{
+            //    MaritalStatusDisplay = Common.GetLanguage() != "ar-AE" ? Common.GetEnumDescription(MartialStatusEnum.Engaged) : Common.GetEnumDescription(MartialStatusArabicEnum.Engaged),
+            //    MaritalStatusEnumValue = Convert.ToInt32(MartialStatusEnum.Engaged)
+            //});
             MaritalStatusList.Add(new MaritalStatusPickerModel
             {
                 MaritalStatusDisplay = Common.GetLanguage() != "ar-AE" ? Common.GetEnumDescription(MartialStatusEnum.Married) : Common.GetEnumDescription(MartialStatusArabicEnum.Married),
                 MaritalStatusEnumValue = Convert.ToInt32(MartialStatusEnum.Married)
             });
+            //MaritalStatusList.Add(new MaritalStatusPickerModel
+            //{
+            //    MaritalStatusDisplay = Common.GetLanguage() != "ar-AE" ? Common.GetEnumDescription(MartialStatusEnum.ItsComplicated) : Common.GetEnumDescription(MartialStatusArabicEnum.ItsComplicated),
+            //    MaritalStatusEnumValue = Convert.ToInt32(MartialStatusEnum.ItsComplicated)
+            //});
+            //MaritalStatusList.Add(new MaritalStatusPickerModel
+            //{
+            //    MaritalStatusDisplay = Common.GetLanguage() != "ar-AE" ? Common.GetEnumDescription(MartialStatusEnum.InAnOpenRelationship) : Common.GetEnumDescription(MartialStatusArabicEnum.InAnOpenRelationship),
+            //    MaritalStatusEnumValue = Convert.ToInt32(MartialStatusEnum.InAnOpenRelationship)
+            //});
             MaritalStatusList.Add(new MaritalStatusPickerModel
             {
-                MaritalStatusDisplay = Common.GetLanguage() != "ar-AE" ? Common.GetEnumDescription(MartialStatusEnum.ItsComplicated) : Common.GetEnumDescription(MartialStatusArabicEnum.ItsComplicated),
-                MaritalStatusEnumValue = Convert.ToInt32(MartialStatusEnum.ItsComplicated)
-            });
-            MaritalStatusList.Add(new MaritalStatusPickerModel
-            {
-                MaritalStatusDisplay = Common.GetLanguage() != "ar-AE" ? Common.GetEnumDescription(MartialStatusEnum.InAnOpenRelationship) : Common.GetEnumDescription(MartialStatusArabicEnum.InAnOpenRelationship),
-                MaritalStatusEnumValue = Convert.ToInt32(MartialStatusEnum.InAnOpenRelationship)
-            });
-            MaritalStatusList.Add(new MaritalStatusPickerModel
-            {
-                MaritalStatusDisplay = Common.GetLanguage() != "ar-AE" ? Common.GetEnumDescription(MartialStatusEnum.Widowed) : Common.GetEnumDescription(MartialStatusArabicEnum.Widowed),
-                MaritalStatusEnumValue = Convert.ToInt32(MartialStatusEnum.Widowed)
+                MaritalStatusDisplay = Common.GetLanguage() != "ar-AE" ? Common.GetEnumDescription(MartialStatusEnum.Divorced) : Common.GetEnumDescription(MartialStatusArabicEnum.Divorced),
+                MaritalStatusEnumValue = Convert.ToInt32(MartialStatusEnum.Divorced)
             });
             if (BaseViewModel.countryDataModels != null && BaseViewModel.countryDataModels.Count > 0 && BaseViewModel.provienceDataModels != null && BaseViewModel.provienceDataModels.Count > 0)
             {

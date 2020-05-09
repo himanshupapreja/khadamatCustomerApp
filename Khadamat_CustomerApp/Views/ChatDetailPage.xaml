@@ -107,7 +107,8 @@
                             </BoxView>
                             <ffimageloadingsvg:SvgCachedImage Grid.Row="1" Grid.Column="0" Style="{StaticResource MenuImageCrossStyle}" HorizontalOptions="Center" Source="resource://Khadamat_CustomerApp.SvgImages.attachment.svg">
                                 <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding AttachmentCommand}" NumberOfTapsRequired="1"/>
+                                    <!--<TapGestureRecognizer Command="{Binding AttachmentCommand}" NumberOfTapsRequired="1"/>-->
+                                    <TapGestureRecognizer Command="{Binding ImageUploadCommand}" NumberOfTapsRequired="1"/>
                                 </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
                             </ffimageloadingsvg:SvgCachedImage>
 
@@ -166,7 +167,7 @@
                 </Frame>
             </StackLayout>
 
-            <StackLayout BackgroundColor="Transparent"  Margin="0,0,0,50" VerticalOptions="End" IsVisible="{Binding IsToolbarPopup, Converter={StaticResource BoolToNotBoolConverter}}"
+            <!--<StackLayout BackgroundColor="Transparent"  Margin="0,0,0,50" VerticalOptions="End" IsVisible="{Binding IsToolbarPopup, Converter={StaticResource BoolToNotBoolConverter}}"
                     HorizontalOptions="FillAndExpand"
                            Padding="0" Spacing="0">
 
@@ -208,7 +209,7 @@
                     </StackLayout>
                 </Frame>
                 <ffimageloadingsvg:SvgCachedImage Style="{StaticResource MenuImage30Style}" HorizontalOptions="Start" Margin="15,-8,0,0" Source="resource://Khadamat_CustomerApp.SvgImages.downarrowwhite.svg"/>
-            </StackLayout>
+            </StackLayout>-->
 
             <!--<BoxView HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Black1Color}" Opacity="0.8" VerticalOptions="FillAndExpand" IsVisible="{Binding IsLoaderBusy}"/>
             <ActivityIndicator IsVisible="{Binding IsLoaderBusy}" IsRunning="{Binding IsLoaderBusy}" Color="{StaticResource BlueColor}" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"/>-->

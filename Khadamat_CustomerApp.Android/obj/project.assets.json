@@ -1017,6 +1017,121 @@
           "build/monoandroid90/Xamarin.Android.Arch.Lifecycle.ViewModel.targets": {}
         }
       },
+      "Xamarin.Android.Crashlytics/2.9.4.4": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Android.Crashlytics.Answers": "1.4.2.4",
+          "Xamarin.Android.Crashlytics.Beta": "1.2.9.4",
+          "Xamarin.Android.Crashlytics.Core": "2.6.3.4",
+          "Xamarin.Android.Fabric": "1.4.3.4",
+          "Xamarin.Build.Download": "0.8.0",
+          "Xamarin.Firebase.Core": "60.1142.1"
+        },
+        "frameworkAssemblies": [
+          "Java.Interop",
+          "Mono.Android",
+          "System",
+          "System.Core",
+          "System.Xml"
+        ],
+        "compile": {
+          "lib/monoandroid60/Xamarin.Android.Crashlytics.dll": {}
+        },
+        "runtime": {
+          "lib/monoandroid60/Xamarin.Android.Crashlytics.dll": {}
+        },
+        "build": {
+          "buildTransitive/Xamarin.Android.Crashlytics.targets": {}
+        }
+      },
+      "Xamarin.Android.Crashlytics.Answers/1.4.2.4": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Build.Download": "0.8.0"
+        },
+        "frameworkAssemblies": [
+          "Java.Interop",
+          "Mono.Android",
+          "System",
+          "System.Core",
+          "System.Xml"
+        ],
+        "compile": {
+          "lib/monoandroid60/Xamarin.Android.Crashlytics.Answers.dll": {}
+        },
+        "runtime": {
+          "lib/monoandroid60/Xamarin.Android.Crashlytics.Answers.dll": {}
+        },
+        "build": {
+          "buildTransitive/Xamarin.Android.Crashlytics.Answers.targets": {}
+        }
+      },
+      "Xamarin.Android.Crashlytics.Beta/1.2.9.4": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Build.Download": "0.8.0"
+        },
+        "frameworkAssemblies": [
+          "Java.Interop",
+          "Mono.Android",
+          "System",
+          "System.Core",
+          "System.Xml"
+        ],
+        "compile": {
+          "lib/monoandroid60/Xamarin.Android.Crashlytics.Beta.dll": {}
+        },
+        "runtime": {
+          "lib/monoandroid60/Xamarin.Android.Crashlytics.Beta.dll": {}
+        },
+        "build": {
+          "buildTransitive/Xamarin.Android.Crashlytics.Beta.targets": {}
+        }
+      },
+      "Xamarin.Android.Crashlytics.Core/2.6.3.4": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Build.Download": "0.8.0"
+        },
+        "frameworkAssemblies": [
+          "Java.Interop",
+          "Mono.Android",
+          "System",
+          "System.Core",
+          "System.Xml"
+        ],
+        "compile": {
+          "lib/monoandroid60/Xamarin.Android.Crashlytics.Core.dll": {}
+        },
+        "runtime": {
+          "lib/monoandroid60/Xamarin.Android.Crashlytics.Core.dll": {}
+        },
+        "build": {
+          "buildTransitive/Xamarin.Android.Crashlytics.Core.targets": {}
+        }
+      },
+      "Xamarin.Android.Fabric/1.4.3.4": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Build.Download": "0.8.0"
+        },
+        "frameworkAssemblies": [
+          "Java.Interop",
+          "Mono.Android",
+          "System",
+          "System.Core",
+          "System.Xml"
+        ],
+        "compile": {
+          "lib/monoandroid60/Xamarin.Android.Fabric.dll": {}
+        },
+        "runtime": {
+          "lib/monoandroid60/Xamarin.Android.Fabric.dll": {}
+        },
+        "build": {
+          "buildTransitive/Xamarin.Android.Fabric.targets": {}
+        }
+      },
       "Xamarin.Android.Support.Animated.Vector.Drawable/28.0.0.3": {
         "type": "package",
         "dependencies": {
@@ -1789,6 +1904,12 @@
         },
         "build": {
           "build/MonoAndroid80/Xamarin.Firebase.Common.targets": {}
+        }
+      },
+      "Xamarin.Firebase.Core/60.1142.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Firebase.Analytics": "[60.1142.1]"
         }
       },
       "Xamarin.Firebase.Crash/60.1142.1": {
@@ -5620,6 +5741,81 @@
         "xamarin.android.arch.lifecycle.viewmodel.nuspec"
       ]
     },
+    "Xamarin.Android.Crashlytics/2.9.4.4": {
+      "sha512": "q9NKw036I90anLGMlWNVUbLE+AHxqf1shEOr6aEad1etAKMho5TjvAmzBgTLSvAl/67lF6y/vpgTZgeKHbpy1w==",
+      "type": "package",
+      "path": "xamarin.android.crashlytics/2.9.4.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "THIRD-PARTY-NOTICE.txt",
+        "build/Xamarin.Android.Crashlytics.targets",
+        "buildTransitive/Xamarin.Android.Crashlytics.targets",
+        "lib/monoandroid60/Xamarin.Android.Crashlytics.dll",
+        "xamarin.android.crashlytics.2.9.4.4.nupkg.sha512",
+        "xamarin.android.crashlytics.nuspec"
+      ]
+    },
+    "Xamarin.Android.Crashlytics.Answers/1.4.2.4": {
+      "sha512": "HG1vaRyWpV37bOtW9xaKZPbDw7hzzBUeWSJ8Crys/AanUn9Ljob8FF1ZG1YTMoe/SXh8XYIHa7RVfBzP71nvOA==",
+      "type": "package",
+      "path": "xamarin.android.crashlytics.answers/1.4.2.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "THIRD-PARTY-NOTICE.txt",
+        "build/Xamarin.Android.Crashlytics.Answers.targets",
+        "buildTransitive/Xamarin.Android.Crashlytics.Answers.targets",
+        "lib/monoandroid60/Xamarin.Android.Crashlytics.Answers.dll",
+        "xamarin.android.crashlytics.answers.1.4.2.4.nupkg.sha512",
+        "xamarin.android.crashlytics.answers.nuspec"
+      ]
+    },
+    "Xamarin.Android.Crashlytics.Beta/1.2.9.4": {
+      "sha512": "sxIBpUdwz4+AlBi1SFJfMo/s6acZbLGa0wu7cb9FYTiuAiioHuAl/nwB15gkUIYaSai85xo595+gjyQ/DcdUQg==",
+      "type": "package",
+      "path": "xamarin.android.crashlytics.beta/1.2.9.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "THIRD-PARTY-NOTICE.txt",
+        "build/Xamarin.Android.Crashlytics.Beta.targets",
+        "buildTransitive/Xamarin.Android.Crashlytics.Beta.targets",
+        "lib/monoandroid60/Xamarin.Android.Crashlytics.Beta.dll",
+        "xamarin.android.crashlytics.beta.1.2.9.4.nupkg.sha512",
+        "xamarin.android.crashlytics.beta.nuspec"
+      ]
+    },
+    "Xamarin.Android.Crashlytics.Core/2.6.3.4": {
+      "sha512": "FJjHNCi73Ztx5vTfB1ty8TTN/cr0mhStT63quqzDro07mA16Hh9i+/uou+DgUiHN5NcXSaAh2+GqahS9dJtLLA==",
+      "type": "package",
+      "path": "xamarin.android.crashlytics.core/2.6.3.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "THIRD-PARTY-NOTICE.txt",
+        "build/Xamarin.Android.Crashlytics.Core.targets",
+        "buildTransitive/Xamarin.Android.Crashlytics.Core.targets",
+        "lib/monoandroid60/Xamarin.Android.Crashlytics.Core.dll",
+        "xamarin.android.crashlytics.core.2.6.3.4.nupkg.sha512",
+        "xamarin.android.crashlytics.core.nuspec"
+      ]
+    },
+    "Xamarin.Android.Fabric/1.4.3.4": {
+      "sha512": "xnOFSpFVWWr1rcoaKV4EbH7uBjUyXekWyed5hUw8Y5HDZwcx1Sokd7Etyv2rFbyH9XGoBx8RpSVyIYiqWd7OTA==",
+      "type": "package",
+      "path": "xamarin.android.fabric/1.4.3.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "THIRD-PARTY-NOTICE.txt",
+        "build/Xamarin.Android.Fabric.targets",
+        "buildTransitive/Xamarin.Android.Fabric.targets",
+        "lib/monoandroid60/Xamarin.Android.Fabric.dll",
+        "xamarin.android.fabric.1.4.3.4.nupkg.sha512",
+        "xamarin.android.fabric.nuspec"
+      ]
+    },
     "Xamarin.Android.Support.Animated.Vector.Drawable/28.0.0.3": {
       "sha512": "sgR9ixZpaIx6oGNPEUlXDkNH6DUAwwJdS2xHkmJzarIuUHa07xjWlE1TW3pdjkdBjDx5jn0S9l9b8oUkKRMXNw==",
       "type": "package",
@@ -6560,6 +6756,17 @@
         "xamarin.firebase.common.nuspec"
       ]
     },
+    "Xamarin.Firebase.Core/60.1142.1": {
+      "sha512": "dXGjtHNv17haUk3XjliKXYraHTjO29dmfvjKLpnobZh+UY09QxmHPdcMNxDgtMqxFiV2Roikr05XwCzhl/0GpA==",
+      "type": "package",
+      "path": "xamarin.firebase.core/60.1142.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "xamarin.firebase.core.60.1142.1.nupkg.sha512",
+        "xamarin.firebase.core.nuspec"
+      ]
+    },
     "Xamarin.Firebase.Crash/60.1142.1": {
       "sha512": "DTzDn3nikIkWzE6hXm5D9rcO/PUqX5EODCeSMW1VeKU6hbcMYM5KcG2kWgUbSNy0CYU2v/y0KJkkgXeCkmhCCw==",
       "type": "package",
@@ -7094,6 +7301,7 @@
       "Xam.Plugin.Geolocator >= 4.5.0.6",
       "Xam.Plugin.Media >= 4.0.1.5",
       "Xam.Plugins.Forms.ImageCircle >= 3.0.0.5",
+      "Xamarin.Android.Crashlytics >= 2.9.4.4",
       "Xamarin.Android.Support.CustomTabs >= 28.0.0.3",
       "Xamarin.Android.Support.Design >= 28.0.0.3",
       "Xamarin.Android.Support.v4 >= 28.0.0.3",
@@ -7201,6 +7409,10 @@
           "Xam.Plugins.Forms.ImageCircle": {
             "target": "Package",
             "version": "[3.0.0.5, )"
+          },
+          "Xamarin.Android.Crashlytics": {
+            "target": "Package",
+            "version": "[2.9.4.4, )"
           },
           "Xamarin.Android.Support.CustomTabs": {
             "target": "Package",

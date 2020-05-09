@@ -20,7 +20,7 @@ using static Khadamat_CustomerApp.Helpers.Enums;
 
 namespace Khadamat_CustomerApp.ViewModels
 {
-    public class NotificationPageViewModel : BaseViewModel
+    public class NotificationPageViewModel : BaseViewModel, INavigationAware
     {
         private readonly INavigationService NavigationService;
         #region IsLoaderBusy Field
@@ -77,10 +77,6 @@ namespace Khadamat_CustomerApp.ViewModels
         public NotificationPageViewModel(INavigationService navigationService)
         {
             NavigationService = navigationService;
-            IsLoaderBusy = false;
-            IsNoDataFoundView = false;
-            IsNoInternetView = false;
-            Getnotification();
         }
         #endregion
 
@@ -393,6 +389,21 @@ namespace Khadamat_CustomerApp.ViewModels
                     await NavigationService.GoBackAsync();
                 });
             }
+        }
+        #endregion
+
+        #region Navigation Aware
+        public void OnNavigatedFrom(INavigationParameters parameters)
+        {
+
+        }
+
+        public void OnNavigatedTo(INavigationParameters parameters)
+        {
+            IsLoaderBusy = false;
+            IsNoDataFoundView = false;
+            IsNoInternetView = false;
+            Getnotification();
         }
         #endregion
     }

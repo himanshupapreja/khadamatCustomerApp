@@ -969,6 +969,24 @@
           "buildTransitive/Xamarin.Firebase.iOS.Core.targets": {}
         }
       },
+      "Xamarin.Firebase.iOS.CrashReporting/2.0.0.5": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Build.Download": "0.4.6",
+          "Xamarin.Firebase.iOS.Analytics": "4.0.5.1",
+          "Xamarin.Firebase.iOS.Core": "4.0.13.1",
+          "Xamarin.Firebase.iOS.InstanceID": "2.0.8"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/Firebase.CrashReporting.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Firebase.CrashReporting.dll": {}
+        },
+        "build": {
+          "build/Xamarin.Firebase.iOS.CrashReporting.targets": {}
+        }
+      },
       "Xamarin.Firebase.iOS.Database/6.0.0.1": {
         "type": "package",
         "dependencies": {
@@ -2104,6 +2122,24 @@
         },
         "build": {
           "buildTransitive/Xamarin.Firebase.iOS.Core.targets": {}
+        }
+      },
+      "Xamarin.Firebase.iOS.CrashReporting/2.0.0.5": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Build.Download": "0.4.6",
+          "Xamarin.Firebase.iOS.Analytics": "4.0.5.1",
+          "Xamarin.Firebase.iOS.Core": "4.0.13.1",
+          "Xamarin.Firebase.iOS.InstanceID": "2.0.8"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/Firebase.CrashReporting.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Firebase.CrashReporting.dll": {}
+        },
+        "build": {
+          "build/Xamarin.Firebase.iOS.CrashReporting.targets": {}
         }
       },
       "Xamarin.Firebase.iOS.Database/6.0.0.1": {
@@ -3246,6 +3282,24 @@
           "buildTransitive/Xamarin.Firebase.iOS.Core.targets": {}
         }
       },
+      "Xamarin.Firebase.iOS.CrashReporting/2.0.0.5": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Build.Download": "0.4.6",
+          "Xamarin.Firebase.iOS.Analytics": "4.0.5.1",
+          "Xamarin.Firebase.iOS.Core": "4.0.13.1",
+          "Xamarin.Firebase.iOS.InstanceID": "2.0.8"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/Firebase.CrashReporting.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Firebase.CrashReporting.dll": {}
+        },
+        "build": {
+          "build/Xamarin.Firebase.iOS.CrashReporting.targets": {}
+        }
+      },
       "Xamarin.Firebase.iOS.Database/6.0.0.1": {
         "type": "package",
         "dependencies": {
@@ -4384,6 +4438,24 @@
         },
         "build": {
           "buildTransitive/Xamarin.Firebase.iOS.Core.targets": {}
+        }
+      },
+      "Xamarin.Firebase.iOS.CrashReporting/2.0.0.5": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Build.Download": "0.4.6",
+          "Xamarin.Firebase.iOS.Analytics": "4.0.5.1",
+          "Xamarin.Firebase.iOS.Core": "4.0.13.1",
+          "Xamarin.Firebase.iOS.InstanceID": "2.0.8"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/Firebase.CrashReporting.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Firebase.CrashReporting.dll": {}
+        },
+        "build": {
+          "build/Xamarin.Firebase.iOS.CrashReporting.targets": {}
         }
       },
       "Xamarin.Firebase.iOS.Database/6.0.0.1": {
@@ -8304,6 +8376,20 @@
         "xamarin.firebase.ios.core.nuspec"
       ]
     },
+    "Xamarin.Firebase.iOS.CrashReporting/2.0.0.5": {
+      "sha512": "PBx4XsrL2SxPtd0Wq1PjMtExdtxKZ22LisXtm94CjYb/GvI7QO92Tjm7+TPK5rs78iqOxryoD5BykPo3xsKNkw==",
+      "type": "package",
+      "path": "xamarin.firebase.ios.crashreporting/2.0.0.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/Xamarin.Firebase.iOS.CrashReporting.targets",
+        "content/xamarin_upload_symbols.sh",
+        "lib/Xamarin.iOS10/Firebase.CrashReporting.dll",
+        "xamarin.firebase.ios.crashreporting.2.0.0.5.nupkg.sha512",
+        "xamarin.firebase.ios.crashreporting.nuspec"
+      ]
+    },
     "Xamarin.Firebase.iOS.Database/6.0.0.1": {
       "sha512": "cIP27TnIHNm5VWvEgYriD5dkZweNAdjyOQo3LnozmvqYoF0LHDXKc+6gDu+3DHp1empQxOHaer2i+lb3dIQ92w==",
       "type": "package",
@@ -8745,6 +8831,7 @@
       "Xamarin.Firebase.iOS.Analytics >= 6.2.1",
       "Xamarin.Firebase.iOS.CloudMessaging >= 4.1.1.2",
       "Xamarin.Firebase.iOS.Core >= 6.6.0",
+      "Xamarin.Firebase.iOS.CrashReporting >= 2.0.0.5",
       "Xamarin.Firebase.iOS.Database >= 6.0.0.1",
       "Xamarin.Firebase.iOS.DynamicLinks >= 4.0.1.1",
       "Xamarin.Firebase.iOS.InstanceID >= 4.3.0",
@@ -8859,6 +8946,10 @@
           "Xamarin.Firebase.iOS.Core": {
             "target": "Package",
             "version": "[6.6.0, )"
+          },
+          "Xamarin.Firebase.iOS.CrashReporting": {
+            "target": "Package",
+            "version": "[2.0.0.5, )"
           },
           "Xamarin.Firebase.iOS.Database": {
             "target": "Package",

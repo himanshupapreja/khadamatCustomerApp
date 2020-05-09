@@ -36,6 +36,8 @@ namespace Khadamat_CustomerApp.Helpers
             InAnOpenRelationship = 6,
             [Description("Widowed")]
             Widowed = 7,
+            [Description("Divorced")]
+            Divorced = 8,
         }
 
         public enum MartialStatusArabicEnum
@@ -54,6 +56,8 @@ namespace Khadamat_CustomerApp.Helpers
             InAnOpenRelationship = 6,
             [Description("أرمل")]
             Widowed = 7,
+            [Description("مطلقة")]
+            Divorced = 8,
         }
 
         public enum JobRequestEnum

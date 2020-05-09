@@ -174,7 +174,7 @@ namespace Khadamat_CustomerApp.ViewModels
             IsLoaderBusy = true;
             try
             {
-                var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+                var request = new GeolocationRequest(GeolocationAccuracy.Default);
                 locationpoint = await Geolocation.GetLocationAsync(request);
             }
             catch (FeatureNotSupportedException fnsEx)

@@ -15988,6 +15988,9 @@ namespace Khadamat_CustomerApp.Droid
 			// aapt resource value: 0x7f0a005e
 			public const int character_counter_pattern = 2131361886;
 			
+			// aapt resource value: 0x7f0a00c0
+			public const int com_crashlytics_android_build_id = 2131361984;
+			
 			// aapt resource value: 0x7f0a000a
 			public const int common_google_play_services_enable_button = 2131361802;
 			

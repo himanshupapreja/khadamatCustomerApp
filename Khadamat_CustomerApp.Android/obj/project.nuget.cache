@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Br/YxdeIozMICMCd1r2c2BbCCi4ZZ2PbIIQfE2zPtUQbvTFq+ptOv6lX3rYeufKL0emdxqu9Y0gHTCiiYHWOMw==",
+  "dgSpecHash": "UHCeptH6wIZJdND7EegyTv0BZxHLxRk7N202TsTtjQFnFdoLLrM5NSAo4UeekzBH17+mBk72IlwTNjSeaVDfiQ==",
   "success": true,
   "projectFilePath": "E:\\Git\\hunny\\khadamatCustomerApp\\Khadamat_CustomerApp.Android\\Khadamat_CustomerApp.Android.csproj",
   "expectedPackageFiles": [
@@ -83,6 +83,11 @@
     "C:\\Users\\papre\\.nuget\\packages\\xamarin.android.arch.lifecycle.livedata.core\\1.1.1.3\\xamarin.android.arch.lifecycle.livedata.core.1.1.1.3.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xamarin.android.arch.lifecycle.runtime\\1.1.1.3\\xamarin.android.arch.lifecycle.runtime.1.1.1.3.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xamarin.android.arch.lifecycle.viewmodel\\1.1.1.3\\xamarin.android.arch.lifecycle.viewmodel.1.1.1.3.nupkg.sha512",
+    "C:\\Users\\papre\\.nuget\\packages\\xamarin.android.crashlytics\\2.9.4.4\\xamarin.android.crashlytics.2.9.4.4.nupkg.sha512",
+    "C:\\Users\\papre\\.nuget\\packages\\xamarin.android.crashlytics.answers\\1.4.2.4\\xamarin.android.crashlytics.answers.1.4.2.4.nupkg.sha512",
+    "C:\\Users\\papre\\.nuget\\packages\\xamarin.android.crashlytics.beta\\1.2.9.4\\xamarin.android.crashlytics.beta.1.2.9.4.nupkg.sha512",
+    "C:\\Users\\papre\\.nuget\\packages\\xamarin.android.crashlytics.core\\2.6.3.4\\xamarin.android.crashlytics.core.2.6.3.4.nupkg.sha512",
+    "C:\\Users\\papre\\.nuget\\packages\\xamarin.android.fabric\\1.4.3.4\\xamarin.android.fabric.1.4.3.4.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xamarin.android.support.animated.vector.drawable\\28.0.0.3\\xamarin.android.support.animated.vector.drawable.28.0.0.3.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xamarin.android.support.annotations\\28.0.0.3\\xamarin.android.support.annotations.28.0.0.3.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xamarin.android.support.asynclayoutinflater\\28.0.0.3\\xamarin.android.support.asynclayoutinflater.28.0.0.3.nupkg.sha512",
@@ -124,6 +129,7 @@
     "C:\\Users\\papre\\.nuget\\packages\\xamarin.firebase.analytics\\60.1142.1\\xamarin.firebase.analytics.60.1142.1.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xamarin.firebase.analytics.impl\\60.1142.1\\xamarin.firebase.analytics.impl.60.1142.1.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xamarin.firebase.common\\60.1142.1\\xamarin.firebase.common.60.1142.1.nupkg.sha512",
+    "C:\\Users\\papre\\.nuget\\packages\\xamarin.firebase.core\\60.1142.1\\xamarin.firebase.core.60.1142.1.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xamarin.firebase.crash\\60.1142.1\\xamarin.firebase.crash.60.1142.1.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xamarin.firebase.database\\60.1142.1\\xamarin.firebase.database.60.1142.1.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xamarin.firebase.database.connection\\60.1142.1\\xamarin.firebase.database.connection.60.1142.1.nupkg.sha512",
