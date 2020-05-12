@@ -3,6 +3,7 @@ using Khadamat_CustomerApp.Helpers;
 using Khadamat_CustomerApp.Models;
 using Khadamat_CustomerApp.Resources;
 using Khadamat_CustomerApp.Views;
+using Plugin.Geolocator;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Prism.Commands;
@@ -34,7 +35,7 @@ namespace Khadamat_CustomerApp.ViewModels
         public string AddressfromGPS;
         public static bool IsPermissionSettingOpen;
         public Position AddressPositionfromGPS;
-        public Xamarin.Essentials.Location location;
+        public Plugin.Geolocator.Abstractions.Position location;
         public ImagesModel GallData;
         public int user_age;
         #region IsLoaderBusy Field
@@ -396,37 +397,11 @@ namespace Khadamat_CustomerApp.ViewModels
                 MaritalStatusDisplay = Common.GetLanguage() != "ar-AE" ? Common.GetEnumDescription(MartialStatusEnum.Single) : Common.GetEnumDescription(MartialStatusArabicEnum.Single),
                 MaritalStatusEnumValue = Convert.ToInt32(MartialStatusEnum.Single)
             });
-            //MaritalStatusList.Add(new MaritalStatusPickerModel
-            //{
-            //    MaritalStatusDisplay = Common.GetLanguage() != "ar-AE" ? Common.GetEnumDescription(MartialStatusEnum.InARelationship) : Common.GetEnumDescription(MartialStatusArabicEnum.InARelationship),
-            //    MaritalStatusEnumValue = Convert.ToInt32(MartialStatusEnum.InARelationship)
-            //});
-            //MaritalStatusList.Add(new MaritalStatusPickerModel
-            //{
-            //    MaritalStatusDisplay = Common.GetLanguage() != "ar-AE" ? Common.GetEnumDescription(MartialStatusEnum.Engaged) : Common.GetEnumDescription(MartialStatusArabicEnum.Engaged),
-            //    MaritalStatusEnumValue = Convert.ToInt32(MartialStatusEnum.Engaged)
-            //});
             MaritalStatusList.Add(new MaritalStatusPickerModel
             {
                 MaritalStatusDisplay = Common.GetLanguage() != "ar-AE" ? Common.GetEnumDescription(MartialStatusEnum.Married) : Common.GetEnumDescription(MartialStatusArabicEnum.Married),
                 MaritalStatusEnumValue = Convert.ToInt32(MartialStatusEnum.Married)
             });
-            //MaritalStatusList.Add(new MaritalStatusPickerModel
-            //{
-            //    MaritalStatusDisplay = Common.GetLanguage() != "ar-AE" ? Common.GetEnumDescription(MartialStatusEnum.ItsComplicated) : Common.GetEnumDescription(MartialStatusArabicEnum.ItsComplicated),
-            //    MaritalStatusEnumValue = Convert.ToInt32(MartialStatusEnum.ItsComplicated)
-            //});
-            //MaritalStatusList.Add(new MaritalStatusPickerModel
-            //{
-            //    MaritalStatusDisplay = Common.GetLanguage() != "ar-AE" ? Common.GetEnumDescription(MartialStatusEnum.InAnOpenRelationship) : Common.GetEnumDescription(MartialStatusArabicEnum.InAnOpenRelationship),
-            //    MaritalStatusEnumValue = Convert.ToInt32(MartialStatusEnum.InAnOpenRelationship)
-            //});
-            //MaritalStatusList.Add(new MaritalStatusPickerModel
-            //{
-            //    MaritalStatusDisplay = Common.GetLanguage() != "ar-AE" ? Common.GetEnumDescription(MartialStatusEnum.Widowed) : Common.GetEnumDescription(MartialStatusArabicEnum.Widowed),
-            //    MaritalStatusEnumValue = Convert.ToInt32(MartialStatusEnum.Widowed)
-            //});
-
             MaritalStatusList.Add(new MaritalStatusPickerModel
             {
                 MaritalStatusDisplay = Common.GetLanguage() != "ar-AE" ? Common.GetEnumDescription(MartialStatusEnum.Divorced) : Common.GetEnumDescription(MartialStatusArabicEnum.Divorced),
@@ -661,17 +636,49 @@ namespace Khadamat_CustomerApp.ViewModels
                                         var result = await App.Current.MainPage.DisplayAlert("", AppResource.error_AppLocationPermissionDisable, AppResource.Yes, AppResource.No);
                                         if (result)
                                         {
-                                            IsPermissionSettingOpen = CrossPermissions.Current.OpenAppSettings();
+                                            CrossPermissions.Current.OpenAppSettings();
                                         }
 
                                     }
                                     else
                                     {
-                                        GetCurrentlocation();
+                                        try
+                                        {
+                                            var locator = CrossGeolocator.Current;
+                                            locator.DesiredAccuracy = 50;
+                                            location = await locator.GetPositionAsync(TimeSpan.FromMilliseconds(500));
+                                            Console.WriteLine("Position Status: {0}", location.Timestamp);
+                                            Console.WriteLine("Position Latitude: {0}", location.Latitude);
+                                            Console.WriteLine("Position Longitude: {0}", location.Longitude);
+                                            try
+                                            {
+                                                Geocoder gc = new Geocoder();
+
+                                                IEnumerable<string> pickedaddress = await gc.GetAddressesForPositionAsync(new Position(location.Latitude, location.Longitude));
+
+                                                Street = pickedaddress.FirstOrDefault().ToString();
+
+                                                if (!string.IsNullOrEmpty(Location) && !string.IsNullOrWhiteSpace(Location) && Location != AppResource.cyp_StreetPlaceholder)
+                                                {
+                                                    //await App.Current.MainPage.DisplayAlert("", AppResource.cyp_LocationPickupAlert, "OK");
+                                                }
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                System.Diagnostics.Debug.WriteLine("GetAddressCurrent2_CurrentLocation" + ex.Message);
+                                            }
+                                            finally
+                                            {
+                                            }
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                        }
                                     }
                                 }
                                 catch (Exception ex)
                                 {
+                                    //IsLoaderBusy = false;
                                 }
                             }
                             else
@@ -698,56 +705,6 @@ namespace Khadamat_CustomerApp.ViewModels
                     }
                 });
             }
-        }
-        #endregion
-
-        #region GetCurrentlocation
-        private async void GetCurrentlocation()
-        {
-            IsLoaderBusy = true;
-            IsLocationFetch = true;
-            try
-            {
-                var request = new GeolocationRequest(GeolocationAccuracy.Medium);
-                location = await Geolocation.GetLocationAsync(request);
-            }
-            catch (FeatureNotSupportedException fnsEx)
-            {
-                // Handle not supported on device exception
-            }
-            catch (FeatureNotEnabledException fneEx)
-            {
-                // Handle not enabled on device exception
-            }
-            catch (PermissionException pEx)
-            {
-                // Handle permission exception
-            }
-            catch (Exception ex)
-            {
-                // Unable to get location
-            }
-
-            try
-            {
-                Geocoder gc = new Geocoder();
-
-                IEnumerable<string> pickedaddress = await gc.GetAddressesForPositionAsync(new Position(location.Latitude, location.Longitude));
-
-                Street = pickedaddress.FirstOrDefault().ToString();
-
-                //if (!string.IsNullOrEmpty(Street) && !string.IsNullOrWhiteSpace(Street) && Street != AppResource.cyp_StreetPlaceholder)
-                //{
-                //    await App.Current.MainPage.DisplayAlert("", AppResource.cyp_LocationPickupAlert, "OK");
-                //}
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine("GetAddressCurrent2_CurrentLocation" + ex.Message);
-            }
-
-            IsLoaderBusy = false;
-            IsLocationFetch = false;
         }
         #endregion
 
@@ -788,7 +745,7 @@ namespace Khadamat_CustomerApp.ViewModels
                         if (profiledata.longitude.HasValue && profiledata.latitude.HasValue)
                         {
                             AddressPositionfromGPS = new Position(profiledata.latitude.Value, profiledata.longitude.Value);
-                            location = new Location(profiledata.latitude.Value, profiledata.longitude.Value);
+                            location = new Plugin.Geolocator.Abstractions.Position(profiledata.latitude.Value, profiledata.longitude.Value);
                         }
                         Location = profiledata.description_location;
 

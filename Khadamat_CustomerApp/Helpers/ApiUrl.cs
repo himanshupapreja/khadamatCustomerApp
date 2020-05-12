@@ -12,6 +12,7 @@ namespace Khadamat_CustomerApp.Helpers
         public const string ApiBaseUrl = "https://ai-khadamat.com/api/";
         public const string PdfBaseUrl = "https://ai-khadamat.com/Images/InvoicePDF/";
         public const string ServiceImageBaseUrl = "https://ai-khadamat.com/Images/Category/";
+        public const string SubServiceImageBaseUrl = "https://ai-khadamat.com/Images/SubCategory/";
 
         public const string SendOtp = "Account/SendOtp";
         public const string VerifyOtp = "Account/VerifyOtp";
@@ -35,7 +36,7 @@ namespace Khadamat_CustomerApp.Helpers
         public const string ChangeLanguage = "Settings/ChangeLanguage";
         public const string GetFaqData = "Settings/GetFaqData";
         public const string ContactUs = "Settings/ContactUs";
-        public const string GetCategories = "Category/GetCategories?user_id={0}";
+        public const string GetCategories = "Category/GetCategories?province_id={0}";
         public const string GetExpressList = "category/GetExpressList";
         public const string GetSubCategories = "Category/GetSubCategories?category_id={0}";
 

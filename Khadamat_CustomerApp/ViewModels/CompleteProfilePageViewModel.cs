@@ -15,13 +15,14 @@ using System.Net.Http;
 using System.Text;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Maps;
 using XF.Material.Forms.UI.Dialogs;
 using static Khadamat_CustomerApp.Helpers.Enums;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System.Windows.Input;
+using Plugin.Geolocator;
+using Xamarin.Forms.Maps;
 
 namespace Khadamat_CustomerApp.ViewModels
 {
@@ -29,10 +30,12 @@ namespace Khadamat_CustomerApp.ViewModels
     {
         private readonly INavigationService NavigationService;
 
+        bool HasCurrentLocation = false;
+        string locationField;
         public string AddressfromGPS;
         public Position AddressPositionfromGPS;
         VerifyResendOtpModel VerifyResendOtpModel;
-        public Location location;
+        public Plugin.Geolocator.Abstractions.Position location;
         public ImagesModel GallData;
 
         public int user_age;
@@ -292,6 +295,7 @@ namespace Khadamat_CustomerApp.ViewModels
 
             //UserPic = "logo.png";
             IsLoaderBusy = false;
+            HasCurrentLocation = false;
             Street = AppResource.cyp_StreetPlaceholder;
             DOB = AppResource.cyp_DOBPlaceholder;
             TermConditionCheck = "resource://Khadamat_CustomerApp.SvgImages.blank_check_box.svg";
@@ -369,6 +373,7 @@ namespace Khadamat_CustomerApp.ViewModels
                 UserPic = GallData.Image;
             });
 
+
             MessagingCenter.Send("CompleteProfilePage", "CompleteProfilePage");
         }
         #endregion
@@ -394,56 +399,6 @@ namespace Khadamat_CustomerApp.ViewModels
             {
                 IsLoaderBusy = false;
             }
-        }
-        #endregion
-
-        #region GetCurrentlocation
-        private async void GetCurrentlocation()
-        {
-            IsLoaderBusy = true;
-            IsLocationFetch = true;
-            try
-            {
-                var request = new GeolocationRequest(GeolocationAccuracy.Medium);
-                location = await Geolocation.GetLocationAsync(request);
-            }
-            catch (FeatureNotSupportedException fnsEx)
-            {
-                // Handle not supported on device exception
-            }
-            catch (FeatureNotEnabledException fneEx)
-            {
-                // Handle not enabled on device exception
-            }
-            catch (PermissionException pEx)
-            {
-                // Handle permission exception
-            }
-            catch (Exception ex)
-            {
-                // Unable to get location
-            }
-
-            try
-            {
-                Geocoder gc = new Geocoder();
-
-                IEnumerable<string> pickedaddress = await gc.GetAddressesForPositionAsync(new Position(location.Latitude, location.Longitude));
-
-                Street = pickedaddress.FirstOrDefault().ToString();
-
-                //if (!string.IsNullOrEmpty(Street) && !string.IsNullOrWhiteSpace(Street) && Street != AppResource.cyp_StreetPlaceholder)
-                //{
-                //    await App.Current.MainPage.DisplayAlert("", AppResource.cyp_LocationPickupAlert, "OK");
-                //}
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine("GetAddressCurrent2_CurrentLocation" + ex.Message);
-            }
-
-            IsLoaderBusy = false;
-            IsLocationFetch = false;
         }
         #endregion
 
@@ -562,7 +517,39 @@ namespace Khadamat_CustomerApp.ViewModels
                                     }
                                     else
                                     {
-                                        GetCurrentlocation();
+
+                                        try
+                                        {
+                                            var locator = CrossGeolocator.Current;
+                                            locator.DesiredAccuracy = 50;
+                                            location = await locator.GetPositionAsync(TimeSpan.FromMilliseconds(500));
+                                            Console.WriteLine("Position Status: {0}", location.Timestamp);
+                                            Console.WriteLine("Position Latitude: {0}", location.Latitude);
+                                            Console.WriteLine("Position Longitude: {0}", location.Longitude);
+                                            try
+                                            {
+                                                Geocoder gc = new Geocoder();
+
+                                                IEnumerable<string> pickedaddress = await gc.GetAddressesForPositionAsync(new Position(location.Latitude, location.Longitude));
+
+                                                Street = pickedaddress.FirstOrDefault().ToString();
+
+                                                if (!string.IsNullOrEmpty(Location) && !string.IsNullOrWhiteSpace(Location) && Location != AppResource.cyp_StreetPlaceholder)
+                                                {
+                                                    //await App.Current.MainPage.DisplayAlert("", AppResource.cyp_LocationPickupAlert, "OK");
+                                                }
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                System.Diagnostics.Debug.WriteLine("GetAddressCurrent2_CurrentLocation" + ex.Message);
+                                            }
+                                            finally
+                                            {
+                                            }
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                        }
                                     }
                                 }
                                 catch (Exception ex)
@@ -767,6 +754,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                                 //}
 
                                                 user_id = response.userData.user_id;
+                                                province_id = response.userData.province.Value;
                                                 user_name = response.userData.name;
                                                 user_pic = Common.IsImagesValid(response.userData.profile_pic, ApiUrl.BaseUrl);
 

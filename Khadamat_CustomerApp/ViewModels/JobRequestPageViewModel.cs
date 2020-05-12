@@ -3,6 +3,7 @@ using Khadamat_CustomerApp.Helpers;
 using Khadamat_CustomerApp.Models;
 using Khadamat_CustomerApp.Resources;
 using Khadamat_CustomerApp.Views;
+using Plugin.Geolocator;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Prism.Commands;
@@ -26,9 +27,10 @@ namespace Khadamat_CustomerApp.ViewModels
         bool IsJobRequested;
         private readonly INavigationService NavigationService;
         public static string CategoryTermCondition;
+        public static long service_category_id;
+        public Plugin.Geolocator.Abstractions.Position locationpoint;
         #region SelectedSubSubService
         private SubSubCategory SelectedSubSubService;
-        public Location locationpoint;
         #endregion
 
         #region IsLoaderBusy Field
@@ -168,55 +170,6 @@ namespace Khadamat_CustomerApp.ViewModels
         }
         #endregion
 
-        #region GetCurrentlocation
-        private async void GetCurrentlocation()
-        {
-            IsLoaderBusy = true;
-            try
-            {
-                var request = new GeolocationRequest(GeolocationAccuracy.Default);
-                locationpoint = await Geolocation.GetLocationAsync(request);
-            }
-            catch (FeatureNotSupportedException fnsEx)
-            {
-                // Handle not supported on device exception
-            }
-            catch (FeatureNotEnabledException fneEx)
-            {
-                // Handle not enabled on device exception
-            }
-            catch (PermissionException pEx)
-            {
-                // Handle permission exception
-            }
-            catch (Exception ex)
-            {
-                // Unable to get location
-            }
-
-            try
-            {
-                Geocoder gc = new Geocoder();
-
-                IEnumerable<string> pickedaddress = await gc.GetAddressesForPositionAsync(new Position(locationpoint.Latitude, locationpoint.Longitude));
-
-                Location = pickedaddress.FirstOrDefault().ToString();
-
-                if (!string.IsNullOrEmpty(Location) && !string.IsNullOrWhiteSpace(Location) && Location != AppResource.cyp_StreetPlaceholder)
-                {
-                    //await App.Current.MainPage.DisplayAlert("", AppResource.cyp_LocationPickupAlert, "OK");
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine("GetAddressCurrent2_CurrentLocation" + ex.Message);
-            }
-            finally
-            {
-                IsLoaderBusy = false;
-            }
-        }
-        #endregion
 
         #region LocationCommand
         public Command LocationCommand
@@ -246,8 +199,38 @@ namespace Khadamat_CustomerApp.ViewModels
                                     }
                                     else
                                     {
-                                        //IsLoaderBusy = true;
-                                        GetCurrentlocation();
+                                        try
+                                        {
+                                            var locator = CrossGeolocator.Current;
+                                            locator.DesiredAccuracy = 50;
+                                            locationpoint = await locator.GetPositionAsync(TimeSpan.FromMilliseconds(500));
+                                            Console.WriteLine("Position Status: {0}", locationpoint.Timestamp);
+                                            Console.WriteLine("Position Latitude: {0}", locationpoint.Latitude);
+                                            Console.WriteLine("Position Longitude: {0}", locationpoint.Longitude);
+                                            try
+                                            {
+                                                Geocoder gc = new Geocoder();
+
+                                                IEnumerable<string> pickedaddress = await gc.GetAddressesForPositionAsync(new Position(locationpoint.Latitude, locationpoint.Longitude));
+
+                                                Location = pickedaddress.FirstOrDefault().ToString();
+
+                                                if (!string.IsNullOrEmpty(Location) && !string.IsNullOrWhiteSpace(Location) && Location != AppResource.cyp_StreetPlaceholder)
+                                                {
+                                                    //await App.Current.MainPage.DisplayAlert("", AppResource.cyp_LocationPickupAlert, "OK");
+                                                }
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                System.Diagnostics.Debug.WriteLine("GetAddressCurrent2_CurrentLocation" + ex.Message);
+                                            }
+                                            finally
+                                            {
+                                            }
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                        }
                                     }
                                 }
                                 catch (Exception ex)
@@ -390,7 +373,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                     {
                                         var jobrequest = new AddJobRequestModel()
                                         {
-                                            category_id = SelectedSubSubService.category_id,
+                                            category_id = service_category_id,
                                             description = ServiceDescriptionValue,
                                             job_date_time = JobDateTime,
                                             job_date_time_str = JobDateTime.ToString("dd-MM-yyyy, hh:mm tt"),
@@ -557,6 +540,10 @@ namespace Khadamat_CustomerApp.ViewModels
             if (parameters.ContainsKey("CategoryTermCondition"))
             {
                 CategoryTermCondition = (string)parameters["CategoryTermCondition"];
+            }
+            if (parameters.ContainsKey("CategoryId"))
+            {
+                service_category_id = (long)parameters["CategoryId"];
             }
         }
 

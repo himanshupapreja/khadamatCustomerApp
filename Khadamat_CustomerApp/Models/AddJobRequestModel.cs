@@ -7,7 +7,7 @@ namespace Khadamat_CustomerApp.Models
     public class AddJobRequestModel
     {
         public int user_id { get; set; }
-        public int category_id { get; set; }
+        public long category_id { get; set; }
         public int sub_sub_category_id { get; set; }
         public DateTime? job_date_time { get; set; }
         public string job_date_time_str { get; set; }

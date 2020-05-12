@@ -12,16 +12,16 @@ namespace Khadamat_CustomerApp.Models
     public class SubSubCategory
     {
         public int sub_sub_category_id { get; set; }
-        public int sub_category_id { get; set; }
-        public int category_id { get; set; }
+        public int? sub_category_id { get; set; }
+        public int? category_id { get; set; }
         public string sub_sub_category_name { get; set; }
         public string sub_sub_category_name_arabic { get; set; }
         public string sub_category_name { get; set; }
         public string category_name { get; set; }
         public string category_name_arabic { get; set; }
         public string icon { get; set; }
-        public DateTime created_date { get; set; }
-        public bool is_active { get; set; }
+        public DateTime? created_date { get; set; }
+        public bool? is_active { get; set; }
     }
 
     public class SubCategory : INotifyPropertyChanged
@@ -31,8 +31,8 @@ namespace Khadamat_CustomerApp.Models
         public string sub_category_name { get; set; }
         public string sub_category_name_arabic { get; set; }
         public string category_name { get; set; }
-        public DateTime created_date { get; set; }
-        public bool is_active { get; set; }
+        public DateTime? created_date { get; set; }
+        public bool? is_active { get; set; }
         public List<SubSubCategory> SubSubCategories { get; set; }
 
 
@@ -72,7 +72,7 @@ namespace Khadamat_CustomerApp.Models
         public string icon { get; set; }
         public string picture { get; set; }
         public System.DateTime? created_date { get; set; }
-        public bool is_active { get; set; }
+        public bool? is_active { get; set; }
         public string terms_conditions { get; set; }
         public string terms_conditions_arabic { get; set; }
         public List<SubCategory> SubCategories { get; set; }
@@ -83,8 +83,8 @@ namespace Khadamat_CustomerApp.Models
         public int main_category_id { get; set; }
         public string main_category_name { get; set; }
         public string main_category_name_arabic { get; set; }
-        public DateTime created_date { get; set; }
-        public bool is_active { get; set; }
+        public DateTime? created_date { get; set; }
+        public bool? is_active { get; set; }
         public List<CategoryListModel> Categories { get; set; }
 
 

@@ -14,7 +14,7 @@ namespace Khadamat_CustomerApp.ViewModels
     {
         private readonly INavigationService NavigationService;
         public CustomControls.CustomMap customMap;
-        Location location;
+        public Plugin.Geolocator.Abstractions.Position location;
         public CustomMapPageViewModel(INavigationService navigationService)
         {
             NavigationService = navigationService;
@@ -29,7 +29,7 @@ namespace Khadamat_CustomerApp.ViewModels
         {
             if (parameters.ContainsKey("CurrentLocationPoints"))
             {
-                location = (Location)parameters["CurrentLocationPoints"];
+                location = (Plugin.Geolocator.Abstractions.Position)parameters["CurrentLocationPoints"];
 
                 if(customMap != null && location != null)
                 {

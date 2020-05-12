@@ -71,6 +71,7 @@ namespace Khadamat_CustomerApp.Views
                         //GetSubServiceData(a.service_category_name, a.SubCategories, a.terms_conditions);
                         var param = new NavigationParameters();
                         param.Add("ServiceDetailTitle", a.service_category_name);
+                        param.Add("CategoryId", a.service_category_id);
                         param.Add("ServiceDetailData", a.SubCategories);
                         param.Add("ServiceDetailTermData", a.terms_conditions);
                         await HomePageViewModel.NavigationService.NavigateAsync(nameof(ServiceDetailPage), param);

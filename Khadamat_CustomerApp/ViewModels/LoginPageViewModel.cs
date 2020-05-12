@@ -168,6 +168,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                     if (responseModel.status)
                                     {
                                         user_id = responseModel.userData.user_id;
+                                        province_id = responseModel.userData.province.Value;
                                         user_name = responseModel.userData.name;
                                         user_pic = Common.IsImagesValid(responseModel.userData.profile_pic, ApiUrl.BaseUrl);
 

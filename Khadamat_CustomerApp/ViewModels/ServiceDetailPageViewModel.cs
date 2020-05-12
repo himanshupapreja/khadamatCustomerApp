@@ -15,6 +15,7 @@ namespace Khadamat_CustomerApp.ViewModels
     {
         public static INavigationService NavigationService;
         public static string categoryTermCondition;
+        public static long service_category_id;
         List<SubCategory> subCategories;
 
         private string CategoryName;
@@ -62,6 +63,10 @@ namespace Khadamat_CustomerApp.ViewModels
                 CategoryName = (string)parameters["ServiceDetailTitle"];
                 Title = CategoryName;
             }
+            if (parameters.ContainsKey("CategoryId"))
+            {
+                service_category_id = (long)parameters["CategoryId"];
+            }
             if (parameters.ContainsKey("ServiceDetailTermData"))
             {
                 categoryTermCondition = (string)parameters["ServiceDetailTermData"];
@@ -85,6 +90,7 @@ namespace Khadamat_CustomerApp.ViewModels
                     {
                         var subSubCategoryItemIndex = AllSubServiceList[index].SubSubCategories.IndexOf(subSubCategoryItem);
                         AllSubServiceList[index].SubSubCategories[subSubCategoryItemIndex].sub_sub_category_name = Common.GetLanguage() != "ar-AE" ? subSubCategoryItem.sub_sub_category_name : subSubCategoryItem.sub_sub_category_name_arabic;
+                        AllSubServiceList[index].SubSubCategories[subSubCategoryItemIndex].icon = Common.IsImagesValid(subSubCategoryItem.icon, ApiUrl.SubServiceImageBaseUrl);
                     }
                 }
                 SubServiceList = AllSubServiceList;

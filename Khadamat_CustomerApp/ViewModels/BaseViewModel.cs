@@ -21,6 +21,7 @@ namespace Khadamat_CustomerApp.ViewModels
         #region Existing Data
 
         public static long user_id;
+        public static long province_id;
         public static string user_name;
         public static string user_pic;
         public static bool email_verified;

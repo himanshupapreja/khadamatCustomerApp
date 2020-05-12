@@ -256,7 +256,7 @@ namespace Khadamat_CustomerApp.ViewModels
                     CategoryListResponseModel response;
                     try
                     {
-                        response = await _webApiRestClient.GetAsync<CategoryListResponseModel>(string.Format(ApiUrl.GetCategories, user_id));
+                        response = await _webApiRestClient.GetAsync<CategoryListResponseModel>(string.Format(ApiUrl.GetCategories, province_id));
                     }
                     catch (Exception ex)
                     {
@@ -289,6 +289,8 @@ namespace Khadamat_CustomerApp.ViewModels
                                     {
                                         var categoryItemIndex = AllMainCategoryList[index].Categories.IndexOf(categoryItem);
                                         AllMainCategoryList[index].Categories[categoryItemIndex].service_category_name = Common.GetLanguage() != "ar-AE" ? categoryItem.service_category_name : categoryItem.service_category_name_arabic;
+                                        AllMainCategoryList[index].Categories[categoryItemIndex].picture = Common.IsImagesValid(categoryItem.picture,ApiUrl.ServiceImageBaseUrl);
+                                        AllMainCategoryList[index].Categories[categoryItemIndex].icon = Common.IsImagesValid(categoryItem.icon,ApiUrl.ServiceImageBaseUrl);
                                         AllMainCategoryList[index].Categories[categoryItemIndex].terms_conditions = Common.GetLanguage() != "ar-AE" ? categoryItem.terms_conditions : categoryItem.terms_conditions_arabic;
                                     }
                                 }
@@ -366,6 +368,9 @@ namespace Khadamat_CustomerApp.ViewModels
                     {
                         var categoryItemIndex = AllMainCategoryList[index].Categories.IndexOf(categoryItem);
                         AllMainCategoryList[index].Categories[categoryItemIndex].service_category_name = Common.GetLanguage() != "ar-AE" ? categoryItem.service_category_name : categoryItem.service_category_name_arabic;
+                        AllMainCategoryList[index].Categories[categoryItemIndex].picture = Common.IsImagesValid(categoryItem.picture, ApiUrl.ServiceImageBaseUrl);
+                        AllMainCategoryList[index].Categories[categoryItemIndex].icon = Common.IsImagesValid(categoryItem.icon, ApiUrl.ServiceImageBaseUrl);
+                        AllMainCategoryList[index].Categories[categoryItemIndex].terms_conditions = Common.GetLanguage() != "ar-AE" ? categoryItem.terms_conditions : categoryItem.terms_conditions_arabic;
                     }
                 }
                 AllMainCategoryList[0].LowerBanner = Common.IsImagesValid(responseCategoryData.lower_banner_image, ApiUrl.BaseUrl);

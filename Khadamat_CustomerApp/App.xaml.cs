@@ -82,6 +82,7 @@ namespace Khadamat_CustomerApp
             {
                 userdataindb = userDataDbService.ReadAllItems().FirstOrDefault();
                 BaseViewModel.user_id = userdataindb.user_id;
+                BaseViewModel.province_id = userdataindb.province.Value;
                 BaseViewModel.user_name = userdataindb.name;
                 BaseViewModel.user_pic = Common.IsImagesValid(userdataindb.profile_pic, ApiUrl.BaseUrl);
                 BaseViewModel.email_verified = userdataindb.email_verified.HasValue ? userdataindb.email_verified.Value : false;

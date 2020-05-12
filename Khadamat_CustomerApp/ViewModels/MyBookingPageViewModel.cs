@@ -289,7 +289,6 @@ namespace Khadamat_CustomerApp.ViewModels
             }
             finally
             {
-                IsLoaderBusy = false;
             }
         }
         #endregion
@@ -460,7 +459,28 @@ namespace Khadamat_CustomerApp.ViewModels
                             IsJobCompleted = CompletedTextColor == Color.FromHex(ColorHelpers.LightYellowColor) ? true : false;
                             IsJobCancelled = CancelledTextColor == Color.FromHex(ColorHelpers.LightYellowColor) ? true : false;
 
-                            GetBookingByStatus();
+                            Device.BeginInvokeOnMainThread(() =>
+                            {
+                                if (AllBookingList != null && AllBookingList.Count > 0)
+                                {
+                                    MyBookingList = new ObservableCollection<JobRequestData>(AllBookingList.Where(x => x.status == Convert.ToInt32(JobRequestEnum.Pending) || x.status == Convert.ToInt32(JobRequestEnum.Accepted)).ToList());
+                                    if (MyBookingList != null && MyBookingList.Count > 0)
+                                    {
+                                        IsNoDataFoundView = false;
+                                        IsNoInternetView = false;
+                                    }
+                                    else
+                                    {
+                                        IsNoDataFoundView = true;
+                                        IsNoInternetView = false;
+                                    }
+                                }
+                                else
+                                {
+                                    IsNoDataFoundView = true;
+                                    IsNoInternetView = false;
+                                }
+                            });
                             break;
                         case "inprogress":
                             PendingTextColor = Color.FromHex(ColorHelpers.Black2Color);
@@ -473,7 +493,28 @@ namespace Khadamat_CustomerApp.ViewModels
                             IsJobCompleted = CompletedTextColor == Color.FromHex(ColorHelpers.LightYellowColor) ? true : false;
                             IsJobCancelled = CancelledTextColor == Color.FromHex(ColorHelpers.LightYellowColor) ? true : false;
 
-                            GetBookingByStatus();
+                            Device.BeginInvokeOnMainThread(() =>
+                            {
+                                if (AllBookingList != null && AllBookingList.Count > 0)
+                                {
+                                    MyBookingList = new ObservableCollection<JobRequestData>(AllBookingList.Where(x => x.status == Convert.ToInt32(JobRequestEnum.InProgress) || x.status == Convert.ToInt32(JobRequestEnum.Assigned)).ToList());
+                                    if (MyBookingList != null && MyBookingList.Count > 0)
+                                    {
+                                        IsNoDataFoundView = false;
+                                        IsNoInternetView = false;
+                                    }
+                                    else
+                                    {
+                                        IsNoDataFoundView = true;
+                                        IsNoInternetView = false;
+                                    }
+                                }
+                                else
+                                {
+                                    IsNoDataFoundView = true;
+                                    IsNoInternetView = false;
+                                }
+                            });
                             break;
                         case "completed":
                             PendingTextColor = Color.FromHex(ColorHelpers.Black2Color);
@@ -486,7 +527,28 @@ namespace Khadamat_CustomerApp.ViewModels
                             IsJobCompleted = CompletedTextColor == Color.FromHex(ColorHelpers.LightYellowColor) ? true : false;
                             IsJobCancelled = CancelledTextColor == Color.FromHex(ColorHelpers.LightYellowColor) ? true : false;
 
-                            GetBookingByStatus();
+                            Device.BeginInvokeOnMainThread(() =>
+                            {
+                                if (AllBookingList != null && AllBookingList.Count > 0)
+                                {
+                                    MyBookingList = new ObservableCollection<JobRequestData>(AllBookingList.Where(x => x.status == Convert.ToInt32(JobRequestEnum.Completed)).ToList());
+                                    if (MyBookingList != null && MyBookingList.Count > 0)
+                                    {
+                                        IsNoDataFoundView = false;
+                                        IsNoInternetView = false;
+                                    }
+                                    else
+                                    {
+                                        IsNoDataFoundView = true;
+                                        IsNoInternetView = false;
+                                    }
+                                }
+                                else
+                                {
+                                    IsNoDataFoundView = true;
+                                    IsNoInternetView = false;
+                                }
+                            });
                             break;
                         case "cancelled":
                             PendingTextColor = Color.FromHex(ColorHelpers.Black2Color);
@@ -499,7 +561,28 @@ namespace Khadamat_CustomerApp.ViewModels
                             IsJobCompleted = CompletedTextColor == Color.FromHex(ColorHelpers.LightYellowColor) ? true : false;
                             IsJobCancelled = CancelledTextColor == Color.FromHex(ColorHelpers.LightYellowColor) ? true : false;
 
-                            GetBookingByStatus();
+                            Device.BeginInvokeOnMainThread(() =>
+                            {
+                                if (AllBookingList != null && AllBookingList.Count > 0)
+                                {
+                                    MyBookingList = new ObservableCollection<JobRequestData>(AllBookingList.Where(x => x.status == Convert.ToInt32(JobRequestEnum.Canceled) || x.status == Convert.ToInt32(JobRequestEnum.QuoteCanceled) || x.status == Convert.ToInt32(JobRequestEnum.Closed)).ToList());
+                                    if (MyBookingList != null && MyBookingList.Count > 0)
+                                    {
+                                        IsNoDataFoundView = false;
+                                        IsNoInternetView = false;
+                                    }
+                                    else
+                                    {
+                                        IsNoDataFoundView = true;
+                                        IsNoInternetView = false;
+                                    }
+                                }
+                                else
+                                {
+                                    IsNoDataFoundView = true;
+                                    IsNoInternetView = false;
+                                }
+                            });
                             break;
                     }
                 });

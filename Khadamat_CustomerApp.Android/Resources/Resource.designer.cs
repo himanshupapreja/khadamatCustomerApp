@@ -13626,26 +13626,26 @@ namespace Khadamat_CustomerApp.Droid
 			// aapt resource value: 0x7f020055
 			public const int avd_hide_password = 2130837589;
 			
-			// aapt resource value: 0x7f020175
-			public const int avd_hide_password_1 = 2130837877;
-			
-			// aapt resource value: 0x7f020176
-			public const int avd_hide_password_2 = 2130837878;
-			
 			// aapt resource value: 0x7f020177
-			public const int avd_hide_password_3 = 2130837879;
+			public const int avd_hide_password_1 = 2130837879;
+			
+			// aapt resource value: 0x7f020178
+			public const int avd_hide_password_2 = 2130837880;
+			
+			// aapt resource value: 0x7f020179
+			public const int avd_hide_password_3 = 2130837881;
 			
 			// aapt resource value: 0x7f020056
 			public const int avd_show_password = 2130837590;
 			
-			// aapt resource value: 0x7f020178
-			public const int avd_show_password_1 = 2130837880;
-			
-			// aapt resource value: 0x7f020179
-			public const int avd_show_password_2 = 2130837881;
-			
 			// aapt resource value: 0x7f02017a
-			public const int avd_show_password_3 = 2130837882;
+			public const int avd_show_password_1 = 2130837882;
+			
+			// aapt resource value: 0x7f02017b
+			public const int avd_show_password_2 = 2130837883;
+			
+			// aapt resource value: 0x7f02017c
+			public const int avd_show_password_3 = 2130837884;
 			
 			// aapt resource value: 0x7f020057
 			public const int cleaning_maintenance = 2130837591;
@@ -14422,88 +14422,94 @@ namespace Khadamat_CustomerApp.Droid
 			public const int navigation_empty_icon = 2130837848;
 			
 			// aapt resource value: 0x7f020159
-			public const int no_data_found = 2130837849;
+			public const int newsplash = 2130837849;
 			
 			// aapt resource value: 0x7f02015a
-			public const int nointernet = 2130837850;
+			public const int no_data_found = 2130837850;
 			
 			// aapt resource value: 0x7f02015b
-			public const int notification_action_background = 2130837851;
+			public const int nointernet = 2130837851;
 			
 			// aapt resource value: 0x7f02015c
-			public const int notification_bg = 2130837852;
+			public const int notification_action_background = 2130837852;
 			
 			// aapt resource value: 0x7f02015d
-			public const int notification_bg_low = 2130837853;
+			public const int notification_bg = 2130837853;
 			
 			// aapt resource value: 0x7f02015e
-			public const int notification_bg_low_normal = 2130837854;
+			public const int notification_bg_low = 2130837854;
 			
 			// aapt resource value: 0x7f02015f
-			public const int notification_bg_low_pressed = 2130837855;
+			public const int notification_bg_low_normal = 2130837855;
 			
 			// aapt resource value: 0x7f020160
-			public const int notification_bg_normal = 2130837856;
+			public const int notification_bg_low_pressed = 2130837856;
 			
 			// aapt resource value: 0x7f020161
-			public const int notification_bg_normal_pressed = 2130837857;
+			public const int notification_bg_normal = 2130837857;
 			
 			// aapt resource value: 0x7f020162
-			public const int notification_icon_background = 2130837858;
-			
-			// aapt resource value: 0x7f020173
-			public const int notification_template_icon_bg = 2130837875;
-			
-			// aapt resource value: 0x7f020174
-			public const int notification_template_icon_low_bg = 2130837876;
+			public const int notification_bg_normal_pressed = 2130837858;
 			
 			// aapt resource value: 0x7f020163
-			public const int notification_tile_bg = 2130837859;
+			public const int notification_icon_background = 2130837859;
+			
+			// aapt resource value: 0x7f020175
+			public const int notification_template_icon_bg = 2130837877;
+			
+			// aapt resource value: 0x7f020176
+			public const int notification_template_icon_low_bg = 2130837878;
 			
 			// aapt resource value: 0x7f020164
-			public const int notify_panel_notification_icon_bg = 2130837860;
+			public const int notification_tile_bg = 2130837860;
 			
 			// aapt resource value: 0x7f020165
-			public const int profile = 2130837861;
+			public const int notify_panel_notification_icon_bg = 2130837861;
 			
 			// aapt resource value: 0x7f020166
-			public const int rating = 2130837862;
+			public const int profile = 2130837862;
 			
 			// aapt resource value: 0x7f020167
-			public const int splash = 2130837863;
+			public const int rating = 2130837863;
 			
 			// aapt resource value: 0x7f020168
-			public const int sub_bg = 2130837864;
+			public const int splash = 2130837864;
 			
 			// aapt resource value: 0x7f020169
-			public const int tooltip_frame_dark = 2130837865;
+			public const int splash_screen = 2130837865;
 			
 			// aapt resource value: 0x7f02016a
-			public const int tooltip_frame_light = 2130837866;
+			public const int sub_bg = 2130837866;
 			
 			// aapt resource value: 0x7f02016b
-			public const int xf_arrow_dropdown = 2130837867;
+			public const int tooltip_frame_dark = 2130837867;
 			
 			// aapt resource value: 0x7f02016c
-			public const int xf_check = 2130837868;
+			public const int tooltip_frame_light = 2130837868;
 			
 			// aapt resource value: 0x7f02016d
-			public const int xf_checkbox_selected = 2130837869;
+			public const int xf_arrow_dropdown = 2130837869;
 			
 			// aapt resource value: 0x7f02016e
-			public const int xf_checkbox_unselected = 2130837870;
+			public const int xf_check = 2130837870;
 			
 			// aapt resource value: 0x7f02016f
-			public const int xf_clear = 2130837871;
+			public const int xf_checkbox_selected = 2130837871;
 			
 			// aapt resource value: 0x7f020170
-			public const int xf_error = 2130837872;
+			public const int xf_checkbox_unselected = 2130837872;
 			
 			// aapt resource value: 0x7f020171
-			public const int xf_radio_button_selected = 2130837873;
+			public const int xf_clear = 2130837873;
 			
 			// aapt resource value: 0x7f020172
-			public const int xf_radio_button_unselected = 2130837874;
+			public const int xf_error = 2130837874;
+			
+			// aapt resource value: 0x7f020173
+			public const int xf_radio_button_selected = 2130837875;
+			
+			// aapt resource value: 0x7f020174
+			public const int xf_radio_button_unselected = 2130837876;
 			
 			static Drawable()
 			{

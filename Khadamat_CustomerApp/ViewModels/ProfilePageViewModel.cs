@@ -288,7 +288,7 @@ namespace Khadamat_CustomerApp.ViewModels
                         if (response.status)
                         {
                             userprofileData = response.data;
-
+                            province_id = response.data.province.Value;
                             if (userDataDbService.IsUserDbPresentInDB())
                             {
                                 var item = userDataDbService.ReadAllItems().FirstOrDefault();
