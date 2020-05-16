@@ -85,10 +85,7 @@ namespace Khadamat_CustomerApp.Droid
         protected override void OnNewIntent(Intent intent)
         {
             base.OnNewIntent(intent);
-            FirebasePushNotificationManager.ProcessIntent(this, intent);
-            Toast.MakeText(this, intent.ToString(), ToastLength.Long);
-            var filename = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "myFile.txt");
-            System.IO.File.WriteAllText(filename, intent.ToString());
+
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

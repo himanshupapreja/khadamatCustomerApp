@@ -175,6 +175,8 @@
     <Compile Include="DependencyInterface\DeviceLocationService_Droid.cs" />
     <Compile Include="DependencyInterface\GetTimeStamp_Droid.cs" />
     <Compile Include="DependencyInterface\Locale_Droid.cs" />
+    <Compile Include="Firebase\FirebaseInstanceIDService.cs" />
+    <Compile Include="Firebase\MyFirebaseMessagingService.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />

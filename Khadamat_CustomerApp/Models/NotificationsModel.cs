@@ -22,10 +22,20 @@ namespace Khadamat_CustomerApp.Models
         public string from_user_image { get; set; }
         public string to_user_image { get; set; }
         public string pdf_file { get; set; }
-        public JobRequestData JobDetails { get; set; }
         public string created_date_str { get; set; }
         public string created_date_str_arabic { get; set; }
         public string display_created_date { get; set; }
+        public object to_user_id_array { get; set; }
+        public object provinces_id_array { get; set; }
+        public int user_type { get; set; }
+        public object JobDetails { get; set; }
+
+
+
+
+
+
+
         //[JsonIgnore]
         public string UserPic { get; set; }
         //[JsonIgnore]
@@ -60,6 +70,7 @@ namespace Khadamat_CustomerApp.Models
         public bool status { get; set; }
         public string message { get; set; }
         public List<NotificationsModel> data { get; set; }
+        public int total_count { get; set; }
     }
 
     public class AcceptRejectQuoteModel

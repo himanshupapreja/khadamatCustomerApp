@@ -27,7 +27,7 @@
                     <StackLayout Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <Label Text="{strings:Translate jobrequest_CategoryTitle}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize2}" Style="{StaticResource BlackMediumLabel}"/>
 
-                        <Label Text="{Binding JobDetailData.display_category_name}" FontFamily="{StaticResource DefaultFontFamily}" FontSize="{StaticResource MainLabelFontSize1}" HorizontalOptions="Start"/>
+                        <Label Text="{Binding display_category_name}" FontFamily="{StaticResource DefaultFontFamily}" FontSize="{StaticResource MainLabelFontSize1}" HorizontalOptions="Start"/>
                     </StackLayout>
                 </Frame>
 
@@ -36,7 +36,7 @@
                     <StackLayout Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <Label Text="{strings:Translate jobrequest_ServiceTypeTitle}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize2}" Style="{StaticResource BlackMediumLabel}"/>
 
-                        <Label Text="{Binding JobDetailData.display_sub_category_name}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize1}" FontFamily="{StaticResource DefaultFontFamily}"/>
+                        <Label Text="{Binding display_sub_category_name}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize1}" FontFamily="{StaticResource DefaultFontFamily}"/>
                     </StackLayout>
                 </Frame>
 

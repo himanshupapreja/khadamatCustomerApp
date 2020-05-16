@@ -42,9 +42,14 @@ namespace Khadamat_CustomerApp.Helpers
 
         public const string AddJobRequest = "Order/AddJobRequest";
         public const string GetCustomerJobRequests = "Order/GetCustomerJobRequests?user_id={0}";
+        public const string GetPendingJobRequests = "Order/GetPendingJobRequests?user_id={0}&pageNumber={1}";
+        public const string GetProgressJobRequests = "Order/GetProgressJobRequests?user_id={0}&pageNumber={1}";
+        public const string GetCompletedJobRequests = "Order/GetCompletedJobRequests?user_id={0}&pageNumber={1}";
+        public const string GetCanceledJobRequests = "Order/GetCanceledJobRequests?user_id={0}&pageNumber={1}";
         public const string GetChat = "Chat/GetChat?userId={0}&userType={1}";
         public const string AddGroupChatRequest = "Chat/AddGroupChatRequest?job_request_id={0}&type={1}";
         public const string GetNotifications = "Notification/GetNotifications?userId={0}";
+        public const string GetNotificationsWithPaging = "Notification/GetNotificationsWithPaging?pageNumber={0}&userId={1}";
         public const string AddChatRequest = "Chat/AddChatRequest";
         public const string DeleteChatRequest = "Chat/DeleteChatRequest";
         public const string MakeReadChat = "Chat/MakeReadChat";

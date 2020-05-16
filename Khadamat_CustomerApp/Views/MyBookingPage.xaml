@@ -84,8 +84,10 @@
                 </ScrollView>
 
                 <CollectionView x:Name="myBookingList" ItemsSource="{Binding MyBookingList}" Grid.Row="1"
-                                    SelectedItem="{Binding JobDetailSelected}" SelectionMode="Single"
-                                    SelectionChanged="myBookingList_ItemSelected"  VerticalOptions="FillAndExpand">
+                                SelectedItem="{Binding JobDetailSelected}" SelectionMode="Single"
+                                SelectionChanged="myBookingList_ItemSelected"  VerticalOptions="FillAndExpand" 
+                                RemainingItemsThresholdReachedCommand="{Binding ItemTresholdReachedCommand}"
+                                RemainingItemsThreshold="{Binding ItemTreshold}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Grid x:Name="myBookingListItem" Padding="20,12">

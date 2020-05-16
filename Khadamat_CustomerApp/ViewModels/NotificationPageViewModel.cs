@@ -10,6 +10,7 @@ using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -23,6 +24,7 @@ namespace Khadamat_CustomerApp.ViewModels
     public class NotificationPageViewModel : BaseViewModel, INavigationAware
     {
         private readonly INavigationService NavigationService;
+        private static int PageNumber;
         #region IsLoaderBusy Field
         private bool _IsLoaderBusy;
 
@@ -73,15 +75,54 @@ namespace Khadamat_CustomerApp.ViewModels
         }
         #endregion
 
+        #region ItemTreshold
+        private int _itemTreshold;
+        public int ItemTreshold
+        {
+            get { return _itemTreshold; }
+            set { SetProperty(ref _itemTreshold, value); }
+        } 
+        #endregion
+
         #region Constructor
         public NotificationPageViewModel(INavigationService navigationService)
         {
             NavigationService = navigationService;
+            ItemTreshold = 1;
+            PageNumber = 1;
+        }
+        #endregion
+
+        #region ItemTresholdReachedCommand
+        public Command ItemTresholdReachedCommand
+        {
+            get
+            {
+                return new Command(async() =>
+                {
+                    IsLoaderBusy = true;
+
+                    try
+                    {
+                        PageNumber = PageNumber + 1;
+                        Getnotification(PageNumber);
+                        //MessagingCenter.Send<object, Item>(this, ScrollToPreviousLastItem, previousLastItem);
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine(ex);
+                    }
+                    finally
+                    {
+                        IsLoaderBusy = false;
+                    }
+                });
+            }
         }
         #endregion
 
         #region Getnotification
-        private async void Getnotification()
+        private async void Getnotification(int pageNumber)
         {
             try
             {
@@ -91,7 +132,7 @@ namespace Khadamat_CustomerApp.ViewModels
                     NotificationsResponseModel response;
                     try
                     {
-                        response = await _webApiRestClient.GetAsync<NotificationsResponseModel>(string.Format(ApiUrl.GetNotifications, user_id));
+                        response = await _webApiRestClient.GetAsync<NotificationsResponseModel>(string.Format(ApiUrl.GetNotificationsWithPaging, pageNumber, user_id));
                     }
                     catch (Exception ex)
                     {
@@ -104,9 +145,12 @@ namespace Khadamat_CustomerApp.ViewModels
                     {
                         if (response.status)
                         {
-                            AllNotificationList.Clear();
-                            var bookingdata = response.data;
-                            foreach (var item in bookingdata)
+                            if (pageNumber == 1)
+                            {
+                                AllNotificationList.Clear(); 
+                            }
+                            var notificationdata = response.data;
+                            foreach (var item in notificationdata)
                             {
                                 item.display_text = Common.GetLanguage() != "ar-AE" ? item.text : item.arabic_text;
                                 item.display_created_date = Common.GetLanguage() != "ar-AE" ? item.created_date_str : item.created_date_str_arabic;
@@ -127,6 +171,12 @@ namespace Khadamat_CustomerApp.ViewModels
                             {
                                 IsNoDataFoundView = true;
                                 IsNoInternetView = false;
+                            }
+                            
+                            if (notificationdata == null || notificationdata.Count == 0)
+                            {
+                                ItemTreshold = -1;
+                                return;
                             }
 
                             Application.Current.Properties["NotificationData"] = JsonConvert.SerializeObject(NotificationList);
@@ -202,7 +252,9 @@ namespace Khadamat_CustomerApp.ViewModels
             {
                 return new Command(() =>
                 {
-                    Getnotification();
+                    ItemTreshold = 1;
+                    PageNumber = 1;
+                    Getnotification(PageNumber);
                 });
             }
         }
@@ -219,7 +271,7 @@ namespace Khadamat_CustomerApp.ViewModels
                     if (string.IsNullOrEmpty(item.pdf_file) || string.IsNullOrWhiteSpace(item.pdf_file))
                     {
                         var param = new NavigationParameters();
-                        param.Add("JobData", item.JobDetails);
+                        param.Add("JobID", item.job_request_id.Value);
                         NavigationService.NavigateAsync(nameof(JobDetailPage), param);
 
                         //IsLoaderBusy = true;
@@ -364,7 +416,9 @@ namespace Khadamat_CustomerApp.ViewModels
                     await MaterialDialog.Instance.SnackbarAsync(response.message, 3000);
                     if (response.status)
                     {
-                        Getnotification();
+                        PageNumber = 1;
+                        ItemTreshold = 1;
+                        Getnotification(PageNumber);
                     }
                 }
             }
@@ -403,7 +457,12 @@ namespace Khadamat_CustomerApp.ViewModels
             IsLoaderBusy = false;
             IsNoDataFoundView = false;
             IsNoInternetView = false;
-            Getnotification();
+            if (parameters.ContainsKey("Notification"))
+            {
+                PageNumber = 1;
+                ItemTreshold = 1;
+                Getnotification(PageNumber);
+            }
         }
         #endregion
     }

@@ -207,12 +207,13 @@ namespace Khadamat_CustomerApp.ViewModels
                                             Console.WriteLine("Position Status: {0}", locationpoint.Timestamp);
                                             Console.WriteLine("Position Latitude: {0}", locationpoint.Latitude);
                                             Console.WriteLine("Position Longitude: {0}", locationpoint.Longitude);
+                                            //await App.Current.MainPage.DisplayAlert("Location Point", locationpoint.Latitude +",," + locationpoint.Longitude, "OK");
                                             try
                                             {
                                                 Geocoder gc = new Geocoder();
 
                                                 IEnumerable<string> pickedaddress = await gc.GetAddressesForPositionAsync(new Position(locationpoint.Latitude, locationpoint.Longitude));
-
+                                                //await App.Current.MainPage.DisplayAlert("pickedaddress", pickedaddress.FirstOrDefault().ToString(), "OK");
                                                 Location = pickedaddress.FirstOrDefault().ToString();
 
                                                 if (!string.IsNullOrEmpty(Location) && !string.IsNullOrWhiteSpace(Location) && Location != AppResource.cyp_StreetPlaceholder)
@@ -222,6 +223,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                             }
                                             catch (Exception ex)
                                             {
+                                                //await App.Current.MainPage.DisplayAlert("Catch 1", ex.Message, "OK");
                                                 System.Diagnostics.Debug.WriteLine("GetAddressCurrent2_CurrentLocation" + ex.Message);
                                             }
                                             finally
@@ -230,11 +232,13 @@ namespace Khadamat_CustomerApp.ViewModels
                                         }
                                         catch (Exception ex)
                                         {
+                                            //await App.Current.MainPage.DisplayAlert("Catch 2", ex.Message, "OK");
                                         }
                                     }
                                 }
                                 catch (Exception ex)
                                 {
+                                    //await App.Current.MainPage.DisplayAlert("Catch 3", ex.Message, "OK");
                                     //IsLoaderBusy = false;
                                 }
                             }

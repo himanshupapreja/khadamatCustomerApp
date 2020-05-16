@@ -25,7 +25,8 @@
         <RefreshView Grid.Row="1" IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <CollectionView x:Name="notificationList" ItemsSource="{Binding NotificationList}" SelectedItem="{Binding NotificationSelected}" SelectionMode="None" ItemsLayout="VerticalList" 
-                                VerticalOptions="FillAndExpand">
+                                VerticalOptions="FillAndExpand" RemainingItemsThresholdReachedCommand="{Binding ItemTresholdReachedCommand}"
+                            RemainingItemsThreshold="{Binding ItemTreshold}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Grid x:Name="notificationListItem" Padding="0,2">

@@ -168,9 +168,6 @@ namespace Khadamat_CustomerApp.ViewModels
                                     if (responseModel.status)
                                     {
                                         user_id = responseModel.userData.user_id;
-                                        province_id = responseModel.userData.province.Value;
-                                        user_name = responseModel.userData.name;
-                                        user_pic = Common.IsImagesValid(responseModel.userData.profile_pic, ApiUrl.BaseUrl);
 
                                         Device.BeginInvokeOnMainThread(() =>
                                         {
@@ -190,6 +187,10 @@ namespace Khadamat_CustomerApp.ViewModels
                                         });
                                         if (!string.IsNullOrEmpty(responseModel.userData.name) && !string.IsNullOrWhiteSpace(responseModel.userData.name))
                                         {
+                                            province_id = responseModel.userData.province.Value;
+                                            user_name = responseModel.userData.name;
+                                            user_pic = Common.IsImagesValid(responseModel.userData.profile_pic, ApiUrl.BaseUrl);
+
                                             var deviceRequestmodel = new UpdateDeviceInfoModel()
                                             {
                                                 device_id = Device.RuntimePlatform == Device.Android ? 1 : Device.RuntimePlatform == Device.iOS ? 2 : 0,

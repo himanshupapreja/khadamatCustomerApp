@@ -23,6 +23,7 @@ namespace Khadamat_CustomerApp.ViewModels
         private readonly INavigationService NavigationService;
         private bool IsChatOpen;
         JobRequestData jobcancelclickdata;
+        private static int PageNumber;
         #region IsLoaderBusy Field
         private bool _IsLoaderBusy = true;
 
@@ -237,14 +238,16 @@ namespace Khadamat_CustomerApp.ViewModels
             IsNoDataFoundView = false;
             IsChatOpen = false;
             IsNoInternetView = false;
-            GetBookingData();
+            PageNumber = 1; 
+            ItemTreshold = 1;
+            GetBookingData(PageNumber);
         }
         #endregion
 
         #region JobDetail
         private async void JobDetail(JobRequestData jobDetailSelected)
         {
-            IsLoaderBusy = true;
+            //IsLoaderBusy = true;
             var param = new NavigationParameters();
             param.Add("JobData", jobDetailSelected);
             await NavigationService.NavigateAsync(new Uri("/NavigationPage/JobDetailPage", UriKind.Relative),param);
@@ -261,14 +264,16 @@ namespace Khadamat_CustomerApp.ViewModels
                 return new Command(() =>
                 {
                     IsPopupVisible = false;
-                    GetBookingByStatus();
+                    PageNumber = 1;
+                    ItemTreshold = 1;
+                    GetBookingByStatus(PageNumber);
                 });
             }
         }
         #endregion
 
         #region GetBookingData
-        private void GetBookingData()
+        private void GetBookingData(int pageNumber)
         {
             try
             {
@@ -282,7 +287,7 @@ namespace Khadamat_CustomerApp.ViewModels
                 IsJobCompleted = CompletedTextColor == Color.FromHex(ColorHelpers.LightYellowColor) ? true : false;
                 IsJobCancelled = CancelledTextColor == Color.FromHex(ColorHelpers.LightYellowColor) ? true : false;
 
-                GetBookingByStatus();
+                GetBookingByStatus(pageNumber);
             }
             catch (Exception ex)
             {
@@ -301,17 +306,33 @@ namespace Khadamat_CustomerApp.ViewModels
         #endregion
 
         #region GetBookingByStatus Method
-        private async void GetBookingByStatus()
+
+        BookingResponseModel response;
+        private async void GetBookingByStatus(int pagenumber)
         {
             try
             {
                 if (Common.CheckConnection())
                 {
-                    IsLoaderBusy = true;
-                    BookingResponseModel response;
+                    //IsLoaderBusy = true;
                     try
                     {
-                        response = await _webApiRestClient.GetAsync<BookingResponseModel>(string.Format(ApiUrl.GetCustomerJobRequests, user_id));
+                        if (IsJobPending)
+                        {
+                            response = await _webApiRestClient.GetAsync<BookingResponseModel>(string.Format(ApiUrl.GetPendingJobRequests, user_id, pagenumber));
+                        }
+                        else if(IsJobInprogress)
+                        {
+                            response = await _webApiRestClient.GetAsync<BookingResponseModel>(string.Format(ApiUrl.GetProgressJobRequests, user_id, pagenumber));
+                        }
+                        else if(IsJobCompleted)
+                        {
+                            response = await _webApiRestClient.GetAsync<BookingResponseModel>(string.Format(ApiUrl.GetCompletedJobRequests, user_id, pagenumber));
+                        }
+                        else if(IsJobCancelled)
+                        {
+                            response = await _webApiRestClient.GetAsync<BookingResponseModel>(string.Format(ApiUrl.GetCanceledJobRequests, user_id, pagenumber));
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -324,7 +345,10 @@ namespace Khadamat_CustomerApp.ViewModels
                     {
                         if (response.status)
                         {
-                            AllBookingList.Clear();
+                            if (PageNumber == 1)
+                            {
+                                AllBookingList.Clear(); 
+                            }
                             if (response.jobRequestData.Count > 0)
                             {
                                 var bookingdata = response.jobRequestData.OrderByDescending(x => x.id).ToList();
@@ -349,11 +373,27 @@ namespace Khadamat_CustomerApp.ViewModels
                                 //IsListVisible = true;
                                 Application.Current.Properties["MyBookingData"] = JsonConvert.SerializeObject(AllBookingList);
                                 Application.Current.SavePropertiesAsync();
+
+                                MyBookingList = AllBookingList;
                             }
                             else
                             {
-                                IsNoDataFoundView = true;
-                                IsNoInternetView = false;
+
+                                if (MyBookingList != null && MyBookingList.Count > 0)
+                                {
+                                    IsNoDataFoundView = false;
+                                    IsNoInternetView = false; 
+                                }
+                                else
+                                {
+                                    IsNoDataFoundView = true;
+                                    IsNoInternetView = false; 
+                                }
+
+                                if(response.jobRequestData == null || response.jobRequestData.Count <= 0)
+                                {
+                                    ItemTreshold = -1;
+                                }
                             }
 
                         }
@@ -400,22 +440,24 @@ namespace Khadamat_CustomerApp.ViewModels
                 }
 
 
-                if (PendingTextColor == Color.FromHex(ColorHelpers.LightYellowColor))
-                {
-                    MyBookingList = new ObservableCollection<JobRequestData>(AllBookingList.Where(x => x.status == Convert.ToInt32(JobRequestEnum.Pending) || x.status == Convert.ToInt32(JobRequestEnum.Accepted)).ToList());
-                }
-                else if (InProgressTextColor == Color.FromHex(ColorHelpers.LightYellowColor))
-                {
-                    MyBookingList = new ObservableCollection<JobRequestData>(AllBookingList.Where(x => x.status == Convert.ToInt32(JobRequestEnum.InProgress) || x.status == Convert.ToInt32(JobRequestEnum.Assigned)).ToList());
-                }
-                else if (CompletedTextColor == Color.FromHex(ColorHelpers.LightYellowColor))
-                {
-                    MyBookingList = new ObservableCollection<JobRequestData>(AllBookingList.Where(x => x.status == Convert.ToInt32(JobRequestEnum.Completed)).ToList());
-                }
-                else if (CancelledTextColor == Color.FromHex(ColorHelpers.LightYellowColor))
-                {
-                    MyBookingList = new ObservableCollection<JobRequestData>(AllBookingList.Where(x => x.status == Convert.ToInt32(JobRequestEnum.Canceled) || x.status == Convert.ToInt32(JobRequestEnum.QuoteCanceled) || x.status == Convert.ToInt32(JobRequestEnum.Closed)).ToList());
-                }
+                //if (PendingTextColor == Color.FromHex(ColorHelpers.LightYellowColor))
+                //{
+                //    MyBookingList = new ObservableCollection<JobRequestData>(AllBookingList.Where(x => x.status == Convert.ToInt32(JobRequestEnum.Pending) || x.status == Convert.ToInt32(JobRequestEnum.Accepted)).ToList());
+                //}
+                //else if (InProgressTextColor == Color.FromHex(ColorHelpers.LightYellowColor))
+                //{
+                //    MyBookingList = new ObservableCollection<JobRequestData>(AllBookingList.Where(x => x.status == Convert.ToInt32(JobRequestEnum.InProgress) || x.status == Convert.ToInt32(JobRequestEnum.Assigned)).ToList());
+                //}
+                //else if (CompletedTextColor == Color.FromHex(ColorHelpers.LightYellowColor))
+                //{
+                //    MyBookingList = new ObservableCollection<JobRequestData>(AllBookingList.Where(x => x.status == Convert.ToInt32(JobRequestEnum.Completed)).ToList());
+                //}
+                //else if (CancelledTextColor == Color.FromHex(ColorHelpers.LightYellowColor))
+                //{
+                //    MyBookingList = new ObservableCollection<JobRequestData>(AllBookingList.Where(x => x.status == Convert.ToInt32(JobRequestEnum.Canceled) || x.status == Convert.ToInt32(JobRequestEnum.QuoteCanceled) || x.status == Convert.ToInt32(JobRequestEnum.Closed)).ToList());
+                //}
+
+
 
                 if (MyBookingList.Count > 0)
                 {
@@ -461,25 +503,28 @@ namespace Khadamat_CustomerApp.ViewModels
 
                             Device.BeginInvokeOnMainThread(() =>
                             {
-                                if (AllBookingList != null && AllBookingList.Count > 0)
-                                {
-                                    MyBookingList = new ObservableCollection<JobRequestData>(AllBookingList.Where(x => x.status == Convert.ToInt32(JobRequestEnum.Pending) || x.status == Convert.ToInt32(JobRequestEnum.Accepted)).ToList());
-                                    if (MyBookingList != null && MyBookingList.Count > 0)
-                                    {
-                                        IsNoDataFoundView = false;
-                                        IsNoInternetView = false;
-                                    }
-                                    else
-                                    {
-                                        IsNoDataFoundView = true;
-                                        IsNoInternetView = false;
-                                    }
-                                }
-                                else
-                                {
-                                    IsNoDataFoundView = true;
-                                    IsNoInternetView = false;
-                                }
+                                PageNumber = 1; 
+                                ItemTreshold = 1;
+                                GetBookingByStatus(PageNumber);
+                                //if (AllBookingList != null && AllBookingList.Count > 0)
+                                //{
+                                //    MyBookingList = new ObservableCollection<JobRequestData>(AllBookingList.Where(x => x.status == Convert.ToInt32(JobRequestEnum.Pending) || x.status == Convert.ToInt32(JobRequestEnum.Accepted)).ToList());
+                                //    if (MyBookingList != null && MyBookingList.Count > 0)
+                                //    {
+                                //        IsNoDataFoundView = false;
+                                //        IsNoInternetView = false;
+                                //    }
+                                //    else
+                                //    {
+                                //        IsNoDataFoundView = true;
+                                //        IsNoInternetView = false;
+                                //    }
+                                //}
+                                //else
+                                //{
+                                //    IsNoDataFoundView = true;
+                                //    IsNoInternetView = false;
+                                //}
                             });
                             break;
                         case "inprogress":
@@ -495,25 +540,28 @@ namespace Khadamat_CustomerApp.ViewModels
 
                             Device.BeginInvokeOnMainThread(() =>
                             {
-                                if (AllBookingList != null && AllBookingList.Count > 0)
-                                {
-                                    MyBookingList = new ObservableCollection<JobRequestData>(AllBookingList.Where(x => x.status == Convert.ToInt32(JobRequestEnum.InProgress) || x.status == Convert.ToInt32(JobRequestEnum.Assigned)).ToList());
-                                    if (MyBookingList != null && MyBookingList.Count > 0)
-                                    {
-                                        IsNoDataFoundView = false;
-                                        IsNoInternetView = false;
-                                    }
-                                    else
-                                    {
-                                        IsNoDataFoundView = true;
-                                        IsNoInternetView = false;
-                                    }
-                                }
-                                else
-                                {
-                                    IsNoDataFoundView = true;
-                                    IsNoInternetView = false;
-                                }
+                                PageNumber = 1; 
+                                ItemTreshold = 1;
+                                GetBookingByStatus(PageNumber);
+                                //if (AllBookingList != null && AllBookingList.Count > 0)
+                                //{
+                                //    MyBookingList = new ObservableCollection<JobRequestData>(AllBookingList.Where(x => x.status == Convert.ToInt32(JobRequestEnum.InProgress) || x.status == Convert.ToInt32(JobRequestEnum.Assigned)).ToList());
+                                //    if (MyBookingList != null && MyBookingList.Count > 0)
+                                //    {
+                                //        IsNoDataFoundView = false;
+                                //        IsNoInternetView = false;
+                                //    }
+                                //    else
+                                //    {
+                                //        IsNoDataFoundView = true;
+                                //        IsNoInternetView = false;
+                                //    }
+                                //}
+                                //else
+                                //{
+                                //    IsNoDataFoundView = true;
+                                //    IsNoInternetView = false;
+                                //}
                             });
                             break;
                         case "completed":
@@ -529,25 +577,28 @@ namespace Khadamat_CustomerApp.ViewModels
 
                             Device.BeginInvokeOnMainThread(() =>
                             {
-                                if (AllBookingList != null && AllBookingList.Count > 0)
-                                {
-                                    MyBookingList = new ObservableCollection<JobRequestData>(AllBookingList.Where(x => x.status == Convert.ToInt32(JobRequestEnum.Completed)).ToList());
-                                    if (MyBookingList != null && MyBookingList.Count > 0)
-                                    {
-                                        IsNoDataFoundView = false;
-                                        IsNoInternetView = false;
-                                    }
-                                    else
-                                    {
-                                        IsNoDataFoundView = true;
-                                        IsNoInternetView = false;
-                                    }
-                                }
-                                else
-                                {
-                                    IsNoDataFoundView = true;
-                                    IsNoInternetView = false;
-                                }
+                                PageNumber = 1; 
+                                ItemTreshold = 1;
+                                GetBookingByStatus(PageNumber);
+                                //if (AllBookingList != null && AllBookingList.Count > 0)
+                                //{
+                                //    MyBookingList = new ObservableCollection<JobRequestData>(AllBookingList.Where(x => x.status == Convert.ToInt32(JobRequestEnum.Completed)).ToList());
+                                //    if (MyBookingList != null && MyBookingList.Count > 0)
+                                //    {
+                                //        IsNoDataFoundView = false;
+                                //        IsNoInternetView = false;
+                                //    }
+                                //    else
+                                //    {
+                                //        IsNoDataFoundView = true;
+                                //        IsNoInternetView = false;
+                                //    }
+                                //}
+                                //else
+                                //{
+                                //    IsNoDataFoundView = true;
+                                //    IsNoInternetView = false;
+                                //}
                             });
                             break;
                         case "cancelled":
@@ -563,25 +614,28 @@ namespace Khadamat_CustomerApp.ViewModels
 
                             Device.BeginInvokeOnMainThread(() =>
                             {
-                                if (AllBookingList != null && AllBookingList.Count > 0)
-                                {
-                                    MyBookingList = new ObservableCollection<JobRequestData>(AllBookingList.Where(x => x.status == Convert.ToInt32(JobRequestEnum.Canceled) || x.status == Convert.ToInt32(JobRequestEnum.QuoteCanceled) || x.status == Convert.ToInt32(JobRequestEnum.Closed)).ToList());
-                                    if (MyBookingList != null && MyBookingList.Count > 0)
-                                    {
-                                        IsNoDataFoundView = false;
-                                        IsNoInternetView = false;
-                                    }
-                                    else
-                                    {
-                                        IsNoDataFoundView = true;
-                                        IsNoInternetView = false;
-                                    }
-                                }
-                                else
-                                {
-                                    IsNoDataFoundView = true;
-                                    IsNoInternetView = false;
-                                }
+                                PageNumber = 1; 
+                                ItemTreshold = 1;
+                                GetBookingByStatus(PageNumber);
+                                //if (AllBookingList != null && AllBookingList.Count > 0)
+                                //{
+                                //    MyBookingList = new ObservableCollection<JobRequestData>(AllBookingList.Where(x => x.status == Convert.ToInt32(JobRequestEnum.Canceled) || x.status == Convert.ToInt32(JobRequestEnum.QuoteCanceled) || x.status == Convert.ToInt32(JobRequestEnum.Closed)).ToList());
+                                //    if (MyBookingList != null && MyBookingList.Count > 0)
+                                //    {
+                                //        IsNoDataFoundView = false;
+                                //        IsNoInternetView = false;
+                                //    }
+                                //    else
+                                //    {
+                                //        IsNoDataFoundView = true;
+                                //        IsNoInternetView = false;
+                                //    }
+                                //}
+                                //else
+                                //{
+                                //    IsNoDataFoundView = true;
+                                //    IsNoInternetView = false;
+                                //}
                             });
                             break;
                     }
@@ -602,7 +656,7 @@ namespace Khadamat_CustomerApp.ViewModels
                     {
                         if (Common.CheckConnection())
                         {
-                            IsLoaderBusy = true;
+                            //IsLoaderBusy = true;
                             JobRequestBookCancelResponseModel response;
                             try
                             {
@@ -622,7 +676,9 @@ namespace Khadamat_CustomerApp.ViewModels
                                     await MaterialDialog.Instance.SnackbarAsync(message: response.message,
                                                 msDuration: 3000);
                                     //MessagingCenter.Send("BookJob", "BookCancelJob");
-                                    GetBookingData();
+                                    PageNumber = 1; 
+                                    ItemTreshold = 1;
+                                    GetBookingData(PageNumber);
                                 }
                                 else
                                 {
@@ -693,7 +749,7 @@ namespace Khadamat_CustomerApp.ViewModels
                         {
                             if (!string.IsNullOrEmpty(ServiceCancelMessage) && !string.IsNullOrWhiteSpace(ServiceCancelMessage))
                             {
-                                IsLoaderBusy = true;
+                                //IsLoaderBusy = true;
                                 var request = new JobRequestCancelData
                                 {
                                     cancel_reason = ServiceCancelMessage,
@@ -721,7 +777,9 @@ namespace Khadamat_CustomerApp.ViewModels
                                         await MaterialDialog.Instance.SnackbarAsync(message: response.message,
                                                     msDuration: 3000);
                                         //MessagingCenter.Send("CancelJob", "BookCancelJob");
-                                        GetBookingByStatus();
+                                        PageNumber = 1; 
+                                        ItemTreshold = 1;
+                                        GetBookingByStatus(PageNumber);
                                     }
                                     else
                                     {
@@ -873,6 +931,41 @@ namespace Khadamat_CustomerApp.ViewModels
                 return new DelegateCommand(() =>
                 {
                     NavigationService.GoBackAsync();
+                });
+            }
+        }
+        #endregion
+
+        #region ItemTreshold
+        private int _itemTreshold;
+        public int ItemTreshold
+        {
+            get { return _itemTreshold; }
+            set { SetProperty(ref _itemTreshold, value); }
+        }
+        #endregion
+
+        #region ItemTresholdReachedCommand
+        public Command ItemTresholdReachedCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    try
+                    {
+                        PageNumber = PageNumber + 1;
+                        GetBookingByStatus(PageNumber);
+                        //MessagingCenter.Send<object, Item>(this, ScrollToPreviousLastItem, previousLastItem);
+                    }
+                    catch (Exception ex)
+                    {
+                        //Debug.WriteLine(ex);
+                    }
+                    finally
+                    {
+                        //IsLoaderBusy = false;
+                    }
                 });
             }
         }

@@ -442,7 +442,9 @@ namespace Khadamat_CustomerApp.ViewModels
                             //await App.Current.MainPage.Navigation.PushPopupAsync(LoaderPopup);
                             IsLoaderBusy = true;
                             //Common.CustomNavigation(_navigation, new NotificationPage());
-                            await NavigationService.NavigateAsync(nameof(NotificationPage));
+                            var param = new NavigationParameters();
+                            param.Add("Notification", "Notification");
+                            await NavigationService.NavigateAsync(nameof(NotificationPage),param);
                         }
                         catch (Exception ex)
                         {

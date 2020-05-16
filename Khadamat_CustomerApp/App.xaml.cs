@@ -111,219 +111,219 @@ namespace Khadamat_CustomerApp
                 BaseViewModel.provienceDataModels = JsonConvert.DeserializeObject<List<ProvienceDataModel>>(Application.Current.Properties["ProvinceList"].ToString());
             }
 
-            if (Device.RuntimePlatform == Device.Android || Device.RuntimePlatform == Device.iOS)
-            {
+            //if (Device.RuntimePlatform == Device.Android || Device.RuntimePlatform == Device.iOS)
+            //{
 
-                await CrossFirebasePushNotification.Current.RegisterForPushNotifications();
+            //    await CrossFirebasePushNotification.Current.RegisterForPushNotifications();
 
-                CrossFirebasePushNotification.Current.Subscribe("general");
-                CrossFirebasePushNotification.Current.OnTokenRefresh += (s, p) =>
-                {
-                    System.Diagnostics.Debug.WriteLine($"TOKEN REC: {p.Token}");
-                    Application.Current.Properties["AppFirebaseToken"] = p.Token;
-                    Application.Current.SavePropertiesAsync();
+            //    CrossFirebasePushNotification.Current.Subscribe("general");
+            //    CrossFirebasePushNotification.Current.OnTokenRefresh += (s, p) =>
+            //    {
+            //        System.Diagnostics.Debug.WriteLine($"TOKEN REC: {p.Token}");
+            //        Application.Current.Properties["AppFirebaseToken"] = p.Token;
+            //        Application.Current.SavePropertiesAsync();
 
-                };
-                System.Diagnostics.Debug.WriteLine($"TOKEN: {CrossFirebasePushNotification.Current.Token}");
+            //    };
+            //    System.Diagnostics.Debug.WriteLine($"TOKEN: {CrossFirebasePushNotification.Current.Token}");
 
-                CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
-                {
-                    try
-                    {
-                        if (Device.RuntimePlatform == Device.iOS)
-                        {
-                            if (p.Data.ContainsKey("aps.alert"))
-                            {
-                                Device.BeginInvokeOnMainThread(async () =>
-                                {
-                                    var data = $"{p.Data["aps.alert"]}";
-                                    if (data.Contains("Your password has been reset by the admin, In order to continue please contact administrator.") || data.Contains("تمت إعادة تعيين كلمة المرور الخاصة بك من قبل المشرف ، للمتابعة ، يرجى الاتصال بالمسؤول") || data.Contains("Your account has been de-activated by the admin, in order to continue please contact administrator") || data.Contains("تم إلغاء تنشيط حسابك من قبل المشرف ، للمتابعة ، يرجى الاتصال بالمسؤول"))
-                                    {
-                                        if (userDataDbService.IsUserDbPresentInDB())
-                                        {
-                                            var item = userDataDbService.ReadAllItems().FirstOrDefault();
-                                            BsonValue id = item.ID;
-                                            userDataDbService.DeleteItemFromDB(id, item);
+            //    CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
+            //    {
+            //        try
+            //        {
+            //            if (Device.RuntimePlatform == Device.iOS)
+            //            {
+            //                if (p.Data.ContainsKey("aps.alert"))
+            //                {
+            //                    Device.BeginInvokeOnMainThread(async () =>
+            //                    {
+            //                        var data = $"{p.Data["aps.alert"]}";
+            //                        if (data.Contains("Your password has been reset by the admin, In order to continue please contact administrator.") || data.Contains("تمت إعادة تعيين كلمة المرور الخاصة بك من قبل المشرف ، للمتابعة ، يرجى الاتصال بالمسؤول") || data.Contains("Your account has been de-activated by the admin, in order to continue please contact administrator") || data.Contains("تم إلغاء تنشيط حسابك من قبل المشرف ، للمتابعة ، يرجى الاتصال بالمسؤول"))
+            //                        {
+            //                            if (userDataDbService.IsUserDbPresentInDB())
+            //                            {
+            //                                var item = userDataDbService.ReadAllItems().FirstOrDefault();
+            //                                BsonValue id = item.ID;
+            //                                userDataDbService.DeleteItemFromDB(id, item);
 
-                                            //App.Current.MainPage = new NavigationPage(new LoginPage());
-                                            await NavigationService.NavigateAsync(new Uri("/NavigationPage/LoginPage", UriKind.Absolute));
-                                        }
-                                    }
-                                });
+            //                                //App.Current.MainPage = new NavigationPage(new LoginPage());
+            //                                await NavigationService.NavigateAsync(new Uri("/NavigationPage/LoginPage", UriKind.Absolute));
+            //                            }
+            //                        }
+            //                    });
 
-                            }
-                        }
-                        else if (Device.RuntimePlatform == Device.Android)
-                        {
-                            if (p.Data.ContainsKey("body"))
-                            {
-                                Device.BeginInvokeOnMainThread(async () =>
-                                {
-                                    var data = $"{p.Data["body"]}";
+            //                }
+            //            }
+            //            else if (Device.RuntimePlatform == Device.Android)
+            //            {
+            //                if (p.Data.ContainsKey("body"))
+            //                {
+            //                    Device.BeginInvokeOnMainThread(async () =>
+            //                    {
+            //                        var data = $"{p.Data["body"]}";
 
-                                    if (data.Contains("Your password has been reset by the admin, In order to continue please contact administrator.") || data.Contains("تمت إعادة تعيين كلمة المرور الخاصة بك من قبل المشرف ، للمتابعة ، يرجى الاتصال بالمسؤول") || data.Contains("Your account has been de-activated by the admin, in order to continue please contact administrator") || data.Contains("تم إلغاء تنشيط حسابك من قبل المشرف ، للمتابعة ، يرجى الاتصال بالمسؤول"))
-                                    {
-                                        if (userDataDbService.IsUserDbPresentInDB())
-                                        {
-                                            var item = userDataDbService.ReadAllItems().FirstOrDefault();
-                                            BsonValue id = item.ID;
-                                            userDataDbService.DeleteItemFromDB(id, item);
+            //                        if (data.Contains("Your password has been reset by the admin, In order to continue please contact administrator.") || data.Contains("تمت إعادة تعيين كلمة المرور الخاصة بك من قبل المشرف ، للمتابعة ، يرجى الاتصال بالمسؤول") || data.Contains("Your account has been de-activated by the admin, in order to continue please contact administrator") || data.Contains("تم إلغاء تنشيط حسابك من قبل المشرف ، للمتابعة ، يرجى الاتصال بالمسؤول"))
+            //                        {
+            //                            if (userDataDbService.IsUserDbPresentInDB())
+            //                            {
+            //                                var item = userDataDbService.ReadAllItems().FirstOrDefault();
+            //                                BsonValue id = item.ID;
+            //                                userDataDbService.DeleteItemFromDB(id, item);
 
-                                            //App.Current.MainPage = new NavigationPage(new LoginPage());
-                                            await NavigationService.NavigateAsync(new Uri("/NavigationPage/LoginPage", UriKind.Absolute));
-                                        }
-                                    }
-                                });
+            //                                //App.Current.MainPage = new NavigationPage(new LoginPage());
+            //                                await NavigationService.NavigateAsync(new Uri("/NavigationPage/LoginPage", UriKind.Absolute));
+            //                            }
+            //                        }
+            //                    });
 
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        // Some other exception occurred
-                    }
+            //                }
+            //            }
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            // Some other exception occurred
+            //        }
 
-                };
+            //    };
 
-                CrossFirebasePushNotification.Current.OnNotificationOpened += async (s, p) =>
-                {
-                    //System.Diagnostics.Debug.WriteLine(p.Identifier);
+            //    CrossFirebasePushNotification.Current.OnNotificationOpened += async (s, p) =>
+            //    {
+            //        //System.Diagnostics.Debug.WriteLine(p.Identifier);
 
-                    try
-                    {
-                        if (Device.RuntimePlatform == Device.iOS)
-                        {
-                            if (p.Data.ContainsKey("aps.alert"))
-                            {
-                                Device.BeginInvokeOnMainThread(async () =>
-                                {
-                                    var data = $"{p.Data["aps.alert"]}";
-                                    if (data.Contains("You have new message regarding your job request") || data.Contains("لديك رسالة جديدة بخصوص طلب عملك.") || data.Contains("You have new message") || data.Contains("لديك رسالة جديدة"))
-                                    {
-                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
-                                        await NavigationService.NavigateAsync(nameof(ChatListPage));
-                                        //App.Current.MainPage = new NavigationPage(new MasterPage());
-                                        //App.Current.MainPage.Navigation.PushAsync(new ChatListPage());
-                                    }
-                                    else if (data.Contains("You have new message from support team") || data.Contains("لديك رسالة جديدة من فريق الدعم"))
-                                    {
-                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
-                                        await NavigationService.NavigateAsync(nameof(SupportPage));
-                                    }
-                                    else if (data.Contains("Your password has been reset by the admin, In order to continue please contact administrator.") || data.Contains("تمت إعادة تعيين كلمة المرور الخاصة بك من قبل المشرف ، للمتابعة ، يرجى الاتصال بالمسؤول") || data.Contains("Your account has been de-activated by the admin, in order to continue please contact administrator") || data.Contains("تم إلغاء تنشيط حسابك من قبل المشرف ، للمتابعة ، يرجى الاتصال بالمسؤول"))
-                                    {
-                                        if (userDataDbService.IsUserDbPresentInDB())
-                                        {
-                                            var item = userDataDbService.ReadAllItems().FirstOrDefault();
-                                            BsonValue id = item.ID;
-                                            userDataDbService.DeleteItemFromDB(id, item);
+            //        try
+            //        {
+            //            if (Device.RuntimePlatform == Device.iOS)
+            //            {
+            //                if (p.Data.ContainsKey("aps.alert"))
+            //                {
+            //                    Device.BeginInvokeOnMainThread(async () =>
+            //                    {
+            //                        var data = $"{p.Data["aps.alert"]}";
+            //                        if (data.Contains("You have new message regarding your job request") || data.Contains("لديك رسالة جديدة بخصوص طلب عملك.") || data.Contains("You have new message") || data.Contains("لديك رسالة جديدة"))
+            //                        {
+            //                            await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
+            //                            await NavigationService.NavigateAsync(nameof(ChatListPage));
+            //                            //App.Current.MainPage = new NavigationPage(new MasterPage());
+            //                            //App.Current.MainPage.Navigation.PushAsync(new ChatListPage());
+            //                        }
+            //                        else if (data.Contains("You have new message from support team") || data.Contains("لديك رسالة جديدة من فريق الدعم"))
+            //                        {
+            //                            await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
+            //                            await NavigationService.NavigateAsync(nameof(SupportPage));
+            //                        }
+            //                        else if (data.Contains("Your password has been reset by the admin, In order to continue please contact administrator.") || data.Contains("تمت إعادة تعيين كلمة المرور الخاصة بك من قبل المشرف ، للمتابعة ، يرجى الاتصال بالمسؤول") || data.Contains("Your account has been de-activated by the admin, in order to continue please contact administrator") || data.Contains("تم إلغاء تنشيط حسابك من قبل المشرف ، للمتابعة ، يرجى الاتصال بالمسؤول"))
+            //                        {
+            //                            if (userDataDbService.IsUserDbPresentInDB())
+            //                            {
+            //                                var item = userDataDbService.ReadAllItems().FirstOrDefault();
+            //                                BsonValue id = item.ID;
+            //                                userDataDbService.DeleteItemFromDB(id, item);
 
-                                            //App.Current.MainPage = new NavigationPage(new LoginPage());
-                                            await NavigationService.NavigateAsync(new Uri("/NavigationPage/LoginPage", UriKind.Absolute));
-                                        }
-                                    }
-                                    else
-                                    {
-                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
-                                        await NavigationService.NavigateAsync(nameof(NotificationPage));
-                                        //if (Application.Current.Properties.ContainsKey("AppStatus"))
-                                        //{
-                                        //if (Convert.ToInt32(Application.Current.Properties["AppStatus"]) == Convert.ToInt32(AppStatus.Foreground))
-                                        //{
-                                        //    App.Current.MainPage.Navigation.PushAsync(new NotificationPage());
-                                        //}
-                                        //else if (Convert.ToInt32(Application.Current.Properties["AppStatus"]) == Convert.ToInt32(AppStatus.Background))
-                                        //{
-                                        //    App.Current.MainPage = new NavigationPage(new MasterPage());
-                                        //    App.Current.MainPage.Navigation.PushAsync(new NotificationPage());
-                                        //}
-                                        //}
-                                    }
-                                });
+            //                                //App.Current.MainPage = new NavigationPage(new LoginPage());
+            //                                await NavigationService.NavigateAsync(new Uri("/NavigationPage/LoginPage", UriKind.Absolute));
+            //                            }
+            //                        }
+            //                        else
+            //                        {
+            //                            await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
+            //                            await NavigationService.NavigateAsync(nameof(NotificationPage));
+            //                            //if (Application.Current.Properties.ContainsKey("AppStatus"))
+            //                            //{
+            //                            //if (Convert.ToInt32(Application.Current.Properties["AppStatus"]) == Convert.ToInt32(AppStatus.Foreground))
+            //                            //{
+            //                            //    App.Current.MainPage.Navigation.PushAsync(new NotificationPage());
+            //                            //}
+            //                            //else if (Convert.ToInt32(Application.Current.Properties["AppStatus"]) == Convert.ToInt32(AppStatus.Background))
+            //                            //{
+            //                            //    App.Current.MainPage = new NavigationPage(new MasterPage());
+            //                            //    App.Current.MainPage.Navigation.PushAsync(new NotificationPage());
+            //                            //}
+            //                            //}
+            //                        }
+            //                    });
 
-                            }
-                        }
-                        else if (Device.RuntimePlatform == Device.Android)
-                        {
-                            if (p.Data.ContainsKey("body"))
-                            {
-                                Device.BeginInvokeOnMainThread(async () =>
-                                {
-                                    var data = $"{p.Data["body"]}";
+            //                }
+            //            }
+            //            else if (Device.RuntimePlatform == Device.Android)
+            //            {
+            //                if (p.Data.ContainsKey("body"))
+            //                {
+            //                    Device.BeginInvokeOnMainThread(async () =>
+            //                    {
+            //                        var data = $"{p.Data["body"]}";
 
-                                    if (data.Contains("You have new message regarding your job request") || data.Contains("لديك رسالة جديدة بخصوص طلب عملك.") || data.Contains("You have new message") || data.Contains("لديك رسالة جديدة"))
-                                    {
-                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
-                                        await NavigationService.NavigateAsync(nameof(ChatListPage));
-                                        //App.Current.MainPage = new NavigationPage(new MasterPage());
-                                        //App.Current.MainPage.Navigation.PushAsync(new ChatListPage());
-                                    }
-                                    else if (data.Contains("You have new message from support team") || data.Contains("لديك رسالة جديدة من فريق الدعم"))
-                                    {
-                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
-                                        await NavigationService.NavigateAsync(nameof(SupportPage));
-                                    }
-                                    else if (data.Contains("Your password has been reset by the admin, In order to continue please contact administrator.") || data.Contains("تمت إعادة تعيين كلمة المرور الخاصة بك من قبل المشرف ، للمتابعة ، يرجى الاتصال بالمسؤول") || data.Contains("Your account has been de-activated by the admin, in order to continue please contact administrator") || data.Contains("تم إلغاء تنشيط حسابك من قبل المشرف ، للمتابعة ، يرجى الاتصال بالمسؤول"))
-                                    {
-                                        if (userDataDbService.IsUserDbPresentInDB())
-                                        {
-                                            var item = userDataDbService.ReadAllItems().FirstOrDefault();
-                                            BsonValue id = item.ID;
-                                            userDataDbService.DeleteItemFromDB(id, item);
+            //                        if (data.Contains("You have new message regarding your job request") || data.Contains("لديك رسالة جديدة بخصوص طلب عملك.") || data.Contains("You have new message") || data.Contains("لديك رسالة جديدة"))
+            //                        {
+            //                            await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
+            //                            await NavigationService.NavigateAsync(nameof(ChatListPage));
+            //                            //App.Current.MainPage = new NavigationPage(new MasterPage());
+            //                            //App.Current.MainPage.Navigation.PushAsync(new ChatListPage());
+            //                        }
+            //                        else if (data.Contains("You have new message from support team") || data.Contains("لديك رسالة جديدة من فريق الدعم"))
+            //                        {
+            //                            await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
+            //                            await NavigationService.NavigateAsync(nameof(SupportPage));
+            //                        }
+            //                        else if (data.Contains("Your password has been reset by the admin, In order to continue please contact administrator.") || data.Contains("تمت إعادة تعيين كلمة المرور الخاصة بك من قبل المشرف ، للمتابعة ، يرجى الاتصال بالمسؤول") || data.Contains("Your account has been de-activated by the admin, in order to continue please contact administrator") || data.Contains("تم إلغاء تنشيط حسابك من قبل المشرف ، للمتابعة ، يرجى الاتصال بالمسؤول"))
+            //                        {
+            //                            if (userDataDbService.IsUserDbPresentInDB())
+            //                            {
+            //                                var item = userDataDbService.ReadAllItems().FirstOrDefault();
+            //                                BsonValue id = item.ID;
+            //                                userDataDbService.DeleteItemFromDB(id, item);
 
-                                            //App.Current.MainPage = new NavigationPage(new LoginPage());
-                                            await NavigationService.NavigateAsync(new Uri("/NavigationPage/LoginPage", UriKind.Absolute));
-                                        }
-                                    }
-                                    else
-                                    {
-                                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
-                                        await NavigationService.NavigateAsync(nameof(NotificationPage));
-                                        //if (Application.Current.Properties.ContainsKey("AppStatus"))
-                                        //{
-                                        //if (Convert.ToInt32(Application.Current.Properties["AppStatus"]) == Convert.ToInt32(AppStatus.Foreground))
-                                        //{
-                                        //    App.Current.MainPage.Navigation.PushAsync(new NotificationPage());
-                                        //}
-                                        //else if (Convert.ToInt32(Application.Current.Properties["AppStatus"]) == Convert.ToInt32(AppStatus.Background))
-                                        //{
-                                        //    App.Current.MainPage = new NavigationPage(new MasterPage());
-                                        //    App.Current.MainPage.Navigation.PushAsync(new NotificationPage());
-                                        //}
-                                        //}
-                                    }
-                                });
+            //                                //App.Current.MainPage = new NavigationPage(new LoginPage());
+            //                                await NavigationService.NavigateAsync(new Uri("/NavigationPage/LoginPage", UriKind.Absolute));
+            //                            }
+            //                        }
+            //                        else
+            //                        {
+            //                            await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
+            //                            await NavigationService.NavigateAsync(nameof(NotificationPage));
+            //                            //if (Application.Current.Properties.ContainsKey("AppStatus"))
+            //                            //{
+            //                            //if (Convert.ToInt32(Application.Current.Properties["AppStatus"]) == Convert.ToInt32(AppStatus.Foreground))
+            //                            //{
+            //                            //    App.Current.MainPage.Navigation.PushAsync(new NotificationPage());
+            //                            //}
+            //                            //else if (Convert.ToInt32(Application.Current.Properties["AppStatus"]) == Convert.ToInt32(AppStatus.Background))
+            //                            //{
+            //                            //    App.Current.MainPage = new NavigationPage(new MasterPage());
+            //                            //    App.Current.MainPage.Navigation.PushAsync(new NotificationPage());
+            //                            //}
+            //                            //}
+            //                        }
+            //                    });
 
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        // Some other exception occurred
-                    }
-                };
+            //                }
+            //            }
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            // Some other exception occurred
+            //        }
+            //    };
 
-                CrossFirebasePushNotification.Current.OnNotificationAction += (s, p) =>
-                {
-                    System.Diagnostics.Debug.WriteLine("Action");
+            //    CrossFirebasePushNotification.Current.OnNotificationAction += (s, p) =>
+            //    {
+            //        System.Diagnostics.Debug.WriteLine("Action");
 
-                    if (!string.IsNullOrEmpty(p.Identifier))
-                    {
-                        System.Diagnostics.Debug.WriteLine($"ActionId: {p.Identifier}");
-                        foreach (var data in p.Data)
-                        {
-                            System.Diagnostics.Debug.WriteLine($"{data.Key} : {data.Value}");
-                        }
+            //        if (!string.IsNullOrEmpty(p.Identifier))
+            //        {
+            //            System.Diagnostics.Debug.WriteLine($"ActionId: {p.Identifier}");
+            //            foreach (var data in p.Data)
+            //            {
+            //                System.Diagnostics.Debug.WriteLine($"{data.Key} : {data.Value}");
+            //            }
 
-                    }
+            //        }
 
-                };
+            //    };
 
-                CrossFirebasePushNotification.Current.OnNotificationDeleted += (s, p) =>
-                {
-                    System.Diagnostics.Debug.WriteLine("Dismissed");
-                };
-            }
+            //    CrossFirebasePushNotification.Current.OnNotificationDeleted += (s, p) =>
+            //    {
+            //        System.Diagnostics.Debug.WriteLine("Dismissed");
+            //    };
+            //}
         }
 
         public async void UpdateLanguageServer(ChangeLanguagesModel request)
