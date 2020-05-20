@@ -176,7 +176,7 @@
     <value>لنبدأ</value>
   </data>
   <data name="cyp_Country" xml:space="preserve">
-    <value>البلد *</value>
+    <value>البلد </value>
   </data>
   <data name="cyp_CountryPlaceholder" xml:space="preserve">
     <value>اختر بلدك</value>
@@ -188,7 +188,7 @@
     <value>ادخل وظيفتك الحالية</value>
   </data>
   <data name="cyp_DOB" xml:space="preserve">
-    <value>تاريخ الميلاد *</value>
+    <value>تاريخ الميلاد </value>
   </data>
   <data name="cyp_DOBPlaceholder" xml:space="preserve">
     <value>فضلاً ادخل تاريخ ميلادك</value>

@@ -338,15 +338,15 @@ namespace Khadamat_CustomerApp.ViewModels
             });
             if (BaseViewModel.countryDataModels != null && BaseViewModel.countryDataModels.Count > 0 && BaseViewModel.provienceDataModels != null && BaseViewModel.provienceDataModels.Count > 0)
             {
-                if (Application.Current.Properties.ContainsKey("AppLocale") && !string.IsNullOrEmpty(Application.Current.Properties["AppLocale"].ToString()))
-                {
-                    var languageculture = Application.Current.Properties["AppLocale"].ToString();
-                    Country = languageculture.Equals("en-US") ? BaseViewModel.countryDataModels.FirstOrDefault().country_name : BaseViewModel.countryDataModels.FirstOrDefault().arabic_country_name;
-                }
-                else
-                {
-                    Country = BaseViewModel.countryDataModels.FirstOrDefault().country_name;
-                }
+                //if (Application.Current.Properties.ContainsKey("AppLocale") && !string.IsNullOrEmpty(Application.Current.Properties["AppLocale"].ToString()))
+                //{
+                //    var languageculture = Application.Current.Properties["AppLocale"].ToString();
+                //    Country = languageculture.Equals("en-US") ? BaseViewModel.countryDataModels.FirstOrDefault().country_name : BaseViewModel.countryDataModels.FirstOrDefault().arabic_country_name;
+                //}
+                //else
+                //{
+                //    Country = BaseViewModel.countryDataModels.FirstOrDefault().country_name;
+                //}
 
                 foreach (var item in BaseViewModel.provienceDataModels)
                 {
@@ -375,30 +375,6 @@ namespace Khadamat_CustomerApp.ViewModels
 
 
             MessagingCenter.Send("CompleteProfilePage", "CompleteProfilePage");
-        }
-        #endregion
-
-        #region ResendOtpApiCall
-        private async void ResendOtpApiCall(VerifyResendOtpModel requestModel)
-        {
-            try
-            {
-                if (Common.CheckConnection())
-                {
-
-                }
-                else
-                {
-                    await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_InternetError, msDuration: 3000);
-                }
-            }
-            catch (Exception ec)
-            {
-            }
-            finally
-            {
-                IsLoaderBusy = false;
-            }
         }
         #endregion
 
@@ -459,130 +435,130 @@ namespace Khadamat_CustomerApp.ViewModels
         }
         #endregion
 
-        #region MapLocationCommand
-        public Command MapLocationCommand
-        {
-            get
-            {
-                return new Command(async () =>
-                {
-                    try
-                    {
-                        if (!string.IsNullOrEmpty(Street) && !string.IsNullOrWhiteSpace(Street) && Street != AppResource.cyp_StreetPlaceholder)
-                        {
-                            //Common.CustomNavigation(_navigation, new CustomMapPage(locationpoint));
-                            var param = new NavigationParameters();
-                            param.Add("CurrentLocationPoints", location);
-                            await NavigationService.NavigateAsync(nameof(CustomMapPage), param);
-                        }
-                    }
-                    catch (Exception)
-                    {
+        //#region MapLocationCommand
+        //public Command MapLocationCommand
+        //{
+        //    get
+        //    {
+        //        return new Command(async () =>
+        //        {
+        //            try
+        //            {
+        //                if (!string.IsNullOrEmpty(Street) && !string.IsNullOrWhiteSpace(Street) && Street != AppResource.cyp_StreetPlaceholder)
+        //                {
+        //                    //Common.CustomNavigation(_navigation, new CustomMapPage(locationpoint));
+        //                    var param = new NavigationParameters();
+        //                    param.Add("CurrentLocationPoints", location);
+        //                    await NavigationService.NavigateAsync(nameof(CustomMapPage), param);
+        //                }
+        //            }
+        //            catch (Exception)
+        //            {
 
-                    }
-                    finally
-                    {
-                        IsLoaderBusy = false;
-                    }
-                });
-            }
-        }
-        #endregion
+        //            }
+        //            finally
+        //            {
+        //                IsLoaderBusy = false;
+        //            }
+        //        });
+        //    }
+        //}
+        //#endregion
 
-        #region LocationCommand
-        public Command LocationCommand
-        {
-            get
-            {
-                return new Command(async () =>
-                {
-                    try
-                    {
-                        if (Common.CheckConnection())
-                        {
-                            if (DependencyService.Get<IDeviceLocationService>().CheckDeviceLocation())
-                            {
-                                try
-                                {
-                                    var resultrs = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+        //#region LocationCommand
+        //public Command LocationCommand
+        //{
+        //    get
+        //    {
+        //        return new Command(async () =>
+        //        {
+        //            try
+        //            {
+        //                if (Common.CheckConnection())
+        //                {
+        //                    if (DependencyService.Get<IDeviceLocationService>().CheckDeviceLocation())
+        //                    {
+        //                        try
+        //                        {
+        //                            var resultrs = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
 
-                                    if (resultrs != Plugin.Permissions.Abstractions.PermissionStatus.Granted)
-                                    {
-                                        var result = await App.Current.MainPage.DisplayAlert("", AppResource.error_AppLocationPermissionDisable, AppResource.Yes, AppResource.No);
-                                        if (result)
-                                        {
-                                            CrossPermissions.Current.OpenAppSettings();
-                                        }
+        //                            if (resultrs != Plugin.Permissions.Abstractions.PermissionStatus.Granted)
+        //                            {
+        //                                var result = await App.Current.MainPage.DisplayAlert("", AppResource.error_AppLocationPermissionDisable, AppResource.Yes, AppResource.No);
+        //                                if (result)
+        //                                {
+        //                                    CrossPermissions.Current.OpenAppSettings();
+        //                                }
 
-                                    }
-                                    else
-                                    {
+        //                            }
+        //                            else
+        //                            {
 
-                                        try
-                                        {
-                                            var locator = CrossGeolocator.Current;
-                                            locator.DesiredAccuracy = 50;
-                                            location = await locator.GetPositionAsync(TimeSpan.FromMilliseconds(500));
-                                            Console.WriteLine("Position Status: {0}", location.Timestamp);
-                                            Console.WriteLine("Position Latitude: {0}", location.Latitude);
-                                            Console.WriteLine("Position Longitude: {0}", location.Longitude);
-                                            try
-                                            {
-                                                Geocoder gc = new Geocoder();
+        //                                try
+        //                                {
+        //                                    var locator = CrossGeolocator.Current;
+        //                                    locator.DesiredAccuracy = 50;
+        //                                    location = await locator.GetPositionAsync(TimeSpan.FromMilliseconds(500));
+        //                                    Console.WriteLine("Position Status: {0}", location.Timestamp);
+        //                                    Console.WriteLine("Position Latitude: {0}", location.Latitude);
+        //                                    Console.WriteLine("Position Longitude: {0}", location.Longitude);
+        //                                    try
+        //                                    {
+        //                                        Geocoder gc = new Geocoder();
 
-                                                IEnumerable<string> pickedaddress = await gc.GetAddressesForPositionAsync(new Position(location.Latitude, location.Longitude));
+        //                                        IEnumerable<string> pickedaddress = await gc.GetAddressesForPositionAsync(new Position(location.Latitude, location.Longitude));
 
-                                                Street = pickedaddress.FirstOrDefault().ToString();
+        //                                        Street = pickedaddress.FirstOrDefault().ToString();
 
-                                                if (!string.IsNullOrEmpty(Location) && !string.IsNullOrWhiteSpace(Location) && Location != AppResource.cyp_StreetPlaceholder)
-                                                {
-                                                    //await App.Current.MainPage.DisplayAlert("", AppResource.cyp_LocationPickupAlert, "OK");
-                                                }
-                                            }
-                                            catch (Exception ex)
-                                            {
-                                                System.Diagnostics.Debug.WriteLine("GetAddressCurrent2_CurrentLocation" + ex.Message);
-                                            }
-                                            finally
-                                            {
-                                            }
-                                        }
-                                        catch (Exception ex)
-                                        {
-                                        }
-                                    }
-                                }
-                                catch (Exception ex)
-                                {
-                                }
-                            }
-                            else
-                            {
-                                var result = await App.Current.MainPage.DisplayAlert("", AppResource.error_DeviceLocationDisable, AppResource.Yes, AppResource.No);
-                                if (result)
-                                {
-                                    DependencyService.Get<IDeviceLocationService>().OpenDeviceSetting();
-                                }
-                            }
-                        }
-                        else
-                        {
-                            await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_InternetError,
-                                                    msDuration: 3000);
-                        }
-                    }
-                    catch (Exception)
-                    {
+        //                                        if (!string.IsNullOrEmpty(Location) && !string.IsNullOrWhiteSpace(Location) && Location != AppResource.cyp_StreetPlaceholder)
+        //                                        {
+        //                                            //await App.Current.MainPage.DisplayAlert("", AppResource.cyp_LocationPickupAlert, "OK");
+        //                                        }
+        //                                    }
+        //                                    catch (Exception ex)
+        //                                    {
+        //                                        System.Diagnostics.Debug.WriteLine("GetAddressCurrent2_CurrentLocation" + ex.Message);
+        //                                    }
+        //                                    finally
+        //                                    {
+        //                                    }
+        //                                }
+        //                                catch (Exception ex)
+        //                                {
+        //                                }
+        //                            }
+        //                        }
+        //                        catch (Exception ex)
+        //                        {
+        //                        }
+        //                    }
+        //                    else
+        //                    {
+        //                        var result = await App.Current.MainPage.DisplayAlert("", AppResource.error_DeviceLocationDisable, AppResource.Yes, AppResource.No);
+        //                        if (result)
+        //                        {
+        //                            DependencyService.Get<IDeviceLocationService>().OpenDeviceSetting();
+        //                        }
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                    await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_InternetError,
+        //                                            msDuration: 3000);
+        //                }
+        //            }
+        //            catch (Exception)
+        //            {
 
-                    }
-                    finally
-                    {
-                        //IsLoaderBusy = false;
-                    }
-                });
-            }
-        }
-        #endregion
+        //            }
+        //            finally
+        //            {
+        //                //IsLoaderBusy = false;
+        //            }
+        //        });
+        //    }
+        //}
+        //#endregion
 
         #region ChangeUserPicCommand
         public Command ChangeUserPicCommand
@@ -624,33 +600,33 @@ namespace Khadamat_CustomerApp.ViewModels
                     {
                         if (Common.CheckConnection())
                         {
-                            if (!string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(DateSelected) && !string.IsNullOrEmpty(MonthSelected) && !string.IsNullOrEmpty(YearSelected) && Country != null && Province != null && !string.IsNullOrEmpty(Location) && !string.IsNullOrWhiteSpace(Name) && !string.IsNullOrWhiteSpace(DateSelected) && !string.IsNullOrWhiteSpace(MonthSelected) && !string.IsNullOrWhiteSpace(YearSelected) && !string.IsNullOrWhiteSpace(Location))
+                            if (!string.IsNullOrEmpty(Name) && Province != null && !string.IsNullOrEmpty(Location) && !string.IsNullOrWhiteSpace(Name) && !string.IsNullOrWhiteSpace(Location))
                             {
-                                DOB = string.Format("{0}/{1}/{2}", DateSelected, MonthSelected, YearSelected);
+                                //DOB = string.Format("{0}/{1}/{2}", DateSelected, MonthSelected, YearSelected);
                                 if (TermConditionCheck.Contains("ic_checkbox"))
                                 {
-                                    if (DateTime.ParseExact(DOB, "dd/MM/yyyy", null) > DateTime.Now)
-                                    {
-                                        await MaterialDialog.Instance.SnackbarAsync(AppResource.error_DOBError, 3000);
-                                        return;
-                                    }
-                                    user_age = Common.CalculateAge(DateTime.ParseExact(DOB, "dd/MM/yyyy", null));
-                                    if (!string.IsNullOrEmpty(Email) && !string.IsNullOrWhiteSpace(Email))
-                                    {
-                                        Email = Email.Trim();
-                                        if (!Common.CheckValidEmail(Email))
-                                        {
-                                            await MaterialDialog.Instance.SnackbarAsync(AppResource.error_EmailValidation, 3000);
-                                            return;
-                                        }
-                                    }
+                                    //if (DateTime.ParseExact(DOB, "dd/MM/yyyy", null) > DateTime.Now)
+                                    //{
+                                    //    await MaterialDialog.Instance.SnackbarAsync(AppResource.error_DOBError, 3000);
+                                    //    return;
+                                    //}
+                                    //user_age = Common.CalculateAge(DateTime.ParseExact(DOB, "dd/MM/yyyy", null));
+                                    //if (!string.IsNullOrEmpty(Email) && !string.IsNullOrWhiteSpace(Email))
+                                    //{
+                                    //    Email = Email.Trim();
+                                    //    if (!Common.CheckValidEmail(Email))
+                                    //    {
+                                    //        await MaterialDialog.Instance.SnackbarAsync(AppResource.error_EmailValidation, 3000);
+                                    //        return;
+                                    //    }
+                                    //}
 
-                                    if (user_age < 18)
-                                    {
-                                        await MaterialDialog.Instance.SnackbarAsync(AppResource.error_underAge, 3000);
-                                    }
-                                    else
-                                    {
+                                    //if (user_age < 18)
+                                    //{
+                                    //    await MaterialDialog.Instance.SnackbarAsync(AppResource.error_underAge, 3000);
+                                    //}
+                                    //else
+                                    //{
                                         IsLoaderBusy = true;
                                         string boundary = "---8d0f01e6b3b5dafaaadaad";
                                         MultipartFormDataContent multipartContent = new MultipartFormDataContent(boundary);
@@ -659,22 +635,22 @@ namespace Khadamat_CustomerApp.ViewModels
                                         {
                                             multipartContent.Add(new StringContent(Email), "email");
                                         }
-                                        multipartContent.Add(new StringContent(DOB), "dob");
+                                        //multipartContent.Add(new StringContent(DOB), "dob");
                                         multipartContent.Add(new StringContent(user_id.ToString()), "user_id");
 
-                                        multipartContent.Add(new StringContent(BaseViewModel.countryDataModels.FirstOrDefault().country_id.ToString()), "country");
-                                        if (!string.IsNullOrEmpty(CurrentJob))
-                                        {
-                                            multipartContent.Add(new StringContent(Common.FirstCharToUpper(CurrentJob)), "current_job");
-                                        }
-                                        multipartContent.Add(new StringContent(MaritalStatus.MaritalStatusEnumValue.ToString()), "martial_status");
-                                        multipartContent.Add(new StringContent(Province.province_id.ToString()), "province");
-                                        if (Street != AppResource.cyp_StreetPlaceholder)
-                                        {
-                                            multipartContent.Add(new StringContent(Street), "street");
-                                            multipartContent.Add(new StringContent(location.Latitude.ToString()), "latitude");
-                                            multipartContent.Add(new StringContent(location.Longitude.ToString()), "longitude");
-                                        }
+                                    multipartContent.Add(new StringContent(BaseViewModel.countryDataModels.FirstOrDefault().country_id.ToString()), "country");
+                                    //if (!string.IsNullOrEmpty(CurrentJob))
+                                    //{
+                                    //    multipartContent.Add(new StringContent(Common.FirstCharToUpper(CurrentJob)), "current_job");
+                                    //}
+                                    //multipartContent.Add(new StringContent(MaritalStatus.MaritalStatusEnumValue.ToString()), "martial_status");
+                                    multipartContent.Add(new StringContent(Province.province_id.ToString()), "province");
+                                        //if (Street != AppResource.cyp_StreetPlaceholder)
+                                        //{
+                                        //    multipartContent.Add(new StringContent(Street), "street");
+                                        //    multipartContent.Add(new StringContent(location.Latitude.ToString()), "latitude");
+                                        //    multipartContent.Add(new StringContent(location.Longitude.ToString()), "longitude");
+                                        //}
                                         if (!string.IsNullOrEmpty(Location))
                                         {
                                             multipartContent.Add(new StringContent(Location), "description_location");
@@ -838,7 +814,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                                             msDuration: 3000);
                                             }
                                         }
-                                    }
+                                    //}
                                 }
                                 else
                                 {

@@ -739,6 +739,12 @@ namespace Khadamat_CustomerApp.ViewModels
                             DOBMonthPickerSelectedindex = DOBMonthList.IndexOf(dobdata[1]);
                             DOBYearPickerSelectedindex = DOBYearList.IndexOf(dobdata[2]);
                         }
+                        else
+                        {
+                            DOBDatePickerSelectedindex = -1;
+                            DOBMonthPickerSelectedindex = -1;
+                            DOBYearPickerSelectedindex = -1;
+                        }
 
 
 

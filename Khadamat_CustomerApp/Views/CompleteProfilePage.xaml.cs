@@ -31,19 +31,19 @@ namespace Khadamat_CustomerApp.Views
             return true;
         }
 
-        private void YYYY_TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-            yyyy_Picker.Focus();
-        }
+        //private void YYYY_TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        //{
+        //    yyyy_Picker.Focus();
+        //}
 
-        private void DD_TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-            dd_Picker.Focus();
-        }
+        //private void DD_TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        //{
+        //    dd_Picker.Focus();
+        //}
 
-        private void MMM_TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-            mmm_Picker.Focus();
-        }
+        //private void MMM_TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        //{
+        //    mmm_Picker.Focus();
+        //}
     }
 }

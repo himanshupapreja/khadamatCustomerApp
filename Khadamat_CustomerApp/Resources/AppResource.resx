@@ -203,7 +203,7 @@
     <comment>CompleteYourProfilePage</comment>
   </data>
   <data name="cyp_Country" xml:space="preserve">
-    <value>Country *</value>
+    <value>Country</value>
     <comment>CompleteYourProfilePage</comment>
   </data>
   <data name="cyp_CountryPlaceholder" xml:space="preserve">
@@ -219,7 +219,7 @@
     <comment>CompleteYourProfilePage</comment>
   </data>
   <data name="cyp_DOB" xml:space="preserve">
-    <value>Date of Birth *</value>
+    <value>Date of Birth</value>
     <comment>CompleteYourProfilePage</comment>
   </data>
   <data name="cyp_DOBPlaceholder" xml:space="preserve">
