@@ -1,4 +1,5 @@
 ﻿using Khadamat_CustomerApp.Resources;
+using Plugin.Connectivity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,13 +26,8 @@ namespace Khadamat_CustomerApp.Helpers
             //return (Connectivity.ConnectionProfiles.Contains(ConnectionProfile.WiFi) && Connectivity.NetworkAccess.Equals(NetworkAccess.Internet)) || (Connectivity.ConnectionProfiles.Contains(ConnectionProfile.Cellular) && Connectivity.NetworkAccess.Equals(NetworkAccess.Internet)) ? true : false;
             try
             {
-                using (WebClient client = new WebClient())
-                {
-                    using (client.OpenRead("http://www.google.com/"))
-                    {
-                        return true;
-                    }
-                }
+                var status = CrossConnectivity.Current.IsConnected;
+                return status;
             }
             catch
             {

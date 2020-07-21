@@ -93,7 +93,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                 catch (Exception ex)
                                 {
                                     response = null;
-                                    await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
+                                    //await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
                                     IsLoaderBusy = false;
                                     return;
                                 }

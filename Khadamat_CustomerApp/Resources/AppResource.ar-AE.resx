@@ -328,6 +328,9 @@
   <data name="error_ServerError" xml:space="preserve">
     <value>هناك بعض المشاكل أثناء الاتصال بمزود الخدمة. يرجى التحقق من اتصالك بالإنترنت أو المحاولة مرة أخرى لاحقاً.</value>
   </data>
+  <data name="error_slowInternet" xml:space="preserve">
+    <value>Your internet connection speed is slow. Please check your internet connection.</value>
+  </data>
   <data name="error_TermCondition" xml:space="preserve">
     <value>فضلاً قم بالموافقة على الأحكام والشروط.</value>
   </data>
@@ -353,7 +356,7 @@
     <value>المسؤول المالي</value>
   </data>
   <data name="forgot_PasswordMsg" xml:space="preserve">
-    <value>أدخل رقم هاتفك المرتبط بحسابك. سنرسل لك OTP لإعادة تعيين كلمة المرور الخاصة بك</value>
+    <value>أدخل رقم هاتفك المرتبط بحسابك. سنرسل لك رمز التحقق لإعادة تعيين كلمة المرور الخاصة بك</value>
   </data>
   <data name="forgot_PasswordTitle" xml:space="preserve">
     <value>هل نسيت كلمة المرور الخاصة بك؟</value>
@@ -418,6 +421,9 @@
   <data name="jobrequest_JobCloseReason" xml:space="preserve">
     <value>سبب إلغاء الطلب</value>
   </data>
+  <data name="jobrequest_JobNumber" xml:space="preserve">
+    <value>رقم الطلب</value>
+  </data>
   <data name="jobrequest_Location" xml:space="preserve">
     <value>موقعك (باستخدام خدمة الموقع)</value>
   </data>
@@ -447,6 +453,9 @@
   </data>
   <data name="jobrequest_VenueTitle" xml:space="preserve">
     <value>العنوان *</value>
+  </data>
+  <data name="login_btn" xml:space="preserve">
+    <value>دخول</value>
   </data>
   <data name="login_ForgotPswd" xml:space="preserve">
     <value>هل نسيت كلمة المرور؟</value>
@@ -633,7 +642,10 @@
     <value>موافق</value>
   </data>
   <data name="otp_Callme" xml:space="preserve">
-    <value>لقد تجاوزت محاولات طلب OTP القصوى ، يرجى الاتصال برقم خدمة العملاء للحصول على OTP الخاص بك.</value>
+    <value>لقد تجاوزت محاولات طلب رمز التحقق القصوى ، يرجى الاتصال برقم خدمة العملاء للحصول على رمز التحقق الخاص بك.</value>
+  </data>
+  <data name="otp_ContactUs" xml:space="preserve">
+    <value>لديك مشكلة... تواصل معنا</value>
   </data>
   <data name="otp_EmailVerificationCodeMsg" xml:space="preserve">
     <value>تم إرسال شفرة التحقق إلى بريدك الإلكتروني المسجل</value>
@@ -799,6 +811,9 @@
   </data>
   <data name="spjob_PopupPlaceholder" xml:space="preserve">
     <value>فضلاُ أضف تعليقك</value>
+  </data>
+  <data name="splash_loadingData" xml:space="preserve">
+    <value>Please wait while fetching data from server...</value>
   </data>
   <data name="subservice_serviceName1" xml:space="preserve">
     <value />

@@ -79,13 +79,13 @@ namespace Khadamat_CustomerApp.ViewModels
                             ForgotPasswordResponseModel response;
                             try
                             {
-                                response = await _webApiRestClient.GetAsync<ForgotPasswordResponseModel>(string.Format(ApiUrl.ForgetPassword, PhoneNumber));
+                                response = await _webApiRestClient.GetAsync<ForgotPasswordResponseModel>(string.Format(ApiUrl.ForgetPassword, PhoneNumber,Enums.UserTypeEnum.Customer.GetHashCode()));
                             }
                             catch (Exception ex)
                             {
                                 response = null;
                                 IsLoaderBusy = false;
-                                await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
+                                //await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
                                 return;
                             }
                             if (response != null)

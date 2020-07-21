@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "y4hpP7PTOP1WfF+mzxP+R757B1XLkNetzR2jv2O4blMmCj4OpyCcEv8TUH9zJOP0su2ymA1ZlnX/op3efaFp2Q==",
+  "dgSpecHash": "y2L6DN5G0Yjumq4KeUHoJ7oc7hfj1QVLQc3+b33wncLkzOu8nJhMZJCsq+cbxyeGDxFWXSGTWWjZ9WtmlgZzcQ==",
   "success": true,
   "projectFilePath": "E:\\Git\\hunny\\khadamatCustomerApp\\Khadamat_CustomerApp\\Khadamat_CustomerApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\papre\\.nuget\\packages\\com.airbnb.xamarin.forms.lottie\\3.0.3\\com.airbnb.xamarin.forms.lottie.3.0.3.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\dryioc.dll\\4.0.7\\dryioc.dll.4.0.7.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\dynamicstacklayout\\2017.12.4\\dynamicstacklayout.2017.12.4.nupkg.sha512",
+    "C:\\Users\\papre\\.nuget\\packages\\fantacode.plugin.crossplacepicker\\2.0.0\\fantacode.plugin.crossplacepicker.2.0.0.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\firebasedatabase.net\\4.0.4\\firebasedatabase.net.4.0.4.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\firebasestorage.net\\1.0.3\\firebasestorage.net.1.0.3.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\litedb\\4.1.4\\litedb.4.1.4.nupkg.sha512",
@@ -35,6 +36,7 @@
     "C:\\Users\\papre\\.nuget\\packages\\system.runtime.interopservices.windowsruntime\\4.3.0\\system.runtime.interopservices.windowsruntime.4.3.0.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\system.text.encoding\\4.3.0\\system.text.encoding.4.3.0.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
+    "C:\\Users\\papre\\.nuget\\packages\\xam.plugin.connectivity\\3.2.0\\xam.plugin.connectivity.3.2.0.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xam.plugin.geolocator\\4.5.0.6\\xam.plugin.geolocator.4.5.0.6.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xam.plugin.media\\4.0.1.5\\xam.plugin.media.4.0.1.5.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xam.plugins.forms.imagecircle\\3.0.0.5\\xam.plugins.forms.imagecircle.3.0.0.5.nupkg.sha512",

@@ -121,6 +121,40 @@ namespace Khadamat_CustomerApp.ViewModels
         }
         #endregion
 
+        #region ReviewCommand
+        public Command ReviewCommand
+        {
+            get
+            {
+                return new Command(async(e) =>
+                {
+                    var item = (NotificationsModel)e;
+                    JobDetailResponseModel response;
+                    try
+                    {
+                        response = await _webApiRestClient.GetAsync<JobDetailResponseModel>(string.Format(ApiUrl.GetJobRequestDetail, item.job_request_id));
+                    }
+                    catch (Exception ex)
+                    {
+                        response = null;
+                    }
+                    if(response != null)
+                    {
+                        var param = new NavigationParameters();
+                        param.Add("UserReview", response.jobRequestData);
+                        await NavigationService.NavigateAsync(nameof(ReviewPage), param);
+                    }
+                    else
+                    {
+                        await MaterialDialog.Instance.SnackbarAsync(AppResource.error_ServerError, 3000);
+                    }
+                    //Common.CustomNavigation(_navigation, new ReviewPage(item));
+                    
+                });
+            }
+        }
+        #endregion
+
         #region Getnotification
         private async void Getnotification(int pageNumber)
         {
@@ -139,7 +173,7 @@ namespace Khadamat_CustomerApp.ViewModels
                         response = null;
                         IsLoaderBusy = false;
                         IsRefreshing = false;
-                        await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
+                        //await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
                     }
                     if (response != null)
                     {
@@ -156,6 +190,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                 item.display_created_date = Common.GetLanguage() != "ar-AE" ? item.created_date_str : item.created_date_str_arabic;
                                 item.UserPic = item.notification_status != Convert.ToInt32(NotificationStatus.AcceptedQuotation) && item.notification_status != Convert.ToInt32(NotificationStatus.RejectedQuotation) ? Common.IsImagesValid(item.from_user_image, ApiUrl.BaseUrl) : Common.IsImagesValid(item.to_user_image, ApiUrl.BaseUrl);
                                 item.IsQuoteSent = item.notification_status == Convert.ToInt32(NotificationStatus.SentQuotation) ? true : false;
+                                item.IsJobCompleted = item.notification_status == Convert.ToInt32(NotificationStatus.Completed) ? true : false;
                                 item.IsViewDetail = item.job_request_id.HasValue && item.job_request_id.Value > 0 ? true : false;
                                 item.ViewNotificationBtn = !string.IsNullOrEmpty(item.pdf_file) && !string.IsNullOrWhiteSpace(item.pdf_file) ? AppResource.notification_ViewInvoice : AppResource.notification_ViewDetail;
                                 AllNotificationList.Add(item);

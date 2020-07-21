@@ -402,11 +402,11 @@ namespace Khadamat_CustomerApp.ViewModels
                 MaritalStatusDisplay = Common.GetLanguage() != "ar-AE" ? Common.GetEnumDescription(MartialStatusEnum.Married) : Common.GetEnumDescription(MartialStatusArabicEnum.Married),
                 MaritalStatusEnumValue = Convert.ToInt32(MartialStatusEnum.Married)
             });
-            MaritalStatusList.Add(new MaritalStatusPickerModel
-            {
-                MaritalStatusDisplay = Common.GetLanguage() != "ar-AE" ? Common.GetEnumDescription(MartialStatusEnum.Divorced) : Common.GetEnumDescription(MartialStatusArabicEnum.Divorced),
-                MaritalStatusEnumValue = Convert.ToInt32(MartialStatusEnum.Divorced)
-            });
+            //MaritalStatusList.Add(new MaritalStatusPickerModel
+            //{
+            //    MaritalStatusDisplay = Common.GetLanguage() != "ar-AE" ? Common.GetEnumDescription(MartialStatusEnum.Divorced) : Common.GetEnumDescription(MartialStatusArabicEnum.Divorced),
+            //    MaritalStatusEnumValue = Convert.ToInt32(MartialStatusEnum.Divorced)
+            //});
         }
         #endregion
 
@@ -512,7 +512,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                     catch (Exception ex)
                                     {
                                         response = null;
-                                        await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
+                                        //await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
                                         IsLoaderBusy = false;
                                         return;
                                     }
@@ -568,6 +568,11 @@ namespace Khadamat_CustomerApp.ViewModels
                 {
                     try
                     {
+                        var resultrs = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                        if (resultrs != Plugin.Permissions.Abstractions.PermissionStatus.Granted)
+                        {
+                            await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera, Permission.Storage);
+                        }
                         var action = await App.Current.MainPage.DisplayActionSheet(AppResource.AddPhoto, AppResource.Cancel, null, AppResource.Camera, AppResource.Gallery);
                         if (action == AppResource.Camera)
                         {
@@ -646,21 +651,26 @@ namespace Khadamat_CustomerApp.ViewModels
                                         {
                                             var locator = CrossGeolocator.Current;
                                             locator.DesiredAccuracy = 50;
-                                            location = await locator.GetPositionAsync(TimeSpan.FromMilliseconds(500));
+                                            location = await locator.GetPositionAsync(TimeSpan.FromMilliseconds(3000));
+                                            //location = await DependencyService.Get<ICurrentLocationCS>().getLocation();
                                             Console.WriteLine("Position Status: {0}", location.Timestamp);
                                             Console.WriteLine("Position Latitude: {0}", location.Latitude);
                                             Console.WriteLine("Position Longitude: {0}", location.Longitude);
                                             try
                                             {
-                                                Geocoder gc = new Geocoder();
 
-                                                IEnumerable<string> pickedaddress = await gc.GetAddressesForPositionAsync(new Position(location.Latitude, location.Longitude));
+                                                string url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + location.Latitude + "," + location.Longitude + "&key=AIzaSyD91DqNrudM6-VosB4UAaKnpigZxCmRyyw";
+                                                var _objUserData = await _webApiRestClient.GetUrlAsync<GooglePlace>(url);
 
-                                                Street = pickedaddress.FirstOrDefault().ToString();
-
-                                                if (!string.IsNullOrEmpty(Location) && !string.IsNullOrWhiteSpace(Location) && Location != AppResource.cyp_StreetPlaceholder)
+                                                if (_objUserData != null)
                                                 {
-                                                    //await App.Current.MainPage.DisplayAlert("", AppResource.cyp_LocationPickupAlert, "OK");
+                                                    if (_objUserData.results != null)
+                                                    {
+                                                        if (_objUserData.results.Count > 0)
+                                                        {
+                                                            Street = _objUserData.results.FirstOrDefault().formatted_address;
+                                                        }
+                                                    }
                                                 }
                                             }
                                             catch (Exception ex)
@@ -713,7 +723,7 @@ namespace Khadamat_CustomerApp.ViewModels
             
         }
 
-        public void OnNavigatedTo(INavigationParameters parameters)
+        public async void OnNavigatedTo(INavigationParameters parameters)
         {
             if (parameters.ContainsKey("ProfileData"))
             {
@@ -762,24 +772,12 @@ namespace Khadamat_CustomerApp.ViewModels
                                 case 1:
                                     MaritalStatusPickerSelectedindex = 0;
                                     break;
-                                case 2:
+                                case 4:
                                     MaritalStatusPickerSelectedindex = 1;
                                     break;
-                                case 3:
-                                    MaritalStatusPickerSelectedindex = 2;
-                                    break;
-                                case 4:
-                                    MaritalStatusPickerSelectedindex = 3;
-                                    break;
-                                case 5:
-                                    MaritalStatusPickerSelectedindex = 4;
-                                    break;
-                                case 6:
-                                    MaritalStatusPickerSelectedindex = 5;
-                                    break;
-                                case 7:
-                                    MaritalStatusPickerSelectedindex = 6;
-                                    break;
+                                //case 8:
+                                //    MaritalStatusPickerSelectedindex = 2;
+                                //    break;
                                 default:
                                     MaritalStatusPickerSelectedindex = -1;
                                     break;

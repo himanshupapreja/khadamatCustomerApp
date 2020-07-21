@@ -47,6 +47,10 @@
               "target": "Package",
               "version": "[2017.12.4, )"
             },
+            "Fantacode.Plugin.CrossPlacePicker": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
             "FirebaseStorage.net": {
               "target": "Package",
               "version": "[1.0.3, )"
@@ -171,6 +175,14 @@
               "target": "Package",
               "version": "[60.1142.1, )"
             },
+            "Xamarin.GooglePlayServices.Maps": {
+              "target": "Package",
+              "version": "[60.1142.1, )"
+            },
+            "Xamarin.GooglePlayServices.Places": {
+              "target": "Package",
+              "version": "[60.1142.1, )"
+            },
             "Xamarin.GooglePlayServices.Tasks": {
               "target": "Package",
               "version": "[60.1142.1, )"
@@ -227,6 +239,10 @@
               "target": "Package",
               "version": "[2017.12.4, )"
             },
+            "Fantacode.Plugin.CrossPlacePicker": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
             "FirebaseDatabase.net": {
               "target": "Package",
               "version": "[4.0.4, )"
@@ -268,6 +284,10 @@
             "XF.Material": {
               "target": "Package",
               "version": "[1.5.8, )"
+            },
+            "Xam.Plugin.Connectivity": {
+              "target": "Package",
+              "version": "[3.2.0, )"
             },
             "Xam.Plugin.Geolocator": {
               "target": "Package",

@@ -203,7 +203,7 @@
     <comment>CompleteYourProfilePage</comment>
   </data>
   <data name="cyp_Country" xml:space="preserve">
-    <value>Country</value>
+    <value>Country *</value>
     <comment>CompleteYourProfilePage</comment>
   </data>
   <data name="cyp_CountryPlaceholder" xml:space="preserve">
@@ -219,7 +219,7 @@
     <comment>CompleteYourProfilePage</comment>
   </data>
   <data name="cyp_DOB" xml:space="preserve">
-    <value>Date of Birth</value>
+    <value>Date of Birth *</value>
     <comment>CompleteYourProfilePage</comment>
   </data>
   <data name="cyp_DOBPlaceholder" xml:space="preserve">
@@ -407,7 +407,10 @@
     <comment>ReviewPage</comment>
   </data>
   <data name="error_ServerError" xml:space="preserve">
-    <value>There is some issue while connecting to server. Please check your internet connection or try again after some time.</value>
+    <value>There is some issue while connecting to server. Please try again after some time.</value>
+  </data>
+  <data name="error_slowInternet" xml:space="preserve">
+    <value>Your internet connection speed is slow. Please check your internet connection.</value>
   </data>
   <data name="error_TermCondition" xml:space="preserve">
     <value>Please accept terms and conditions.</value>
@@ -528,6 +531,9 @@
   <data name="jobrequest_JobCloseReason" xml:space="preserve">
     <value>Job Cancel Reason</value>
   </data>
+  <data name="jobrequest_JobNumber" xml:space="preserve">
+    <value>Request Number</value>
+  </data>
   <data name="jobrequest_Location" xml:space="preserve">
     <value>Location</value>
     <comment>JobRequestPage</comment>
@@ -565,6 +571,9 @@
   <data name="jobrequest_VenueTitle" xml:space="preserve">
     <value>Venue *</value>
     <comment>JobRequestPage</comment>
+  </data>
+  <data name="login_btn" xml:space="preserve">
+    <value>Log In</value>
   </data>
   <data name="login_ForgotPswd" xml:space="preserve">
     <value>Forgot Password?</value>
@@ -797,6 +806,9 @@
   <data name="otp_Callme" xml:space="preserve">
     <value>You have exceeded OTP request max attempts , please call to the customer service number in order to get your OTP.</value>
   </data>
+  <data name="otp_ContactUs" xml:space="preserve">
+    <value>Have a Problem … Contact Us</value>
+  </data>
   <data name="otp_EmailVerificationCodeMsg" xml:space="preserve">
     <value>We sent verification code on your registered Email.</value>
     <comment>OtpPage</comment>
@@ -1010,6 +1022,9 @@
   <data name="spjob_PopupPlaceholder" xml:space="preserve">
     <value>Please add your comments</value>
     <comment>JobRequestPage</comment>
+  </data>
+  <data name="splash_loadingData" xml:space="preserve">
+    <value>Please wait while fetching data from server...</value>
   </data>
   <data name="subservice_serviceName1" xml:space="preserve">
     <value>Tap, Wash Basin and Sink</value>

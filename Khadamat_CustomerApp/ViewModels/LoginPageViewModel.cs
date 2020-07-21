@@ -159,7 +159,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                 catch (Exception ex)
                                 {
                                     responseModel = null;
-                                    await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
+                                    //await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
                                     IsLoaderBusy = false;
                                     return;
                                 }
@@ -229,7 +229,9 @@ namespace Khadamat_CustomerApp.ViewModels
                                             }
 
                                             //App.Current.MainPage = new NavigationPage(new MasterPage());
-                                            await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
+                                            var param = new NavigationParameters();
+                                            param.Add("LoginPageData", true);
+                                            await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute),param);
                                         }
                                         else
                                         {
@@ -337,10 +339,8 @@ namespace Khadamat_CustomerApp.ViewModels
         }
         #endregion
 
-        #region OnAppearing
-        public void OnAppearing()
+        public void GetData()
         {
-            Xamarin.Essentials.Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
             Device.BeginInvokeOnMainThread(() =>
             {
                 try
@@ -374,6 +374,14 @@ namespace Khadamat_CustomerApp.ViewModels
                 }
             });
         }
+
+
+        #region OnAppearing
+        public void OnAppearing()
+        {
+            Xamarin.Essentials.Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
+            GetData();
+        }
         #endregion
 
         #region OnDisappearing
@@ -387,28 +395,7 @@ namespace Khadamat_CustomerApp.ViewModels
         {
             if ((e.ConnectionProfiles.Contains(Xamarin.Essentials.ConnectionProfile.WiFi) || e.ConnectionProfiles.Contains(Xamarin.Essentials.ConnectionProfile.Cellular)) && e.NetworkAccess == Xamarin.Essentials.NetworkAccess.Internet)
             {
-
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    var request = new ChangeLanguagesModel();
-                    if (Application.Current.Properties.ContainsKey("AppLocale") && (Application.Current.Properties["AppLocale"].ToString()).Contains("en"))
-                    {
-                        request.language = "en";
-                        request.user_id = BaseViewModel.user_id;
-                    }
-                    else
-                    {
-                        request.language = "ar";
-                        request.user_id = BaseViewModel.user_id;
-                    }
-
-                    UpdateLanguageServer(request);
-                });
-
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    app.GetCountriesApi();
-                });
+                GetData();
             }
         }
     }

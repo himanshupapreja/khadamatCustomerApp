@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Khadamat_CustomerApp.ViewModels;
+using Xamarin.Forms;
 
 namespace Khadamat_CustomerApp.Views
 {
@@ -23,6 +24,9 @@ namespace Khadamat_CustomerApp.Views
             {
                 this.FlowDirection = FlowDirection.LeftToRight;
             }
+
+            CreatePasswordPageViewModel.newPswdEnrty = newPswdEnrty;
+            CreatePasswordPageViewModel.rePswdEnrty = rePswdEnrty;
         }
 
         protected override bool OnBackButtonPressed()

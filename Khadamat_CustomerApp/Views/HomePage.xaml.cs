@@ -33,7 +33,6 @@ namespace Khadamat_CustomerApp.Views
                 this.FlowDirection = FlowDirection.LeftToRight;
             }
             homePageViewModel = this.BindingContext as HomePageViewModel;
-            _webApiRestClient = new WebApiRestClient();
         }
 
         protected override void OnAppearing()
@@ -56,6 +55,8 @@ namespace Khadamat_CustomerApp.Views
                 if (Common.CheckConnection())
                 {
                     SubCategoryResponseModel response;
+
+                    _webApiRestClient = new WebApiRestClient();
                     try
                     {
                         response = await _webApiRestClient.GetAsync<SubCategoryResponseModel>(string.Format(ApiUrl.GetSubCategories, service_category_id));

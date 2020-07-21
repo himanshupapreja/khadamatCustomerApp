@@ -18,7 +18,7 @@ using static Khadamat_CustomerApp.Helpers.Enums;
 
 namespace Khadamat_CustomerApp.ViewModels
 {
-    public class HomePageViewModel : BaseViewModel
+    public class HomePageViewModel : BaseViewModel, INavigationAware
     {
         public static INavigationService NavigationService;
         bool IsNotificationClick;
@@ -224,10 +224,6 @@ namespace Khadamat_CustomerApp.ViewModels
             //{
             //    UpdateNotificationCount();
             //});
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                GetServiceData();
-            });
         }
         #endregion
 
@@ -245,14 +241,84 @@ namespace Khadamat_CustomerApp.ViewModels
         }
         #endregion
 
+        #region GetData Api Method
+        private async void GetData(CategoryListResponseModel response)
+        {
+            try
+            {
+
+                if (response != null)
+                {
+                    if (response.status)
+                    {
+                        HeaderBanner = Common.IsImagesValid(response.CategoryData.upper_banner_image, ApiUrl.BaseUrl);
+                        HeaderBannerTitle = Common.GetLanguage() != "ar-AE" ? Common.FirstCharToUpper(response.CategoryData.upper_banner_title) : Common.FirstCharToUpper(response.CategoryData.upper_banner_title_arabic);
+                        if (response.CategoryData.AppData != null && response.CategoryData.AppData.Count > 0)
+                        {
+                            AllMainCategoryList = new ObservableCollection<MainCategory>(response.CategoryData.AppData.Where(x => x.Categories != null && x.Categories.Count > 0).ToList());
+                            foreach (var item in AllMainCategoryList)
+                            {
+                                var index = AllMainCategoryList.IndexOf(item);
+                                AllMainCategoryList[index].ServiceListHeight = item.Categories.Count % 2 == 0 ? ((item.Categories.Count / 2) * 200 + (item.Categories.Count / 2) * 2 * 5) : (((item.Categories.Count / 2) + 1) * 200 + ((item.Categories.Count / 2) + 1) * 2 * 5);
+                                AllMainCategoryList[index].main_category_name = Common.GetLanguage() != "ar-AE" ? item.main_category_name : item.main_category_name_arabic;
+
+                                foreach (var categoryItem in item.Categories)
+                                {
+                                    var categoryItemIndex = AllMainCategoryList[index].Categories.IndexOf(categoryItem);
+                                    AllMainCategoryList[index].Categories[categoryItemIndex].service_category_name = Common.GetLanguage() != "ar-AE" ? categoryItem.service_category_name : categoryItem.service_category_name_arabic;
+                                    AllMainCategoryList[index].Categories[categoryItemIndex].picture = Common.IsImagesValid(categoryItem.picture, ApiUrl.ServiceImageBaseUrl);
+                                    AllMainCategoryList[index].Categories[categoryItemIndex].icon = Common.IsImagesValid(categoryItem.icon, ApiUrl.ServiceImageBaseUrl);
+                                    AllMainCategoryList[index].Categories[categoryItemIndex].terms_conditions = Common.GetLanguage() != "ar-AE" ? categoryItem.terms_conditions : categoryItem.terms_conditions_arabic;
+                                }
+                            }
+                            AllMainCategoryList[0].LowerBanner = Common.IsImagesValid(response.CategoryData.lower_banner_image, ApiUrl.BaseUrl);
+                            AllMainCategoryList[0].IsImageFound = true;
+
+                            MainCategoryList = AllMainCategoryList;
+                            IsNodataFound = false;
+                        }
+                        else
+                        {
+                            IsNodataFound = true;
+                        }
+                    }
+                    else
+                    {
+                        await MaterialDialog.Instance.SnackbarAsync(message: response.message,
+                                    msDuration: 3000);
+                    }
+                }
+                else
+                {
+                    if (Application.Current.Properties.ContainsKey("HomePageData") && !string.IsNullOrEmpty(Application.Current.Properties["HomePageData"].ToString()) && !string.IsNullOrWhiteSpace(Application.Current.Properties["HomePageData"].ToString()))
+                    {
+                        OfflineData();
+                    }
+                    else
+                    {
+                        IsNodataFound = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("featching Category data ::-->> " + ex.Message);
+            }
+            finally
+            {
+                IsRefreshing = false;
+            }
+        }
+        #endregion
+
         #region GetServiceData Api Method
-        private async void GetServiceData()
+        private async void GetServiceData(bool nonNavigation = true)
         {
             try
             {
                 if (Common.CheckConnection())
                 {
-                    IsLoaderBusy = true;
+                    IsLoaderBusy = nonNavigation;
                     CategoryListResponseModel response;
                     try
                     {
@@ -263,7 +329,7 @@ namespace Khadamat_CustomerApp.ViewModels
                         response = null;
                         IsLoaderBusy = false;
                         IsRefreshing = false;
-                        //await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
+                        ////await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
                         //return;
                     }
                     if (response != null)
@@ -563,48 +629,6 @@ namespace Khadamat_CustomerApp.ViewModels
             {
                 chatTimer = new Timer(_ => GetChat(), null, 0, 10000);
             });
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                try
-                {
-                    app.UpdateDeviceInfo();
-                }
-                catch (Exception ex)
-                {
-                }
-            });
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                try
-                {
-                    app.GetCountriesApi();
-                }
-                catch (Exception ex)
-                {
-                }
-            });
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                try
-                {
-                    var request = new ChangeLanguagesModel();
-                    if (Application.Current.Properties.ContainsKey("AppLocale") && (Application.Current.Properties["AppLocale"].ToString()).Contains("en"))
-                    {
-                        request.language = "en";
-                        request.user_id = BaseViewModel.user_id;
-                    }
-                    else
-                    {
-                        request.language = "ar";
-                        request.user_id = BaseViewModel.user_id;
-                    }
-
-                    app.UpdateLanguageServer(request);
-                }
-                catch (Exception ex)
-                {
-                }
-            });
         }
         #endregion
 
@@ -632,27 +656,44 @@ namespace Khadamat_CustomerApp.ViewModels
                     app.UpdateDeviceInfo();
                 });
 
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    var request = new ChangeLanguagesModel();
-                    if (Application.Current.Properties.ContainsKey("AppLocale") && (Application.Current.Properties["AppLocale"].ToString()).Contains("en"))
-                    {
-                        request.language = "en";
-                        request.user_id = BaseViewModel.user_id;
-                    }
-                    else
-                    {
-                        request.language = "ar";
-                        request.user_id = BaseViewModel.user_id;
-                    }
+                //Device.BeginInvokeOnMainThread(() =>
+                //{
+                //    var request = new ChangeLanguagesModel();
+                //    if (Application.Current.Properties.ContainsKey("AppLocale") && (Application.Current.Properties["AppLocale"].ToString()).Contains("en"))
+                //    {
+                //        request.language = "en";
+                //        request.user_id = BaseViewModel.user_id;
+                //    }
+                //    else
+                //    {
+                //        request.language = "ar";
+                //        request.user_id = BaseViewModel.user_id;
+                //    }
 
-                    app.UpdateLanguageServer(request);
-                });
+                //    app.UpdateLanguageServer(request);
+                //});
 
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     app.GetCountriesApi();
                 });
+            }
+        }
+
+        public void OnNavigatedFrom(INavigationParameters parameters)
+        {
+        }
+
+        public void OnNavigatedTo(INavigationParameters parameters)
+        {
+            if (parameters.ContainsKey("HomePageData"))
+            {
+                var response = (CategoryListResponseModel)parameters["HomePageData"];
+                GetData(response);
+            }
+            else
+            {
+                GetServiceData(false);
             }
         }
     }

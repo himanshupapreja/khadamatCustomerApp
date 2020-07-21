@@ -242,6 +242,16 @@ namespace Khadamat_CustomerApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contact Us.
+        /// </summary>
+        internal static string error_slowInternet
+        {
+            get {
+                return ResourceManager.GetString("error_slowInternet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Customer Service.
         /// </summary>
         internal static string coordinator_Name {

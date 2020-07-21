@@ -18,7 +18,7 @@ namespace Khadamat_CustomerApp.ViewModels
         public static long service_category_id;
         List<SubCategory> subCategories;
 
-        private string CategoryName;
+        public static string CategoryName;
 
         private string _Title;
 
@@ -75,7 +75,6 @@ namespace Khadamat_CustomerApp.ViewModels
             {
                 subCategories = ((List<SubCategory>)parameters["ServiceDetailData"]).Where(x => x.SubSubCategories != null && x.SubSubCategories.Count > 0).ToList();
             }
-            //CategoryName = categoryName;
             if (subCategories != null && subCategories.Count > 0)
             {
                 IsNodataFound = false;

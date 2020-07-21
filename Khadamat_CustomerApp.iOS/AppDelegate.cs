@@ -22,6 +22,9 @@ namespace Khadamat_CustomerApp.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+                //var apikey = "AIzaSyD91DqNrudM6-VosB4UAaKnpigZxCmRyyw";
+                //PlacesClient.ProvideApiKey(apikey);
+                //MapServices.ProvideAPIKey(apikey);
             LoadApplication(new App(new iOSInitializer()));
 
             return base.FinishedLaunching(app, options);

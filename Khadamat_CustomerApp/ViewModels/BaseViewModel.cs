@@ -1,4 +1,5 @@
-﻿using Khadamat_CustomerApp.Models;
+﻿using Khadamat_CustomerApp.DependencyInterface;
+using Khadamat_CustomerApp.Models;
 using Khadamat_CustomerApp.Services.ApiService;
 using Khadamat_CustomerApp.Services.DBService.LiteDB.ModelDB;
 using Plugin.Media;
@@ -26,6 +27,8 @@ namespace Khadamat_CustomerApp.ViewModels
         public static string user_pic;
         public static bool email_verified;
         private byte[] myfile;
+
+        protected readonly ICameraPermission cameraPermission;
 
         public static List<ProvienceDataModel> provienceDataModels;
         public static List<CountryDataModel> countryDataModels;
@@ -183,6 +186,7 @@ namespace Khadamat_CustomerApp.ViewModels
         {
             _webApiRestClient = new WebApiRestClient();
             userDataDbService = new UserDataDbService();
+            cameraPermission = DependencyService.Get<ICameraPermission>();
         }
     }
 }

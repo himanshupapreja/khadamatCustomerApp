@@ -116,6 +116,8 @@ namespace Khadamat_CustomerApp.ViewModels
                 if (jobRequestData != null)
                 {
                     JobDetailData = jobRequestData;
+                    display_category_name = Common.GetLanguage() != "ar-AE" ? JobDetailData.category_name : JobDetailData.category_name_arabic;
+                    display_sub_category_name = Common.GetLanguage() != "ar-AE" ? JobDetailData.sub_category_name : JobDetailData.sub_category_name_arabic;
                     JobDetailData.IsJobCancel = (!string.IsNullOrEmpty(JobDetailData.cancel_reason) && !string.IsNullOrEmpty(JobDetailData.cancel_reason)) ? true : false;
                     JobDetailData.IsQuotePrice = (!string.IsNullOrEmpty(JobDetailData.quote_price) && !string.IsNullOrEmpty(JobDetailData.quote_price)) ? true : false;
                     JobDetailData.IsQuoteDescription = (!string.IsNullOrEmpty(JobDetailData.quote_description) && !string.IsNullOrEmpty(JobDetailData.quote_description)) ? true : false;

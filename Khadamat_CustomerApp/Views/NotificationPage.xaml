@@ -82,6 +82,16 @@
                                                     <TapGestureRecognizer Command="{Binding Path=BindingContext.ViewDetailCommand, Source={x:Reference notificationList}}" CommandParameter="{Binding Source={x:Reference notificationListItem}, Path=BindingContext}"/>
                                                 </Frame.GestureRecognizers>
                                             </Frame>
+
+                                            <Frame BackgroundColor="{StaticResource YellowColor}" CornerRadius="3" Padding="0" HeightRequest="30" WidthRequest="100" IsClippedToBounds="True" HorizontalOptions="End" IsVisible="{Binding IsJobCompleted}">
+                                                <Grid>
+                                                    <Label Text="{strings:Translate mybooking_GiveReview}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" FontSize="14" Style="{StaticResource notificationWhiteLabel}"/>
+                                                </Grid>
+
+                                                <Frame.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.ReviewCommand, Source={x:Reference notificationList}}" CommandParameter="{Binding Source={x:Reference notificationListItem}, Path=BindingContext}"/>
+                                                </Frame.GestureRecognizers>
+                                            </Frame>
                                         </StackLayout>
                                     </StackLayout>
                                 </Frame>

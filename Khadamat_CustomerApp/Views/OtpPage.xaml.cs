@@ -32,7 +32,6 @@ namespace Khadamat_CustomerApp.Views
             OtpPageViewModel.otpEntry3 = otp3;
             OtpPageViewModel.otpEntry4 = otp4;
             OtpPageViewModel.otpEntry5 = otp5;
-            OtpPageViewModel.otpEntry1.Focus();
         }
 
         protected override bool OnBackButtonPressed()

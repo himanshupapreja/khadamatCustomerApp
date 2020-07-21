@@ -22,6 +22,15 @@
 
         <ScrollView Grid.Row="1">
             <StackLayout Spacing="20" Padding="25,15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource TransparentColor}">
+                <!--Job Request Number-->
+                <Frame Padding="10" HeightRequest="50" HorizontalOptions="FillAndExpand" HasShadow="False">
+                    <StackLayout Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Label Text="{strings:Translate jobrequest_JobNumber}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize2}" Style="{StaticResource BlackMediumLabel}"/>
+
+                        <Label Text="{Binding JobDetailData.id}" FontFamily="{StaticResource DefaultFontFamily}" FontSize="{StaticResource MainLabelFontSize1}" HorizontalOptions="Start"/>
+                    </StackLayout>
+                </Frame>
+                
                 <!--Category Field-->
                 <Frame Padding="10" HeightRequest="50" HorizontalOptions="FillAndExpand" HasShadow="False">
                     <StackLayout Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">

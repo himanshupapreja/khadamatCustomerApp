@@ -47,9 +47,9 @@ namespace Khadamat_CustomerApp.Droid.Firebase
                 NotificationManager manager = (NotificationManager)GetSystemService(NotificationService);
                 var seed = Convert.ToInt32(Regex.Match(Guid.NewGuid().ToString(), @"\d+").Value);
                 int id = new Random(seed).Next(000000000, 999999999);
-                var push = new Intent();
-                push.SetAction(message.GetNotification().Body);
-                var fullScreenPendingIntent = PendingIntent.GetActivity(this, 0, push, PendingIntentFlags.UpdateCurrent);
+                //var push = new Intent();
+                //push.SetAction(message.GetNotification().Body);
+                //var fullScreenPendingIntent = PendingIntent.GetActivity(this, 0, push, PendingIntentFlags.UpdateCurrent);
                 NotificationCompat.Builder notification;
                 if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
                 {
@@ -63,7 +63,38 @@ namespace Khadamat_CustomerApp.Droid.Firebase
                 {
                     notification = new NotificationCompat.Builder(this);
                 }
-                notification.SetContentIntent(fullScreenPendingIntent)
+
+
+                Intent resultIntent = new Intent(Application.Context,typeof(MainActivity));
+                //resultIntent.SetAction(Intent.ActionMain);
+                resultIntent.SetAction(message.GetNotification().Body);
+                resultIntent.AddCategory(Intent.CategoryLauncher);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                
+                resultIntent.SetFlags(ActivityFlags.SingleTop | ActivityFlags.NewTask);
+                //StartActivity(resultIntent);
+                //resultIntent.putExtra(NOTIFY_INTENT_TYPE_KEY, alertType);
+
+                PendingIntent resultPendingIntent = PendingIntent.GetActivity(Android.App.Application.Context, 0, resultIntent, PendingIntentFlags.UpdateCurrent);
+
+                if (message.GetNotification().Body.Contains("Your password has been reset by the admin, In order to continue please contact administrator.") || message.GetNotification().Body.Contains("تمت إعادة تعيين كلمة المرور الخاصة بك من قبل المشرف ، للمتابعة ، يرجى الاتصال بالمسؤول") || message.GetNotification().Body.Contains("Your account has been de-activated by the admin, in order to continue please contact administrator") || message.GetNotification().Body.Contains("تم إلغاء تنشيط حسابك من قبل المشرف ، للمتابعة ، يرجى الاتصال بالمسؤول"))
+                {
+                    if (MainActivity.isForeground)
+                    {
+                        notification.SetContentTitle(message.GetNotification().Title)
+                         .SetContentText(message.GetNotification().Body)
+                         .SetLargeIcon(BitmapFactory.DecodeResource(Resources, Resource.Drawable.logo))
+                         .SetSmallIcon(Resource.Drawable.logo)
+                         .SetStyle((new NotificationCompat.BigTextStyle()))
+                         .SetPriority(NotificationCompat.PriorityHigh)
+                         .SetColor(0x9c6114)
+                         .SetAutoCancel(true);
+                        manager.Notify(id, notification.Build());
+                        Xamarin.Forms.MessagingCenter.Send(message.GetNotification().Body, "NotificationOpen", MainActivity.isForeground);
+                    }
+                    else
+                    {
+                        notification.SetContentIntent(resultPendingIntent)
                          .SetContentTitle(message.GetNotification().Title)
                          .SetContentText(message.GetNotification().Body)
                          .SetLargeIcon(BitmapFactory.DecodeResource(Resources, Resource.Drawable.logo))
@@ -72,7 +103,23 @@ namespace Khadamat_CustomerApp.Droid.Firebase
                          .SetPriority(NotificationCompat.PriorityHigh)
                          .SetColor(0x9c6114)
                          .SetAutoCancel(true);
-                manager.Notify(id, notification.Build());
+                        manager.Notify(id, notification.Build());
+                    }
+                }
+                else
+                {
+
+                    notification.SetContentIntent(resultPendingIntent)
+                         .SetContentTitle(message.GetNotification().Title)
+                         .SetContentText(message.GetNotification().Body)
+                         .SetLargeIcon(BitmapFactory.DecodeResource(Resources, Resource.Drawable.logo))
+                         .SetSmallIcon(Resource.Drawable.logo)
+                         .SetStyle((new NotificationCompat.BigTextStyle()))
+                         .SetPriority(NotificationCompat.PriorityHigh)
+                         .SetColor(0x9c6114)
+                         .SetAutoCancel(true);
+                    manager.Notify(id, notification.Build());
+                }
             }
             catch (Exception ex)
             {

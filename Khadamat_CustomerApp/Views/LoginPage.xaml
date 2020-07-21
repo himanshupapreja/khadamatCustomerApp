@@ -57,12 +57,12 @@
                 </Label>
 
                 <!--Submit Button-->
-                <Button Padding="40,0" Text="{strings:Translate reg_SubmitBtn}" Style="{ StaticResource YellowButtonStyle}" Command="{Binding SubmitBtnCommand}"/>
+                <Button Padding="40,0" Text="{strings:Translate login_btn}" Style="{ StaticResource YellowButtonStyle}" Command="{Binding SubmitBtnCommand}"/>
 
             </StackLayout>
 
             <!--Signup Field-->
-            <Label FontSize="16" Margin="0,20" VerticalOptions="End" HorizontalOptions="Center" FontFamily="{StaticResource DefaultFontFamily}">
+            <Label FontSize="22" Margin="0,50" VerticalOptions="End" HorizontalOptions="Center" FontFamily="{StaticResource DefaultFontFamily}" BackgroundColor="Transparent">
                 <Label.FormattedText>
                     <FormattedString>
                         <Span Text="{strings:Translate login_Signup1}" TextColor="{StaticResource WhiteColor}"/>

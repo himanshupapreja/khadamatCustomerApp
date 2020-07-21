@@ -4,6 +4,7 @@ using Khadamat_CustomerApp.Models;
 using Khadamat_CustomerApp.Resources;
 using Khadamat_CustomerApp.Views;
 using Plugin.Geolocator;
+using Plugin.Geolocator.Abstractions;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Prism.Commands;
@@ -29,6 +30,7 @@ namespace Khadamat_CustomerApp.ViewModels
         public static string CategoryTermCondition;
         public static long service_category_id;
         public Plugin.Geolocator.Abstractions.Position locationpoint;
+        IGeolocator locator = null;
         #region SelectedSubSubService
         private SubSubCategory SelectedSubSubService;
         #endregion
@@ -167,6 +169,7 @@ namespace Khadamat_CustomerApp.ViewModels
             JobDateTime = DateTime.Now;
             JobDateValue = DateTime.Now.ToString("dd-MMM-yyyy");
             JobTimeValue = DateTime.Now.ToString("hh:mm tt");
+
         }
         #endregion
 
@@ -199,26 +202,34 @@ namespace Khadamat_CustomerApp.ViewModels
                                     }
                                     else
                                     {
+
+                                        IsLoaderBusy = true;
                                         try
                                         {
+
                                             var locator = CrossGeolocator.Current;
-                                            locator.DesiredAccuracy = 50;
-                                            locationpoint = await locator.GetPositionAsync(TimeSpan.FromMilliseconds(500));
-                                            Console.WriteLine("Position Status: {0}", locationpoint.Timestamp);
-                                            Console.WriteLine("Position Latitude: {0}", locationpoint.Latitude);
-                                            Console.WriteLine("Position Longitude: {0}", locationpoint.Longitude);
-                                            //await App.Current.MainPage.DisplayAlert("Location Point", locationpoint.Latitude +",," + locationpoint.Longitude, "OK");
+                                            locator.DesiredAccuracy = 100;
+                                            locationpoint = await locator.GetPositionAsync(TimeSpan.FromMilliseconds(3000));
+
+                                            //locationpoint = await DependencyService.Get<ICurrentLocationCS>().getLocation();
+                                            //Console.WriteLine("Position Status: {0}", locationpoint.Timestamp);
+                                            //Console.WriteLine("Position Latitude: {0}", locationpoint.Latitude);
+                                            //Console.WriteLine("Position Longitude: {0}", locationpoint.Longitude);
+                                            ////await App.Current.MainPage.DisplayAlert("Location Point", locationpoint.Latitude +",," + locationpoint.Longitude, "OK");
                                             try
                                             {
-                                                Geocoder gc = new Geocoder();
 
-                                                IEnumerable<string> pickedaddress = await gc.GetAddressesForPositionAsync(new Position(locationpoint.Latitude, locationpoint.Longitude));
-                                                //await App.Current.MainPage.DisplayAlert("pickedaddress", pickedaddress.FirstOrDefault().ToString(), "OK");
-                                                Location = pickedaddress.FirstOrDefault().ToString();
-
-                                                if (!string.IsNullOrEmpty(Location) && !string.IsNullOrWhiteSpace(Location) && Location != AppResource.cyp_StreetPlaceholder)
+                                                string url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + locationpoint.Latitude + "," + locationpoint.Longitude + "&key=AIzaSyD91DqNrudM6-VosB4UAaKnpigZxCmRyyw";
+                                                var _objUserData = await _webApiRestClient.GetUrlAsync<GooglePlace>(url);
+                                                if (_objUserData != null)
                                                 {
-                                                    //await App.Current.MainPage.DisplayAlert("", AppResource.cyp_LocationPickupAlert, "OK");
+                                                    if (_objUserData.results != null)
+                                                    {
+                                                        if (_objUserData.results.Count > 0)
+                                                        {
+                                                            Location = _objUserData.results.FirstOrDefault().formatted_address;
+                                                        }
+                                                    }
                                                 }
                                             }
                                             catch (Exception ex)
@@ -234,6 +245,8 @@ namespace Khadamat_CustomerApp.ViewModels
                                         {
                                             //await App.Current.MainPage.DisplayAlert("Catch 2", ex.Message, "OK");
                                         }
+
+                                        IsLoaderBusy = false;
                                     }
                                 }
                                 catch (Exception ex)
@@ -396,7 +409,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                         catch (Exception ex)
                                         {
                                             response = null;
-                                            await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
+                                            //await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
                                             await Task.Delay(1500);
                                             LoaderPopup.CloseAllPopup();
                                             return;
@@ -533,12 +546,13 @@ namespace Khadamat_CustomerApp.ViewModels
 
         }
 
-        public void OnNavigatedTo(INavigationParameters parameters)
+        public async void OnNavigatedTo(INavigationParameters parameters)
         {
+
             if (parameters.ContainsKey("SelectedCategories"))
             {
                 SelectedSubSubService = (SubSubCategory)parameters["SelectedCategories"];
-                CategoryName = Common.GetLanguage() != "ar-AE" ? SelectedSubSubService.category_name : SelectedSubSubService.category_name_arabic;
+                //CategoryName = Common.GetLanguage() != "ar-AE" ? SelectedSubSubService.category_name : SelectedSubSubService.category_name_arabic;
                 CategoryServiceName = SelectedSubSubService.sub_sub_category_name;
             }
             if (parameters.ContainsKey("CategoryTermCondition"))
@@ -548,6 +562,10 @@ namespace Khadamat_CustomerApp.ViewModels
             if (parameters.ContainsKey("CategoryId"))
             {
                 service_category_id = (long)parameters["CategoryId"];
+            }
+            if (parameters.ContainsKey("CategoryName"))
+            {
+                CategoryName = (string)parameters["CategoryName"];
             }
         }
 

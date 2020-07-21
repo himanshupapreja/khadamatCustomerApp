@@ -17,6 +17,8 @@ using Plugin.FirebasePushNotification;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using LiteDB;
+using Prism.Navigation;
+using System.Threading.Tasks;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Khadamat_CustomerApp
@@ -43,28 +45,127 @@ namespace Khadamat_CustomerApp
             userDataDbService = new UserDataDbService();
 
             //Xamarin.Essentials.Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
-
             try
             {
                 if (Application.Current.Properties.ContainsKey("AppLocale") && !string.IsNullOrEmpty(Application.Current.Properties["AppLocale"].ToString()))
                 {
                     var languageculture = Application.Current.Properties["AppLocale"].ToString();
                     Setlanguage(languageculture);
-                    Application.Current.Properties["IsAppAlreadyInstalled"] = true;
-                    Application.Current.SavePropertiesAsync();
+                    
                 }
                 else
                 {
                     Application.Current.Properties["AppLocale"] = "ar-AE";
                     Setlanguage("ar-AE");
-                    Application.Current.Properties["IsAppAlreadyInstalled"] = true;
-                    Application.Current.SavePropertiesAsync();
                 }
+                Application.Current.Properties["IsAppAlreadyInstalled"] = true;
+                Application.Current.SavePropertiesAsync();
             }
             catch (Exception ex)
             {
 
             }
+
+
+
+            if (userDataDbService.IsUserDbPresentInDB())
+            {
+                //Device.BeginInvokeOnMainThread(async () =>
+                //{
+                await NavigationService.NavigateAsync("NavigationPage/StartupPage");
+                //});
+
+                userdataindb = userDataDbService.ReadAllItems().FirstOrDefault();
+                BaseViewModel.user_id = userdataindb.user_id;
+                BaseViewModel.province_id = userdataindb.province.Value;
+                BaseViewModel.user_name = userdataindb.name;
+                BaseViewModel.user_pic = Common.IsImagesValid(userdataindb.profile_pic, ApiUrl.BaseUrl);
+                BaseViewModel.email_verified = userdataindb.email_verified.HasValue ? userdataindb.email_verified.Value : false;
+
+
+            }
+            else
+            {
+                await NavigationService.NavigateAsync("NavigationPage/LoginPage");
+            }
+
+            MessagingCenter.Subscribe<string, bool>(this, "NotificationOpen", async(sender,args) =>
+            {
+                //await NavigationService.NavigateAsync("NavigationPage/StartupPage");
+
+                var data = sender;
+
+                if (data.Contains("You have new message regarding your job request") || data.Contains("لديك رسالة جديدة بخصوص طلب عملك.") || data.Contains("You have new message") || data.Contains("لديك رسالة جديدة"))
+                {
+                    if (!args)
+                    {
+                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
+                    }
+                    //await MainPage.DisplayAlert("Alert", "ChatListPage", "OK");
+                    await Task.Delay(3000);
+                    await NavigationService.NavigateAsync(nameof(ChatListPage));
+                    //App.Current.MainPage = new NavigationPage(new MasterPage());
+                    //App.Current.MainPage.Navigation.PushAsync(new ChatListPage());
+                }
+                else if (data.Contains("You have new message from support team") || data.Contains("لديك رسالة جديدة من فريق الدعم"))
+                {
+
+                    if (!args)
+                    {
+                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
+                        //await Task.Delay(2000);
+                    }
+                    //await MainPage.DisplayAlert("Alert", "SupportPage", "OK");
+                    await Task.Delay(3000);
+                    await NavigationService.NavigateAsync(nameof(SupportPage));
+                }
+                else if (data.Contains("Your password has been reset by the admin, In order to continue please contact administrator.") || data.Contains("تمت إعادة تعيين كلمة المرور الخاصة بك من قبل المشرف ، للمتابعة ، يرجى الاتصال بالمسؤول") || data.Contains("Your account has been de-activated by the admin, in order to continue please contact administrator") || data.Contains("تم إلغاء تنشيط حسابك من قبل المشرف ، للمتابعة ، يرجى الاتصال بالمسؤول"))
+                {
+                    if (userDataDbService.IsUserDbPresentInDB())
+                    {
+                        var item = userDataDbService.ReadAllItems().FirstOrDefault();
+                        BsonValue id = item.ID;
+                        userDataDbService.DeleteItemFromDB(id, item);
+
+                        //App.Current.MainPage = new NavigationPage(new LoginPage());
+                        await Task.Delay(3000);
+                        try
+                        {
+                            await NavigationService.NavigateAsync(nameof(LoginPage));
+                        }
+                        catch (Exception ex)
+                        {
+                        }
+                    }
+                }
+                else if (data != "android.intent.action.MAIN")
+                {
+
+                    if (!args)
+                    {
+                        await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
+                        //await Task.Delay(2000);
+                    }
+                    //await MainPage.DisplayAlert("Alert", "NotificationPage", "OK");
+                    await Task.Delay(3000);
+                    var param = new NavigationParameters();
+                    param.Add("Notification", "Notification");
+                    await NavigationService.NavigateAsync(nameof(NotificationPage), param);
+                    //if (Application.Current.Properties.ContainsKey("AppStatus"))
+                    //{
+                    //if (Convert.ToInt32(Application.Current.Properties["AppStatus"]) == Convert.ToInt32(AppStatus.Foreground))
+                    //{
+                    //    App.Current.MainPage.Navigation.PushAsync(new NotificationPage());
+                    //}
+                    //else if (Convert.ToInt32(Application.Current.Properties["AppStatus"]) == Convert.ToInt32(AppStatus.Background))
+                    //{
+                    //    App.Current.MainPage = new NavigationPage(new MasterPage());
+                    //    App.Current.MainPage.Navigation.PushAsync(new NotificationPage());
+                    //}
+                    //}
+                }
+            });
+
 
 
             //await NavigationService.NavigateAsync("NavigationPage/LoginPage");
@@ -78,24 +179,6 @@ namespace Khadamat_CustomerApp
             //    BaseViewModel.provienceDataModels = JsonConvert.DeserializeObject<List<ProvienceDataModel>>(Application.Current.Properties["ProvinceList"].ToString());
             //}
 
-            if (userDataDbService.IsUserDbPresentInDB())
-            {
-                userdataindb = userDataDbService.ReadAllItems().FirstOrDefault();
-                BaseViewModel.user_id = userdataindb.user_id;
-                BaseViewModel.province_id = userdataindb.province.Value;
-                BaseViewModel.user_name = userdataindb.name;
-                BaseViewModel.user_pic = Common.IsImagesValid(userdataindb.profile_pic, ApiUrl.BaseUrl);
-                BaseViewModel.email_verified = userdataindb.email_verified.HasValue ? userdataindb.email_verified.Value : false;
-
-                Device.BeginInvokeOnMainThread(async() =>
-                {
-                    await NavigationService.NavigateAsync(new Uri("/MasterPage/NavigationPage/HomePage", UriKind.Absolute));
-                });
-            }
-            else
-            {
-                await NavigationService.NavigateAsync("NavigationPage/LoginPage");
-            }
 
             //GetCountriesApi();
 
@@ -361,7 +444,7 @@ namespace Khadamat_CustomerApp
                 catch (Exception ex)
                 {
                     response = null;
-                    await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
+                    //await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
                     //countryDetailData = null;
                 }
                 if (response != null)
@@ -411,7 +494,7 @@ namespace Khadamat_CustomerApp
                 catch (Exception ex)
                 {
                     response = null;
-                    //await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
+                    ////await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
                     //countryDetailData = null;
                 }
                 if (response != null)
@@ -514,6 +597,7 @@ namespace Khadamat_CustomerApp
             containerRegistry.RegisterForNavigation<ExpressServicePage, ExpressServicePageViewModel>();
             containerRegistry.RegisterForNavigation<SplashPage, SplashPageViewModel>();
             containerRegistry.RegisterForNavigation<ExpressServiceDetailPage, ExpressServiceDetailPageViewModel>();
+            containerRegistry.RegisterForNavigation<StartupPage, StartupPageViewModel>();
         } 
         #endregion
     }

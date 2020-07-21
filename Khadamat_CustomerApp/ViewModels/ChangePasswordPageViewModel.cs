@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Input;
+using Xamarin.Forms;
 using XF.Material.Forms.UI.Dialogs;
 
 namespace Khadamat_CustomerApp.ViewModels
@@ -16,6 +17,9 @@ namespace Khadamat_CustomerApp.ViewModels
     public class ChangePasswordPageViewModel : BaseViewModel
     {
         private readonly INavigationService NavigationService;
+        public static Entry oldPswdEnrty;
+        public static Entry newPswdEnrty;
+        public static Entry rePswdEnrty;
         #region IsLoaderBusy Field
         private bool _IsLoaderBusy;
 
@@ -152,6 +156,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                     OldPswdShowHidePswdIcon = "resource://Khadamat_CustomerApp.SvgImages.hidepswd.svg";
                                     IsOldPassword = true;
                                 }
+                                oldPswdEnrty.Focus();
                                 break;
                             case "newpswd":
                                 if (IsNewPassword)
@@ -164,6 +169,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                     NewPswdShowHidePswdIcon = "resource://Khadamat_CustomerApp.SvgImages.hidepswd.svg";
                                     IsNewPassword = true;
                                 }
+                                newPswdEnrty.Focus();
                                 break;
                             case "confirmpswd":
                                 if (IsConfirmPassword)
@@ -176,6 +182,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                     ConfirmPswdShowHidePswdIcon = "resource://Khadamat_CustomerApp.SvgImages.hidepswd.svg";
                                     IsConfirmPassword = true;
                                 }
+                                rePswdEnrty.Focus();
                                 break;
                         }
                     }
@@ -223,7 +230,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                     {
                                         response = null;
                                         IsLoaderBusy = false;
-                                        await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
+                                        //await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
                                         return;
                                     }
                                     if (response != null)

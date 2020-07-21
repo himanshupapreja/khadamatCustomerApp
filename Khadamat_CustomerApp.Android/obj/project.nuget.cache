@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "UpMog2ac4mwl5ImNEReruIVAfjr2+NTIEJbO22mS1MCCcKGBtciIux8i4JgEMFUT1WizDSNBFwKCg5+8PmNsRg==",
+  "dgSpecHash": "BMmd2oyvAL/nEaiLPhvszT/0uKEfeBYh9bFOj5am69aOUJs/PfdMzxynqMfQbE6ItgG8QCJVUj6LXZcYyyso7w==",
   "success": true,
   "projectFilePath": "E:\\Git\\hunny\\khadamatCustomerApp\\Khadamat_CustomerApp.Android\\Khadamat_CustomerApp.Android.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\papre\\.nuget\\packages\\com.airbnb.xamarin.forms.lottie\\3.0.3\\com.airbnb.xamarin.forms.lottie.3.0.3.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\dryioc.dll\\4.0.7\\dryioc.dll.4.0.7.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\dynamicstacklayout\\2017.12.4\\dynamicstacklayout.2017.12.4.nupkg.sha512",
+    "C:\\Users\\papre\\.nuget\\packages\\fantacode.plugin.crossplacepicker\\2.0.0\\fantacode.plugin.crossplacepicker.2.0.0.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\firebasedatabase.net\\4.0.4\\firebasedatabase.net.4.0.4.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\firebasestorage.net\\1.0.3\\firebasestorage.net.1.0.3.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\hockeysdk.xamarin\\5.2.0\\hockeysdk.xamarin.5.2.0.nupkg.sha512",
@@ -73,6 +74,7 @@
     "C:\\Users\\papre\\.nuget\\packages\\system.threading.timer\\4.3.0\\system.threading.timer.4.3.0.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
+    "C:\\Users\\papre\\.nuget\\packages\\xam.plugin.connectivity\\3.2.0\\xam.plugin.connectivity.3.2.0.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xam.plugin.geolocator\\4.5.0.6\\xam.plugin.geolocator.4.5.0.6.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xam.plugin.media\\4.0.1.5\\xam.plugin.media.4.0.1.5.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xam.plugins.forms.imagecircle\\3.0.0.5\\xam.plugins.forms.imagecircle.3.0.0.5.nupkg.sha512",
@@ -143,6 +145,7 @@
     "C:\\Users\\papre\\.nuget\\packages\\xamarin.googleplayservices.basement\\60.1142.1\\xamarin.googleplayservices.basement.60.1142.1.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xamarin.googleplayservices.location\\60.1142.1\\xamarin.googleplayservices.location.60.1142.1.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xamarin.googleplayservices.maps\\60.1142.1\\xamarin.googleplayservices.maps.60.1142.1.nupkg.sha512",
+    "C:\\Users\\papre\\.nuget\\packages\\xamarin.googleplayservices.places\\60.1142.1\\xamarin.googleplayservices.places.60.1142.1.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xamarin.googleplayservices.tasks\\60.1142.1\\xamarin.googleplayservices.tasks.60.1142.1.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xamarin.plugin.filepicker\\2.1.34\\xamarin.plugin.filepicker.2.1.34.nupkg.sha512",
     "C:\\Users\\papre\\.nuget\\packages\\xf.material\\1.5.8\\xf.material.1.5.8.nupkg.sha512"

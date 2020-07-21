@@ -48,6 +48,10 @@
               "target": "Package",
               "version": "[2017.12.4, )"
             },
+            "Fantacode.Plugin.CrossPlacePicker": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
             "FirebaseDatabase.net": {
               "target": "Package",
               "version": "[4.0.4, )"
@@ -89,6 +93,10 @@
             "XF.Material": {
               "target": "Package",
               "version": "[1.5.8, )"
+            },
+            "Xam.Plugin.Connectivity": {
+              "target": "Package",
+              "version": "[3.2.0, )"
             },
             "Xam.Plugin.Geolocator": {
               "target": "Package",

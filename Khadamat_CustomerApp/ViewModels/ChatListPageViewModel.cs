@@ -166,7 +166,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                 response = null;
                                 LoaderPopup.CloseAllPopup();
                                 IsRefreshing = false;
-                                await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
+                                //await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
                                 return;
                             }
                             if (response != null)
@@ -225,7 +225,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                 response = null;
                                 LoaderPopup.CloseAllPopup();
                                 IsRefreshing = false;
-                                await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
+                                //await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
                                 return;
                             }
                             if (response != null)
@@ -280,7 +280,7 @@ namespace Khadamat_CustomerApp.ViewModels
                         response = null;
                         IsLoaderBusy = false;
                         IsRefreshing = false;
-                        await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
+                        //await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
                     }
                     if (response != null)
                     {

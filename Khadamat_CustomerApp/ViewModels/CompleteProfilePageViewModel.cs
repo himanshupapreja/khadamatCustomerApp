@@ -331,11 +331,11 @@ namespace Khadamat_CustomerApp.ViewModels
             //    MaritalStatusDisplay = Common.GetLanguage() != "ar-AE" ? Common.GetEnumDescription(MartialStatusEnum.InAnOpenRelationship) : Common.GetEnumDescription(MartialStatusArabicEnum.InAnOpenRelationship),
             //    MaritalStatusEnumValue = Convert.ToInt32(MartialStatusEnum.InAnOpenRelationship)
             //});
-            MaritalStatusList.Add(new MaritalStatusPickerModel
-            {
-                MaritalStatusDisplay = Common.GetLanguage() != "ar-AE" ? Common.GetEnumDescription(MartialStatusEnum.Divorced) : Common.GetEnumDescription(MartialStatusArabicEnum.Divorced),
-                MaritalStatusEnumValue = Convert.ToInt32(MartialStatusEnum.Divorced)
-            });
+            //MaritalStatusList.Add(new MaritalStatusPickerModel
+            //{
+            //    MaritalStatusDisplay = Common.GetLanguage() != "ar-AE" ? Common.GetEnumDescription(MartialStatusEnum.Divorced) : Common.GetEnumDescription(MartialStatusArabicEnum.Divorced),
+            //    MaritalStatusEnumValue = Convert.ToInt32(MartialStatusEnum.Divorced)
+            //});
             if (BaseViewModel.countryDataModels != null && BaseViewModel.countryDataModels.Count > 0 && BaseViewModel.provienceDataModels != null && BaseViewModel.provienceDataModels.Count > 0)
             {
                 //if (Application.Current.Properties.ContainsKey("AppLocale") && !string.IsNullOrEmpty(Application.Current.Properties["AppLocale"].ToString()))
@@ -569,6 +569,12 @@ namespace Khadamat_CustomerApp.ViewModels
                 {
                     try
                     {
+                        var resultrs = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                        if (resultrs != Plugin.Permissions.Abstractions.PermissionStatus.Granted)
+                        {
+                            await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera, Permission.Storage);
+                        }
+
                         var action = await App.Current.MainPage.DisplayActionSheet(AppResource.AddPhoto, AppResource.Cancel, null, AppResource.Camera, AppResource.Gallery);
 
                         if (action == AppResource.Camera)
@@ -694,7 +700,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                         {
                                             Console.WriteLine("SignupApi_Exception:- " + ex.Message);
                                             response = null;
-                                            await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
+                                            //await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
                                             IsLoaderBusy = false;
                                             return;
                                         }

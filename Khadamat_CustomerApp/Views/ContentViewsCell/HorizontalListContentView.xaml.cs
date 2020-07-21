@@ -51,6 +51,7 @@ namespace Khadamat_CustomerApp.Views
                     var a = (SubSubCategory)(((TappedEventArgs)e).Parameter);
                     var param = new NavigationParameters();
                     param.Add("SelectedCategories", a);
+                    param.Add("CategoryName", ServiceDetailPageViewModel.CategoryName);
                     param.Add("CategoryId", ServiceDetailPageViewModel.service_category_id);
                     param.Add("CategoryTermCondition", ServiceDetailPageViewModel.categoryTermCondition);
                     await ServiceDetailPageViewModel.NavigationService.NavigateAsync(nameof(JobRequestPage), param, false, true);

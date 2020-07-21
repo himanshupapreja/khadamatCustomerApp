@@ -7,6 +7,8 @@ using LiteDB;
 using Plugin.FilePicker;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -343,7 +345,7 @@ namespace Khadamat_CustomerApp.ViewModels
                         Console.WriteLine("SendMsgApi_Exception:- " + ex.Message);
                         response = null;
                         IsBackPress = true;
-                        await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
+                        //await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
                         return;
                     }
                     if (response != null)
@@ -460,7 +462,7 @@ namespace Khadamat_CustomerApp.ViewModels
                     {
                         Console.WriteLine("SendMsgApi_Exception:- " + ex.Message);
                         response = null;
-                        await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
+                        //await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
                         return;
                     }
                     if (response != null)
@@ -624,6 +626,12 @@ namespace Khadamat_CustomerApp.ViewModels
                         //{
                         //    DependencyService.Get<IStoragePermissions>().GetGalleryPermissions();
                         //}
+                        var resultrs = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                        if (resultrs != Plugin.Permissions.Abstractions.PermissionStatus.Granted)
+                        {
+                            await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera, Permission.Storage);
+                        }
+
 
                         var action = await App.Current.MainPage.DisplayActionSheet(AppResource.AddPhoto, AppResource.Cancel, null, AppResource.Camera, AppResource.Gallery);
 

@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Khadamat_CustomerApp.ViewModels;
+using Xamarin.Forms;
 
 namespace Khadamat_CustomerApp.Views
 {
@@ -23,6 +24,10 @@ namespace Khadamat_CustomerApp.Views
             {
                 this.FlowDirection = FlowDirection.LeftToRight;
             }
+
+            ChangePasswordPageViewModel.oldPswdEnrty = oldPswdEnrty;
+            ChangePasswordPageViewModel.newPswdEnrty = newPswdEnrty;
+            ChangePasswordPageViewModel.rePswdEnrty = rePswdEnrty;
         }
     }
 }

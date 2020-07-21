@@ -20,6 +20,8 @@ namespace Khadamat_CustomerApp.ViewModels
         private readonly INavigationService NavigationService;
 
         bool ForgotPassword;
+        public static Entry newPswdEnrty;
+        public static Entry rePswdEnrty;
         #region IsLoaderBusy Field
         private bool _IsLoaderBusy;
 
@@ -126,6 +128,8 @@ namespace Khadamat_CustomerApp.ViewModels
                                     NewPswdShowHidePswdIcon = "resource://Khadamat_CustomerApp.SvgImages.hidepswd.svg";
                                     IsNewPassword = true;
                                 }
+
+                                newPswdEnrty.Focus();
                                 break;
                             case "confirmpswd":
                                 if (IsConfirmPassword)
@@ -138,6 +142,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                     ConfirmPswdShowHidePswdIcon = "resource://Khadamat_CustomerApp.SvgImages.hidepswd.svg";
                                     IsConfirmPassword = true;
                                 }
+                                rePswdEnrty.Focus();
                                 break;
                         }
                     }
@@ -184,7 +189,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                     catch (Exception ex)
                                     {
                                         responseModel = null;
-                                        await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
+                                        //await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
                                         IsLoaderBusy = false;
                                         return;
                                     }

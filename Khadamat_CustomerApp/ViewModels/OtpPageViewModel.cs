@@ -3,10 +3,8 @@ using Khadamat_CustomerApp.Models;
 using Khadamat_CustomerApp.Resources;
 using Khadamat_CustomerApp.Views;
 using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -23,9 +21,25 @@ namespace Khadamat_CustomerApp.ViewModels
         public static bool ForgotPassword;
         public static bool ProfilePage;
 
-        public string PhoneNumber_One;
-        public string PhoneNumber_Two;
-        public string PhoneNumber_Three;
+        private string _PhoneNumber_One;
+        private string _PhoneNumber_Two;
+        private string _PhoneNumber_Three;
+
+        public string PhoneNumber_One
+        {
+            get { return _PhoneNumber_One; }
+            set { SetProperty(ref _PhoneNumber_One, value); }
+        }
+        public string PhoneNumber_Two
+        {
+            get { return _PhoneNumber_Two; }
+            set { SetProperty(ref _PhoneNumber_Two, value); }
+        }
+        public string PhoneNumber_Three
+        {
+            get { return _PhoneNumber_Three; }
+            set { SetProperty(ref _PhoneNumber_Three, value); }
+        }
 
         public SendOtpResponseModel sendOtpModel;
 
@@ -36,6 +50,16 @@ namespace Khadamat_CustomerApp.ViewModels
         {
             get { return _ResendOtpEnabled; }
             set { SetProperty(ref _ResendOtpEnabled, value); }
+        }
+        #endregion
+
+        #region IsCallPopupVisible Field
+        private bool _IsCallPopupVisible;
+
+        public bool IsCallPopupVisible
+        {
+            get { return _IsCallPopupVisible; }
+            set { SetProperty(ref _IsCallPopupVisible, value); }
         }
         #endregion
 
@@ -228,6 +252,7 @@ namespace Khadamat_CustomerApp.ViewModels
             IsLoaderBusy = false;
             IsCallButtonvisible = false;
             IsCallErrorvisible = false;
+            IsCallPopupVisible = false;
             //PhoneNumber = phoneNumber;
             //ForgotPassword = forgotPassword;
             //ProfilePage = profilepage;
@@ -263,7 +288,7 @@ namespace Khadamat_CustomerApp.ViewModels
                                 catch (Exception ex)
                                 {
                                     responseModel = null;
-                                    await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
+                                    //await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
                                     IsLoaderBusy = false;
                                     return;
                                 }
@@ -351,6 +376,16 @@ namespace Khadamat_CustomerApp.ViewModels
                                 PhoneNumber_One = response.phone_number_one;
                                 PhoneNumber_Two = response.phone_number_two;
                                 PhoneNumber_Three = response.phone_number_three;
+
+                                if(resendOtpCount >= 3)
+                                {
+                                    IsCallButtonvisible = true;
+                                }
+                                else
+                                {
+
+                                    IsCallButtonvisible = false;
+                                }
                             }
                             else
                             {
@@ -416,14 +451,112 @@ namespace Khadamat_CustomerApp.ViewModels
                 {
                     try
                     {
-                        var result = await App.Current.MainPage.DisplayActionSheet(AppResource.otp_SupportCall, null,null,PhoneNumber_One, PhoneNumber_Two, PhoneNumber_Three);
-                        PhoneDialer.Open(result);
+                        IsCallPopupVisible = true;
+                        //var result = await App.Current.MainPage.DisplayActionSheet(AppResource.otp_SupportCall, null,null,PhoneNumber_One, PhoneNumber_Two, PhoneNumber_Three);
+                        //PhoneDialer.Open(result);
                     }
                     catch (Exception)
                     {
 
                     }
                     finally
+                    {
+                    }
+                });
+            }
+        }
+        #endregion
+
+        #region PopupCloseCommand
+        public Command PopupCloseCommand
+        {
+            get
+            {
+                return new Command(() =>
+                {
+                    IsCallPopupVisible = false;
+                });
+            }
+        }
+        #endregion
+
+        #region Phone1Command
+        public Command Phone1Command
+        {
+            get
+            {
+                return new Command((e) =>
+                {
+                    try
+                    {
+                        switch (e.ToString().ToLower())
+                        {
+                            case "call":
+                                PhoneDialer.Open(PhoneNumber_One);
+                                break;
+                            case "whatsapp":
+                                Launcher.OpenAsync("http://api.whatsapp.com/send?phone=+967" + PhoneNumber_One);
+                                break;
+                        }
+                        IsCallPopupVisible = false;
+                    }
+                    catch (Exception ex)
+                    {
+                    }
+                });
+            }
+        }
+        #endregion
+
+        #region Phone2Command
+        public Command Phone2Command
+        {
+            get
+            {
+                return new Command((e) =>
+                {
+                    try
+                    {
+                        switch (e.ToString().ToLower())
+                        {
+                            case "call":
+                                PhoneDialer.Open(PhoneNumber_Two);
+                                break;
+                            case "whatsapp":
+                                Launcher.OpenAsync("http://api.whatsapp.com/send?phone=" + PhoneNumber_Two);
+                                break;
+                        }
+                        IsCallPopupVisible = false;
+                    }
+                    catch (Exception ex)
+                    {
+                    }
+                });
+            }
+        }
+        #endregion
+
+        #region Phone3Command
+        public Command Phone3Command
+        {
+            get
+            {
+                return new Command((e) =>
+                {
+                    try
+                    {
+                        switch (e.ToString().ToLower())
+                        {
+                            case "call":
+                                PhoneDialer.Open(PhoneNumber_Three);
+                                break;
+                            case "whatsapp":
+                                Launcher.OpenAsync("http://api.whatsapp.com/send?phone=" + PhoneNumber_Three);
+                                break;
+                        }
+                        IsCallPopupVisible = false;
+                    }
+                    catch (Exception ex)
                     {
                     }
                 });
@@ -454,6 +587,9 @@ namespace Khadamat_CustomerApp.ViewModels
             if (parameters.ContainsKey("PhoneNumber"))
             {
                 PhoneNumber = (string)parameters["PhoneNumber"];
+
+
+                otpEntry1.Focus();
             }
             if (parameters.ContainsKey("OtpAttemps"))
             {

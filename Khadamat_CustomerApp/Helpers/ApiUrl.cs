@@ -20,7 +20,7 @@ namespace Khadamat_CustomerApp.Helpers
         public const string VerifyEmailOtp = "Account/VerifyEmailOtp";
         public const string CreatePassword = "Account/CreatePassword";
         public const string Login = "Account/Login";
-        public const string ForgetPassword = "Account/ForgetPassword?phone_number={0}";
+        public const string ForgetPassword = "Account/ForgetPassword?phone_number={0}&user_type={1}";
         public const string SignUp = "Account/SignUp";
         public const string UpdateDeviceInfo = "Account/UpdateDeviceInfo";
         public const string GetCountries = "Account/GetCountries";
@@ -30,7 +30,7 @@ namespace Khadamat_CustomerApp.Helpers
         public const string EditProfile = "Account/EditProfile";
 
         public const string GetAboutus = "Settings/GetAboutus";
-        public const string GetTermsConditions = "Settings/GetTermsConditions";
+        public const string GetTermsConditions = "Settings/GetTermsConditions?user_type={0}";
         public const string GetPrivacyPolicy = "Settings/GetPrivacyPolicy";
         public const string ChangePassword = "Settings/ChangePassword";
         public const string ChangeLanguage = "Settings/ChangeLanguage";

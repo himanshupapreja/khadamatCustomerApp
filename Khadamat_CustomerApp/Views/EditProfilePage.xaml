@@ -206,7 +206,7 @@
                 <BoxView Style="{StaticResource HorizontalBoxViewStyle}"/>
 
                 <!--Country-->
-                <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="10">
+                <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="10" BackgroundColor="LightGray">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="30"/>

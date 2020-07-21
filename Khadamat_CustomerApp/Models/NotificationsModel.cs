@@ -54,6 +54,7 @@ namespace Khadamat_CustomerApp.Models
         }
         //[JsonIgnore]
         public bool IsQuoteSent { get; set; }
+        public bool IsJobCompleted { get; set; }
         //[JsonIgnore]
         public bool IsViewDetail { get; set; }
 

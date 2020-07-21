@@ -7,6 +7,9 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Khadamat_CustomerApp.Helpers;
+using System.Threading;
+using XF.Material.Forms.UI.Dialogs;
+using Khadamat_CustomerApp.Resources;
 
 namespace Khadamat_CustomerApp.Services.ApiService
 {
@@ -35,6 +38,24 @@ namespace Khadamat_CustomerApp.Services.ApiService
             {
                 client.DefaultRequestHeaders.Add("Accept-Language", "en-US");
             }
+            // it will cancel the request after 1 minute, if no resonse will come
+            client.Timeout = TimeSpan.FromMinutes(1);
+        }
+
+        public async Task<TResponse> GetUrlAsync<TResponse>(string action)
+        {
+            Uri uri = new Uri(action);
+            try
+            {
+                var response = await client.GetAsync(uri);
+                var responsedata = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<TResponse>(responsedata);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error in GetApi:-", ex.Message);
+                return JsonConvert.DeserializeObject<TResponse>(null);
+            }
         }
 
         public async Task<TResponse> GetAsync<TResponse>(string action)
@@ -47,9 +68,23 @@ namespace Khadamat_CustomerApp.Services.ApiService
                 var responsedata = await response.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<TResponse>(responsedata);
             }
+            catch (WebException e)
+            {
+                if (e.Status == WebExceptionStatus.Timeout)
+                {
+                    await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_slowInternet, msDuration: 3000);
+
+                    return JsonConvert.DeserializeObject<TResponse>(null);
+                }
+                else
+                {
+                    return JsonConvert.DeserializeObject<TResponse>(null);
+                }
+            }
             catch (Exception ex)
             {
                 Debug.WriteLine("Error in GetApi:-", ex.Message);
+                await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
                 return JsonConvert.DeserializeObject<TResponse>(null);
             }
         }
@@ -67,9 +102,23 @@ namespace Khadamat_CustomerApp.Services.ApiService
                 var responsedata = await response.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<TResponse>(responsedata);
             }
+            catch (WebException e)
+            {
+                if (e.Status == WebExceptionStatus.Timeout)
+                {
+                    await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_slowInternet, msDuration: 3000);
+
+                    return JsonConvert.DeserializeObject<TResponse>(null);
+                }
+                else
+                {
+                    return JsonConvert.DeserializeObject<TResponse>(null);
+                }
+            }
             catch (Exception ex)
             {
-                Debug.WriteLine("Error in PostApi:-", ex.Message);
+                Debug.WriteLine("Error in GetApi:-", ex.Message);
+                await MaterialDialog.Instance.SnackbarAsync(message: AppResource.error_ServerError, msDuration: 3000);
                 return JsonConvert.DeserializeObject<TResponse>(null);
             }
         }

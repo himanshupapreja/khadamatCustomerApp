@@ -4,44 +4,70 @@ using System.Text;
 
 namespace Khadamat_CustomerApp.Models
 {
-    public class DummyServiceModel
+    public class Result
     {
-        public string Image { get; set; }
-        public string Icon { get; set; }
-        public string Name { get; set; }
+        public List<AddressComponent> address_components { get; set; }
+        public string formatted_address { get; set; }
+        public Geometry geometry { get; set; }
+        public string place_id { get; set; }
+        public List<string> types { get; set; }
     }
 
-    public class DummyNotificationModel
+    public class GooglePlace
     {
-        public string UserPic { get; set; }
-        public string NotificationText { get; set; }
+        public PlusCode plus_code { get; set; }
+        public List<Result> results { get; set; }
+        public string status { get; set; }
     }
 
-    public class DummyServiceDetailList
+    public class PlusCode
     {
-        public string Icon { get; set; }
-        public string Name { get; set; }
+        public string compound_code { get; set; }
+        public string global_code { get; set; }
     }
 
-    public class DummyChatListModel
+    public class AddressComponent
     {
-        public string UserPic { get; set; }
-        public string ChatUserName { get; set; }
-        public string ChatMsgTime { get; set; }
-        public string ChatUserMessage { get; set; }
+        public string long_name { get; set; }
+        public string short_name { get; set; }
+        public List<string> types { get; set; }
     }
 
-    public class DummyChatDetailModel
+    public class Northeast
     {
-        public string UserMessage { get; set; }
-        public string UserMessageTime { get; set; }
-        public bool IsSender { get; set; }
+        public double lat { get; set; }
+        public double lng { get; set; }
     }
 
-    public class DummyMyBookingModel
+    public class Southwest
     {
-        public string ServiceName { get; set; }
-        public bool JobCancelled { get; set; }
-        public bool JobCompleted { get; set; }
+        public double lat { get; set; }
+        public double lng { get; set; }
+    }
+
+    public class Viewport
+    {
+        public Northeast northeast { get; set; }
+        public Southwest southwest { get; set; }
+    }
+
+    public class Geometry
+    {
+        public Bounds bounds { get; set; }
+        public Location location { get; set; }
+        public string location_type { get; set; }
+        public Viewport viewport { get; set; }
+    }
+
+    public class Location
+    {
+        public double lat { get; set; }
+        public double lng { get; set; }
+    }
+
+    public class Bounds
+    {
+        public Northeast northeast { get; set; }
+        public Southwest southwest { get; set; }
     }
 }

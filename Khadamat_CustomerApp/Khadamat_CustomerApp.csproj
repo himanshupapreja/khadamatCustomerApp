@@ -168,6 +168,7 @@
 
   <ItemGroup>
     <PackageReference Include="DynamicStackLayout" Version="2017.12.4" />
+    <PackageReference Include="Fantacode.Plugin.CrossPlacePicker" Version="2.0.0" />
     <PackageReference Include="FirebaseDatabase.net" Version="4.0.4" />
     <PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
     <PackageReference Include="LiteDB" Version="4.1.4" />
@@ -175,6 +176,7 @@
     <PackageReference Include="Plugin.FirebasePushNotification" Version="2.3.6" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.2.0.223" />
     <PackageReference Include="SkiaRate.Forms" Version="0.5.2-pre" />
+    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
     <PackageReference Include="Xam.Plugin.Geolocator" Version="4.5.0.6" />
     <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.0.0.5" />
@@ -291,6 +293,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\SplashPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\StartupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\SupportPage.xaml">

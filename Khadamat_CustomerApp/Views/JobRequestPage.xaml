@@ -24,7 +24,7 @@
             <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <StackLayout Spacing="20" Padding="25,15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource TransparentColor}">
                     <!--Category Field-->
-                    <Frame Padding="10" HeightRequest="50" HorizontalOptions="FillAndExpand" HasShadow="False">
+                    <Frame Padding="10" HeightRequest="50" HorizontalOptions="FillAndExpand" HasShadow="False" BackgroundColor="LightGray">
                         <StackLayout Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <Label Text="{strings:Translate jobrequest_CategoryTitle}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize2}" Style="{StaticResource BlackMediumLabel}"/>
 
@@ -33,7 +33,7 @@
                     </Frame>
 
                     <!--Type of service Field-->
-                    <Frame Padding="10" HeightRequest="50" HorizontalOptions="FillAndExpand" HasShadow="False">
+                    <Frame Padding="10" HeightRequest="50" HorizontalOptions="FillAndExpand" HasShadow="False" BackgroundColor="LightGray">
                         <StackLayout Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <Label Text="{strings:Translate jobrequest_ServiceTypeTitle}" HorizontalOptions="Start" FontSize="{StaticResource MainLabelFontSize2}" Style="{StaticResource BlackMediumLabel}"/>
 

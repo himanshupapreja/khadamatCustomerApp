@@ -25,6 +25,7 @@
         <!--Map-->
         <cc:CustomMap x:Name="customMap" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsEnabled="False"/>
 
+        
         <!--Center Map Pin Icon-->
         <ffimageloadingsvg:SvgCachedImage Grid.Row="1" WidthRequest="30" HeightRequest="30" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,-15,-15,0" Source="resource://Khadamat_CustomerApp.SvgImages.pin.svg"/>
 

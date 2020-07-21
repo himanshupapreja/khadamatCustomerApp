@@ -108,7 +108,7 @@
 
         
         
-        <!--<BoxView Grid.RowSpan="2" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Black1Color}" Opacity="0.8" VerticalOptions="FillAndExpand" IsVisible="{Binding IsLoaderBusy}"/>
-            <ActivityIndicator Grid.RowSpan="2" IsVisible="{Binding IsLoaderBusy}" IsRunning="{Binding IsLoaderBusy}" Color="{StaticResource BlueColor}" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"/>-->
+        <BoxView Grid.RowSpan="2" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Black1Color}" Opacity="0.8" VerticalOptions="FillAndExpand" IsVisible="{Binding IsLoaderBusy}"/>
+            <ActivityIndicator Grid.RowSpan="2" IsVisible="{Binding IsLoaderBusy}" IsRunning="{Binding IsLoaderBusy}" Color="{StaticResource BlueColor}" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"/>
     </Grid>
 </ContentPage>

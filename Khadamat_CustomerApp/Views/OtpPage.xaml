@@ -55,8 +55,109 @@
                     <TapGestureRecognizer Command="{Binding CallCommand}" NumberOfTapsRequired="1"/>
                 </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
             </ffimageloadingsvg:SvgCachedImage>
+
+
+            <Label Text="{strings:Translate otp_ContactUs}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" Style="{ StaticResource WhiteMediumLabel}" Margin="0,10,0,5" LineBreakMode="WordWrap" IsVisible="{Binding IsCallButtonvisible}"/>
         </StackLayout>
 
+        <Grid IsVisible="{Binding IsCallPopupVisible}">
+            <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource Black1Color}" Opacity="0.6">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding PopupCloseCommand}" NumberOfTapsRequired="1"/>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+
+            <Frame Padding="20" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Margin="20,0">
+                <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <Label Text="{strings:Translate otp_SupportCall}" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="{StaticResource MainLabelFontSize1}" FontFamily="{StaticResource SemiBoldFontFamily}"/>
+                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="40"/>
+                        </Grid.ColumnDefinitions>
+                        <!--#region PhoneNumber 1-->
+                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding PhoneNumber_One}" HorizontalOptions="Start" HorizontalTextAlignment="Start" FontSize="{StaticResource MainLabelFontSize1}" FontFamily="{StaticResource DefaultFontFamily}" VerticalOptions="Center"/>
+                        <Image Grid.Row="0" Grid.Column="1" Source="ic_Call_btn.png" HeightRequest="40" WidthRequest="40" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Phone1Command}" CommandParameter="call"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <BoxView Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent">
+                            <BoxView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Phone1Command}" CommandParameter="call"/>
+                            </BoxView.GestureRecognizers>
+                        </BoxView>
+                        <Image Grid.Row="0" Grid.Column="2" Source="ic_whatsapp.png" HeightRequest="40" WidthRequest="40" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Phone1Command}" CommandParameter="whatsapp"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <BoxView Grid.Row="0" Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent">
+                            <BoxView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Phone1Command}" CommandParameter="whatsapp"/>
+                            </BoxView.GestureRecognizers>
+                        </BoxView>
+                        <!--#endregion-->
+                        
+                        
+                        <!--#region PhoneNumber 2-->
+                        <Label Grid.Row="1" Grid.Column="0" Text="{Binding PhoneNumber_Two}" HorizontalOptions="Start" HorizontalTextAlignment="Start" FontSize="{StaticResource MainLabelFontSize1}" FontFamily="{StaticResource DefaultFontFamily}" VerticalOptions="Center"/>
+                        <Image Grid.Row="1" Grid.Column="1" Source="ic_Call_btn.png" HeightRequest="40" WidthRequest="40" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Phone2Command}" CommandParameter="call"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <BoxView Grid.Row="1" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent">
+                            <BoxView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Phone2Command}" CommandParameter="call"/>
+                            </BoxView.GestureRecognizers>
+                        </BoxView>
+                        <Image Grid.Row="1" Grid.Column="2" Source="ic_whatsapp.png" HeightRequest="40" WidthRequest="40" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Phone2Command}" CommandParameter="whatsapp"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <BoxView Grid.Row="1" Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent">
+                            <BoxView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Phone2Command}" CommandParameter="whatsapp"/>
+                            </BoxView.GestureRecognizers>
+                        </BoxView>
+                        <!--#endregion-->
+                        
+                        
+                        <!--#region PhoneNumber 3-->
+                        <Label Grid.Row="2" Grid.Column="0" Text="{Binding PhoneNumber_Three}" HorizontalOptions="Start" HorizontalTextAlignment="Start" FontSize="{StaticResource MainLabelFontSize1}" FontFamily="{StaticResource DefaultFontFamily}" VerticalOptions="Center"/>
+                        <Image Grid.Row="2" Grid.Column="1" Source="ic_Call_btn.png" HeightRequest="40" WidthRequest="40" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Phone3Command}" CommandParameter="call"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <BoxView Grid.Row="2" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent">
+                            <BoxView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Phone3Command}" CommandParameter="call"/>
+                            </BoxView.GestureRecognizers>
+                        </BoxView>
+                        <Image Grid.Row="2" Grid.Column="2" Source="ic_whatsapp.png" HeightRequest="40" WidthRequest="40" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Phone3Command}" CommandParameter="whatsapp"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <BoxView Grid.Row="2" Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent">
+                            <BoxView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Phone3Command}" CommandParameter="whatsapp"/>
+                            </BoxView.GestureRecognizers>
+                        </BoxView>
+                        <!--#endregion-->
+                    </Grid>
+                </StackLayout>
+            </Frame>
+        </Grid>
         <!--Loader Popup-->
         <BoxView HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Black1Color}" Opacity="0.8" VerticalOptions="FillAndExpand" IsVisible="{Binding IsLoaderBusy}"/>
         <ActivityIndicator IsVisible="{Binding IsLoaderBusy}" IsRunning="{Binding IsLoaderBusy}" Color="{StaticResource BlueColor}" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"/>
